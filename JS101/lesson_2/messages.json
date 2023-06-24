@@ -1,0 +1,8 @@
+{
+  "welcomeMessage" : "Welcome to Calculator!",
+  "firstNumberInput" : "What's the first number?",
+  "secondNumberInput" : "What's the second number?",
+  "invalidInput" : "That does not look like a valid number. Please enter another number.",
+  "operation" : "What operation would you like to perform on these two operands?\n1) Add 2) Subtract 3) Multiply 4) Divide",
+  "notSupported" : "That operation is coming soon! Please review the operations currently supported and try again."
+}

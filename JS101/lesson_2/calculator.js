@@ -1,4 +1,5 @@
 const readline = require("readline-sync");
+const messages = require("../../JS101/lesson_2/messages.json");
 let number1;
 let number2;
 let operation;
@@ -17,38 +18,38 @@ function invalidNumber(num) {
 }
 
 function welcome() {
-  prompt("Welcome to Calculator!");
+  prompt(messages.welcomeMessage);
 }
 
 function firstInput() {
 //Ask the user for the first number
-  prompt("What's the first number?");
+  prompt(messages.firstNumberInput);
   number1 = Number(readline.question());
 
   while (invalidNumber(number1)) {
-    prompt("That does not look like a valid number. Please enter another number.");
+    prompt(messages.invalidInput);
     number1 = Number(readline.question());
   }
 // console.log(number1)
 }
 //Ask the user for the second number
 function secondInput() {
-  prompt("what's the second number?");
+  prompt(messages.secondNumberInput);
   number2 = Number(readline.question());
 
   while (invalidNumber(number2)) {
-    prompt("That does not look like a valid number. Please enter another number.");
+    prompt(messages.invalidInput);
     number2 = Number(readline.question());
   }
 }
 //Ask the user for the operation
 function operationChoice() {
-  prompt("What operation would you like to perform on these two operands?\n1) Add 2) Subtract 3) Multiply 4) Divide");
+  prompt(messages.operation);
 
   operation = readline.question();
 
   while (!["1", "2", "3", "4"].includes(operation)) {
-    prompt("That operation is coming soon! Please review the operations currently supported and try again.");
+    prompt(messages.notSupported);
     operation = readline.question();
   }
 }
