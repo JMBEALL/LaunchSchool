@@ -4,5 +4,9 @@
   "secondNumberInput" : "What's the second number?",
   "invalidInput" : "That does not look like a valid number. Please enter another number.",
   "operation" : "What operation would you like to perform on these two operands?\n1) Add 2) Subtract 3) Multiply 4) Divide",
-  "notSupported" : "That operation is coming soon! Please review the operations currently supported and try again."
+  "notSupported" : "That operation is coming soon! Please review the operations currently supported and try again.",
+  "mortgageWelcome" : "Welcome to the mortgage calculator!",
+  "loanAmount" : "How much is your loan?",
+  "APR" : "How much is the Annual Perentage Rate?",
+  "loanDuration" : "What is the duration of your loan?"
 }
