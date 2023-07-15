@@ -319,6 +319,160 @@ centerOf('x');                 // "x"
 
 // console.log(numbersArr.includes(number6));
 
-function isPalindrome(str) {
-  
+// ----- WIKI-SPOT EXERCISES -----//
+
+//Generating:
+
+// function generateArr(num1,num2) {
+//   let newArr = [];
+//   for( let index = num1 ; index <= num2; index++) {
+//     newArr.push(index);
+//   }
+//   return newArr;
+// }
+
+// let finalAnswer = generateArr(3, 10); // [3, 4, 5, 6, 7, 8, 9, 10]
+
+// console.log(finalAnswer);
+
+//COUNTING
+  //letters in a string
+
+// function countOccurencies(str) {
+//   let occObj = {};
+//   for (let index = 0; index < str.length; index++){
+//     if(occObj[str[index]]){
+//       occObj[str[index]]++
+//     } else {
+//       occObj[str[index]] = 1;
+//     }
+//   }
+//   return occObj;
+// }
+
+
+
+//   let obj = countOccurencies('abbab'); // => {a:2, b: 3}
+
+//   console.log(obj);
+
+//explore more:
+
+//Words in a string
+// function countWords(str) {
+//   return str.split(" ").length;
+// }
+
+// console.log(countWords('hello world')); // => 2
+
+// function countWords(str) {
+//   let newStr= "";
+//   let index = 0;
+
+//   while (index < str.length) {
+//     if (str.toUpperCase().charCodeAt(index) >= 65 && str.toUpperCase().charCodeAt(index) <= 90 || str.charCodeAt(index) === 32){
+//       newStr += str[index];
+//     }
+//     index++;
+//   }
+//   let str2 = newStr.split(" ");
+//   let occObj = {};
+//   for (let index2 = 0; index2 < str2.length; index2++){
+//     if(occObj[str[index]]){
+//       occObj[str2[index2]]++
+//     } else {
+//       occObj[str2[index2]] = 1;
+//     }
+//   }
+//   return occObj;
+// }
+
+// let finalAnswer = countWords('Hello, hello world'); // => {'hello' : 2, 'world' : 1};
+// console.log(finalAnswer);
+
+
+// function countSubstr(str,sub) {
+// let count = 0;
+// let index = 0;
+// let strArr = str.split(" ");
+// while (index < strArr.length){
+//   if(strArr[index].includes(sub)){
+//     count++;
+//   }
+//  index++;
+// }
+// return count;
+// }
+
+// let finalAnswer = countSubstr('Hello, Hello! How are you doing Mellody?', 'ello' );// => 3
+
+// console.log(finalAnswer);
+
+// function countEle(arr,str) {
+// let count = 0;
+// let index = 0;
+// while (index < arr.length) {
+//   if (arr[index] === str){
+//     count++;
+//   }
+//   index++
+// }
+// return count
+// }
+
+// let answerOne = countEle(['name', 'year', 'age', 'name'], 'name'); // => 2
+// let answerTwo = countEle([1,2,3,4,5,1,2,3,4], 2); //=> 2
+// console.log(answerOne);
+// console.log(answerTwo);
+
+
+// function countDuplic(str) {
+//   let count = 0;
+//   let arr = str.split(" ");
+//   let el = arr.shift();
+
+// arr.forEach(el => {
+//   if(arr.includes(el)){
+//     count++;
+//     el = arr.shift();
+//   } else {
+//     el = arr.shift();
+//   }
+// })
+
+
+//   return count;
+// }
+
+// console.log(countDuplic('one two one three two'));
+// console.log(countDuplic('flower cat cat dog flower dog'));
+
+
+// function countDuplic(str) {
+//   let newObj = {};
+//   let count = 0;
+// for( let index = 0; index < str.length ; index++){
+//   if(newObj[str[index]]){
+//     newObj[str[index]]++
+//   } else {
+//     newObj[str[index]] = 1;
+//   }
+// }
+// for (let prop in newObj){
+//   if (newObj[prop] === 2){
+//     count++;
+//   }
+// }
+// return count;
+// }
+
+// console.log(countDuplic('123123'));
+// console.log(countDuplic('abcdea ab'));
+
+function sorting(arr) {
+  arr.sort();
+  return arr
 }
+
+console.log(sorting(['a', 'd', 'a', 'b'])); //=> ['a', 'a', 'b', 'd'];
+console.log(sorting('banana', 'apple', 'pear')); //=> ['apple', 'banana', 'pear']
