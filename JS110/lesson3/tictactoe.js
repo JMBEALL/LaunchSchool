@@ -1,5 +1,7 @@
 const readline = require('readline-sync');
 
+
+
 function displayBoard(board) {
 console.log('');
 console.log('      |      |');
@@ -16,27 +18,39 @@ console.log('      |      |');
 console.log('');
 }
 
+
 function initializeBoard() {
-  let board = {};
+  let gameBoard = {};
+  let counter = 1;
 
-  for (let index = 1; index <= 9; index++) {
-    board[index] = " ";
+  while ( counter <= 9) {
+    gameBoard[counter] = " ";
+    counter++;
   }
-
-  return board;
+  return gameBoard;
 }
+
 
 function prompt(msg) {
   console.log(`=> ${msg}`);
 }
 
 function playerChoosesSquare(board) {
-  prompt("Choose a square: 1-9.");
-  let square = readline.question();
-  board[String(square)] = "X";
+  let playerChoice = readline.question('Choose a number between 1-9:\n');
+  while (playerChoice < 1 || playerChoice > 9) {
+    prompt('Please enter a valid number between 1-9.');
+    playerChoice = readline.question("Choose a number between 1-9.\n");
+  }
+while (board[playerChoice] === " ") {
+    board[playerChoice] = "X";
+  }
+
+  prompt(`You chose square ${Number(playerChoice)}.`);
+  console.log(board);
 }
 
-let gameBoard = initializeBoard();
-displayBoard(gameBoard);
-playerChoosesSquare(gameBoard);
-displayBoard(gameBoard);
+
+let board = initializeBoard();
+displayBoard(board);
+playerChoosesSquare(board);
+displayBoard(board);
