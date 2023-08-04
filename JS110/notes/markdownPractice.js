@@ -55,6 +55,6 @@ let lastYearsTeam = players
 players.splice(2, 1);
 players.forEach(player => player[1] += 1);
 ​
-console.log(players);
-console.log(lastYearsTeam);
-```
+// console.log(players);
+// console.log(lastYearsTeam);
+// ```
