@@ -51,10 +51,10 @@ let lastYearsTeam = players
   .filter(player => {
     if (player[1] < 30) return true;
   });
-​
-players.splice(2, 1);
-players.forEach(player => player[1] += 1);
-​
+// ​
+// players.splice(2, 1);
+// players.forEach(player => player[1] += 1);
+// ​
 // console.log(players);
 // console.log(lastYearsTeam);
 // ```
