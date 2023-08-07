@@ -477,10 +477,18 @@ centerOf('x');                 // "x"
 // console.log(sorting(['a', 'd', 'a', 'b'])); //=> ['a', 'a', 'b', 'd'];
 // console.log(sorting('banana', 'apple', 'pear')); //=> ['apple', 'banana', 'pear']
 
-let length = Number(readline.question("What is the length of the room in meters?\n"));
+// let length = Number(readline.question("What is the length of the room in meters?\n"));
 
-let width = Number(readline.question("What is the width of the room?\n"));
-let AREA = length * width;
-let SQUARE_METER_CONVERSION = 10.7639;
-console.log(`The length is ${length} meters. \n The width is ${width} meters.\n The area of the room is ${AREA} square meters. (${((AREA) * SQUARE_METER_CONVERSION).toFixed(2)} square feet)`);
-10
+// let width = Number(readline.question("What is the width of the room?\n"));
+// let AREA = length * width;
+// let SQUARE_METER_CONVERSION = 10.7639;
+// console.log(`The length is ${length} meters. \n The width is ${width} meters.\n The area of the room is ${AREA} square meters. (${((AREA) * SQUARE_METER_CONVERSION).toFixed(2)} square feet)`);
+// 10
+
+let billAmount = Number(readline.question("How much is the bill?\n"));
+let tip = Number(readline.question("Percentage wise, how much do you want to tip?\n"));
+
+let TIP_TOTAL = billAmount * (tip / 100);
+let TOTAL_BILL = billAmount + TIP_TOTAL;
+
+console.log(`The tip is ${TIP_TOTAL.toFixed(2)}.\nThe total is ${TOTAL_BILL.toFixed(2)}.`);
