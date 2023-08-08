@@ -541,15 +541,33 @@ const readline = require("readline-sync");
 // console.log(isLeapYear(100));       // false
 // console.log(isLeapYear(400));       // true
 
-function multisum(num) {
-  let sum = 0;
-  for (let index = 1 ; index <= num ; index++) {
-    if(index % 3 === 0 || index % 5 === 0) sum += index;
-  }
-  return sum;
+// function multisum(num) {
+//   let sum = 0;
+//   for (let index = 1 ; index <= num ; index++) {
+//     if(index % 3 === 0 || index % 5 === 0) sum += index;
+//   }
+//   return sum;
+// }
+
+// console.log(multisum(3));       // 3
+// console.log(multisum(5));       // 8
+// console.log(multisum(10));      // 33
+// console.log(multisum(1000));    // 234168
+
+function utf16Value(str) {
+  let arr = str.split("");
+  return arr.map(el => el.charCodeAt(el)).reduce((accum,el) => accum + el, 0);
+
 }
 
-console.log(multisum(3));       // 3
-console.log(multisum(5));       // 8
-console.log(multisum(10));      // 33
-console.log(multisum(1000));    // 234168
+console.log(utf16Value('Four score'));         // 984
+console.log(utf16Value('Launch School'));      // 1251
+console.log(utf16Value('a'));                  // 97
+console.log(utf16Value(''));                   // 0
+
+// The next three lines demonstrate that the code
+// works with non-ASCII characters from the UTF-16
+// character set.
+const OMEGA = "\u03A9";             // UTF-16 character 'Ω' (omega)
+console.log(utf16Value(OMEGA));                  // 937
+console.log(utf16Value(OMEGA + OMEGA + OMEGA));  // 2811
