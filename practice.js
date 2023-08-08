@@ -190,19 +190,19 @@ const readline = require("readline-sync");
 // console.log(`Its ${date}. You will retire in ${date + (retireAge - age)}. You have only ${retireAge - age} years of work to go!`);
 
 
-function centerOf(str) {
-  if (str.length % 2 === 1) {
-    console.log(str[Math.floor(str.length / 2)]);
-  } else if (str.length === 0) {
-    console.log(str[Math.floor(str.length / 2)] + str[Math.floor((str.length / 2 )) + 1 ]);
-  }
-}
+// function centerOf(str) {
+//   if (str.length % 2 === 1) {
+//     console.log(str[Math.floor(str.length / 2)]);
+//   } else if (str.length === 0) {
+//     console.log(str[Math.floor(str.length / 2)] + str[Math.floor((str.length / 2 )) + 1 ]);
+//   }
+// }
 
-centerOf('I Love JavaScript'); // "a"
-centerOf('Launch School');     // " "
-centerOf('Launch');            // "un"
-centerOf('Launchschool');      // "hs"
-centerOf('x');                 // "x"
+// centerOf('I Love JavaScript'); // "a"
+// centerOf('Launch School');     // " "
+// centerOf('Launch');            // "un"
+// centerOf('Launchschool');      // "hs"
+// centerOf('x');                 // "x"
 
 
 // function negative(num) {
@@ -485,10 +485,71 @@ centerOf('x');                 // "x"
 // console.log(`The length is ${length} meters. \n The width is ${width} meters.\n The area of the room is ${AREA} square meters. (${((AREA) * SQUARE_METER_CONVERSION).toFixed(2)} square feet)`);
 // 10
 
-let billAmount = Number(readline.question("How much is the bill?\n"));
-let tip = Number(readline.question("Percentage wise, how much do you want to tip?\n"));
+// let billAmount = Number(readline.question("How much is the bill?\n"));
+// let tip = Number(readline.question("Percentage wise, how much do you want to tip?\n"));
 
-let TIP_TOTAL = billAmount * (tip / 100);
-let TOTAL_BILL = billAmount + TIP_TOTAL;
+// let TIP_TOTAL = billAmount * (tip / 100);
+// let TOTAL_BILL = billAmount + TIP_TOTAL;
 
-console.log(`The tip is ${TIP_TOTAL.toFixed(2)}.\nThe total is ${TOTAL_BILL.toFixed(2)}.`);
+// console.log(`The tip is ${TIP_TOTAL.toFixed(2)}.\nThe total is ${TOTAL_BILL.toFixed(2)}.`);
+
+// let numArr = JSON.parse(readline.question("Please enter an array of numbers\n"));
+// let math = readline.question("Enter 's' to compute the sum, or 'p' to compute the prodcut.\n").toLowerCase();
+
+// let sum = 0;
+// let product = 1;
+
+// if (math === "s") {
+//   let reduceSum = numArr.reduce((accum,el)=> accum + el, 0);
+//   console.log(`The sum of integers between 1 and ${numArr} using reduce is ${reduceSum}.`);
+// } else if (math === "p") {
+//   product = numArr.reduce((accum,el) => accum * el, 1);
+//   console.log(`The prodict of integers between 1 and ${numArr} is ${product}.`);
+// }
+
+// function shortLongShort(str1,str2) {
+//   return str1.length < str2.length ? str1 + str2 + str1 : str2 + str1 +str2
+// }
+
+// console.log(shortLongShort('abc', 'defgh'));    // "abcdefghabc"
+// console.log(shortLongShort('abcde', 'fgh'));    // "fghabcdefgh"
+// console.log(shortLongShort('', 'xyz'));         // "xyz"
+
+// function isLeapYear(year) {
+//   if (year <= 1752 && year % 4 === 0) {
+//     return true;
+//   } else if( year % 4 === 0 && year % 100 !== 0) {
+//     return true;
+//   } else if (year % 4 === 0 && year % 100 === 0 && year % 400 === 0) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }
+
+// console.log(isLeapYear(2016));      // true
+// console.log(isLeapYear(2015));      // false
+// console.log(isLeapYear(2100));      // false
+// console.log(isLeapYear(2400));      // true
+// console.log(isLeapYear(240000));    // true
+// console.log(isLeapYear(240001));    // false
+// console.log(isLeapYear(2000));      // true
+// console.log(isLeapYear(1900));      // false
+// console.log(isLeapYear(1752));      // true
+// console.log(isLeapYear(1700));      // false
+// console.log(isLeapYear(1));         // false
+// console.log(isLeapYear(100));       // false
+// console.log(isLeapYear(400));       // true
+
+function multisum(num) {
+  let sum = 0;
+  for (let index = 1 ; index <= num ; index++) {
+    if(index % 3 === 0 || index % 5 === 0) sum += index;
+  }
+  return sum;
+}
+
+console.log(multisum(3));       // 3
+console.log(multisum(5));       // 8
+console.log(multisum(10));      // 33
+console.log(multisum(1000));    // 234168
