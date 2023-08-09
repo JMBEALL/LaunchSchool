@@ -554,20 +554,66 @@ const readline = require("readline-sync");
 // console.log(multisum(10));      // 33
 // console.log(multisum(1000));    // 234168
 
-function utf16Value(str) {
-  let arr = str.split("");
-  return arr.map(el => el.charCodeAt(el)).reduce((accum,el) => accum + el, 0);
+// function utf16Value(str) {
+//   let arr = str.split("");
+//   return arr.map(el => el.charCodeAt(el)).reduce((accum,el) => accum + el, 0);
 
+// }
+
+// console.log(utf16Value('Four score'));         // 984
+// console.log(utf16Value('Launch School'));      // 1251
+// console.log(utf16Value('a'));                  // 97
+// console.log(utf16Value(''));                   // 0
+
+// // The next three lines demonstrate that the code
+// // works with non-ASCII characters from the UTF-16
+// // character set.
+// const OMEGA = "\u03A9";             // UTF-16 character 'Ω' (omega)
+// console.log(utf16Value(OMEGA));                  // 937
+// console.log(utf16Value(OMEGA + OMEGA + OMEGA));  // 2811
+
+// function greetings(arr,obj) {
+//   let fullName = arr.reduce((accum,el) => accum + " " + el);
+//   console.log(`Hello, ${fullName}! Nice to have a ${obj.title} ${obj.occupation} around.`);
+// }
+
+// console.log(
+//   greetings(["John", "Q", "Doe"], { title: "Master", occupation: "Plumber" })
+// );
+// // logs Hello, John Q Doe! Nice to have a Master Plumber around.
+
+// let userInput = readline.question("Welcome! What is your name?\n");
+// if( userInput.endsWith("!")) {
+//   console.log(`HELLO ${userInput.toUpperCase()} WHY ARE YOU SCREAMING?`);
+// } else {
+//   console.log(`Hello ${userInput}.`);
+// }
+
+// let multiply = (num1, num2) => num1 * num2;
+
+// // console.log(multiply(5, 3) === 15); // logs true
+
+// let square = multiply(num1, num2)
+
+// let num1 = Number(readline.question("Enter the first number:"));
+// let num2 = Number(readline.question("Enter the second number:"));
+// console.log(`${num1} +${num2} =${num1 + num2}`);
+// console.log(`${num1} - ${num2}= ${num1 - num2}`);
+// console.log(`${num1}* ${num2} = ${num1 * num2}`);
+// console.log(`${num1} / ${num2}${num1 / num2}`);
+// console.log(`${num1} % ${num2}${num1 % num2}`);
+// console.log(`${num1} ** ${num2}${ num1 ** num2}`);
+
+function penultimate(str) {
+  // return str.split(" ")[str.split(" ").length - 2];
+
+  // let arr = str.split(" ");
+  // arr.pop();
+  // return arr.pop();
+  if (!str.includes(" ")) {
+    return "only a single word provided";
+  }
 }
 
-console.log(utf16Value('Four score'));         // 984
-console.log(utf16Value('Launch School'));      // 1251
-console.log(utf16Value('a'));                  // 97
-console.log(utf16Value(''));                   // 0
-
-// The next three lines demonstrate that the code
-// works with non-ASCII characters from the UTF-16
-// character set.
-const OMEGA = "\u03A9";             // UTF-16 character 'Ω' (omega)
-console.log(utf16Value(OMEGA));                  // 937
-console.log(utf16Value(OMEGA + OMEGA + OMEGA));  // 2811
+console.log(penultimate("lastword")); // logs true
+console.log(penultimate("Launch School is great!") === "is"); // logs true
