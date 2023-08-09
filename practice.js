@@ -604,16 +604,106 @@ const readline = require("readline-sync");
 // console.log(`${num1} % ${num2}${num1 % num2}`);
 // console.log(`${num1} ** ${num2}${ num1 ** num2}`);
 
-function penultimate(str) {
-  // return str.split(" ")[str.split(" ").length - 2];
+// function penultimate(str) {
+//   // return str.split(" ")[str.split(" ").length - 2];
 
-  // let arr = str.split(" ");
-  // arr.pop();
-  // return arr.pop();
-  if (!str.includes(" ")) {
-    return "only a single word provided";
+//   // let arr = str.split(" ");
+//   // arr.pop();
+//   // return arr.pop();
+//   if (!str.includes(" ")) {
+//     return "only a single word provided";
+//   }
+// }
+
+// console.log(penultimate("lastword")); // logs true
+// console.log(penultimate("Launch School is great!") === "is"); // logs true
+
+// function xor(arg1, arg2) {
+//   return arg1 && !arg2 || !arg1 && arg2 ? true : false;
+ 
+// }
+
+// console.log(xor(5, 0) === true);          // true
+// console.log(xor(false, true) === true);   // true
+// console.log(xor(1, 1) === false);         // true
+// console.log(xor(true, true) === false);   // true
+
+// function oddities(arr) {
+//   return arr.filter((el,index) => {
+//     return  index % 2 === 0 ? el : 0;
+//   })
+// }
+// console.log(oddities([2, 3, 4, 5, 6])); // logs [2, 4, 6]
+// console.log(oddities([1, 2, 3, 4, 5, 6])); // logs [1, 3, 5]
+// console.log(oddities(["abc", "def"])); // logs ['abc']
+// console.log(oddities([123])); // logs [123]
+// console.log(oddities([])); // logs []
+
+// let randomNum = Math.floor(Math.random() * 120) + 1;
+
+// while (randomNum < 20 && randomNum > 120) {
+//   randomNum = Math.floor(Math.random() * 120) + 1;
+// }
+
+// console.log(`Teddy is ${randomNum} years old!`);
+
+// function negative(num) {
+//   return - Math.abs(num);
+// }
+// console.log(negative(5));     // -5
+// console.log(negative(-3));    // -3
+// console.log(negative(0));     // -0
+
+// function crunch(str) {
+
+//   return str.split("").filter((el,index) => {
+//     return el !== str[index + 1] 
+//   }).join("");
+// }
+
+// console.log(crunch('ddaaiillyy ddoouubbllee'));    // "daily double"
+// console.log(crunch('4444abcabccba'));              // "4abcabcba"
+// console.log(crunch('ggggggggggggggg'));            // "g"
+// console.log(crunch('a'));                          // "a"
+// console.log(crunch(''));                           // ""
+
+// function stringy(num) {
+//   let newStr = "";
+//   for (let index = 0; index < num; index++) {
+//     if( index % 2 === 0) {
+//       newStr+= 1
+//     } else {
+//       newStr += 0
+//     }
+//   }
+//   return newStr
+// }
+
+// console.log(stringy(6));    // "101010"
+// console.log(stringy(9));    // "101010101"
+// console.log(stringy(4));    // "1010"
+// console.log(stringy(7));    // "1010101"
+function twice(num) {
+  let str = String(num).split("")
+  // console.log(str);
+  let left = str.slice(0, (str.length / 2 ) );
+  console.log(left);
+  let right = str.slice(str.length / 2);
+  console.log(right);
+
+  if (left.join("") === right.join("")) {
+    console.log(left.join(""), right.join(""));
+    return num;
+  } else {
+    return num * 2;
   }
 }
 
-console.log(penultimate("lastword")); // logs true
-console.log(penultimate("Launch School is great!") === "is"); // logs true
+console.log(twice(37));          // 74
+console.log(twice(44));          // 44
+console.log(twice(334433));      // 668866
+console.log(twice(444));         // 888
+console.log(twice(107));         // 214
+console.log(twice(103103));      // 103103
+console.log(twice(3333));        // 3333
+console.log(twice(7676));        // 7676
