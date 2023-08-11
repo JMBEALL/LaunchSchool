@@ -683,27 +683,87 @@ const readline = require("readline-sync");
 // console.log(stringy(9));    // "101010101"
 // console.log(stringy(4));    // "1010"
 // console.log(stringy(7));    // "1010101"
-function twice(num) {
-  let str = String(num).split("")
-  // console.log(str);
-  let left = str.slice(0, (str.length / 2 ) );
-  console.log(left);
-  let right = str.slice(str.length / 2);
-  console.log(right);
+// function twice(num) {
+//   let str = String(num).split("")
+//   // console.log(str);
+//   let left = str.slice(0, (str.length / 2 ) );
+//   console.log(left);
+//   let right = str.slice(str.length / 2);
+//   console.log(right);
 
-  if (left.join("") === right.join("")) {
-    console.log(left.join(""), right.join(""));
-    return num;
-  } else {
-    return num * 2;
+//   if (left.join("") === right.join("")) {
+//     console.log(left.join(""), right.join(""));
+//     return num;
+//   } else {
+//     return num * 2;
+//   }
+// }
+
+// console.log(twice(37));          // 74
+// console.log(twice(44));          // 44
+// console.log(twice(334433));      // 668866
+// console.log(twice(444));         // 888
+// console.log(twice(107));         // 214
+// console.log(twice(103103));      // 103103
+// console.log(twice(3333));        // 3333
+// console.log(twice(7676));        // 7676
+
+// function getGrade(num1,num2,num3) {
+//   let avg = (num1 + num2 + num3) / 3;
+
+//   switch (avg) {
+//     case (avg > 90 && avg < 100): 
+//       console.log("A");
+//       break;
+//     case (avg >= 80 && avg <= 89):
+//       console.log("B")
+//       break;
+//     case (avg >= 60 && avg <= 69):
+//       return "D";
+//   }
+// }
+
+// console.log(getGrade(95, 90, 93));    // "A"
+// console.log(getGrade(50, 50, 95));    // "D"
+
+// let ladder = '';
+
+// ['head', 'heal', 'teal', 'tell', 'tall', 'tail'].forEach(word => {
+//   if (ladder !== '') {
+//     ladder += '-';
+//   }
+
+//   ladder += word;
+// })
+
+// console.log(ladder)  // expect: head-heal-teal-tell-tall-tail
+
+
+function range(start = 0, end = 1) {
+  let range = [];
+
+  for (let element = start; element <= end; element++) {
+    range.push(element);
   }
+
+  return range;
 }
 
-console.log(twice(37));          // 74
-console.log(twice(44));          // 44
-console.log(twice(334433));      // 668866
-console.log(twice(444));         // 888
-console.log(twice(107));         // 214
-console.log(twice(103103));      // 103103
-console.log(twice(3333));        // 3333
-console.log(twice(7676));        // 7676
+// function range(end) {
+//   return range(0, end);
+// }
+
+// Examples
+
+// console.log(range(10, 20));
+// console.log(range(5));
+
+function removeVowels(arr) {
+  return arr.map(el => {
+    return el.replace(/[aeiou]/ig, "");
+  })
+}
+
+console.log(removeVowels(['abcdefghijklmnopqrstuvwxyz']));         // ["bcdfghjklmnpqrstvwxyz"]
+console.log(removeVowels(['green', 'YELLOW', 'black', 'white']));  // ["grn", "YLLW", "blck", "wht"]
+console.log(removeVowels(['ABC', 'AEIOU', 'XYZ']));                // ["BC", "", "XYZ"]
