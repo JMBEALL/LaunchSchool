@@ -758,12 +758,32 @@ function range(start = 0, end = 1) {
 // console.log(range(10, 20));
 // console.log(range(5));
 
-function removeVowels(arr) {
-  return arr.map(el => {
-    return el.replace(/[aeiou]/ig, "");
+// function removeVowels(arr) {
+//   return arr.map(el => {
+//     return el.replace(/[aeiou]/ig, "");
+//   })
+// }
+
+// console.log(removeVowels(['abcdefghijklmnopqrstuvwxyz']));         // ["bcdfghjklmnpqrstvwxyz"]
+// console.log(removeVowels(['green', 'YELLOW', 'black', 'white']));  // ["grn", "YLLW", "blck", "wht"]
+// console.log(removeVowels(['ABC', 'AEIOU', 'XYZ']));                // ["BC", "", "XYZ"]
+
+function letterCaseCount(str) {
+  let obj = {lowercase : 0, uppercase : 0, neither : 0};
+
+  str.split("").forEach(el => {
+    if (/[a-z]/g.test(el)) {
+      obj.lowercase++;
+    } else if (/[A-Z]/g.test(el)) {
+      obj.uppercase++;
+    } else {
+      obj.neither++;
+    }
   })
+  return obj;
 }
 
-console.log(removeVowels(['abcdefghijklmnopqrstuvwxyz']));         // ["bcdfghjklmnpqrstvwxyz"]
-console.log(removeVowels(['green', 'YELLOW', 'black', 'white']));  // ["grn", "YLLW", "blck", "wht"]
-console.log(removeVowels(['ABC', 'AEIOU', 'XYZ']));                // ["BC", "", "XYZ"]
+console.log(letterCaseCount('abCdef 123'));  // { lowercase: 5, uppercase: 1, neither: 4 }
+console.log(letterCaseCount('AbCd +Ef'));    // { lowercase: 3, uppercase: 3, neither: 2 }
+console.log(letterCaseCount('123'));         // { lowercase: 0, uppercase: 0, neither: 3 }
+console.log(letterCaseCount(''));            // { lowercase: 0, uppercase: 0, neither: 0 }
