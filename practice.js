@@ -788,13 +788,31 @@ function range(start = 0, end = 1) {
 // console.log(letterCaseCount('123'));         // { lowercase: 0, uppercase: 0, neither: 3 }
 // console.log(letterCaseCount(''));            // { lowercase: 0, uppercase: 0, neither: 0 }
 
-function wordCap(str) {
-  let arr = str.split(" ");
-  return arr.map(word => {
-     return word[0].toUpperCase() + word.slice(1).toLowerCase();
-  }).join(" ");
+// function wordCap(str) {
+//   let arr = str.split(" ");
+//   return arr.map(word => {
+//      return word[0].toUpperCase() + word.slice(1).toLowerCase();
+//   }).join(" ");
+// }
+
+// console.log(wordCap('four score and seven'));       // "Four Score And Seven"
+// console.log(wordCap('the javaScript language'));    // "The Javascript Language"
+// console.log(wordCap('this is a "quoted" word'));    // 'This Is A "quoted" Word'
+
+function swapCase(str) {
+let arr = str.split("");
+let newStr = "";
+arr.map(char => {
+    if (/[a-z]/.test(char)) {
+      newStr += char.toUpperCase()
+  } else if (/[A-Z]/.test(char)) {
+      newStr += char.toLowerCase();
+  } else {
+    newStr += char;
+  }
+})
+return newStr;
 }
 
-console.log(wordCap('four score and seven'));       // "Four Score And Seven"
-console.log(wordCap('the javaScript language'));    // "The Javascript Language"
-console.log(wordCap('this is a "quoted" word'));    // 'This Is A "quoted" Word'
+console.log(swapCase('CamelCase'));              // "cAMELcASE"
+console.log(swapCase('Tonight on XYZ-TV'));      // "tONIGHT ON xyz-tv"
