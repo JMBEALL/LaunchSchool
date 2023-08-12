@@ -914,17 +914,47 @@ function range(start = 0, end = 1) {
 // console.log(reverseSentence('Hello World'));            // "World Hello"
 // console.log(reverseSentence('Reverse these words'));    // "words these Reverse"
 
-function reverseWords(str) {
+// function reverseWords(str) {
 
-  return str.split(" ").map(word => {
-    if (word.length >= 5 ) {
-      return word.split("").reverse().join("");
-    } else {
-      return word;
-    }
-  }).join(" ")
+//   return str.split(" ").map(word => {
+//     if (word.length >= 5 ) {
+//       return word.split("").reverse().join("");
+//     } else {
+//       return word;
+//     }
+//   }).join(" ")
+// }
+
+// console.log(reverseWords('Professional'));             // "lanoisseforP"
+// console.log(reverseWords('Walk around the block'));    // "Walk dnuora the kcolb"
+// console.log(reverseWords('Launch School'));            // "hcnuaL loohcS"
+
+// function isRealPalindrome(str) {
+//   let newStr = "";
+
+//   str.split("").filter(char => {
+//     if (char.match(/[a-z0-9]/ig)) {
+//       newStr += char;
+//     }
+//   })
+//   console.log(newStr);
+//   console.log(revNewStr);
+//    return newStr.toLowerCase() === newStr.split("").reverse().join("").toLowerCase();
+// }
+
+// console.log(isRealPalindrome('madam'));               // true
+// console.log(isRealPalindrome('Madam'));               // true (case does not matter)
+// console.log(isRealPalindrome("Madam, I'm Adam"));     // true (only alphanumerics matter)
+// console.log(isRealPalindrome('356653'));              // true
+// console.log(isRealPalindrome('356a653'));             // true
+// console.log(isRealPalindrome('123ab321'));            // false
+
+function isPalindromicNumber(num) {
+let str = String(num);
+return str === str.split("").reverse().join("");
 }
 
-console.log(reverseWords('Professional'));             // "lanoisseforP"
-console.log(reverseWords('Walk around the block'));    // "Walk dnuora the kcolb"
-console.log(reverseWords('Launch School'));            // "hcnuaL loohcS"
+console.log(isPalindromicNumber(34543));        // true
+console.log(isPalindromicNumber(123210));       // false
+console.log(isPalindromicNumber(22));           // true
+console.log(isPalindromicNumber(5));            // true
