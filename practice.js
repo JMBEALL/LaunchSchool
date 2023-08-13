@@ -974,33 +974,53 @@ function range(start = 0, end = 1) {
 // wordSizes("What's up doc?");                              // { "2": 1, "3": 1, "5": 1 }
 // wordSizes('');                                            // {}
 
-function wordToDigit (str) {
-  let numObj = {
-    zero: 0,
-    one: 1,
-    two: 2,
-    three: 3,
-    four: 4,
-    five: 5,
-    six: 6,
-    seven: 7,
-    eight: 8,
-    nine: 9,
-  }
-  let newStr = "";
-  let newArr = str.match(/[^.!]/g).join("");
-  newArr.split(" ").forEach(el => {
-    if (numObj[el]) {
-      newStr += numObj[el] + " ";
-    } else {
-      newStr += el + " ";
-    }
-  })
-  return newStr;
-  }
+// function wordToDigit (str) {
+//   let numObj = {
+//     zero: 0,
+//     one: 1,
+//     two: 2,
+//     three: 3,
+//     four: 4,
+//     five: 5,
+//     six: 6,
+//     seven: 7,
+//     eight: 8,
+//     nine: 9,
+//   }
+//   let newStr = "";
+//   let newArr = str.match(/[^.!]/g).join("");
+//   newArr.split(" ").forEach(el => {
+//     if (numObj[el]) {
+//       newStr += numObj[el] + " ";
+//     } else {
+//       newStr += el + " ";
+//     }
+//   })
+//   return newStr;
+//   }
 
 
 
 
-console.log(wordToDigit('Please call me at five five five one two three four. Thanks.'));
-// "Please call me at 5 5 5 1 2 3 4. Thanks."
+// console.log(wordToDigit('Please call me at five five five one two three four. Thanks.'));
+// // "Please call me at 5 5 5 1 2 3 4. Thanks."
+
+function letterPercentages(str) {
+let lowercase = str.match(/[a-z]/g)
+// console.log(lowercase);
+let uppercase = str.match(/[A-Z]/g)
+// console.log(uppercase);
+let neither = str.match(/[^a-zA-Z]/g)
+// console.log(neither);
+
+return {lowercase: ((lowercase.length/ str.length) * 100).toFixed(2) , uppercase: ((uppercase.length/ str.length) * 100).toFixed(2), neither : ((neither.length/ str.length) * 100).toFixed(2)  }
+}
+
+console.log(letterPercentages('abCdef 123'));
+// { lowercase: "50.00", uppercase: "10.00", neither: "40.00" }
+
+console.log(letterPercentages('AbCd +Ef'));
+// { lowercase: "37.50", uppercase: "37.50", neither: "25.00" }
+
+// console.log(letterPercentages('123'));
+// // { lowercase: "0.00", uppercase: "0.00", neither: "100.00" }
