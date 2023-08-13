@@ -1,3 +1,4 @@
+const { isObjectIdOrHexString } = require("mongoose");
 const readline = require("readline-sync");
 
 // let length = 0;
@@ -949,12 +950,57 @@ function range(start = 0, end = 1) {
 // console.log(isRealPalindrome('356a653'));             // true
 // console.log(isRealPalindrome('123ab321'));            // false
 
-function isPalindromicNumber(num) {
-let str = String(num);
-return str === str.split("").reverse().join("");
-}
+// function isPalindromicNumber(num) {
+// let str = String(num);
+// return str === str.split("").reverse().join("");
+// }
 
-console.log(isPalindromicNumber(34543));        // true
-console.log(isPalindromicNumber(123210));       // false
-console.log(isPalindromicNumber(22));           // true
-console.log(isPalindromicNumber(5));            // true
+// console.log(isPalindromicNumber(34543));        // true
+// console.log(isPalindromicNumber(123210));       // false
+// console.log(isPalindromicNumber(22));           // true
+// console.log(isPalindromicNumber(5));            // true
+
+// function wordSizes(str) {
+//   let objCount = {};
+//   let strArr = str.split(" ");
+//   // console.log(strArr);
+//   strArr.forEach(word => {
+//     if(objCount[word])
+//   })
+// }
+
+// wordSizes('Four score and seven.');                       // { "3": 1, "4": 1, "5": 2 }
+// wordSizes('Hey diddle diddle, the cat and the fiddle!');  // { "3": 5, "6": 3 }
+// wordSizes("What's up doc?");                              // { "2": 1, "3": 1, "5": 1 }
+// wordSizes('');                                            // {}
+
+function wordToDigit (str) {
+  let numObj = {
+    zero: 0,
+    one: 1,
+    two: 2,
+    three: 3,
+    four: 4,
+    five: 5,
+    six: 6,
+    seven: 7,
+    eight: 8,
+    nine: 9,
+  }
+  let newStr = "";
+  let newArr = str.match(/[^.!]/g).join("");
+  newArr.split(" ").forEach(el => {
+    if (numObj[el]) {
+      newStr += numObj[el] + " ";
+    } else {
+      newStr += el + " ";
+    }
+  })
+  return newStr;
+  }
+
+
+
+
+console.log(wordToDigit('Please call me at five five five one two three four. Thanks.'));
+// "Please call me at 5 5 5 1 2 3 4. Thanks."
