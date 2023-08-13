@@ -1025,41 +1025,66 @@ function range(start = 0, end = 1) {
 // console.log(letterPercentages('123'));
 // // { lowercase: "0.00", uppercase: "0.00", neither: "100.00" }
 
-function triangle(num1,num2,num3) {
-  let arr = [num1,num2,num3];
-  let sorted = arr.sort((a,b) => a-b);
-  if ((sorted[0] + sorted[1]) < sorted[2]) {
-    return "invalid";
-  }
-  if(num1 === 0 || num2 === 0 || num3 === 0) {
-    return "invalid";
-  }
-  if (num1 === num2 && num2  === num3) {
-    return "equilateral";
-  }
-  if (num1 !== num2 && num2 !== num3 && num1 !== num3) {
-    return "scalene";
-  }
+// function triangle(num1,num2,num3) {
+//   let arr = [num1,num2,num3];
+//   let sorted = arr.sort((a,b) => a-b);
+//   if ((sorted[0] + sorted[1]) < sorted[2]) {
+//     return "invalid";
+//   }
+//   if(num1 === 0 || num2 === 0 || num3 === 0) {
+//     return "invalid";
+//   }
+//   if (num1 === num2 && num2  === num3) {
+//     return "equilateral";
+//   }
+//   if (num1 !== num2 && num2 !== num3 && num1 !== num3) {
+//     return "scalene";
+//   }
 
-  return "isosceles";
+//   return "isosceles";
+// }
+
+// console.log(triangle(3, 3, 3));        // "equilateral"
+// console.log(triangle(3, 3, 1.5));      // "isosceles"
+// console.log(triangle(3, 4, 5));        // "scalene"
+// console.log(triangle(0, 3, 3));        // "invalid"
+// console.log(triangle(3, 1, 1));        // "invalid"
+// //input: three numbers representing the sides of a triangle
+// //output: a string representing what type the triangle is based on the length of the sides
+// //rules:
+//   //explicit:
+//     //1) valid triangle must have the length of the 2 shortes sides (sum) be greater than the final side.
+//     //2) every side must have a length that is greater than zero
+//     //3) if either of the following two rules are not met, the triangle is "invalid" and that string should be returned and execution completed.
+//     //note: 
+//       //equilateral: all sides equal length
+//       // isosceles: 2 equal length sides, one different
+//       //scalene: three sides of different length;
+//   //implicit: (test cases)
+//     //
+
+function fridayThe13ths(year) {
+  let start = new Date(year, 0, 1);
+  let end = new Date(year, 11, 31);
+  // console.log(start.toString());
+  // console.log(end.toString());
+  let count = 0;
+
+  for ( let index = start; index <= end; index.setDate(index.getDate() + 1)) {
+    // console.log(index.toString());
+    if (index.toString().match(/Fri [a-z]{3} 13/ig)) {
+      count++;
+    }
+  }
+  return count;
 }
 
-console.log(triangle(3, 3, 3));        // "equilateral"
-console.log(triangle(3, 3, 1.5));      // "isosceles"
-console.log(triangle(3, 4, 5));        // "scalene"
-console.log(triangle(0, 3, 3));        // "invalid"
-console.log(triangle(3, 1, 1));        // "invalid"
-//input: three numbers representing the sides of a triangle
-//output: a string representing what type the triangle is based on the length of the sides
+//input: integer representing a year;
+//output: number representing the number of friday the 13ths in that specific year. (so, will be greater than or equal to zero)
 //rules:
-  //explicit:
-    //1) valid triangle must have the length of the 2 shortes sides (sum) be greater than the final side.
-    //2) every side must have a length that is greater than zero
-    //3) if either of the following two rules are not met, the triangle is "invalid" and that string should be returned and execution completed.
-    //note: 
-      //equilateral: all sides equal length
-      // isosceles: 2 equal length sides, one different
-      //scalene: three sides of different length;
-  //implicit: (test cases)
-    //
+  //explicit: 
+
+console.log(fridayThe13ths(1986));      // 1
+console.log(fridayThe13ths(2015));      // 3
+console.log(fridayThe13ths(2017));      // 2
 
