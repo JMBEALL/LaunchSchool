@@ -132,8 +132,27 @@ let transactions = [ { id: 101, movement: 'in',  quantity:  5 },
                      { id: 102, movement: 'in',  quantity: 22 },
                      { id: 103, movement: 'out', quantity: 15 }, ];
 
-console.log(transactionsFor(101, transactions));
-// returns
-// [ { id: 101, movement: "in",  quantity:  5 },
-//   { id: 101, movement: "in",  quantity: 12 },
-//   { id: 101, movement: "out", quantity: 18 }, ]
+// console.log(transactionsFor(101, transactions));
+// // returns
+// // [ { id: 101, movement: "in",  quantity:  5 },
+// //   { id: 101, movement: "in",  quantity: 12 },
+// //   { id: 101, movement: "out", quantity: 18 }, ]
+function isItemAvailable(ID, list) {
+  let count = 0;
+  let arr = list.filter( obj => obj.id === ID);
+  if (arr.length > 0) {
+    arr.forEach( obj => {
+      if (obj.movement === "in") {
+        count += obj.quantity;
+      } else if (obj.movement === "out") {
+        count -= obj.quantity;
+      }
+    })
+  }
+  return count > 0 ? true : false;
+}
+
+
+console.log(isItemAvailable(101, transactions));     // false
+console.log(isItemAvailable(103, transactions));     // false
+console.log(isItemAvailable(105, transactions));     // true
