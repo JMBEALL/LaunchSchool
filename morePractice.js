@@ -117,42 +117,78 @@
 // console.log(buyFruit([['apple', 3], ['orange', 1], ['banana', 2]]));
 // // returns ["apple", "apple", "apple", "orange", "banana", "banana"]
 
-function transactionsFor(ID, list) {
-  return list.filter( obj => obj.id === ID);
-}
+// function transactionsFor(ID, list) {
+//   return list.filter( obj => obj.id === ID);
+// }
 
-let transactions = [ { id: 101, movement: 'in',  quantity:  5 },
-                     { id: 105, movement: 'in',  quantity: 10 },
-                     { id: 102, movement: 'out', quantity: 17 },
-                     { id: 101, movement: 'in',  quantity: 12 },
-                     { id: 103, movement: 'out', quantity: 20 },
-                     { id: 102, movement: 'out', quantity: 15 },
-                     { id: 105, movement: 'in',  quantity: 25 },
-                     { id: 101, movement: 'out', quantity: 18 },
-                     { id: 102, movement: 'in',  quantity: 22 },
-                     { id: 103, movement: 'out', quantity: 15 }, ];
+// let transactions = [ { id: 101, movement: 'in',  quantity:  5 },
+//                      { id: 105, movement: 'in',  quantity: 10 },
+//                      { id: 102, movement: 'out', quantity: 17 },
+//                      { id: 101, movement: 'in',  quantity: 12 },
+//                      { id: 103, movement: 'out', quantity: 20 },
+//                      { id: 102, movement: 'out', quantity: 15 },
+//                      { id: 105, movement: 'in',  quantity: 25 },
+//                      { id: 101, movement: 'out', quantity: 18 },
+//                      { id: 102, movement: 'in',  quantity: 22 },
+//                      { id: 103, movement: 'out', quantity: 15 }, ];
 
-// console.log(transactionsFor(101, transactions));
-// // returns
-// // [ { id: 101, movement: "in",  quantity:  5 },
-// //   { id: 101, movement: "in",  quantity: 12 },
-// //   { id: 101, movement: "out", quantity: 18 }, ]
-function isItemAvailable(ID, list) {
-  let count = 0;
-  let arr = list.filter( obj => obj.id === ID);
-  if (arr.length > 0) {
-    arr.forEach( obj => {
-      if (obj.movement === "in") {
-        count += obj.quantity;
-      } else if (obj.movement === "out") {
-        count -= obj.quantity;
-      }
-    })
+// // console.log(transactionsFor(101, transactions));
+// // // returns
+// // // [ { id: 101, movement: "in",  quantity:  5 },
+// // //   { id: 101, movement: "in",  quantity: 12 },
+// // //   { id: 101, movement: "out", quantity: 18 }, ]
+// function isItemAvailable(ID, list) {
+//   let count = 0;
+//   let arr = list.filter( obj => obj.id === ID);
+//   if (arr.length > 0) {
+//     arr.forEach( obj => {
+//       if (obj.movement === "in") {
+//         count += obj.quantity;
+//       } else if (obj.movement === "out") {
+//         count -= obj.quantity;
+//       }
+//     })
+//   }
+//   return count > 0 ? true : false;
+// }
+
+
+// console.log(isItemAvailable(101, transactions));     // false
+// console.log(isItemAvailable(103, transactions));     // false
+// console.log(isItemAvailable(105, transactions));     // true
+
+function smallerNumbersThanCurrent(arr) {
+  let unique = [];
+  for (let index = 0; index < arr.length; index++) {
+    if (!unique.includes(arr[index])) {
+      unique.push(arr[index]);
+    }
   }
-  return count > 0 ? true : false;
+  // console.log(arr);
+  // console.log(unique);
+  return arr.map(el => {
+    let count = 0;
+    for ( let index = 0; index < unique.length; index++) {
+      if (el > unique[index]) {
+        count++;
+      }
+    }
+    return count;
+  })
+ 
 }
 
+// Given an array of numbers, for each number, find out how
+// many numbers in the array are smaller than it. When
+// counting numbers, only count unique values. That is, if a
+// given number occurs multiple times in the array, it
+// should only be counted once.
 
-console.log(isItemAvailable(101, transactions));     // false
-console.log(isItemAvailable(103, transactions));     // false
-console.log(isItemAvailable(105, transactions));     // true
+// Examples:
+
+console.log(smallerNumbersThanCurrent([8, 1, 2, 2, 3])); // [3, 0, 1, 1, 2]
+console.log(smallerNumbersThanCurrent(
+  [1, 4, 6, 8, 13, 2, 4, 5, 4])); // [0, 2, 4, 5, 6, 1, 2, 3, 2]
+console.log(smallerNumbersThanCurrent([7, 7, 7, 7])); // [0,0,0,0]
+console.log(smallerNumbersThanCurrent([6, 5, 4, 8])); // [2, 1, 0, 3]
+console.log(smallerNumbersThanCurrent([1])); // [0]
