@@ -136,20 +136,14 @@
 
 // // The tests above should each log "true".
 
+// let colors = ['green', 'blue', 'purple', 'orange'];
 
-let name = "Jordan";
-
-// while ( index < name.length) {
-//   console.log(name[index]);
-//   index++;
-
+// for ( color of colors) {
+//   console.log(color);
 // }
 
-// do {
-//   console.log(name[index]);
-//   index++;
-// } while (index < name.length);
+let mixed = ['hello' , 10, undefined];
 
-for (let index = 0; index < name.length; index++) {
-  console.log(name[index]);
+for ( el of mixed) {
+  console.log(typeof el);
 }
