@@ -190,24 +190,47 @@
 //   return finalArr;
 // }
 // console.log(substrings("Jordan"));
-function palindromeSubstrings(str) {
-  let arr = substrings(str);
-  // console.log(arr);
-  return arr.filter(el => el === el.split("").reverse().join(""));
-}
-function substrings(str) {
-  let finalArr = [];
-  for (let index = 0; index <= str.length - 1; index++) {
-    for (let j = 2 ; j <= str.length - index; j++) {
-      finalArr.push(str.slice(index, index + j))
-    }
+// function palindromeSubstrings(str) {
+//   let arr = substrings(str);
+//   // console.log(arr);
+//   return arr.filter(el => el === el.split("").reverse().join(""));
+// }
+// function substrings(str) {
+//   let finalArr = [];
+//   for (let index = 0; index <= str.length - 1; index++) {
+//     for (let j = 2 ; j <= str.length - index; j++) {
+//       finalArr.push(str.slice(index, index + j))
+//     }
+//   }
+//   return finalArr;
+// }
+
+// // console.log(substrings("Jordan"))
+
+// console.log(palindromeSubstrings("supercalifragilisticexpialidocious")); // ["ili"]
+// console.log(palindromeSubstrings("abcddcbA"));   // ["bcddcb", "cddc", "dd"]
+// console.log(palindromeSubstrings("palindrome")); // []
+// console.log(palindromeSubstrings(""));           // []
+
+
+let produce = {
+  apple: 'Fruit',
+  carrot: 'Vegetable',
+  pear: 'Fruit',
+  broccoli: 'Vegetable'
+};
+
+
+function selectFruit(produce) {
+let newObj ={};
+
+for (key in produce) {
+  if (produce[key] === "Fruit") {
+    newObj[key] = produce[key];
   }
-  return finalArr;
+}
+return newObj;
 }
 
-// console.log(substrings("Jordan"))
-
-console.log(palindromeSubstrings("supercalifragilisticexpialidocious")); // ["ili"]
-console.log(palindromeSubstrings("abcddcbA"));   // ["bcddcb", "cddc", "dd"]
-console.log(palindromeSubstrings("palindrome")); // []
-console.log(palindromeSubstrings(""));           // []
+console.log(selectFruit(produce)); // => { apple: 'Fruit', pear: 'Fruit' }
+console.log(produce);
