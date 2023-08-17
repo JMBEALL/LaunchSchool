@@ -142,8 +142,72 @@
 //   console.log(color);
 // }
 
-let mixed = ['hello' , 10, undefined];
+// let mixed = ['hello' , 10, undefined];
 
-for ( el of mixed) {
-  console.log(typeof el);
+// for ( el of mixed) {
+//   console.log(typeof el);
+// }
+
+// let numberOfPets = {
+//   dogs: 2,
+//   cats: 4,
+//   fish: 1
+// };
+
+// for (key in numberOfPets) {
+//   console.log(`I have ${numberOfPets[key]} ${key}.`);
+// }
+
+
+// function substrings(str) {
+//   let result = [];             // Initialize an empty array to store the substrings.
+//   let startingIndex = 0;       // Initialize the starting index for substring extraction.
+
+//   while (startingIndex <= str.length - 2) {
+//     let numChars = 2;          // Initialize the length of substrings to extract.
+
+//     while (numChars <= str.length - startingIndex) {
+//       let substring = str.slice(startingIndex, startingIndex + numChars); // Extract the substring.
+//       result.push(substring);  // Add the extracted substring to the result array.
+//       numChars += 1;           // Increment the length of substrings for the next iteration.
+//     }
+
+//     startingIndex += 1;        // Increment the starting index for the next iteration.
+//   }
+
+//   return result;              // Return the array containing all the extracted substrings.
+// }
+
+// console.log(substrings("Jordan"));
+
+// function substrings(str) {
+//   let finalArr = [];
+//   for (let index = 0; index <= str.length - 3; index++) {
+//     for (let j = 3;  j <= str.length - index; j++){
+//       finalArr.push(str.slice(index, index + j))
+//     }
+//   }
+//   return finalArr;
+// }
+// console.log(substrings("Jordan"));
+function palindromeSubstrings(str) {
+  let arr = substrings(str);
+  // console.log(arr);
+  return arr.filter(el => el === el.split("").reverse().join(""));
 }
+function substrings(str) {
+  let finalArr = [];
+  for (let index = 0; index <= str.length - 1; index++) {
+    for (let j = 2 ; j <= str.length - index; j++) {
+      finalArr.push(str.slice(index, index + j))
+    }
+  }
+  return finalArr;
+}
+
+// console.log(substrings("Jordan"))
+
+console.log(palindromeSubstrings("supercalifragilisticexpialidocious")); // ["ili"]
+console.log(palindromeSubstrings("abcddcbA"));   // ["bcddcb", "cddc", "dd"]
+console.log(palindromeSubstrings("palindrome")); // []
+console.log(palindromeSubstrings(""));           // []
