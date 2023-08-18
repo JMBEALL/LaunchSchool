@@ -265,14 +265,33 @@
 
 // }))
 
-let arr = [['b', 'c', 'a'], [2, 11, -3], ['blue', 'black', 'green']];
+// let arr = [['b', 'c', 'a'], [2, 11, -3], ['blue', 'black', 'green']];
 
-arr.map((arr) => {
-  if (typeof arr[0] === 'string'){
-    return arr.sort().reverse();
-  } else {
-    return arr.sort((a,b) => b - a);
-  }
-})
+// arr.map((arr) => {
+//   if (typeof arr[0] === 'string'){
+//     return arr.sort().reverse();
+//   } else {
+//     return arr.sort((a,b) => b - a);
+//   }
+// })
 
-console.log(arr);
+// console.log(arr);
+
+// let arr = [{ a: 1 }, { b: 2, c: 3 }, { d: 4, e: 5, f: 6 }];
+// let newArr = JSON.stringify(arr);
+// let useMe = JSON.parse(newArr);
+
+// console.log(useMe.map(obj => {
+//   for (let key in obj) {
+//     obj[key]++;
+//   }
+//   return obj;
+// }))
+
+// console.log(arr);
+
+let arr = [[2], [3, 5, 7], [9], [11, 15, 18]];
+
+console.log(arr.map(nestArr => {
+  return nestArr.filter(el => el % 3 === 0);
+}))
