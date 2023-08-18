@@ -258,9 +258,19 @@
 // console.log(Math.min(...Object.values(ages)));
 
 
-let scores = [[3, 6, 4], [6, 8, 9], [1, 4, 2]];
+// let scores = [[3, 6, 4], [6, 8, 9], [1, 4, 2]];
 
-console.log(scores.sort((a,b) => {
-  return a.reduce((accum,el) => accum + el) - b.reduce((accum,el) => accum + el);
+// console.log(scores.sort((a,b) => {
+//   return a.reduce((accum,el) => accum + el) - b.reduce((accum,el) => accum + el);
 
-}))
+// }))
+
+let books = [
+  { title: 'One Hundred Years of Solitude', author: 'Gabriel Garcia Marquez', published: '1967' },
+  { title: 'The Great Gatsby', author: 'F. Scott Fitzgerald', published: '1925' },
+  { title: 'War and Peace', author: 'Leo Tolstoy', published: '1869' },
+  { title: 'Ulysses', author: 'James Joyce', published: '1922' },
+  { title: 'The Book of Kells', author: 'Multiple Authors', published: '800' },
+];
+
+console.log(books.sort((a,b) => a.published - b.published))
