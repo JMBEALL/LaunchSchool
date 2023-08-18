@@ -213,24 +213,54 @@
 // console.log(palindromeSubstrings(""));           // []
 
 
-let produce = {
-  apple: 'Fruit',
-  carrot: 'Vegetable',
-  pear: 'Fruit',
-  broccoli: 'Vegetable'
-};
+// let produce = {
+//   apple: 'Fruit',
+//   carrot: 'Vegetable',
+//   pear: 'Fruit',
+//   broccoli: 'Vegetable'
+// };
 
 
-function selectFruit(produce) {
-let newObj ={};
+// function selectFruit(produce) {
+// let newObj ={};
 
-for (key in produce) {
-  if (produce[key] === "Fruit") {
-    newObj[key] = produce[key];
-  }
-}
-return newObj;
-}
+// for (key in produce) {
+//   if (produce[key] === "Fruit") {
+//     newObj[key] = produce[key];
+//   }
+// }
+// return newObj;
+// }
 
-console.log(selectFruit(produce)); // => { apple: 'Fruit', pear: 'Fruit' }
-console.log(produce);
+// console.log(selectFruit(produce)); // => { apple: 'Fruit', pear: 'Fruit' }
+// console.log(produce);
+
+// let myNumbers = [1, 4, 3, 7, 2, 6];
+// function doubleNumbers(arr) {
+//   arr.forEach((el,index) => {
+//     arr[index] = el * 2;
+//   })
+//   return arr;
+// }
+// console.log(doubleNumbers(myNumbers)); // => [2, 8, 6, 14, 4, 12]
+// console.log(myNumbers);                // => [1, 4, 3, 7, 2, 6]
+
+
+// let ages = {
+//   Herman: 32,
+//   Lily: 30,
+//   Grandpa: 5843,
+//   Eddie: 10,
+//   Marilyn: 22,
+//   Spot: 237
+// };
+
+// console.log(Math.min(...Object.values(ages)));
+
+
+let scores = [[3, 6, 4], [6, 8, 9], [1, 4, 2]];
+
+console.log(scores.sort((a,b) => {
+  return a.reduce((accum,el) => accum + el) - b.reduce((accum,el) => accum + el);
+
+}))
