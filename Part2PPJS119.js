@@ -306,26 +306,64 @@
 
 // console.log(Object.fromEntries(arr));
 
-function accum(str) {
-  let newStr = "";
-  let arr = str.split("");
-  for (let index = 0; index < arr.length; index++) {
-    for (let j = 0; j < index + 1; j++) {
-      if (j === 0) {
-        newStr += arr[index].toUpperCase();
-      } else if (j > 0) {
-        newStr += arr[index].toLowerCase();
-      }
-    }
-    newStr += "-";
-  }
-  let final = newStr.split("");
-  final.pop();
-  return final.join("");
+// function accum(str) {
+//   let newStr = "";
+//   let arr = str.split("");
+//   for (let index = 0; index < arr.length; index++) {
+//     for (let j = 0; j < index + 1; j++) {
+//       if (j === 0) {
+//         newStr += arr[index].toUpperCase();
+//       } else if (j > 0) {
+//         newStr += arr[index].toLowerCase();
+//       }
+//     }
+//     newStr += "-";
+//   }
+//   let final = newStr.split("");
+//   final.pop();
+//   return final.join("");
 
+// }
+
+// // Test Cases
+// console.log(accum("abcd"));   // "A-Bb-Ccc-Dddd"
+// console.log(accum("RqaEzty")); // "R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy"
+// console.log(accum("cwAt"));   // "C-Ww-Aaa-Tttt"
+
+
+// function longestPalindrome(str) {
+//   if (str.length === 0) return 0;
+//   let substrings = [];
+//   for (let index = 0; index < str.length; index++) {
+//     for (let j = index + 1; j < str.length; j++) {
+//       substrings.push(str.slice(index , index + j));
+//     }
+//   }
+//   console.log(substrings);
+// }
+
+function longestPalindrome(str) {
+  let substrings = []; // Initialize an empty array to store substrings.
+  let longest = 0;
+  
+  // Nested loops to iterate through the string.
+  for (let start = 0; start < str.length; start++) {
+    for (let end = start + 1; end <= str.length; end++) {
+      // Use slice to extract a substring from start to end index.
+      const substring = str.slice(start, end);
+      substrings.push(substring); // Add the substring to the array.
+    }
+  }
+  substrings.forEach( el => {
+    if (el === el.split("").reverse().join("") && longest < el.length) longest = el.length;
+  })
+  return longest;
 }
 
-// Test Cases
-console.log(accum("abcd"));   // "A-Bb-Ccc-Dddd"
-console.log(accum("RqaEzty")); // "R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy"
-console.log(accum("cwAt"));   // "C-Ww-Aaa-Tttt"
+
+console.log(longestPalindrome("a") == 1);
+console.log(longestPalindrome("aa") === 2);
+console.log(longestPalindrome("baa") === 2);
+console.log(longestPalindrome("aab") === 2);
+console.log(longestPalindrome("baabcd") === 4);
+console.log(longestPalindrome("baablkj12345432133d") === 9);
