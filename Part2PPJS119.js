@@ -475,6 +475,16 @@ const readline = require('readline-sync');
 // console.log(isOdd(0)); // => false
 // console.log(isOdd(7)); // => true
 
-for (let index = 1; index <= 99; index++) {
-  if (index % 2 === 0) console.log(index);
-}
+// for (let index = 1; index <= 99; index++) {
+//   if (index % 2 === 0) console.log(index);
+// }
+
+let length = +readline.question("What is the length of the room in meters?\n");
+let width = +readline.question("What is the width of the room in meters?\n");
+// console.log(length, width);
+
+let CONVERSION_RATE = 10.7639;
+let AREA = length * width;
+let AREA_IN_METERS = (AREA * CONVERSION_RATE).toFixed(2);
+console.log(`The area of the room is ${AREA} square meters (${AREA_IN_METERS} square feet).`);
+
