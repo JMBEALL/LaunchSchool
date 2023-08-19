@@ -489,11 +489,74 @@ const readline = require('readline-sync');
 // console.log(`The area of the room is ${AREA} square meters (${AREA_IN_METERS} square feet).`);
 
 
-let TOTAL_BILL = +readline.question("How much is the bill?\n");
+// let TOTAL_BILL = +readline.question("How much is the bill?\n");
 
-let TIP_PERCENTAGE = (+readline.question("What percentage do you want to tip?\n")) / 100;
+// let TIP_PERCENTAGE = (+readline.question("What percentage do you want to tip?\n")) / 100;
 
-let TIP = TOTAL_BILL * TIP_PERCENTAGE;
-let ABS_TOTAL = TOTAL_BILL + TIP;
+// let TIP = TOTAL_BILL * TIP_PERCENTAGE;
+// let ABS_TOTAL = TOTAL_BILL + TIP;
 
-console.log(`The tip is $${TIP.toFixed(2)}. The total is $${ABS_TOTAL.toFixed(2)}.`);
+// console.log(`The tip is $${TIP.toFixed(2)}. The total is $${ABS_TOTAL.toFixed(2)}.`);
+
+
+// let num = +readline.question("Please enter a number greater than 0.\n");
+
+// while (num <= 0) {
+//   console.log('I said greater than 0, please.');
+//   num = +readline.question("Please enter a number greater than 0.\n");
+
+
+// let operation = readline.question("Please enter 's' to compute the sum, or 'p' to compute the product.").toLowerCase();
+// let answer = 1
+// for (let index = 1; index <= num; index ++) {
+//   if (operation === 's') {
+//     answer += index
+//   } else if (operation === 'p') {
+//     answer *= index
+//   }
+  
+// }
+// if(operation === 's') answer--;
+// console.log(answer);
+
+// function shortLongShort(str1,str2) {
+//   return str1.length < str2.length ? str1+str2+str1 : str2+str1+str2;
+// }
+
+// console.log(shortLongShort('abc', 'defgh'));    // "abcdefghabc"
+// console.log(shortLongShort('abcde', 'fgh'));    // "fghabcdefgh"
+// console.log(shortLongShort('', 'xyz'));         // "xyz"
+
+// function multisum(num) {
+//   let sum = 0;
+//   while (num > 0) {
+//     if (num % 3 === 0 || num % 5 === 0) {
+//       sum += num;
+
+//     }
+//     num--;
+//   }
+//   console.log(sum)
+// }
+
+// multisum(3);       // 3
+// multisum(5);       // 8
+// multisum(10);      // 33
+// multisum(1000);    // 234168
+
+function greetings(arr,obj) {
+  let name = arr.join(" ");
+  let title = obj.title;
+  let occupation = obj.occupation;
+  return `Hello, ${name}! Nice to have a ${title} ${occupation} around.`;
+}
+
+console.log(
+  greetings(["John", "Q", "Doe"], { title: "Master", occupation: "Plumber" })
+);
+// logs Hello, John Q Doe! Nice to have a Master Plumber around.
+
+let name = readline.question("What is your name?").trim();
+
+if (name.endsWith("!")) console.log(`HELLO ${name.slice(0,name.length - 1).toUpperCase()}. WHY ARE YOU SCREAMING?`);
+if (name) console.log(`Hello ${name}`);
