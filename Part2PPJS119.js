@@ -567,7 +567,58 @@ console.log(
 
 // console.log(square(5) === 25); // logs true
 // console.log(square(-8) === 64); // logs true
-let penultimate = str => str.split(" ")[str.split(" ").length - 2];
+// let penultimate = str => str.split(" ")[str.split(" ").length - 2];
 
-console.log(penultimate("last word") === "last"); // logs true
-console.log(penultimate("Launch School is great!") === "is"); // logs true
+// console.log(penultimate("last word") === "last"); // logs true
+// console.log(penultimate("Launch School is great!") === "is"); // logs true
+
+// function xor(arg1, arg2) {
+//   if(arg1 && !arg2 || !arg1 && arg2) return true;
+//   return false;
+// }
+
+// console.log(xor(5, 0) === true);          // true
+// console.log(xor(false, true) === true);   // true
+// console.log(xor(1, 1) === false);         // true
+// console.log(xor(true, true) === false);   // true
+
+// function oddities(arr) {
+//   return arr.filter((el,index) => index % 2 === 0)
+// }
+
+// console.log(oddities([2, 3, 4, 5, 6])); // logs [2, 4, 6]
+// console.log(oddities([1, 2, 3, 4, 5, 6])); // logs [1, 3, 5]
+// console.log(oddities(["abc", "def"])); // logs ['abc']
+// console.log(oddities([123])); // logs [123]
+// console.log(oddities([])); // logs []
+
+// let age = Math.floor(Math.random() * 120) + 1;
+// if (age >= 20 && age <= 120) {
+//   console.log(`Teddy is ${age} years old.`)
+// } else if (age < 20) {
+//   age = Math.floor(Math.random() * 120) + 1;
+// }
+
+
+// function centerOf(str) {
+//   let index = str.length / 2;
+//   if (str.length % 2 === 0) {
+//     return str.slice(index - 1, index + 1);
+//   } else if (str.length % 2 === 1) {
+//     return str[Math.floor(str.length / 2)];
+//   }
+// }
+// console.log(centerOf('I Love JavaScript')); // "a"
+// console.log(centerOf('Launch School'));     // " "
+// console.log(centerOf('Launch'));            // "un"
+// console.log(centerOf('Launchschool'));      // "hs"
+// console.log(centerOf('x'));                 // "x"
+
+
+// function negative(num) {
+//   return Math.abs(num) * -1;
+// }
+
+// console.log(negative(5));     // -5
+// console.log(negative(-3));    // -3
+// console.log(negative(0));     // -0
