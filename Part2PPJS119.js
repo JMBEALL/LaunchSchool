@@ -465,12 +465,16 @@ const readline = require('readline-sync');
 // }
 
 
-function isOdd(num) {
-  return Math.abs(num) % 2 === 1
+// function isOdd(num) {
+//   return Math.abs(num) % 2 === 1
+// }
+// console.log(isOdd(2)); // => false
+// console.log(isOdd(5)); // => true
+// console.log(isOdd(-17)); // => true
+// console.log(isOdd(-8)); // => false
+// console.log(isOdd(0)); // => false
+// console.log(isOdd(7)); // => true
+
+for (let index = 1; index <= 99; index++) {
+  if (index % 2 === 0) console.log(index);
 }
-console.log(isOdd(2)); // => false
-console.log(isOdd(5)); // => true
-console.log(isOdd(-17)); // => true
-console.log(isOdd(-8)); // => false
-console.log(isOdd(0)); // => false
-console.log(isOdd(7)); // => true
