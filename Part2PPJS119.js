@@ -1,3 +1,5 @@
+const readline = require('readline-sync');
+
 // function smallerNumbersThanCurrent(arr) {
 //   let unique = [];
 //   for (let index = 0; index < arr.length; index++) {
@@ -342,28 +344,133 @@
 //   console.log(substrings);
 // }
 
-function longestPalindrome(str) {
-  let substrings = []; // Initialize an empty array to store substrings.
-  let longest = 0;
+// function longestPalindrome(str) {
+//   let substrings = []; // Initialize an empty array to store substrings.
+//   let longest = 0;
   
-  // Nested loops to iterate through the string.
-  for (let start = 0; start < str.length; start++) {
-    for (let end = start + 1; end <= str.length; end++) {
-      // Use slice to extract a substring from start to end index.
-      const substring = str.slice(start, end);
-      substrings.push(substring); // Add the substring to the array.
-    }
-  }
-  substrings.forEach( el => {
-    if (el === el.split("").reverse().join("") && longest < el.length) longest = el.length;
-  })
-  return longest;
+//   // Nested loops to iterate through the string.
+//   for (let start = 0; start < str.length; start++) {
+//     for (let end = start + 1; end <= str.length; end++) {
+//       // Use slice to extract a substring from start to end index.
+//       const substring = str.slice(start, end);
+//       substrings.push(substring); // Add the substring to the array.
+//     }
+//   }
+//   substrings.forEach( el => {
+//     if (el === el.split("").reverse().join("") && longest < el.length) longest = el.length;
+//   })
+//   return longest;
+// }
+
+
+// console.log(longestPalindrome("a") == 1);
+// console.log(longestPalindrome("aa") === 2);
+// console.log(longestPalindrome("baa") === 2);
+// console.log(longestPalindrome("aab") === 2);
+// console.log(longestPalindrome("baabcd") === 4);
+// console.log(longestPalindrome("baablkj12345432133d") === 9);
+
+
+// let beg = Number(readline.question("beginning of range\n"));
+// let end = Number(readline.question("end of range\n"));
+// for (let index = beg; index <= end; index++) {
+//   console.log(index);
+// }
+
+// let BILL_AMOUNT = +readline.question("How much is the bill?\n");
+// let TIP_RATE = (+readline.question("What rate do you want to tip?\n")) / 100;
+
+// let TIP = BILL_AMOUNT * TIP_RATE;
+// console.log(`The tip is ${TIP}`);
+// console.log(`The total is $${(BILL_AMOUNT + TIP).toFixed(2)}.`);
+
+// function shortLongShort(str1, str2) {
+//   return str1.length < str2.length ? str1 + str2 +str1 : str2 + str1 + str2;
+// }
+// console.log(shortLongShort('abc', 'defgh'));    // "abcdefghabc"
+// console.log(shortLongShort('abcde', 'fgh'));    // "fghabcdefgh"
+// console.log(shortLongShort('', 'xyz'));         // "xyz"
+
+// function isLeapYear(year) {
+//   if (year <= 1752) {
+//     return year % 4 === 0 ? true : false;
+//   }
+//   if(year % 100 === 0 && year % 400 === 0) return true;
+//   if(year % 4 === 0 && year % 100 !== 0 ) return true;
+//   return false;
+// }
+
+// console.log(isLeapYear(2016));      // true
+// console.log(isLeapYear(2015));      // false
+// console.log(isLeapYear(2100));      // false
+// console.log(isLeapYear(2400));      // true
+// console.log(isLeapYear(240000));    // true
+// console.log(isLeapYear(240001));    // false
+// console.log(isLeapYear(2000));      // true
+// console.log(isLeapYear(1900));      // false
+// console.log(isLeapYear(1752));      // true
+// console.log(isLeapYear(1700));      // true
+// console.log(isLeapYear(1));         // false
+// console.log(isLeapYear(100));       // true
+// console.log(isLeapYear(400));       // true
+
+// function multisum(num) {
+//   let sum = 0;
+//   for (let index = 1; index <= num; index++){
+//     if(index % 3 === 0 || index % 5 === 0) {
+//       sum += index;
+//     }
+//   }
+//   return sum;
+// }
+
+// console.log(multisum(3));       // 3
+// console.log(multisum(5));       // 8
+// console.log(multisum(10));      // 33
+// console.log(multisum(1000));    // 234168
+
+
+// function utf16Value(str) {
+// return str.split("").reduce((accum,el) => {
+//   return accum + el.charCodeAt();
+// },0)
+// }
+
+// console.log(utf16Value('Four score'));         // 984
+// console.log(utf16Value('Launch School'));      // 1251
+// console.log(utf16Value('a'));                  // 97
+// console.log(utf16Value(''));                   // 0
+
+// // The next three lines demonstrate that the code
+// // works with non-ASCII characters from the UTF-16
+// // character set.
+// const OMEGA = "\u03A9";             // UTF-16 character 'Ω' (omega)
+// utf16Value(OMEGA);                  // 937
+// utf16Value(OMEGA + OMEGA + OMEGA);  // 2811
+
+// function greetings(arr,obj) {
+//    return (`Hello, ${arr.join(" ")}! Nice to have a ${obj.title} ${obj.occupation} around.`);
+// }
+
+// console.log(
+//   greetings(["John", "Q", "Doe"], { title: "Master", occupation: "Plumber" })
+// );
+// // logs Hello, John Q Doe! Nice to have a Master Plumber around.
+
+// let name = readline.question("What is your name?\n");
+// if(name.endsWith("!")){
+//   console.log(`HELLO ${name.slice(0, name.length - 1).toUpperCase()}. WHY ARE YOU SCREAMING?`)
+// } else {
+//   console.log(`Hello ${name}.`)
+// }
+
+
+function isOdd(num) {
+  return Math.abs(num) % 2 === 1
 }
-
-
-console.log(longestPalindrome("a") == 1);
-console.log(longestPalindrome("aa") === 2);
-console.log(longestPalindrome("baa") === 2);
-console.log(longestPalindrome("aab") === 2);
-console.log(longestPalindrome("baabcd") === 4);
-console.log(longestPalindrome("baablkj12345432133d") === 9);
+console.log(isOdd(2)); // => false
+console.log(isOdd(5)); // => true
+console.log(isOdd(-17)); // => true
+console.log(isOdd(-8)); // => false
+console.log(isOdd(0)); // => false
+console.log(isOdd(7)); // => true
