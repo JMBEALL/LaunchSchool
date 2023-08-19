@@ -560,10 +560,14 @@ console.log(
 
 // if (name.endsWith("!")) console.log(`HELLO ${name.slice(0,name.length - 1).toUpperCase()}. WHY ARE YOU SCREAMING?`);
 // if (name) console.log(`Hello ${name}`);
-let multiply = (num1,num2) => num1 * num2;
-let square = num => multiply(num,num);
+// let multiply = (num1,num2) => num1 * num2;
+// let square = num => multiply(num,num);
 
 
 
-console.log(square(5) === 25); // logs true
-console.log(square(-8) === 64); // logs true
+// console.log(square(5) === 25); // logs true
+// console.log(square(-8) === 64); // logs true
+let penultimate = str => str.split(" ")[str.split(" ").length - 2];
+
+console.log(penultimate("last word") === "last"); // logs true
+console.log(penultimate("Launch School is great!") === "is"); // logs true
