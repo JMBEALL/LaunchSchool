@@ -556,7 +556,14 @@ console.log(
 );
 // logs Hello, John Q Doe! Nice to have a Master Plumber around.
 
-let name = readline.question("What is your name?").trim();
+// let name = readline.question("What is your name?").trim();
 
-if (name.endsWith("!")) console.log(`HELLO ${name.slice(0,name.length - 1).toUpperCase()}. WHY ARE YOU SCREAMING?`);
-if (name) console.log(`Hello ${name}`);
+// if (name.endsWith("!")) console.log(`HELLO ${name.slice(0,name.length - 1).toUpperCase()}. WHY ARE YOU SCREAMING?`);
+// if (name) console.log(`Hello ${name}`);
+let multiply = (num1,num2) => num1 * num2;
+let square = num => multiply(num,num);
+
+
+
+console.log(square(5) === 25); // logs true
+console.log(square(-8) === 64); // logs true
