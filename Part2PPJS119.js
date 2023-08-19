@@ -290,8 +290,42 @@
 
 // console.log(arr);
 
-let arr = [[2], [3, 5, 7], [9], [11, 15, 18]];
+// let arr = [[2], [3, 5, 7], [9], [11, 15, 18]];
 
-console.log(arr.map(nestArr => {
-  return nestArr.filter(el => el % 3 === 0);
-}))
+// console.log(arr.map(nestArr => {
+//   return nestArr.filter(el => el % 3 === 0);
+// }))
+
+// let arr = [[1, 6, 7], [1, 5, 3], [1, 8, 3]];
+
+// console.log(arr.sort((a,b) => {
+//  return a.filter(el => el % 2 === 1).reduce((accum, el2) => accum + el2) - b.filter(el => el % 2 === 1).reduce((accum,el2) => accum + el2)
+// }))
+
+// let arr = [['a', 1], ['b', 'two'], ['sea', {'c': 3}], ['D', ['a', 'b', 'c']]];
+
+// console.log(Object.fromEntries(arr));
+
+function accum(str) {
+  let newStr = "";
+  let arr = str.split("");
+  for (let index = 0; index < arr.length; index++) {
+    for (let j = 0; j < index + 1; j++) {
+      if (j === 0) {
+        newStr += arr[index].toUpperCase();
+      } else if (j > 0) {
+        newStr += arr[index].toLowerCase();
+      }
+    }
+    newStr += "-";
+  }
+  let final = newStr.split("");
+  final.pop();
+  return final.join("");
+
+}
+
+// Test Cases
+console.log(accum("abcd"));   // "A-Bb-Ccc-Dddd"
+console.log(accum("RqaEzty")); // "R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy"
+console.log(accum("cwAt"));   // "C-Ww-Aaa-Tttt"
