@@ -622,3 +622,43 @@ console.log(
 // console.log(negative(5));     // -5
 // console.log(negative(-3));    // -3
 // console.log(negative(0));     // -0
+
+
+// function crunch(str) {
+//   let newStr = "";
+//   for(let index = 0; index < str.length; index++) {
+//     if (str[index] === str[index + 1]) {
+//       continue;
+//     } else {
+//       newStr += str[index]
+//     }
+//   }
+//   return newStr
+// }
+
+// console.log(crunch('ddaaiillyy ddoouubbllee'));    // "daily double"
+// console.log(crunch('4444abcabccba'));              // "4abcabcba"
+// console.log(crunch('ggggggggggggggg'));            // "g"
+// console.log(crunch('a'));                          // "a"
+// console.log(crunch(''));                           // ""
+
+function stringy(num) {
+  let binaryString = "";
+  while (num > 0) {
+    if (binaryString === "") {
+      binaryString += 1;
+    } else if (binaryString.endsWith("0")) {
+      binaryString += 1
+    } else {
+      binaryString += 0
+    }
+    num--;
+  }
+
+  return binaryString;
+}
+
+console.log(stringy(6));    // "101010"
+console.log(stringy(9));    // "101010101"
+console.log(stringy(4));    // "1010"
+console.log(stringy(7));    // "1010101"
