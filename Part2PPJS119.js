@@ -642,23 +642,61 @@ console.log(
 // console.log(crunch('a'));                          // "a"
 // console.log(crunch(''));                           // ""
 
-function stringy(num) {
-  let binaryString = "";
-  while (num > 0) {
-    if (binaryString === "") {
-      binaryString += 1;
-    } else if (binaryString.endsWith("0")) {
-      binaryString += 1
-    } else {
-      binaryString += 0
-    }
-    num--;
-  }
+// function stringy(num) {
+//   let binaryString = "";
+//   while (num > 0) {
+//     if (binaryString === "") {
+//       binaryString += 1;
+//     } else if (binaryString.endsWith("0")) {
+//       binaryString += 1
+//     } else {
+//       binaryString += 0
+//     }
+//     num--;
+//   }
 
-  return binaryString;
+//   return binaryString;
+// }
+
+// console.log(stringy(6));    // "101010"
+// console.log(stringy(9));    // "101010101"
+// console.log(stringy(4));    // "1010"
+// console.log(stringy(7));    // "1010101"
+
+// function twice(num) {
+//   let length = String(num).length / 2;
+//   let left = String(num).slice(0 , length);
+//   // console.log(left);
+//   let right = String(num).slice(length);
+//   // console.log(right);
+//   if (left === right) {
+//     return num;
+//   } else {
+//     return num * 2;
+//   }
+
+// }
+// console.log(twice(37));          // 74
+// console.log(twice(44));          // 44
+// console.log(twice(334433));      // 668866
+// console.log(twice(444));         // 888
+// console.log(twice(107));         // 214
+// console.log(twice(103103));      // 103103
+// console.log(twice(3333));        // 3333
+// console.log(twice(7676));        // 7676
+
+function cleanUp(str) {
+let newstr = "";
+let strArr = str.split("");
+
+strArr.forEach(char => {
+  if (char.match(/[a-z]/i)) {
+    newstr += char;
+  } else if (!char.match(/[a-z]/i)) {
+    if(!newstr.endsWith(" ")) newstr += " ";
+  }
+})
+  return newstr;
 }
 
-console.log(stringy(6));    // "101010"
-console.log(stringy(9));    // "101010101"
-console.log(stringy(4));    // "1010"
-console.log(stringy(7));    // "1010101"
+console.log(cleanUp("---what's my +*& line?"));    // " what s my line "
