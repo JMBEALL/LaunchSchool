@@ -685,18 +685,106 @@ console.log(
 // console.log(twice(3333));        // 3333
 // console.log(twice(7676));        // 7676
 
-function cleanUp(str) {
-let newstr = "";
-let strArr = str.split("");
+// function cleanUp(str) {
+// let newstr = "";
+// let strArr = str.split("");
 
-strArr.forEach(char => {
-  if (char.match(/[a-z]/i)) {
-    newstr += char;
-  } else if (!char.match(/[a-z]/i)) {
-    if(!newstr.endsWith(" ")) newstr += " ";
-  }
-})
-  return newstr;
+// strArr.forEach(char => {
+//   if (char.match(/[a-z]/i)) {
+//     newstr += char;
+//   } else if (!char.match(/[a-z]/i)) {
+//     if(!newstr.endsWith(" ")) newstr += " ";
+//   }
+// })
+//   return newstr;
+// }
+
+
+// function cleanUp(str) {
+//   return str.replace(/[^a-z]/ig, " ").replace(/\s+/ig, " ");
+// }
+
+
+// console.log(cleanUp("---what's my +*& line?"));    // " what s my line "
+
+// let num1 = +readline.question("Enter the first number:\n");
+// let num2 = +readline.question("Enter the second number:\n");
+// let num3 = +readline.question("Enter the third number:\n");
+// let num4 = +readline.question("Enter the fourth number:\n");
+// let num5 = +readline.question("Enter the fifth number:\n");
+// let num6 = +readline.question("Enter the sixth number:\n");
+
+// if (num6 === (num1||num2||num3||num4||num5)) {
+//   console.log(`The number ${num6} appears in ${num1},${num2},${num3},${num4},${num5}!`)
+// } else {
+//   console.log(`The number ${num6} does not appear in ${num1},${num2},${num3},${num4},${num5}!`)
+// }
+
+function isPalindrome(str) {
+  return str === str.split("").reverse().join("");
 }
 
-console.log(cleanUp("---what's my +*& line?"));    // " what s my line "
+// console.log(isPalindrome('madam'));               // true
+// console.log(isPalindrome('Madam'));               // false (case matters)
+// console.log(isPalindrome("madam i'm adam"));      // false (all characters matter)
+// console.log(isPalindrome('356653'));              // true
+
+// function isRealPalindrome(str) {
+//   // console.log(str.match(/[a-z0-9]/ig).join(""))
+//   return str.match(/[a-z0-9]/ig).join("").toLowerCase() === str.match(/[a-z0-9]/ig).reverse().join("").toLowerCase();
+// }
+
+// console.log(isRealPalindrome('madam'));               // true
+// console.log(isRealPalindrome('Madam'));               // true (case does not matter)
+// console.log(isRealPalindrome("Madam, I'm Adam"));     // true (only alphanumerics matter)
+// console.log(isRealPalindrome('356653'));              // true
+// console.log(isRealPalindrome('356a653'));             // true
+// console.log(isRealPalindrome('123ab321'));            // false
+
+// function isPalindromicNumber(num) {
+//   let numStr = String(num);
+//   return num === +numStr.split("").reverse().join("");
+// }
+
+// console.log(isPalindromicNumber(34543));        // true
+// console.log(isPalindromicNumber(123210));       // false
+// console.log(isPalindromicNumber(22));           // true
+// console.log(isPalindromicNumber(5));            // true
+
+// function runningTotal(arr) {
+//   let runningTotal = [arr[0]];
+//   for (let index = 0; index < arr.length; index++) {
+//     runningTotal.push(runningTotal[index] + arr[index + 1])
+//   }
+//   runningTotal.pop();
+//   return runningTotal
+// }
+
+// console.log(runningTotal([2, 5, 13]));             // [2, 7, 20]
+// console.log(runningTotal([14, 11, 7, 15, 20]));    // [14, 25, 32, 47, 67]
+// console.log(runningTotal([3]));                    // [3]
+// console.log(runningTotal([]));                     // []
+
+function wordSizes(str) {
+  if(str.length === 0) return {};
+  let cache = {};
+  let arr = str.split(" ");
+  // console.log(arr);
+
+  arr.forEach( el => {
+    el = el.match(/[a-z]/ig);
+    // console.log(el)
+    if (cache[el.length]) {
+      cache[el.length]++;
+    } else {
+      cache[el.length] = 1;
+    }
+})
+return cache;
+}
+
+
+console.log(wordSizes('Four score and seven.'));                       // { "3": 1, "4": 1, "5": 2 }
+console.log(wordSizes('Hey diddle diddle, the cat and the fiddle!'));  // { "3": 5, "6": 3 }
+console.log(wordSizes("What's up doc?"));                              // { "2": 1, "3": 1, "5": 1 }
+console.log(wordSizes(''));                                            // {}
