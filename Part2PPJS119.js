@@ -789,12 +789,25 @@ function isPalindrome(str) {
 // console.log(wordSizes("What's up doc?"));                              // { "2": 1, "3": 1, "5": 1 }
 // console.log(wordSizes(''));                                            // {}
 
-function swap(str) {
-  let arr = str.split(" ");
-  // console.log(arr);
-  return arr.map(el => el.split("").reverse().join("")).join(" ");
+// function swap(str) {
+//   let arr = str.split(" ");
+//   // console.log(arr);
+//   return arr.map(el => el.split("").reverse().join("")).join(" ");
+// }
+
+// console.log(swap('Oh what a wonderful day it is'));  // "hO thaw a londerfuw yad ti si"
+// console.log(swap('Abcde'));                          // "ebcdA"
+// console.log(swap('a'));                              // "a"
+
+function union(arr1,arr2){
+  let arr = [...arr1, ...arr2];
+  let newArr = []
+arr.forEach(el => {
+  if (!newArr.includes(el)) {
+    newArr.push(el)
+  }
+})
+return newArr.sort((a,b) => a - b)
 }
 
-console.log(swap('Oh what a wonderful day it is'));  // "hO thaw a londerfuw yad ti si"
-console.log(swap('Abcde'));                          // "ebcdA"
-console.log(swap('a'));                              // "a"
+console.log(union([1, 3, 5], [3, 6, 9]));    // [1, 3, 5, 6, 9]
