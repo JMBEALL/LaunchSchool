@@ -848,20 +848,53 @@ function isPalindrome(str) {
 // // logInBox("Jordan Beall, you've got this, Bitch! Believe :)");
 // // logInBox("Fuck yeah I do. lets fucking conquer this shit and change my life!");
 
-function stringy(digit) {
-  let str = "";
-  while (digit > 0) {
-    if (str.endsWith("1")) {
-      str += 0;
-    } else {
-      str += 1;
-    }
-    digit--;
-  }
-  return str;
+// function stringy(digit) {
+//   let str = "";
+//   while (digit > 0) {
+//     if (str.endsWith("1")) {
+//       str += 0;
+//     } else {
+//       str += 1;
+//     }
+//     digit--;
+//   }
+//   return str;
+// }
+
+// console.log(stringy(6));    // "101010"
+// console.log(stringy(9));    // "101010101"
+// console.log(stringy(4));    // "1010"
+// console.log(stringy(7));    // "1010101"
+
+function triangle(num) {
+let spaces = num - 1;
+let stars = num - spaces;
+
+while (num > 0) {
+  console.log(`${" ".repeat(spaces)}${"*".repeat(stars)}`);
+  spaces--;
+  stars++;
+  num--;
+}
 }
 
-console.log(stringy(6));    // "101010"
-console.log(stringy(9));    // "101010101"
-console.log(stringy(4));    // "1010"
-console.log(stringy(7));    // "1010101"
+
+triangle(5);
+
+//     *
+//    **
+//   ***
+//  ****
+// *****
+
+triangle(9);
+
+//         *
+//        **
+//       ***
+//      ****
+//     *****
+//    ******
+//   *******
+//  ********
+// *********
