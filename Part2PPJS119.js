@@ -866,35 +866,61 @@ function isPalindrome(str) {
 // console.log(stringy(4));    // "1010"
 // console.log(stringy(7));    // "1010101"
 
-function triangle(num) {
-let spaces = num - 1;
-let stars = num - spaces;
+// function triangle(num) {
+// let spaces = num - 1;
+// let stars = num - spaces;
 
-while (num > 0) {
-  console.log(`${" ".repeat(spaces)}${"*".repeat(stars)}`);
-  spaces--;
-  stars++;
-  num--;
+// while (num > 0) {
+//   console.log(`${" ".repeat(spaces)}${"*".repeat(stars)}`);
+//   spaces--;
+//   stars++;
+//   num--;
+// }
+// }
+
+
+// triangle(5);
+
+// //     *
+// //    **
+// //   ***
+// //  ****
+// // *****
+
+// triangle(9);
+
+// //         *
+// //        **
+// //       ***
+// //      ****
+// //     *****
+// //    ******
+// //   *******
+// //  ********
+// // *********
+
+function twice(num) {
+if(doubleNum(num)) {
+  return num;
+} else {
+  return num * 2;
 }
 }
 
+function doubleNum(int) {
+  let str = String(int);
+  // let arr = str.split("");
+  let half = str.length / 2;
+  let left = str.slice(0, (half));
+  let right = str.slice(half);
+  return (str.length % 2 === 0 && left === right)
+}
 
-triangle(5);
-
-//     *
-//    **
-//   ***
-//  ****
-// *****
-
-triangle(9);
-
-//         *
-//        **
-//       ***
-//      ****
-//     *****
-//    ******
-//   *******
-//  ********
-// *********
+console.log(twice(37));          // 74
+console.log(twice(44));          // 44
+console.log(twice(334433));      // 668866
+console.log(twice(444));         // 888
+console.log(twice(107));         // 214
+console.log(twice(103103));      // 103103
+console.log(twice(3333));        // 3333
+console.log(twice(7676));        // 7676
