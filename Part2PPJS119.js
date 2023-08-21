@@ -799,15 +799,38 @@ function isPalindrome(str) {
 // console.log(swap('Abcde'));                          // "ebcdA"
 // console.log(swap('a'));                              // "a"
 
-function union(arr1,arr2){
-  let arr = [...arr1, ...arr2];
-  let newArr = []
-arr.forEach(el => {
-  if (!newArr.includes(el)) {
-    newArr.push(el)
+// function union(arr1,arr2){
+//   let arr = [...arr1, ...arr2];
+//   let newArr = []
+// arr.forEach(el => {
+//   if (!newArr.includes(el)) {
+//     newArr.push(el)
+//   }
+// })
+// return newArr.sort((a,b) => a - b)
+// }
+
+// console.log(union([1, 3, 5], [3, 6, 9]));    // [1, 3, 5, 6, 9]
+
+
+// function crunch(str) {
+
+//   console.log(str.replace(/(.)\1+/g, '$1'));
+// }
+
+function crunch(str) {
+  let newStr = "";
+  let arr = str.split("")
+  for (let index = 0; index < arr.length; index++ ) {
+    if(str[index] !== str[index + 1]) {
+      newStr += str[index];
+    }
   }
-})
-return newArr.sort((a,b) => a - b)
+  console.log(newStr);
 }
 
-console.log(union([1, 3, 5], [3, 6, 9]));    // [1, 3, 5, 6, 9]
+crunch('ddaaiillyy ddoouubbllee');    // "daily double"
+crunch('4444abcabccba');              // "4abcabcba"
+crunch('ggggggggggggggg');            // "g"
+crunch('a');                          // "a"
+crunch('');                           // ""
