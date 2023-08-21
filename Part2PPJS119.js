@@ -765,26 +765,36 @@ function isPalindrome(str) {
 // console.log(runningTotal([3]));                    // [3]
 // console.log(runningTotal([]));                     // []
 
-function wordSizes(str) {
-  if(str.length === 0) return {};
-  let cache = {};
+// function wordSizes(str) {
+//   if(str.length === 0) return {};
+//   let cache = {};
+//   let arr = str.split(" ");
+//   // console.log(arr);
+
+//   arr.forEach( el => {
+//     el = el.match(/[a-z]/ig);
+//     // console.log(el)
+//     if (cache[el.length]) {
+//       cache[el.length]++;
+//     } else {
+//       cache[el.length] = 1;
+//     }
+// })
+// return cache;
+// }
+
+
+// console.log(wordSizes('Four score and seven.'));                       // { "3": 1, "4": 1, "5": 2 }
+// console.log(wordSizes('Hey diddle diddle, the cat and the fiddle!'));  // { "3": 5, "6": 3 }
+// console.log(wordSizes("What's up doc?"));                              // { "2": 1, "3": 1, "5": 1 }
+// console.log(wordSizes(''));                                            // {}
+
+function swap(str) {
   let arr = str.split(" ");
   // console.log(arr);
-
-  arr.forEach( el => {
-    el = el.match(/[a-z]/ig);
-    // console.log(el)
-    if (cache[el.length]) {
-      cache[el.length]++;
-    } else {
-      cache[el.length] = 1;
-    }
-})
-return cache;
+  return arr.map(el => el.split("").reverse().join("")).join(" ");
 }
 
-
-console.log(wordSizes('Four score and seven.'));                       // { "3": 1, "4": 1, "5": 2 }
-console.log(wordSizes('Hey diddle diddle, the cat and the fiddle!'));  // { "3": 5, "6": 3 }
-console.log(wordSizes("What's up doc?"));                              // { "2": 1, "3": 1, "5": 1 }
-console.log(wordSizes(''));                                            // {}
+console.log(swap('Oh what a wonderful day it is'));  // "hO thaw a londerfuw yad ti si"
+console.log(swap('Abcde'));                          // "ebcdA"
+console.log(swap('a'));                              // "a"
