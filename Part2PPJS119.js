@@ -818,19 +818,32 @@ function isPalindrome(str) {
 //   console.log(str.replace(/(.)\1+/g, '$1'));
 // }
 
-function crunch(str) {
-  let newStr = "";
-  let arr = str.split("")
-  for (let index = 0; index < arr.length; index++ ) {
-    if(str[index] !== str[index + 1]) {
-      newStr += str[index];
-    }
-  }
-  console.log(newStr);
+// function crunch(str) {
+//   let newStr = "";
+//   let arr = str.split("")
+//   for (let index = 0; index < arr.length; index++ ) {
+//     if(str[index] !== str[index + 1]) {
+//       newStr += str[index];
+//     }
+//   }
+//   console.log(newStr);
+// }
+
+// crunch('ddaaiillyy ddoouubbllee');    // "daily double"
+// crunch('4444abcabccba');              // "4abcabcba"
+// crunch('ggggggggggggggg');            // "g"
+// crunch('a');                          // "a"
+// crunch('');                           // ""
+
+function logInBox(str) {
+console.log(`+${"-".repeat(str.length + 2)}+`);
+console.log(`|${" ".repeat(str.length + 2)}|`);
+console.log(`| ${str} |`);
+console.log(`|${" ".repeat(str.length + 2)}|`);
+console.log(`+${"-".repeat(str.length + 2)}+`);
 }
 
-crunch('ddaaiillyy ddoouubbllee');    // "daily double"
-crunch('4444abcabccba');              // "4abcabcba"
-crunch('ggggggggggggggg');            // "g"
-crunch('a');                          // "a"
-crunch('');                           // ""
+logInBox('To boldly go where no one has gone before.');
+logInBox('');
+// logInBox("Jordan Beall, you've got this, Bitch! Believe :)");
+// logInBox("Fuck yeah I do. lets fucking conquer this shit and change my life!");
