@@ -835,15 +835,33 @@ function isPalindrome(str) {
 // crunch('a');                          // "a"
 // crunch('');                           // ""
 
-function logInBox(str) {
-console.log(`+${"-".repeat(str.length + 2)}+`);
-console.log(`|${" ".repeat(str.length + 2)}|`);
-console.log(`| ${str} |`);
-console.log(`|${" ".repeat(str.length + 2)}|`);
-console.log(`+${"-".repeat(str.length + 2)}+`);
+// function logInBox(str) {
+// console.log(`+${"-".repeat(str.length + 2)}+`);
+// console.log(`|${" ".repeat(str.length + 2)}|`);
+// console.log(`| ${str} |`);
+// console.log(`|${" ".repeat(str.length + 2)}|`);
+// console.log(`+${"-".repeat(str.length + 2)}+`);
+// }
+
+// logInBox('To boldly go where no one has gone before.');
+// logInBox('');
+// // logInBox("Jordan Beall, you've got this, Bitch! Believe :)");
+// // logInBox("Fuck yeah I do. lets fucking conquer this shit and change my life!");
+
+function stringy(digit) {
+  let str = "";
+  while (digit > 0) {
+    if (str.endsWith("1")) {
+      str += 0;
+    } else {
+      str += 1;
+    }
+    digit--;
+  }
+  return str;
 }
 
-logInBox('To boldly go where no one has gone before.');
-logInBox('');
-// logInBox("Jordan Beall, you've got this, Bitch! Believe :)");
-// logInBox("Fuck yeah I do. lets fucking conquer this shit and change my life!");
+console.log(stringy(6));    // "101010"
+console.log(stringy(9));    // "101010101"
+console.log(stringy(4));    // "1010"
+console.log(stringy(7));    // "1010101"
