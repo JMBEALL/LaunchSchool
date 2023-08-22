@@ -544,16 +544,16 @@ const readline = require('readline-sync');
 // multisum(10);      // 33
 // multisum(1000);    // 234168
 
-function greetings(arr,obj) {
-  let name = arr.join(" ");
-  let title = obj.title;
-  let occupation = obj.occupation;
-  return `Hello, ${name}! Nice to have a ${title} ${occupation} around.`;
-}
+// function greetings(arr,obj) {
+//   let name = arr.join(" ");
+//   let title = obj.title;
+//   let occupation = obj.occupation;
+//   return `Hello, ${name}! Nice to have a ${title} ${occupation} around.`;
+// }
 
-console.log(
-  greetings(["John", "Q", "Doe"], { title: "Master", occupation: "Plumber" })
-);
+// console.log(
+//   greetings(["John", "Q", "Doe"], { title: "Master", occupation: "Plumber" })
+// );
 // logs Hello, John Q Doe! Nice to have a Master Plumber around.
 
 // let name = readline.question("What is your name?").trim();
@@ -720,9 +720,9 @@ console.log(
 //   console.log(`The number ${num6} does not appear in ${num1},${num2},${num3},${num4},${num5}!`)
 // }
 
-function isPalindrome(str) {
-  return str === str.split("").reverse().join("");
-}
+// function isPalindrome(str) {
+//   return str === str.split("").reverse().join("");
+// }
 
 // console.log(isPalindrome('madam'));               // true
 // console.log(isPalindrome('Madam'));               // false (case matters)
@@ -899,28 +899,98 @@ function isPalindrome(str) {
 // //  ********
 // // *********
 
-function twice(num) {
-if(doubleNum(num)) {
-  return num;
-} else {
-  return num * 2;
-}
+// function twice(num) {
+// if(doubleNum(num)) {
+//   return num;
+// } else {
+//   return num * 2;
+// }
+// }
+
+// function doubleNum(int) {
+//   let str = String(int);
+//   // let arr = str.split("");
+//   let half = str.length / 2;
+//   let left = str.slice(0, (half));
+//   let right = str.slice(half);
+//   return (str.length % 2 === 0 && left === right)
+// }
+
+// console.log(twice(37));          // 74
+// console.log(twice(44));          // 44
+// console.log(twice(334433));      // 668866
+// console.log(twice(444));         // 888
+// console.log(twice(107));         // 214
+// console.log(twice(103103));      // 103103
+// console.log(twice(3333));        // 3333
+// console.log(twice(7676));        // 7676
+
+// function cleanUp(str) {
+//   return str.replace(/[^a-z]/ig, " ").replace(/\s+/, " ");
+
+// }
+
+// console.log(cleanUp("---what's my +*& line?"));    // " what s my line "
+
+// let arr = [];
+// let one = arr.push(+readline.question("Please enter the first number\n"));
+// let two = arr.push(+readline.question("Please enter the first number\n"));
+// let three = arr.push(+readline.question("Please enter the first number\n"));
+// let four = arr.push(+readline.question("Please enter the first number\n"));
+// let five = arr.push(+readline.question("Please enter the first number\n"));
+// let six = +readline.question("Please enter the first number\n");
+// console.log(arr);
+// console.log(arr.includes(six));
+
+// function isPalindrome(str) {
+//   return str === str.split("").reverse().join("");
+// }
+
+// console.log(isPalindrome('madam'));               // true
+// console.log(isPalindrome('Madam'));               // false (case matters)
+// console.log(isPalindrome("madam i'm adam"));      // false (all characters matter)
+// console.log(isPalindrome('356653'));              // true
+
+// function isRealPalindrome(str) {
+// return str === str.match(/[a-z0-9]/ig).reverse().join("");
+// }
+
+// console.log(isRealPalindrome('madam'));               // true
+// console.log(isRealPalindrome('Madam'));               // true (case does not matter)
+// console.log(isRealPalindrome("Madam, I'm Adam"));     // true (only alphanumerics matter)
+// console.log(isRealPalindrome('356653'));              // true
+// console.log(isRealPalindrome('356a653'));             // true
+// console.log(isRealPalindrome('123ab321'));            // false
+
+// function sum(num) {
+//   return num.toString().split("").reduce((accum,el) => accum + +el,0);
+//   // .reduce((accum,el) => accum + el, 0);
+// }
+
+// console.log(sum(23));           // 5
+// console.log(sum(496));          // 19
+// console.log(sum(123456789));    // 45
+
+
+// function alphabeticNumberSort(arr) {
+//   let indexes = ['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'];
+
+//   return arr.sort((a,b) => indexes[a] - indexes[b]);
+// }
+// console.log(alphabeticNumberSort(
+//   [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]));
+// // [8, 18, 11, 15, 5, 4, 14, 9, 19, 1, 7, 17, 6, 16, 10, 13, 3, 12, 2, 0]
+
+function multiplyAllPairs(arr1, arr2) {
+  let outputArr = [];
+  
+  for (let index = 0; index < arr1.length; index++) {
+    for (let j = 0; j < arr2.length; j++) {
+      outputArr.push(arr1[index] * arr2[j]);
+    }
+  }
+  return outputArr.sort((a,b) => a- b);
+
 }
 
-function doubleNum(int) {
-  let str = String(int);
-  // let arr = str.split("");
-  let half = str.length / 2;
-  let left = str.slice(0, (half));
-  let right = str.slice(half);
-  return (str.length % 2 === 0 && left === right)
-}
-
-console.log(twice(37));          // 74
-console.log(twice(44));          // 44
-console.log(twice(334433));      // 668866
-console.log(twice(444));         // 888
-console.log(twice(107));         // 214
-console.log(twice(103103));      // 103103
-console.log(twice(3333));        // 3333
-console.log(twice(7676));        // 7676
+console.log(multiplyAllPairs([2, 4], [4, 3, 1, 2]));    // [2, 4, 4, 6, 8, 8, 12, 16]
