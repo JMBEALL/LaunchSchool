@@ -1068,43 +1068,106 @@ const readline = require('readline-sync');
 //   "d", "de",
 //   "e" ]
 
-function palindromes(str) {
-let arr = substrings(str)
-let palin = [];
-arr.forEach( el => {
-  if(isPalin(el)) {
-    palin.push(el)
-  }
-})
-return palin;
-}
+// function palindromes(str) {
+// let arr = substrings(str)
+// let palin = [];
+// arr.forEach( el => {
+//   if(isPalin(el)) {
+//     palin.push(el)
+//   }
+// })
+// return palin;
+// }
 
 
-function substrings(str) {
-  let substringArr = [];
-  for (let startingIndex = 0; startingIndex < str.length; startingIndex++) {
-    for (let numChars = 1; numChars <= str.length - startingIndex; numChars++) {
-      substringArr.push(str.slice(startingIndex, startingIndex + numChars));
+// function substrings(str) {
+//   let substringArr = [];
+//   for (let startingIndex = 0; startingIndex < str.length; startingIndex++) {
+//     for (let numChars = 1; numChars <= str.length - startingIndex; numChars++) {
+//       substringArr.push(str.slice(startingIndex, startingIndex + numChars));
+//     }
+//   }
+//   return substringArr;
+// }
+
+// function isPalin(el) {
+//   return (el === el.split("").reverse().join("") && el.length > 1);
+// }
+
+// // console.log(substrings('abcde'));
+// console.log(palindromes('abcd'));       // []
+// console.log(palindromes('madam'));      // [ "madam", "ada" ]
+
+// console.log(palindromes('hello-madam-did-madam-goodbye'));
+// // returns
+// // [ "ll", "-madam-", "-madam-did-madam-", "madam", "madam-did-madam", "ada",
+// //   "adam-did-mada", "dam-did-mad", "am-did-ma", "m-did-m", "-did-", "did",
+// //   "-madam-", "madam", "ada", "oo" ]
+
+// console.log(palindromes('knitting cassettes'));
+// // returns
+// // [ "nittin", "itti", "tt", "ss", "settes", "ette", "tt" ]
+
+
+// function sumOfSums(arr) {
+// let arr1 = [];
+// let finalArr = []
+// for (let start = 1; start <= arr.length; start++) {
+// arr1.push(arr.slice(0, start));
+// }
+// arr1.forEach( arr2 => {
+//   return finalArr.push(arr2.reduce((accum,el) => accum + el, 0));
+// })
+// return finalArr.reduce((accum,el) => accum + el, 0)
+// }
+
+// console.log(sumOfSums([3, 5, 2]));        // (3) + (3 + 5) + (3 + 5 + 2) --> 21
+// console.log(sumOfSums([1, 5, 7, 3]));     // (1) + (1 + 5) + (1 + 5 + 7) + (1 + 5 + 7 + 3) --> 36
+// console.log(sumOfSums([4]));              // 4
+// console.log(sumOfSums([1, 2, 3, 4, 5]));  // 35
+
+
+// function sumOfSums(arr) {
+//   let sum = 0;
+//   for (let start = 1; start <= arr.length; start++) {
+//     sum += arr.slice(0 , start).reduce((accum,el) => accum + el, 0);
+//   }
+//   return sum;
+// }
+
+// function isUppercase(str) {
+// let upperCheck = str.match(/[A-Z ]/g);
+// return str.length === upperCheck.length;
+// }
+
+// function isUppercase(str) {
+//   let allUp = true;
+//   str.split("").forEach(el => {
+//     if (!el.match(/[A-Z 0-9!]/)) {
+//       allUp = false;
+//     }
+//   })
+//   return allUp
+// }
+
+// console.log(isUppercase('t'));               // false
+// console.log(isUppercase('T'));               // true
+// console.log(isUppercase('Four Score'));      // false
+// console.log(isUppercase('FOUR SCORE'));      // true
+// console.log(isUppercase('4SCORE!'));         // true
+// console.log(isUppercase(''));                // true
+
+function removeVowels(arr) {
+  return arr.map(str => {
+    if(str.match(/[^aeiou]/ig) === null) {
+      return "";
+    } else {
+      return str.match(/[^aeiou]/ig).join("");
     }
+  })
   }
-  return substringArr;
-}
 
-function isPalin(el) {
-  return (el === el.split("").reverse().join("") && el.length > 1);
-}
 
-// console.log(substrings('abcde'));
-console.log(palindromes('abcd'));       // []
-console.log(palindromes('madam'));      // [ "madam", "ada" ]
-
-console.log(palindromes('hello-madam-did-madam-goodbye'));
-// returns
-// [ "ll", "-madam-", "-madam-did-madam-", "madam", "madam-did-madam", "ada",
-//   "adam-did-mada", "dam-did-mad", "am-did-ma", "m-did-m", "-did-", "did",
-//   "-madam-", "madam", "ada", "oo" ]
-
-console.log(palindromes('knitting cassettes'));
-// returns
-// [ "nittin", "itti", "tt", "ss", "settes", "ette", "tt" ]
-
+console.log(removeVowels(['abcdefghijklmnopqrstuvwxyz']));         // ["bcdfghjklmnpqrstvwxyz"]
+console.log(removeVowels(['green', 'YELLOW', 'black', 'white']));  // ["grn", "YLLW", "blck", "wht"]
+console.log(removeVowels(['ABC', 'AEIOU', 'XYZ']));                // ["BC", "", "XYZ"]
