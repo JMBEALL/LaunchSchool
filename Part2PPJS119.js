@@ -1017,10 +1017,94 @@ const readline = require('readline-sync');
 
 
 
-function sum(num) {
-  return String(num).split("").reduce((accum,el) => accum + +el, 0);
+// function sum(num) {
+//   return String(num).split("").reduce((accum,el) => accum + +el, 0);
 
+// }
+// console.log(sum(23));           // 5
+// console.log(sum(496));          // 19
+// console.log(sum(123456789));    // 45
+
+
+// let NUMBER_ARRAY = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
+
+// function alphabeticNumberSort(arr) {
+//   return arr.sort(helpMe);
+// }
+
+// function helpMe(a, b) {
+//   if (NUMBER_ARRAY[a] > NUMBER_ARRAY[b]) {
+//     return 1;
+//   } else if (NUMBER_ARRAY[a] < NUMBER_ARRAY[b]) {
+//     return -1;
+//   } else {
+//     return 0;
+//   }
+// }
+
+
+// console.log(alphabeticNumberSort(
+//   [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]));
+// // [8, 18, 11, 15, 5, 4, 14, 9, 19, 1, 7, 17, 6, 16, 10, 13, 3, 12, 2, 0]
+
+// function multiplyAllPairs(arr1,arr2) {
+//   let finalArr = [];
+//   for (let index = 0; index < arr1.length; index++ ) {
+//     for (let j = 0; j < arr2.length; j++) {
+//       finalArr.push(arr1[index] * arr2[j]);
+//     }
+//   }
+//   return finalArr.sort((a,b)=> a - b);
+// }
+
+// console.log(multiplyAllPairs([2, 4], [4, 3, 1, 2]));    // [2, 4, 4, 6, 8, 8, 12, 16]
+
+
+
+// // returns
+// [ "a", "ab", "abc", "abcd", "abcde",
+//   "b", "bc", "bcd", "bcde",
+//   "c", "cd", "cde",
+//   "d", "de",
+//   "e" ]
+
+function palindromes(str) {
+let arr = substrings(str)
+let palin = [];
+arr.forEach( el => {
+  if(isPalin(el)) {
+    palin.push(el)
+  }
+})
+return palin;
 }
-console.log(sum(23));           // 5
-console.log(sum(496));          // 19
-console.log(sum(123456789));    // 45
+
+
+function substrings(str) {
+  let substringArr = [];
+  for (let startingIndex = 0; startingIndex < str.length; startingIndex++) {
+    for (let numChars = 1; numChars <= str.length - startingIndex; numChars++) {
+      substringArr.push(str.slice(startingIndex, startingIndex + numChars));
+    }
+  }
+  return substringArr;
+}
+
+function isPalin(el) {
+  return (el === el.split("").reverse().join("") && el.length > 1);
+}
+
+// console.log(substrings('abcde'));
+console.log(palindromes('abcd'));       // []
+console.log(palindromes('madam'));      // [ "madam", "ada" ]
+
+console.log(palindromes('hello-madam-did-madam-goodbye'));
+// returns
+// [ "ll", "-madam-", "-madam-did-madam-", "madam", "madam-did-madam", "ada",
+//   "adam-did-mada", "dam-did-mad", "am-did-ma", "m-did-m", "-did-", "did",
+//   "-madam-", "madam", "ada", "oo" ]
+
+console.log(palindromes('knitting cassettes'));
+// returns
+// [ "nittin", "itti", "tt", "ss", "settes", "ette", "tt" ]
+
