@@ -981,16 +981,46 @@ const readline = require('readline-sync');
 //   [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]));
 // // [8, 18, 11, 15, 5, 4, 14, 9, 19, 1, 7, 17, 6, 16, 10, 13, 3, 12, 2, 0]
 
-function multiplyAllPairs(arr1, arr2) {
-  let outputArr = [];
+// function multiplyAllPairs(arr1, arr2) {
+//   let outputArr = [];
   
-  for (let index = 0; index < arr1.length; index++) {
-    for (let j = 0; j < arr2.length; j++) {
-      outputArr.push(arr1[index] * arr2[j]);
-    }
-  }
-  return outputArr.sort((a,b) => a- b);
+//   for (let index = 0; index < arr1.length; index++) {
+//     for (let j = 0; j < arr2.length; j++) {
+//       outputArr.push(arr1[index] * arr2[j]);
+//     }
+//   }
+//   return outputArr.sort((a,b) => a- b);
+
+// }
+
+// console.log(multiplyAllPairs([2, 4], [4, 3, 1, 2]));    // [2, 4, 4, 6, 8, 8, 12, 16]
+
+// 
+// function substrings(str) {
+// let substrings = [];
+// for(let length = 0; length <  str.length ; length++) {
+//   for (let char = 1; char < str.length; char++) {
+//     substrings.push(str.slice(length, length + char))
+//   }
+// }
+// return substrings;
+// }
+
+// console.log(substrings('abcde'));
+
+// // returns
+// // [ "a", "ab", "abc", "abcd", "abcde",
+// //   "b", "bc", "bcd", "bcde",
+// //   "c", "cd", "cde",
+// //   "d", "de",
+// //   "e" ]
+
+
+
+function sum(num) {
+  return String(num).split("").reduce((accum,el) => accum + +el, 0);
 
 }
-
-console.log(multiplyAllPairs([2, 4], [4, 3, 1, 2]));    // [2, 4, 4, 6, 8, 8, 12, 16]
+console.log(sum(23));           // 5
+console.log(sum(496));          // 19
+console.log(sum(123456789));    // 45
