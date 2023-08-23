@@ -1157,17 +1157,39 @@ const readline = require('readline-sync');
 // console.log(isUppercase('4SCORE!'));         // true
 // console.log(isUppercase(''));                // true
 
-function removeVowels(arr) {
-  return arr.map(str => {
-    if(str.match(/[^aeiou]/ig) === null) {
-      return "";
+// function removeVowels(arr) {
+//   return arr.map(str => {
+//     if(str.match(/[^aeiou]/ig) === null) {
+//       return "";
+//     } else {
+//       return str.match(/[^aeiou]/ig).join("");
+//     }
+//   })
+//   }
+
+
+// console.log(removeVowels(['abcdefghijklmnopqrstuvwxyz']));         // ["bcdfghjklmnpqrstvwxyz"]
+// console.log(removeVowels(['green', 'YELLOW', 'black', 'white']));  // ["grn", "YLLW", "blck", "wht"]
+// console.log(removeVowels(['ABC', 'AEIOU', 'XYZ']));                // ["BC", "", "XYZ"]
+
+function letterCaseCount(str) {
+  let caseCountObj = {lowercase: 0,
+                      uppercase: 0,
+                      neither:0};
+
+  str.split("").forEach(el => {
+    if (el.match(/[A-Z]/)) {
+      caseCountObj.uppercase++;
+    } else if (el.match(/[a-z]/)) {
+      caseCountObj['lowercase']++;
     } else {
-      return str.match(/[^aeiou]/ig).join("");
+      caseCountObj.neither++
     }
   })
-  }
+  return caseCountObj;
+}
 
-
-console.log(removeVowels(['abcdefghijklmnopqrstuvwxyz']));         // ["bcdfghjklmnpqrstvwxyz"]
-console.log(removeVowels(['green', 'YELLOW', 'black', 'white']));  // ["grn", "YLLW", "blck", "wht"]
-console.log(removeVowels(['ABC', 'AEIOU', 'XYZ']));                // ["BC", "", "XYZ"]
+console.log(letterCaseCount('abCdef 123'));  // { lowercase: 5, uppercase: 1, neither: 4 }
+console.log(letterCaseCount('AbCd +Ef'));    // { lowercase: 3, uppercase: 3, neither: 2 }
+console.log(letterCaseCount('123'));         // { lowercase: 0, uppercase: 0, neither: 3 }
+console.log(letterCaseCount(''));            // { lowercase: 0, uppercase: 0, neither: 0 }
