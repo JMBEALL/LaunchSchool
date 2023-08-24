@@ -1194,13 +1194,16 @@ const readline = require('readline-sync');
 // console.log(letterCaseCount('123'));         // { lowercase: 0, uppercase: 0, neither: 3 }
 // console.log(letterCaseCount(''));            // { lowercase: 0, uppercase: 0, neither: 0 }
 
-function wordCap(str) {
-  return str.split(" ").map(word => {
-    return word[0].toUpperCase() + word.slice(1).toLowerCase();
-  }).join(" ");
-}
+// function wordCap(str) {
+//   return str.split(" ").map(word => {
+//     return word[0].toUpperCase() + word.slice(1).toLowerCase();
+//   }).join(" ");
+// }
 
-console.log(wordCap('four score and seven'));       // "Four Score And Seven"
-console.log(wordCap('the javaScript language'));    // "The Javascript Language"
-console.log(wordCap('this is a "quoted" word'));    // 'This Is A "quoted" Word'
+// console.log(wordCap('four score and seven'));       // "Four Score And Seven"
+// console.log(wordCap('the javaScript language'));    // "The Javascript Language"
+// console.log(wordCap('this is a "quoted" word'));    // 'This Is A "quoted" Word'
 
+let str = "cast";
+if(str.match(/s/)) console.log("matched s");
+if(str.match(/x/)) console.log("matched x");
