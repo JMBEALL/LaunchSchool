@@ -1204,6 +1204,22 @@ const readline = require('readline-sync');
 // console.log(wordCap('the javaScript language'));    // "The Javascript Language"
 // console.log(wordCap('this is a "quoted" word'));    // 'This Is A "quoted" Word'
 
-let str = "cast";
-if(str.match(/s/)) console.log("matched s");
-if(str.match(/x/)) console.log("matched x");
+// let str = "cast";
+// if(str.match(/s/)) console.log("matched s");
+// if(str.match(/x/)) console.log("matched x");
+
+function swapCase(str) {
+
+  return str.split("").map(el => {
+    if (el.match(/[A-Z]/)) {
+      return el.toLowerCase();
+    } else if (el.match(/[a-z]/)) {
+      return el.toUpperCase();
+    } else {
+      return el;
+    }
+  }).join("");
+}
+
+console.log(swapCase('CamelCase'));              // "cAMELcASE"
+console.log(swapCase('Tonight on XYZ-TV'));      // "tONIGHT ON xyz-tv"
