@@ -1226,19 +1226,46 @@ const readline = require('readline-sync');
 
 
 
+// function staggeredCase(str) {
+//   let newStr = "";
+//   for (let index = 0; index < str.length; index++) {
+//     if (index % 2 === 0) {
+//       newStr += str[index].toUpperCase();
+//     } else {
+//       newStr += str[index].toLowerCase();
+//     }
+//   }
+//   return newStr;
+// }
+
+
+// console.log(staggeredCase('I Love Launch School!'));        // "I LoVe lAuNcH ScHoOl!"
+// console.log(staggeredCase('ALL_CAPS'));                     // "AlL_CaPs"
+// console.log(staggeredCase('ignore 77 the 4444 numbers'));   // "IgNoRe 77 ThE 4444 nUmBeRs"
+
 function staggeredCase(str) {
+  let count = 0;
+  let toggle = 0
   let newStr = "";
-  for (let index = 0; index < str.length; index++) {
-    if (index % 2 === 0) {
-      newStr += str[index].toUpperCase();
+  while (count < str.length) {
+    if (str[count].match(/[a-z]/i) && toggle % 2 === 0){{
+      newStr += str[count].toUpperCase()
+      count++;
+      toggle++;
+    }} else if (str[count].match(/[a-z]/i) && toggle % 2 !== 0) {
+      newStr += str[count].toLowerCase();
+      count++;
+      toggle++;
     } else {
-      newStr += str[index].toLowerCase();
+      newStr += str[count];
+      count++
     }
   }
   return newStr;
 }
 
-
-console.log(staggeredCase('I Love Launch School!'));        // "I LoVe lAuNcH ScHoOl!"
-console.log(staggeredCase('ALL_CAPS'));                     // "AlL_CaPs"
-console.log(staggeredCase('ignore 77 the 4444 numbers'));   // "IgNoRe 77 ThE 4444 nUmBeRs"
+console.log(staggeredCase("I Love Launch School!") === "I lOvE lAuNcH sChOoL!");
+console.log(staggeredCase("ALL CAPS") === "AlL cApS");
+console.log(
+  staggeredCase("ignore 77 the 444 numbers") === "IgNoRe 77 ThE 444 nUmBeRs"
+);
