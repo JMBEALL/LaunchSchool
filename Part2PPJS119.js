@@ -1208,18 +1208,37 @@ const readline = require('readline-sync');
 // if(str.match(/s/)) console.log("matched s");
 // if(str.match(/x/)) console.log("matched x");
 
-function swapCase(str) {
+// function swapCase(str) {
 
-  return str.split("").map(el => {
-    if (el.match(/[A-Z]/)) {
-      return el.toLowerCase();
-    } else if (el.match(/[a-z]/)) {
-      return el.toUpperCase();
+//   return str.split("").map(el => {
+//     if (el.match(/[A-Z]/)) {
+//       return el.toLowerCase();
+//     } else if (el.match(/[a-z]/)) {
+//       return el.toUpperCase();
+//     } else {
+//       return el;
+//     }
+//   }).join("");
+// }
+
+// console.log(swapCase('CamelCase'));              // "cAMELcASE"
+// console.log(swapCase('Tonight on XYZ-TV'));      // "tONIGHT ON xyz-tv"
+
+
+
+function staggeredCase(str) {
+  let newStr = "";
+  for (let index = 0; index < str.length; index++) {
+    if (index % 2 === 0) {
+      newStr += str[index].toUpperCase();
     } else {
-      return el;
+      newStr += str[index].toLowerCase();
     }
-  }).join("");
+  }
+  return newStr;
 }
 
-console.log(swapCase('CamelCase'));              // "cAMELcASE"
-console.log(swapCase('Tonight on XYZ-TV'));      // "tONIGHT ON xyz-tv"
+
+console.log(staggeredCase('I Love Launch School!'));        // "I LoVe lAuNcH ScHoOl!"
+console.log(staggeredCase('ALL_CAPS'));                     // "AlL_CaPs"
+console.log(staggeredCase('ignore 77 the 4444 numbers'));   // "IgNoRe 77 ThE 4444 nUmBeRs"
