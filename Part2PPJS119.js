@@ -1301,29 +1301,44 @@ const readline = require('readline-sync');
 
 // console.log(searchWord('sed', text));      // 3
 
-function rotateArray(arr) {
-  if (!Array.isArray(arr)) return undefined;
-  if(arr.length === 0) return [];
+// function rotateArray(arr) {
+//   if (!Array.isArray(arr)) return undefined;
+//   if(arr.length === 0) return [];
 
-  let newArr = [...arr];
-  let el = newArr.shift();
-  newArr.push(el);
-  return newArr;
+//   let newArr = [...arr];
+//   let el = newArr.shift();
+//   newArr.push(el);
+//   return newArr;
+// }
+
+// console.log(rotateArray([7, 3, 5, 2, 9, 1]));       // [3, 5, 2, 9, 1, 7]
+// console.log(rotateArray(['a', 'b', 'c']));          // ["b", "c", "a"]
+// console.log(rotateArray(['a']));                    // ["a"]
+// console.log(rotateArray([1, 'a', 3, 'c']));         // ["a", 3, "c", 1]
+// console.log(rotateArray([{ a: 2 }, [1, 2], 3]));    // [[1, 2], 3, { a: 2 }]
+// console.log(rotateArray([]));                       // []
+
+// // return `undefined` if the argument is not an array
+// console.log(rotateArray());                         // undefined
+// console.log(rotateArray(1));                        // undefined
+
+
+// // the input array is not mutated
+// let array = [1, 2, 3, 4];
+// rotateArray(array);                    // [2, 3, 4, 1]
+// array;                                 // [1, 2, 3, 4]
+
+function rotateRightmostDigits(num, count) {
+let numStringArr = String(num).split("");
+let shiftArr = numStringArr.slice(-count);
+let el = shiftArr.shift();
+shiftArr.push(el);
+return +numStringArr.slice(0, -count).concat(shiftArr).join("")
 }
 
-console.log(rotateArray([7, 3, 5, 2, 9, 1]));       // [3, 5, 2, 9, 1, 7]
-console.log(rotateArray(['a', 'b', 'c']));          // ["b", "c", "a"]
-console.log(rotateArray(['a']));                    // ["a"]
-console.log(rotateArray([1, 'a', 3, 'c']));         // ["a", 3, "c", 1]
-console.log(rotateArray([{ a: 2 }, [1, 2], 3]));    // [[1, 2], 3, { a: 2 }]
-console.log(rotateArray([]));                       // []
-
-// return `undefined` if the argument is not an array
-console.log(rotateArray());                         // undefined
-console.log(rotateArray(1));                        // undefined
-
-
-// the input array is not mutated
-let array = [1, 2, 3, 4];
-rotateArray(array);                    // [2, 3, 4, 1]
-array;                                 // [1, 2, 3, 4]
+console.log(rotateRightmostDigits(735291, 1));      // 735291
+console.log(rotateRightmostDigits(735291, 2));      // 735219
+console.log(rotateRightmostDigits(735291, 3));      // 735912
+console.log(rotateRightmostDigits(735291, 4));      // 732915
+console.log(rotateRightmostDigits(735291, 5));      // 752913
+console.log(rotateRightmostDigits(735291, 6));      // 352917
