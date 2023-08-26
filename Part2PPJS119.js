@@ -1328,17 +1328,42 @@ const readline = require('readline-sync');
 // rotateArray(array);                    // [2, 3, 4, 1]
 // array;                                 // [1, 2, 3, 4]
 
-function rotateRightmostDigits(num, count) {
-let numStringArr = String(num).split("");
-let shiftArr = numStringArr.slice(-count);
-let el = shiftArr.shift();
-shiftArr.push(el);
-return +numStringArr.slice(0, -count).concat(shiftArr).join("")
+// function rotateRightmostDigits(num, count) {
+// let numStringArr = String(num).split("");
+// let shiftArr = numStringArr.slice(-count);
+// let el = shiftArr.shift();
+// shiftArr.push(el);
+// return +numStringArr.slice(0, -count).concat(shiftArr).join("")
+// }
+
+// console.log(rotateRightmostDigits(735291, 1));      // 735291
+// console.log(rotateRightmostDigits(735291, 2));      // 735219
+// console.log(rotateRightmostDigits(735291, 3));      // 735912
+// console.log(rotateRightmostDigits(735291, 4));      // 732915
+// console.log(rotateRightmostDigits(735291, 5));      // 752913
+// console.log(rotateRightmostDigits(735291, 6));      // 352917
+
+function maxRotation(num) {
+  if (String(num).length === 1) return num;
+  let strNum = String(num).slice(1) + String(num)[0];
+  let arr;
+  let el;
+  for(let index = 1; index <= strNum.length; index++) {
+    arr = strNum.slice(index).split("")
+    // console.log(`arr = ${arr}`)
+    el = arr.shift();
+    // console.log(`el = ${el}`)
+    arr.push(el);
+    // console.log(`updatedArr = ${arr}`)
+    strNum = strNum.slice(0, index) + arr.join("");
+    // console.log(strNum)
+  }
+  return +strNum;
 }
 
-console.log(rotateRightmostDigits(735291, 1));      // 735291
-console.log(rotateRightmostDigits(735291, 2));      // 735219
-console.log(rotateRightmostDigits(735291, 3));      // 735912
-console.log(rotateRightmostDigits(735291, 4));      // 732915
-console.log(rotateRightmostDigits(735291, 5));      // 752913
-console.log(rotateRightmostDigits(735291, 6));      // 352917
+console.log(maxRotation(735291));          // 321579
+console.log(maxRotation(3));               // 3
+console.log(maxRotation(35));              // 53
+console.log(maxRotation(105));             // 15 -- the leading zero gets dropped
+console.log(maxRotation(8703529146));      // 7321609845
+
