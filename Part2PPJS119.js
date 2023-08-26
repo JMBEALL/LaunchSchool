@@ -1291,12 +1291,39 @@ const readline = require('readline-sync');
 // console.log(wordLengths(''));      // []
 // console.log(wordLengths());        // []
 
-function searchWord(word, str) {
+// function searchWord(word, str) {
 
-return str.split(" ").filter(el => el.toLowerCase() === word.toLowerCase()).length;
+// return str.split(" ").filter(el => el.toLowerCase() === word.toLowerCase()).length;
 
+// }
+
+// const text = 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?';
+
+// console.log(searchWord('sed', text));      // 3
+
+function rotateArray(arr) {
+  if (!Array.isArray(arr)) return undefined;
+  if(arr.length === 0) return [];
+
+  let newArr = [...arr];
+  let el = newArr.shift();
+  newArr.push(el);
+  return newArr;
 }
 
-const text = 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?';
+console.log(rotateArray([7, 3, 5, 2, 9, 1]));       // [3, 5, 2, 9, 1, 7]
+console.log(rotateArray(['a', 'b', 'c']));          // ["b", "c", "a"]
+console.log(rotateArray(['a']));                    // ["a"]
+console.log(rotateArray([1, 'a', 3, 'c']));         // ["a", 3, "c", 1]
+console.log(rotateArray([{ a: 2 }, [1, 2], 3]));    // [[1, 2], 3, { a: 2 }]
+console.log(rotateArray([]));                       // []
 
-console.log(searchWord('sed', text));      // 3
+// return `undefined` if the argument is not an array
+console.log(rotateArray());                         // undefined
+console.log(rotateArray(1));                        // undefined
+
+
+// the input array is not mutated
+let array = [1, 2, 3, 4];
+rotateArray(array);                    // [2, 3, 4, 1]
+array;                                 // [1, 2, 3, 4]
