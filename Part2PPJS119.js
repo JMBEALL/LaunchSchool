@@ -1455,35 +1455,73 @@ const readline = require('readline-sync');
 // console.log(range(10, 20));
 // console.log(range(5));
 
-let memberDirectory = {
-  'Jane Doe': '323-8293',
-  'Margaret Asbury': '989-1111',
-  'Callum Beech': '533-9090',
-  'Juanita Eastman': '424-1919',
-};
+// let memberDirectory = {
+//   'Jane Doe': '323-8293',
+//   'Margaret Asbury': '989-1111',
+//   'Callum Beech': '533-9090',
+//   'Juanita Eastman': '424-1919',
+// };
 
-function isValidName(name) {
-  return (/^[a-z]+ [a-z]+$/i).test(name);
+// function isValidName(name) {
+//   return (/^[a-z]+ [a-z]+$/i).test(name);
+// }
+
+// function isValidPhone(phone) {
+//   return (/^\d{3}-\d{4}$/).test(phone);
+// }
+
+// function validMemberInfo(name, phone) {
+//   return isValidName(name) && isValidPhone(phone);
+// }
+
+// function addMember(name, phone) {
+//   if (validMemberInfo(name, phone)) {
+//     return memberDirectory[name] = phone;
+//   } else {
+//     return 'Invalid member information.';
+//   }
+// }
+
+// console.log(addMember('Laura Carlisle', '444-2223'));
+// console.log(addMember('Rachel Garcia', '232-1191'));
+// console.log(addMember('Earl 5mith', '331-9191'));
+
+// console.log(memberDirectory);
+
+function average(nums) {
+  let sum = nums.reduce((total, num) => total + num);
+
+  return sum / nums.length;
 }
 
-function isValidPhone(phone) {
-  return (/^\d{3}-\d{4}$/).test(phone);
-}
+function median(nums) {
+  nums.sort((a,b) => a - b);
 
-function validMemberInfo(name, phone) {
-  return isValidName(name) && isValidPhone(phone);
-}
-
-function addMember(name, phone) {
-  if (validMemberInfo(name, phone)) {
-    return memberDirectory[name] = phone;
+  let median;
+  let length = nums.length;
+  if (length % 2 === 0) {
+    median = average([nums[(length / 2) - 1], nums[length / 2]]);
   } else {
-    return 'Invalid member information.';
+    median = nums[Math.floor(length / 2)];
   }
+
+  return median;
 }
 
-console.log(addMember('Laura Carlisle', '444-2223'));
-console.log(addMember('Rachel Garcia', '232-1191'));
-console.log(addMember('Earl 5mith', '331-9191'));
+// Tests
 
-console.log(memberDirectory);
+let quarter1ExamScores = [89, 72, 100, 93, 64, 97, 82, 87, 90, 94];
+let quarter2ExamScores = [76, 91, 89, 90, 91, 67, 99, 82, 91, 87];
+let quarter3ExamScores = [99, 91, 88, 72, 76, 64, 94, 79, 86, 88];
+let quarter4ExamScores = [100, 94, 73, 88, 82, 91, 97, 99, 80, 84];
+
+// should all log 'true':
+console.log(average(quarter1ExamScores) === 86.8);
+console.log(average(quarter2ExamScores) === 86.3);
+console.log(average(quarter3ExamScores) === 83.7);
+console.log(average(quarter4ExamScores) === 88.8);
+
+console.log(median(quarter1ExamScores) === 89.5);
+console.log(median(quarter2ExamScores) === 89.5);
+console.log(median(quarter3ExamScores) === 87);
+console.log(median(quarter4ExamScores) === 89.5);
