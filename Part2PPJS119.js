@@ -1432,25 +1432,58 @@ const readline = require('readline-sync');
 // console.log(minilang('6 PUSH'));
 // // (nothing is printed because the `program` argument has no `PRINT` commands)
 
-function range(start, end = -1) {
-  if (end === -1) {
-    end = start;
-    start = 0;
-  }
-  let range = [];
+// function range(start, end = -1) {
+//   if (end === -1) {
+//     end = start;
+//     start = 0;
+//   }
+//   let range = [];
 
-  for (let element = start; element <= end; element++) {
-    range.push(element);
-  }
+//   for (let element = start; element <= end; element++) {
+//     range.push(element);
+//   }
 
-  return range;
-}
-
-// function range(end) {
-//   return range(0, end);
+//   return range;
 // }
 
-// Examples
+// // function range(end) {
+// //   return range(0, end);
+// // }
 
-console.log(range(10, 20));
-console.log(range(5));
+// // Examples
+
+// console.log(range(10, 20));
+// console.log(range(5));
+
+let memberDirectory = {
+  'Jane Doe': '323-8293',
+  'Margaret Asbury': '989-1111',
+  'Callum Beech': '533-9090',
+  'Juanita Eastman': '424-1919',
+};
+
+function isValidName(name) {
+  return (/^[a-z]+ [a-z]+$/i).test(name);
+}
+
+function isValidPhone(phone) {
+  return (/^\d{3}-\d{4}$/).test(phone);
+}
+
+function validMemberInfo(name, phone) {
+  return isValidName(name) && isValidPhone(phone);
+}
+
+function addMember(name, phone) {
+  if (validMemberInfo(name, phone)) {
+    return memberDirectory[name] = phone;
+  } else {
+    return 'Invalid member information.';
+  }
+}
+
+console.log(addMember('Laura Carlisle', '444-2223'));
+console.log(addMember('Rachel Garcia', '232-1191'));
+console.log(addMember('Earl 5mith', '331-9191'));
+
+console.log(memberDirectory);
