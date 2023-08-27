@@ -1343,27 +1343,114 @@ const readline = require('readline-sync');
 // console.log(rotateRightmostDigits(735291, 5));      // 752913
 // console.log(rotateRightmostDigits(735291, 6));      // 352917
 
-function maxRotation(num) {
-  if (String(num).length === 1) return num;
-  let strNum = String(num).slice(1) + String(num)[0];
-  let arr;
-  let el;
-  for(let index = 1; index <= strNum.length; index++) {
-    arr = strNum.slice(index).split("")
-    // console.log(`arr = ${arr}`)
-    el = arr.shift();
-    // console.log(`el = ${el}`)
-    arr.push(el);
-    // console.log(`updatedArr = ${arr}`)
-    strNum = strNum.slice(0, index) + arr.join("");
-    // console.log(strNum)
+// function maxRotation(num) {
+//   if (String(num).length === 1) return num;
+//   let strNum = String(num).slice(1) + String(num)[0];
+//   let arr;
+//   let el;
+//   for(let index = 1; index <= strNum.length; index++) {
+//     arr = strNum.slice(index).split("")
+//     // console.log(`arr = ${arr}`)
+//     el = arr.shift();
+//     // console.log(`el = ${el}`)
+//     arr.push(el);
+//     // console.log(`updatedArr = ${arr}`)
+//     strNum = strNum.slice(0, index) + arr.join("");
+//     // console.log(strNum)
+//   }
+//   return +strNum;
+// }
+
+// console.log(maxRotation(735291));          // 321579
+// console.log(maxRotation(3));               // 3
+// console.log(maxRotation(35));              // 53
+// console.log(maxRotation(105));             // 15 -- the leading zero gets dropped
+// console.log(maxRotation(8703529146));      // 7321609845
+
+
+// function minilang(str){
+//   let stack = [];
+//   let register = 0;
+//   let arr = str.split(" ");
+//   if (typeof +arr[0] === "number") {
+//     register = +arr[0];
+//     arr.shift();
+//   }
+//   // console.log(arr);
+
+//   arr.forEach((el,index) => {
+//     if (el === "PRINT") {
+//       console.log(register);
+//     } else if (el === "PUSH" ){
+//       stack.push(register);
+//     } else if (el === "ADD") {
+//       register += +stack.pop();
+//     } else if (el === "SUB") {
+//       register -= +stack.pop();
+//     } else if (el === "MULT") {
+//       register *= +stack.pop();
+//     } else if (el === "DIV") {
+//       register = parseInt(register / +stack.pop());
+//     } else if (el === "REMAINDER") {
+//       register = parseInt(register % +stack.pop());
+//     } else if (el === "POP") {
+//       register = +stack.pop();
+//     }
+//   })
+//   return +register;
+// }
+
+// console.log(minilang('PRINT'));
+// // 0
+
+// console.log(minilang('5 PUSH 3 MULT PRINT'));
+// // 15
+
+// console.log(minilang('5 PRINT PUSH 3 PRINT ADD PRINT'));
+// // 5
+// // 3
+// // 8
+
+// console.log(minilang('5 PUSH POP PRINT'));
+// // 5
+
+// console.log(minilang('3 PUSH 4 PUSH 5 PUSH PRINT ADD PRINT POP PRINT ADD PRINT'));
+// // 5
+// // 10
+// // 4
+// // 7
+
+// console.log(minilang('3 PUSH PUSH 7 DIV MULT PRINT'));
+// // 6
+
+// console.log(minilang('4 PUSH PUSH 7 REMAINDER MULT PRINT'));
+// // 12
+
+// console.log(minilang('-3 PUSH 5 SUB PRINT'));
+// // 8
+
+// console.log(minilang('6 PUSH'));
+// // (nothing is printed because the `program` argument has no `PRINT` commands)
+
+function range(start, end = -1) {
+  if (end === -1) {
+    end = start;
+    start = 0;
   }
-  return +strNum;
+  let range = [];
+
+  for (let element = start; element <= end; element++) {
+    range.push(element);
+  }
+
+  return range;
 }
 
-console.log(maxRotation(735291));          // 321579
-console.log(maxRotation(3));               // 3
-console.log(maxRotation(35));              // 53
-console.log(maxRotation(105));             // 15 -- the leading zero gets dropped
-console.log(maxRotation(8703529146));      // 7321609845
+// function range(end) {
+//   return range(0, end);
+// }
 
+// Examples
+
+console.log(range(10, 20));
+console.log(range(5));
