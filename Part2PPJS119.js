@@ -1555,9 +1555,30 @@ const readline = require('readline-sync');
 // let SQUARE_FEET = (AREA * SQUARE_METER).toFixed(2);
 // console.log(`The area of the room is ${AREA} square meters (${SQUARE_FEET} square feet).`);
 
-let BILL_TOTAL = +readline.question("What is the total amount of the bill?\n");
-let TIP_PERCENT = +readline.question("What percentage tip would you like to leave?\n");
-let TOTAL_TIP = +(BILL_TOTAL * (TIP_PERCENT * .01)).toFixed(2);
-let TOTAL = +(BILL_TOTAL + TOTAL_TIP).toFixed(2);
+// let BILL_TOTAL = +readline.question("What is the total amount of the bill?\n");
+// let TIP_PERCENT = +readline.question("What percentage tip would you like to leave?\n");
+// let TOTAL_TIP = +(BILL_TOTAL * (TIP_PERCENT * .01)).toFixed(2);
+// let TOTAL = +(BILL_TOTAL + TOTAL_TIP).toFixed(2);
 
-console.log(` The tip is $${TOTAL_TIP}. The total is $${TOTAL}.`)
+// console.log(` The tip is $${TOTAL_TIP}. The total is $${TOTAL}.`)
+
+// const int = +readline.question("Please enter an integer greater than 0\n");
+// const math = readline.question("Enter 's' to compute the sum, or 'p' to compute the product").toLowerCase();
+// let total = 1;
+// for (let index = 1; index <= int; index++) {
+//   if (math === 's') {
+//     total += index;
+//   } else if (math === "p") {
+//     total *= index
+//   }
+//   console.log(total);
+// }
+
+
+function shortLongShort(str1,str2) {
+  return str1.length < str2.length ? str1 + str2 + str1 : str2 + str1 + str2;
+}
+
+console.log(shortLongShort('abc', 'defgh'));    // "abcdefghabc"
+console.log(shortLongShort('abcde', 'fgh'));    // "fghabcdefgh"
+console.log(shortLongShort('', 'xyz'));         // "xyz"
