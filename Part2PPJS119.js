@@ -1542,8 +1542,22 @@ const readline = require('readline-sync');
 //   count++;
 // }
 
-count = 2 
-while (count < 100) {
-  if (count % 2 === 0) console.log(count);
-  count++;
-}
+// count = 2 
+// while (count < 100) {
+//   if (count % 2 === 0) console.log(count);
+//   count++;
+// }
+
+// let length = +readline.question("What is the length of the room in meters?\n");
+// let width = +readline.question("What is the width of the room in meters?\n");
+// let SQUARE_METER = 10.7639;
+// let AREA = (length * width).toFixed(2);
+// let SQUARE_FEET = (AREA * SQUARE_METER).toFixed(2);
+// console.log(`The area of the room is ${AREA} square meters (${SQUARE_FEET} square feet).`);
+
+let BILL_TOTAL = +readline.question("What is the total amount of the bill?\n");
+let TIP_PERCENT = +readline.question("What percentage tip would you like to leave?\n");
+let TOTAL_TIP = +(BILL_TOTAL * (TIP_PERCENT * .01)).toFixed(2);
+let TOTAL = +(BILL_TOTAL + TOTAL_TIP).toFixed(2);
+
+console.log(` The tip is $${TOTAL_TIP}. The total is $${TOTAL}.`)
