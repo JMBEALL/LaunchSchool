@@ -1488,40 +1488,50 @@ const readline = require('readline-sync');
 
 // console.log(memberDirectory);
 
-function average(nums) {
-  let sum = nums.reduce((total, num) => total + num);
+// function average(nums) {
+//   let sum = nums.reduce((total, num) => total + num);
 
-  return sum / nums.length;
-}
+//   return sum / nums.length;
+// }
 
-function median(nums) {
-  nums.sort((a,b) => a - b);
+// function median(nums) {
+//   nums.sort((a,b) => a - b);
 
-  let median;
-  let length = nums.length;
-  if (length % 2 === 0) {
-    median = average([nums[(length / 2) - 1], nums[length / 2]]);
-  } else {
-    median = nums[Math.floor(length / 2)];
-  }
+//   let median;
+//   let length = nums.length;
+//   if (length % 2 === 0) {
+//     median = average([nums[(length / 2) - 1], nums[length / 2]]);
+//   } else {
+//     median = nums[Math.floor(length / 2)];
+//   }
 
-  return median;
-}
+//   return median;
+// }
 
 // Tests
 
-let quarter1ExamScores = [89, 72, 100, 93, 64, 97, 82, 87, 90, 94];
-let quarter2ExamScores = [76, 91, 89, 90, 91, 67, 99, 82, 91, 87];
-let quarter3ExamScores = [99, 91, 88, 72, 76, 64, 94, 79, 86, 88];
-let quarter4ExamScores = [100, 94, 73, 88, 82, 91, 97, 99, 80, 84];
+// let quarter1ExamScores = [89, 72, 100, 93, 64, 97, 82, 87, 90, 94];
+// let quarter2ExamScores = [76, 91, 89, 90, 91, 67, 99, 82, 91, 87];
+// let quarter3ExamScores = [99, 91, 88, 72, 76, 64, 94, 79, 86, 88];
+// let quarter4ExamScores = [100, 94, 73, 88, 82, 91, 97, 99, 80, 84];
 
-// should all log 'true':
-console.log(average(quarter1ExamScores) === 86.8);
-console.log(average(quarter2ExamScores) === 86.3);
-console.log(average(quarter3ExamScores) === 83.7);
-console.log(average(quarter4ExamScores) === 88.8);
+// // should all log 'true':
+// console.log(average(quarter1ExamScores) === 86.8);
+// console.log(average(quarter2ExamScores) === 86.3);
+// console.log(average(quarter3ExamScores) === 83.7);
+// console.log(average(quarter4ExamScores) === 88.8);
 
-console.log(median(quarter1ExamScores) === 89.5);
-console.log(median(quarter2ExamScores) === 89.5);
-console.log(median(quarter3ExamScores) === 87);
-console.log(median(quarter4ExamScores) === 89.5);
+// console.log(median(quarter1ExamScores) === 89.5);
+// console.log(median(quarter2ExamScores) === 89.5);
+// console.log(median(quarter3ExamScores) === 87);
+// console.log(median(quarter4ExamScores) === 89.5);
+
+function isOdd(num) {
+  return Math.abs(num) % 2 === 1;
+}
+console.log(isOdd(2)); // => false
+console.log(isOdd(5)); // => true
+console.log(isOdd(-17)); // => true
+console.log(isOdd(-8)); // => false
+console.log(isOdd(0)); // => false
+console.log(isOdd(7)); // => true
