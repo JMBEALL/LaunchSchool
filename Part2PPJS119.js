@@ -1526,12 +1526,24 @@ const readline = require('readline-sync');
 // console.log(median(quarter3ExamScores) === 87);
 // console.log(median(quarter4ExamScores) === 89.5);
 
-function isOdd(num) {
-  return Math.abs(num) % 2 === 1;
+// function isOdd(num) {
+//   return Math.abs(num) % 2 === 1;
+// }
+// console.log(isOdd(2)); // => false
+// console.log(isOdd(5)); // => true
+// console.log(isOdd(-17)); // => true
+// console.log(isOdd(-8)); // => false
+// console.log(isOdd(0)); // => false
+// console.log(isOdd(7)); // => true
+
+// let count = 1
+// while (count <= 99) {
+//   if (count % 2 === 1) console.log(count);
+//   count++;
+// }
+
+count = 2 
+while (count < 100) {
+  if (count % 2 === 0) console.log(count);
+  count++;
 }
-console.log(isOdd(2)); // => false
-console.log(isOdd(5)); // => true
-console.log(isOdd(-17)); // => true
-console.log(isOdd(-8)); // => false
-console.log(isOdd(0)); // => false
-console.log(isOdd(7)); // => true
