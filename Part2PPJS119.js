@@ -2013,20 +2013,42 @@ const readline = require('readline-sync');
 //          40, 23, 71, 62, 73, 32, 43, 24,  4, 56,
 //           7, 34, 57, 74, 45, 11, 88, 67,  5, 58]));    // 73
 
-function interleave(arr1,arr2) {
-  let newArr = [];
+// function interleave(arr1,arr2) {
+//   let newArr = [];
 
-  for (let index = 0; index < arr1.length; index++) {
-    if (!newArr.includes(arr1[index])) {
-      newArr.push(arr1[index]);
-    }
-    for (j = 0; j <= index ; j ++) {
-      if (!newArr.includes(arr2[index])) {
-        newArr.push(arr2[index]);
-      }
-    }
-  }
-  return newArr;
+//   for (let index = 0; index < arr1.length; index++) {
+//     if (!newArr.includes(arr1[index])) {
+//       newArr.push(arr1[index]);
+//     }
+//     for (j = 0; j <= index ; j ++) {
+//       if (!newArr.includes(arr2[index])) {
+//         newArr.push(arr2[index]);
+//       }
+//     }
+//   }
+//   return newArr;
+// }
+
+// console.log(interleave([1, 2, 3], ['a', 'b', 'c']));    // [1, "a", 2, "b", 3, "c"]
+
+// function multiplicativeAverage(arr) {
+//   return (arr.reduce((accum, el) => accum * el , 1) / arr.length).toFixed(3);
+// }
+
+// console.log(multiplicativeAverage([3, 5]));                   // "7.500"
+// console.log(multiplicativeAverage([2, 5, 7, 11, 13, 17]));    // "28361.667"
+
+// function multiplyList(arr1,arr2) {
+//   let final = [];
+//   arr1.forEach((el,index) => final.push(el * arr2[index]));
+//   return final;
+// }
+
+function digitList(num) {
+  return String(num).split("").map(el => +el);
 }
 
-console.log(interleave([1, 2, 3], ['a', 'b', 'c']));    // [1, "a", 2, "b", 3, "c"]
+console.log(digitList(12345));       // [1, 2, 3, 4, 5]
+console.log(digitList(7));           // [7]
+console.log(digitList(375290));      // [3, 7, 5, 2, 9, 0]
+console.log(digitList(444));         // [4, 4, 4]
