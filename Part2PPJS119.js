@@ -2140,8 +2140,44 @@ const readline = require('readline-sync');
 // console.log(sequence(3));    // [1, 2, 3]
 // console.log(sequence(1));    // [1]
 
-function swapName(str) {
-  return str.split(" ").reverse().join(", ");
+// function swapName(str) {
+//   return str.split(" ").reverse().join(", ");
+// }
+
+// console.log(swapName('Joe Roberts'));    // "Roberts, Joe"
+
+// function sequence(count,num2) {
+//   if (count === 0) return [];
+//   let final = [];
+//   let pusher = num2;
+//   while (count > 0) {
+//     final.push(pusher);
+//     pusher += num2;
+//     count--;
+//   }
+//   return final
+// }
+
+// console.log(sequence(5, 1));          // [1, 2, 3, 4, 5]
+// console.log(sequence(4, -7));         // [-7, -14, -21, -28]
+// console.log(sequence(3, 0));          // [0, 0, 0]
+// console.log(sequence(0, 1000000));    // []
+
+
+// function reverseSentence(str) {
+//   return str.split(" ").reverse().join(" ");
+// }
+
+// console.log(reverseSentence(''));                       // ""
+// console.log(reverseSentence('Hello World'));            // "World Hello"
+// console.log(reverseSentence('Reverse these words'));    // "words these Reverse"
+
+
+function reverseWords(str) {
+  return str.split(" ").map(el => el.length >= 5 ? el.split("").reverse().join("") : el).join(" ");
 }
 
-console.log(swapName('Joe Roberts'));    // "Roberts, Joe"
+console.log(reverseWords('Professional'));             // "lanoisseforP"
+console.log(reverseWords('Walk around the block'));    // "Walk dnuora the kcolb"
+console.log(reverseWords('Launch School'));            // "hcnuaL loohcS"
+
