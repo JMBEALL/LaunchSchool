@@ -2053,28 +2053,95 @@ const readline = require('readline-sync');
 // console.log(digitList(375290));      // [3, 7, 5, 2, 9, 0]
 // console.log(digitList(444));         // [4, 4, 4]
 
-function countOccurrences(arr) {
-  let obj = {};
-  for (let index = 0; index < arr.length; index++) {
-    if (obj[arr[index]]) {
-      obj[arr[index]]++;
-    } else {
-      obj[arr[index]] = 1;
-    }
-  }
-  for (let key in obj) {
+// function countOccurrences(arr) {
+//   let obj = {};
+//   for (let index = 0; index < arr.length; index++) {
+//     if (obj[arr[index]]) {
+//       obj[arr[index]]++;
+//     } else {
+//       obj[arr[index]] = 1;
+//     }
+//   }
+//   for (let key in obj) {
 
-    console.log(`${key} => ${obj[key]}`);
-  }
+//     console.log(`${key} => ${obj[key]}`);
+//   }
+// }
+
+// let vehicles = ['car', 'car', 'truck', 'car', 'SUV', 'truck',
+//                 'motorcycle', 'motorcycle', 'car', 'truck'];
+
+// countOccurrences(vehicles);
+
+// // console output -- your output sequence may be different
+// // car => 4
+// // truck => 3
+// // SUV => 1
+// // motorcycle => 2
+
+// function average(arr) {
+//   return Math.floor(arr.reduce((accum,el) => accum + el , 0) / arr.length);
+// }
+
+// console.log(average([1, 5, 87, 45, 8, 8]));       // 25
+// console.log(average([9, 47, 23, 95, 16, 52]));    // 40
+
+// function repeater(str) {
+//   let newStr = ""
+//   str.split("").forEach( el => {
+//     newStr += el.repeat(2);
+//   })
+//   return newStr;
+// }
+
+// console.log(repeater('Hello'));        // "HHeelllloo"
+// console.log(repeater('Good job!'));    // "GGoooodd  jjoobb!!"
+// console.log(repeater(''));             // ""
+
+// function doubleConsonants(str) {
+//   let newStr = "";
+//   let arr = str.split("");
+//   arr.forEach(el => {
+//     if (el.match(/[^-aeiou0-9.! ]/)) {
+//       newStr += el.repeat(2);
+//     } else {
+//       newStr += el;
+//     }
+//   })
+//   return newStr;
+// }
+
+// console.log(doubleConsonants('String'));          // "SSttrrinngg"
+// console.log(doubleConsonants('Hello-World!'));    // "HHellllo-WWorrlldd!"
+// console.log(doubleConsonants('July 4th'));        // "JJullyy 4tthh"
+// console.log(doubleConsonants(''));                // ""
+
+// function reverseNumber(num) {
+//    let nums = String(num).split("").reverse().join("");
+//    let newNums = nums.match(/[^0]/).join("")
+//    console.log(newNums);
+// }
+
+// console.log(reverseNumber(12345));    // 54321
+// console.log(reverseNumber(12213));    // 31221
+// console.log(reverseNumber(456));      // 654
+// console.log(reverseNumber(12000));    // 21 -- Note that leading zeros in the result get dropped!
+// console.log(reverseNumber(1));        // 1
+
+// function sequence(num) {
+//   let final = [];
+//   for (let index = 1; index <= num; index ++) {
+//     final.push(index)
+//   }
+//   return final;
+// }
+
+// console.log(sequence(5));    // [1, 2, 3, 4, 5]
+// console.log(sequence(3));    // [1, 2, 3]
+// console.log(sequence(1));    // [1]
+
+function swapName(str) {
+  return str.split(" ").reverse().join(", ");
 }
 
-let vehicles = ['car', 'car', 'truck', 'car', 'SUV', 'truck',
-                'motorcycle', 'motorcycle', 'car', 'truck'];
-
-countOccurrences(vehicles);
-
-// console output -- your output sequence may be different
-// car => 4
-// truck => 3
-// SUV => 1
-// motorcycle => 2
+console.log(swapName('Joe Roberts'));    // "Roberts, Joe"
