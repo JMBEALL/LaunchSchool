@@ -2044,11 +2044,37 @@ const readline = require('readline-sync');
 //   return final;
 // }
 
-function digitList(num) {
-  return String(num).split("").map(el => +el);
+// function digitList(num) {
+//   return String(num).split("").map(el => +el);
+// }
+
+// console.log(digitList(12345));       // [1, 2, 3, 4, 5]
+// console.log(digitList(7));           // [7]
+// console.log(digitList(375290));      // [3, 7, 5, 2, 9, 0]
+// console.log(digitList(444));         // [4, 4, 4]
+
+function countOccurrences(arr) {
+  let obj = {};
+  for (let index = 0; index < arr.length; index++) {
+    if (obj[arr[index]]) {
+      obj[arr[index]]++;
+    } else {
+      obj[arr[index]] = 1;
+    }
+  }
+  for (let key in obj) {
+
+    console.log(`${key} => ${obj[key]}`);
+  }
 }
 
-console.log(digitList(12345));       // [1, 2, 3, 4, 5]
-console.log(digitList(7));           // [7]
-console.log(digitList(375290));      // [3, 7, 5, 2, 9, 0]
-console.log(digitList(444));         // [4, 4, 4]
+let vehicles = ['car', 'car', 'truck', 'car', 'SUV', 'truck',
+                'motorcycle', 'motorcycle', 'car', 'truck'];
+
+countOccurrences(vehicles);
+
+// console output -- your output sequence may be different
+// car => 4
+// truck => 3
+// SUV => 1
+// motorcycle => 2
