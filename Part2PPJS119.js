@@ -1976,17 +1976,57 @@ const readline = require('readline-sync');
 
 // console.log(union([1, 3, 5], [3, 6, 9]));    // [1, 3, 5, 6, 9]
 
-function halvsies(arr) {
-  let final = [];
-  if (arr.length % 2 === 0) {
-    final.push(arr.slice(0, arr.length / 2) , arr.slice(arr.length / 2) );
-  } else if (arr.length % 2 === 1) {
-    final.push(arr.slice(0, (arr.length / 2) + 1) , arr.slice((arr.length / 2) + 1) )
+// function halvsies(arr) {
+//   let final = [];
+//   if (arr.length % 2 === 0) {
+//     final.push(arr.slice(0, arr.length / 2) , arr.slice(arr.length / 2) );
+//   } else if (arr.length % 2 === 1) {
+//     final.push(arr.slice(0, (arr.length / 2) + 1) , arr.slice((arr.length / 2) + 1) )
+//   }
+//   return final;
+// }
+
+// console.log(halvsies([1, 2, 3, 4]));       // [[1, 2], [3, 4]]
+// console.log(halvsies([1, 5, 2, 4, 3]));    // [[1, 5, 2], [4, 3]]
+// console.log(halvsies([5]));                // [[5], []]
+// console.log(halvsies([]));                 // [[], []]
+
+// function findDup(arr) {
+// let dup = 0;
+// arr.sort((a,b) => a - b).forEach((el,index) => {
+//   if (el === arr[index + 1]) {
+//     dup = el;
+//   }
+// })
+// return dup;
+// }
+
+// console.log(findDup([1, 5, 3, 1]));                                // 1
+// console.log(findDup([18,  9, 36, 96, 31, 19, 54, 75, 42, 15,
+//          38, 25, 97, 92, 46, 69, 91, 59, 53, 27,
+//          14, 61, 90, 81,  8, 63, 95, 99, 30, 65,
+//          78, 76, 48, 16, 93, 77, 52, 49, 37, 29,
+//          89, 10, 84,  1, 47, 68, 12, 33, 86, 60,
+//          41, 44, 83, 35, 94, 73, 98,  3, 64, 82,
+//          55, 79, 80, 21, 39, 72, 13, 50,  6, 70,
+//          85, 87, 51, 17, 66, 20, 28, 26,  2, 22,
+//          40, 23, 71, 62, 73, 32, 43, 24,  4, 56,
+//           7, 34, 57, 74, 45, 11, 88, 67,  5, 58]));    // 73
+
+function interleave(arr1,arr2) {
+  let newArr = [];
+
+  for (let index = 0; index < arr1.length; index++) {
+    if (!newArr.includes(arr1[index])) {
+      newArr.push(arr1[index]);
+    }
+    for (j = 0; j <= index ; j ++) {
+      if (!newArr.includes(arr2[index])) {
+        newArr.push(arr2[index]);
+      }
+    }
   }
-  return final;
+  return newArr;
 }
 
-console.log(halvsies([1, 2, 3, 4]));       // [[1, 2], [3, 4]]
-console.log(halvsies([1, 5, 2, 4, 3]));    // [[1, 5, 2], [4, 3]]
-console.log(halvsies([5]));                // [[5], []]
-console.log(halvsies([]));                 // [[], []]
+console.log(interleave([1, 2, 3], ['a', 'b', 'c']));    // [1, "a", 2, "b", 3, "c"]
