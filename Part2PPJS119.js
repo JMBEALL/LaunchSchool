@@ -2173,11 +2173,127 @@ const readline = require('readline-sync');
 // console.log(reverseSentence('Reverse these words'));    // "words these Reverse"
 
 
-function reverseWords(str) {
-  return str.split(" ").map(el => el.length >= 5 ? el.split("").reverse().join("") : el).join(" ");
+// function reverseWords(str) {
+//   return str.split(" ").map(el => el.length >= 5 ? el.split("").reverse().join("") : el).join(" ");
+// }
+
+// console.log(reverseWords('Professional'));             // "lanoisseforP"
+// console.log(reverseWords('Walk around the block'));    // "Walk dnuora the kcolb"
+// console.log(reverseWords('Launch School'));            // "hcnuaL loohcS"
+
+// function reverse(arr) {
+// let copy = [...arr]
+// for (let index = 0; index <= arr.length; index++) {
+// arr[index] = arr.slice(-index + 1);
+// }
+// return arr;
+// }
+
+// let list = [1, 2, 3, 4];
+// let result = reverse(list);
+// console.log(result); // logs [4,3,2,1]
+// console.log(list === result); // logs true
+
+// let list1 = ["a", "b", "c", "d", "e"];
+// let result1 = reverse(list1);
+// console.log(result1); // logs  ["e", "d", "c", "b", "a"]
+// console.log(list1 === result1); // logs true
+
+// let list2 = ["abc"];
+// let result2 = reverse(list2);
+// console.log(result2); // logs  ["abc"]
+// console.log(list2 === result2); // logs true
+
+// let list3 = [];
+// let result3 = reverse(list3);
+// console.log(result3); // logs []
+// console.log(list3 === result3); // logs true
+
+
+// function isBalanced(str) {
+//   let final = [];
+//   let finalObj = {"(" : 0, ")" : 0};
+//   let finalBool = true;
+//   for (let index = 0; index < str.length; index++) {
+//     if (str[index] === "(" || str[index] === ")") {
+//       final.push(str[index])
+//     }
+//   }
+//   final.forEach(el => finalObj[el]++)
+//   console.log(finalObj);
+//   console.log(Object.values(finalObj))
+//   if (final.length % 2 !== 0) {
+//     return false
+//   } else if (final.length === 0) {
+//     return true;
+//   }  else if (final[0] === ")" || final[final.length - 1] === "("){
+//     return false;
+//   } else {
+//     return Object.values(finalObj)[0] === Object.values(finalObj)[1]
+//   }
+ 
+
+// }
+
+
+// console.log(isBalanced("What (is) this?") === true);
+// console.log(isBalanced("What is) this?") === false);
+// console.log(isBalanced("What (is this?") === false);
+// console.log(isBalanced("((What) (is this))?") === true);
+// console.log(isBalanced("((What)) (is this))?") === false);
+// console.log(isBalanced("Hey!") === true);
+// console.log(isBalanced(")Hey!(") === false);
+// console.log(isBalanced("What ((is))) up(") === false);
+
+// function sum(num) {
+//   return String(num).split("").reduce((accum,el) => accum + +el , 0);
+// }
+
+// console.log(sum(23));           // 5
+// console.log(sum(496));          // 19
+// console.log(sum(123456789));    // 45
+
+// function multiplyAllPairs(arr1, arr2) {
+//   final = [];
+//   for (let index = 0; index < arr1.length; index++) {
+//     for (let j = 0; j <arr2.length; j++) {
+//       final.push(arr1[index] * arr2[j]);
+//     }
+//   }
+//   return final.sort((a,b) => a - b);
+// }
+
+// console.log(multiplyAllPairs([2, 4], [4, 3, 1, 2]));    // [2, 4, 4, 6, 8, 8, 12, 16]
+
+// let nums = [ "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen" ];
+// console.log(nums.sort())
+// function alphabeticNumberSort(arr) {
+
+// }
+
+// console.log(alphabeticNumberSort(
+//   [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]));
+// // [8, 18, 11, 15, 5, 4, 14, 9, 19, 1, 7, 17, 6, 16, 10, 13, 3, 12, 2, 0]
+
+// function isUppercase(str) {
+//   let newStr = str.replace(/[^a-zA-Z]/g, "");
+//   console.log(newStr)
+// return (/^[A-Z]*$/g).test(newStr);
+// }
+
+// console.log(isUppercase('t'));               // false
+// console.log(isUppercase('T'));               // true
+// console.log(isUppercase('Four Score'));      // false
+// console.log(isUppercase('FOUR SCORE'));      // true
+// console.log(isUppercase('4SCORE!'));         // true
+// console.log(isUppercase(''));                // true
+
+
+function removeVowels(arr) {
+  return arr.map(el => {
+    return el.replace(/[aeiou]/ig, "");
+  })
 }
-
-console.log(reverseWords('Professional'));             // "lanoisseforP"
-console.log(reverseWords('Walk around the block'));    // "Walk dnuora the kcolb"
-console.log(reverseWords('Launch School'));            // "hcnuaL loohcS"
-
+console.log(removeVowels(['abcdefghijklmnopqrstuvwxyz']));         // ["bcdfghjklmnpqrstvwxyz"]
+console.log(removeVowels(['green', 'YELLOW', 'black', 'white']));  // ["grn", "YLLW", "blck", "wht"]
+console.log(removeVowels(['ABC', 'AEIOU', 'XYZ']));                // ["BC", "", "XYZ"]
