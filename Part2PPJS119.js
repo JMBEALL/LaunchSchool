@@ -2647,20 +2647,20 @@ const readline = require('readline-sync');
 
 // // The tests above should each log "true".
 
-function duplicates(arr){
-  if (arr.length === 1 || arr.length === 1) return 0;
-  let count = 0;
-  for (let index = 0; index <=arr.length; index++) {
-    for (let j = 0; j <=arr.length; j++) {
-      if (arr[index] === arr[j] && index !== j) {
-        count++;
-        arr.splice(index,1);
-        arr.splice(j - 1,1)
-      }
-    }
-  }
-  return count;
-}
+// function duplicates(arr){
+//   if (arr.length === 1 || arr.length === 1) return 0;
+//   let count = 0;
+//   for (let index = 0; index <=arr.length; index++) {
+//     for (let j = 0; j <=arr.length; j++) {
+//       if (arr[index] === arr[j] && index !== j) {
+//         count++;
+//         arr.splice(index,1);
+//         arr.splice(j - 1,1)
+//       }
+//     }
+//   }
+//   return count;
+// }
 
 // console.log(duplicates([1, 2, 5, 6, 5, 2]))
 // console.log(duplicates([1, 2, 2, 20, 6, 20, 2, 6, 2]))
@@ -2668,3 +2668,11 @@ function duplicates(arr){
 // console.log( duplicates([1000, 1000]));
 // console.log( duplicates([]));
 // console.log(duplicates([54]));
+
+
+function solution(fullText, searchText){
+  let regex = new RegExp(`${searchText}`, "g");
+  return fullText.match(regex).length || 0
+}
+
+console.log(solution('abcdeb','b'));
