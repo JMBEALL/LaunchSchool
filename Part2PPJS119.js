@@ -2670,9 +2670,21 @@ const readline = require('readline-sync');
 // console.log(duplicates([54]));
 
 
-function solution(fullText, searchText){
-  let regex = new RegExp(`${searchText}`, "g");
-  return fullText.match(regex).length || 0
+// function solution(fullText, searchText){
+//   let regex = new RegExp(`${searchText}`, "g");
+//   return fullText.match(regex).length || 0
+// }
+
+// console.log(solution('abcdeb','b'));
+
+function solve(s){
+  return Math.max(...s.match(/[aeiou]+/ig).map(el => el.length))
 }
 
-console.log(solution('abcdeb','b'));
+console.log(solve("codewarriors")) //2
+console.log(solve("suoidea")) // 3
+console.log(solve("ultrarevolutionariees"))//3
+console.log(solve("strengthlessnesses"))//1
+console.log(solve("cuboideonavicuare"))//2
+console.log(solve("chrononhotonthuooaos"))//5
+console.log(solve("iiihoovaeaaaoougjyaw"))//8
