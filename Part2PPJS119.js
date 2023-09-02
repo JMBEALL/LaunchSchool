@@ -2581,27 +2581,68 @@ const readline = require('readline-sync');
 
 
 
-function closestNumbers(arr) {
-  let min = [];
-  let closest = Infinity;
-  for(let index = 0; index < arr.length; index++) {
-    for (let j = 0; j < arr.length; j++) {
-      if (Math.abs(arr[index] - arr[j]) < closest && index !== j ) {
-        min = [arr[index], arr[j]];
-        closest = Math.abs(arr[index] - arr[j])
-      }
+// function closestNumbers(arr) {
+//   let min = [];
+//   let closest = Infinity;
+//   for(let index = 0; index < arr.length; index++) {
+//     for (let j = 0; j < arr.length; j++) {
+//       if (Math.abs(arr[index] - arr[j]) < closest && index !== j ) {
+//         min = [arr[index], arr[j]];
+//         closest = Math.abs(arr[index] - arr[j])
+//       }
+//     }
+//   }
+//   return min;
+// }
+
+
+// // Write a function that takes an array of integers and
+// // returns the two numbers that are closest together in
+// // value.
+
+// // Examples:
+
+// console.log(closestNumbers([5, 25, 15, 11, 20]));     // [15, 11]
+// console.log(closestNumbers([19, 25, 32, 4, 27, 16])); // [25, 27]
+// console.log(closestNumbers([12, 7, 17]));             // [12, 7]
+
+
+function leastCommonChar(str) {
+  let cache = {};
+  let arr = [];
+  str.split("").forEach(el => {
+    if (cache[el.toLowerCase()]) {
+      cache[el.toLowerCase()]++;
+    } else {
+      cache[el.toLowerCase()] = 1;
+    }
+  })
+  let min = Math.min(...Object.values(cache));
+
+  // console.log(cache);
+  for (let key in cache) {
+    if (cache[key] === min) {
+      arr.push(key);
     }
   }
-  return min;
+  return arr[0];
 }
 
-
-// Write a function that takes an array of integers and
-// returns the two numbers that are closest together in
-// value.
+// Write a function that takes a string as an argument and
+// returns the character that occurs least often in the
+// given string. If there are multiple characters with the
+// same lowest number of occurrences, then return the one
+// that appears first in the string. When counting
+// characters, consider uppercase and lowercase versions to
+// be the same.
 
 // Examples:
 
-console.log(closestNumbers([5, 25, 15, 11, 20]));     // [15, 11]
-console.log(closestNumbers([19, 25, 32, 4, 27, 16])); // [25, 27]
-console.log(closestNumbers([12, 7, 17]));             // [12, 7]
+console.log(leastCommonChar("Hello World") === "h");
+console.log(leastCommonChar("Peter Piper picked a peck of pickled peppers") ===
+                            "t");
+console.log(leastCommonChar("Mississippi") === "m");
+console.log(leastCommonChar("Happy birthday!") === ' ');
+console.log(leastCommonChar("aaaaaAAAA") === 'a');
+
+// The tests above should each log "true".
