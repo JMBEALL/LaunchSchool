@@ -2607,42 +2607,64 @@ const readline = require('readline-sync');
 // console.log(closestNumbers([12, 7, 17]));             // [12, 7]
 
 
-function leastCommonChar(str) {
-  let cache = {};
-  let arr = [];
-  str.split("").forEach(el => {
-    if (cache[el.toLowerCase()]) {
-      cache[el.toLowerCase()]++;
-    } else {
-      cache[el.toLowerCase()] = 1;
-    }
-  })
-  let min = Math.min(...Object.values(cache));
+// function leastCommonChar(str) {
+//   let cache = {};
+//   let arr = [];
+//   str.split("").forEach(el => {
+//     if (cache[el.toLowerCase()]) {
+//       cache[el.toLowerCase()]++;
+//     } else {
+//       cache[el.toLowerCase()] = 1;
+//     }
+//   })
+//   let min = Math.min(...Object.values(cache));
 
-  // console.log(cache);
-  for (let key in cache) {
-    if (cache[key] === min) {
-      arr.push(key);
+//   // console.log(cache);
+//   for (let key in cache) {
+//     if (cache[key] === min) {
+//       arr.push(key);
+//     }
+//   }
+//   return arr[0];
+// }
+
+// // Write a function that takes a string as an argument and
+// // returns the character that occurs least often in the
+// // given string. If there are multiple characters with the
+// // same lowest number of occurrences, then return the one
+// // that appears first in the string. When counting
+// // characters, consider uppercase and lowercase versions to
+// // be the same.
+
+// // Examples:
+
+// console.log(leastCommonChar("Hello World") === "h");
+// console.log(leastCommonChar("Peter Piper picked a peck of pickled peppers") ===
+//                             "t");
+// console.log(leastCommonChar("Mississippi") === "m");
+// console.log(leastCommonChar("Happy birthday!") === ' ');
+// console.log(leastCommonChar("aaaaaAAAA") === 'a');
+
+// // The tests above should each log "true".
+
+function duplicates(arr){
+  if (arr.length === 1 || arr.length === 1) return 0;
+  let count = 0;
+  for (let index = 0; index <=arr.length; index++) {
+    for (let j = 0; j <=arr.length; j++) {
+      if (arr[index] === arr[j] && index !== j) {
+        count++;
+        arr.splice(index,1);
+        arr.splice(j - 1,1)
+      }
     }
   }
-  return arr[0];
+  return count;
 }
 
-// Write a function that takes a string as an argument and
-// returns the character that occurs least often in the
-// given string. If there are multiple characters with the
-// same lowest number of occurrences, then return the one
-// that appears first in the string. When counting
-// characters, consider uppercase and lowercase versions to
-// be the same.
-
-// Examples:
-
-console.log(leastCommonChar("Hello World") === "h");
-console.log(leastCommonChar("Peter Piper picked a peck of pickled peppers") ===
-                            "t");
-console.log(leastCommonChar("Mississippi") === "m");
-console.log(leastCommonChar("Happy birthday!") === ' ');
-console.log(leastCommonChar("aaaaaAAAA") === 'a');
-
-// The tests above should each log "true".
+// console.log(duplicates([1, 2, 5, 6, 5, 2]))
+// console.log(duplicates([1, 2, 2, 20, 6, 20, 2, 6, 2]))
+// console.log(duplicates([0, 0, 0, 0, 0, 0, 0]));
+// console.log( duplicates([1000, 1000]));
+// console.log( duplicates([]));
+// console.log(duplicates([54]));
