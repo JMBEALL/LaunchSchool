@@ -2780,13 +2780,131 @@ Algo:
 // console.log(crunch('a'));                          // "a"
 // console.log(crunch(''));                           // ""
 
-function logInBox(str) {
-  console.log(`+${"-".repeat(str.length + 2)}+`);
-  console.log(`|${" ".repeat(str.length + 2)}|`);
-  console.log(`| ${str} |`);
-  console.log(`|${" ".repeat(str.length + 2)}|`);
-  console.log(`+${"-".repeat(str.length + 2)}+`);
+// function logInBox(str) {
+//   console.log(`+${"-".repeat(str.length + 2)}+`);
+//   console.log(`|${" ".repeat(str.length + 2)}|`);
+//   console.log(`| ${str} |`);
+//   console.log(`|${" ".repeat(str.length + 2)}|`);
+//   console.log(`+${"-".repeat(str.length + 2)}+`);
+// }
+
+
+
+// logInBox('To boldly go where no one has gone before.');
+// logInBox('Hey, Jordan! You\'re a badass Senior Software Engineer making 6 figs! ');
+
+// function stringy(num) {
+//   let string = "";
+//   for (let index = 0; index < num; index++) {
+//     if (index % 2 === 0) {
+//       string += "1";
+//     } else {
+//       string += "0";
+//     }
+//   }
+//   return string;
+// }
+// function stringy(num) {
+//   let str = "";
+//   let index =0;
+//   while (num > 0) {
+//   if (index % 2 === 0) {
+//     str += "1";
+//   } else {
+//     str += "0";
+//   }
+
+//   num--;
+//   index++
+// }
+//   return str;
+// }
+
+
+// console.log(stringy(6));    // "101010"
+// console.log(stringy(9));    // "101010101"
+// console.log(stringy(4));    // "1010"
+// console.log(stringy(7));    // "1010101"
+
+// function triangle(num) {
+//   let spaces = num - 1;
+//   let stars = 1;
+//   while (num > 0) {
+//     console.log(`${" ".repeat(spaces)}${"*".repeat(stars)}`);
+//     num--;
+//     spaces--;
+//     stars++;
+//   }
+// }
+
+// triangle(5);
+
+// //     *
+// //    **
+// //   ***
+// //  ****
+// // *****
+
+// triangle(9);
+
+// //         *
+// //        **
+// //       ***
+// //      ****
+// //     *****
+// //    ******
+// //   *******
+// //  ********
+// // *********
+
+// function twice(num) {
+//   let str = String(num);
+//   let mid = str.length / 2;
+//   let left = str.slice(0, mid);
+//   let right = str.slice(mid);
+
+//   if (str.length % 2 === 0 && (left === right)) {
+//     return num;
+//   } else {
+//     return num * 2;
+//   }
+// }
+
+// console.log(twice(37));          // 74
+// console.log(twice(44));          // 44
+// console.log(twice(334433));      // 668866
+// console.log(twice(444));         // 888
+// console.log(twice(107));         // 214
+// console.log(twice(103103));      // 103103
+// console.log(twice(3333));        // 3333
+// console.log(twice(7676));        // 7676
+
+// function cleanUp(str) {
+// let clean = str.replace(/[^a-z]/ig, " ").replace(/[ ]+/g, " ");
+//     return clean;
+// }
+
+// console.log(cleanUp("---what's my +*& line?"));    // " what s my line "
+
+// function isPalindrome(str) {
+//   return str === str.split("").reverse().join("");
+// }
+
+// console.log(isPalindrome('madam'));               // true
+// console.log(isPalindrome('Madam'));               // false (case matters)
+// console.log(isPalindrome("madam i'm adam"));      // false (all characters matter)
+// console.log(isPalindrome('356653'));              // true
+
+function isRealPalindrome(str) {
+let actual = str.match(/[\w]/g).map(el => el.toLowerCase()).join("");
+// console.log(actual);
+return actual === actual.split("").reverse().join("");
+
 }
 
-logInBox('To boldly go where no one has gone before.');
-logInBox('Hey, Jordan! You\'re a badass Senior Software Engineer making 6 figs! ');
+console.log(isRealPalindrome('madam'));               // true
+console.log(isRealPalindrome('Madam'));               // true (case does not matter)
+console.log(isRealPalindrome("Madam, I'm Adam"));     // true (only alphanumerics matter)
+console.log(isRealPalindrome('356653'));              // true
+console.log(isRealPalindrome('356a653'));             // true
+console.log(isRealPalindrome('123ab321'));            // false
