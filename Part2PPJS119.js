@@ -2677,14 +2677,105 @@ const readline = require('readline-sync');
 
 // console.log(solution('abcdeb','b'));
 
-function solve(s){
-  return Math.max(...s.match(/[aeiou]+/ig).map(el => el.length))
+// function solve(s){
+//   return Math.max(...s.match(/[aeiou]+/ig).map(el => el.length))
+// }
+
+// console.log(solve("codewarriors")) //2
+// console.log(solve("suoidea")) // 3
+// console.log(solve("ultrarevolutionariees"))//3
+// console.log(solve("strengthlessnesses"))//1
+// console.log(solve("cuboideonavicuare"))//2
+// console.log(solve("chrononhotonthuooaos"))//5
+// console.log(solve("iiihoovaeaaaoougjyaw"))//8
+
+
+
+/*
+P: 
+  input:
+    -number
+  output:
+    -boolean
+
+E: 
+D:
+Algo:
+  take the passed in number and check to see if there is a remainder whe divided by 2.
+    - if there is, w eknow it is odd and can return it
+*/
+
+// function isOdd(num) {
+//   return Math.abs(num) % 2 === 1;
+// }
+// console.log(isOdd(2)); // => false
+// console.log(isOdd(5)); // => true
+// console.log(isOdd(-17)); // => true
+// console.log(isOdd(-8)); // => false
+// console.log(isOdd(0)); // => false
+// console.log(isOdd(7)); // => true
+
+// for (let index = 1; index <= 99; index+= 2) {
+//   console.log(index);
+// }
+
+// const length = +readline.question("What is the length of the room in meters?\n");
+
+// const width = +readline.question("What is the width of the room in meters?\n");
+// const area = (length * width).toFixed(2);
+// const squareMeter = 10.7639;
+// const squareFeet = (area * squareMeter).toFixed(2);
+
+// console.log(`The area of the room is ${area} square meters (${squareFeet} square feet). `)
+
+
+// function greetings(arr,obj) {
+//   return `Hello, ${arr.join(" ")}! Nice to have a ${obj.title} ${obj.occupation} around.`;
+// }
+// console.log(
+//   greetings(["John", "Q", "Doe"], { title: "Master", occupation: "Plumber" })
+// );
+// // logs Hello, John Q Doe! Nice to have a Master Plumber around.
+
+// let name = readline.question("What is your name?\n");
+
+// if (name.endsWith("!")) {
+//   console.log(`HELLO ${name.slice(0,name.length - 1).toUpperCase()}. WHY ARE WE SCREAMING?`);
+// } else {
+//   console.log(`Hello ${name.trim()}.`);
+// }
+// function oddities(arr) {
+//   return arr.filter(( el,index) => index % 2 === 0);
+// }
+
+// console.log(oddities([2, 3, 4, 5, 6])); // logs [2, 4, 6]
+// console.log(oddities([1, 2, 3, 4, 5, 6])); // logs [1, 3, 5]
+// console.log(oddities(["abc", "def"])); // logs ['abc']
+// console.log(oddities([123])); // logs [123]
+// console.log(oddities([])); // logs []
+
+// function centerOf(str) {
+// let arr = str.split("");
+// if (arr.length % 2 === 0) {
+
+//   return str[Math.floor(arr.length / 2) - 1] + str[Math.floor(arr.length / 2)]
+// } else if (arr.length % 2 === 1) {
+//   return arr[Math.floor(arr.length / 2)];
+// }
+// }
+
+// console.log(centerOf('I Love JavaScript')); // "a"
+// console.log(centerOf('Launch School'));     // " "
+// console.log(centerOf('Launch'));            // "un"
+// console.log(centerOf('Launchschool'));      // "hs"
+// console.log(centerOf('x'));                 // "x"
+
+function crunch(str) {
+  return str.replace(/(\w)\1+/g, "$1");
 }
 
-console.log(solve("codewarriors")) //2
-console.log(solve("suoidea")) // 3
-console.log(solve("ultrarevolutionariees"))//3
-console.log(solve("strengthlessnesses"))//1
-console.log(solve("cuboideonavicuare"))//2
-console.log(solve("chrononhotonthuooaos"))//5
-console.log(solve("iiihoovaeaaaoougjyaw"))//8
+console.log(crunch('ddaaiillyy ddoouubbllee'));    // "daily double"
+console.log(crunch('4444abcabccba'));              // "4abcabcba"
+console.log(crunch('ggggggggggggggg'));            // "g"
+console.log(crunch('a'));                          // "a"
+console.log(crunch(''));                           // ""
