@@ -2770,12 +2770,23 @@ Algo:
 // console.log(centerOf('Launchschool'));      // "hs"
 // console.log(centerOf('x'));                 // "x"
 
-function crunch(str) {
-  return str.replace(/(\w)\1+/g, "$1");
+// function crunch(str) {
+//   return str.replace(/(\w)\1+/g, "$1");
+// }
+
+// console.log(crunch('ddaaiillyy ddoouubbllee'));    // "daily double"
+// console.log(crunch('4444abcabccba'));              // "4abcabcba"
+// console.log(crunch('ggggggggggggggg'));            // "g"
+// console.log(crunch('a'));                          // "a"
+// console.log(crunch(''));                           // ""
+
+function logInBox(str) {
+  console.log(`+${"-".repeat(str.length + 2)}+`);
+  console.log(`|${" ".repeat(str.length + 2)}|`);
+  console.log(`| ${str} |`);
+  console.log(`|${" ".repeat(str.length + 2)}|`);
+  console.log(`+${"-".repeat(str.length + 2)}+`);
 }
 
-console.log(crunch('ddaaiillyy ddoouubbllee'));    // "daily double"
-console.log(crunch('4444abcabccba'));              // "4abcabcba"
-console.log(crunch('ggggggggggggggg'));            // "g"
-console.log(crunch('a'));                          // "a"
-console.log(crunch(''));                           // ""
+logInBox('To boldly go where no one has gone before.');
+logInBox('Hey, Jordan! You\'re a badass Senior Software Engineer making 6 figs! ');
