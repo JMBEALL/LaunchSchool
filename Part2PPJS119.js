@@ -3274,16 +3274,46 @@ Algo:
 // console.log(palindromes([4]));              // 4
 // console.log(palindromes([1, 2, 3, 4, 5]));  // 35
 
-function buyFruit(arr) {
-  let final = [];
-  arr.forEach((sub,index) => {
-    while (sub[1] > 0) {
-      final.push(sub[0]);
-      sub[1]--
+// function buyFruit(arr) {
+//   let final = [];
+//   arr.forEach((sub,index) => {
+//     while (sub[1] > 0) {
+//       final.push(sub[0]);
+//       sub[1]--
+//     }
+//   })
+//   return final;
+// }
+
+// console.log(buyFruit([['apple', 3], ['orange', 1], ['banana', 2]]));
+// // returns ["apple", "apple", "apple", "orange", "banana", "banana"]
+
+function isItemAvailable(ID, arr) {
+  let final = 0;
+  arr.forEach(obj => {
+    if (obj.id === ID) {
+      if (obj.movement === "in") {
+        final += obj.quantity
+      } else if (obj.movement === "out") {
+        final -= obj.quantity;
+      }
     }
   })
-  return final;
+  return final > 0 ? true : false;
 }
 
-console.log(buyFruit([['apple', 3], ['orange', 1], ['banana', 2]]));
-// returns ["apple", "apple", "apple", "orange", "banana", "banana"]
+let transactions = [ { id: 101, movement: 'in',  quantity:  5 },
+                     { id: 105, movement: 'in',  quantity: 10 },
+                     { id: 102, movement: 'out', quantity: 17 },
+                     { id: 101, movement: 'in',  quantity: 12 },
+                     { id: 103, movement: 'out', quantity: 20 },
+                     { id: 102, movement: 'out', quantity: 15 },
+                     { id: 105, movement: 'in',  quantity: 25 },
+                     { id: 101, movement: 'out', quantity: 18 },
+                     { id: 102, movement: 'in',  quantity: 22 },
+                     { id: 103, movement: 'out', quantity: 15 }, ];
+
+console.log(isItemAvailable(101, transactions));     // false
+console.log(isItemAvailable(103, transactions));     // false
+console.log(isItemAvailable(105, transactions));     // true
+
