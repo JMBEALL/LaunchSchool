@@ -1,3 +1,4 @@
+const e = require('cors');
 const readline = require('readline-sync');
 
 // function smallerNumbersThanCurrent(arr) {
@@ -2895,16 +2896,380 @@ Algo:
 // console.log(isPalindrome("madam i'm adam"));      // false (all characters matter)
 // console.log(isPalindrome('356653'));              // true
 
-function isRealPalindrome(str) {
-let actual = str.match(/[\w]/g).map(el => el.toLowerCase()).join("");
-// console.log(actual);
-return actual === actual.split("").reverse().join("");
+// function isRealPalindrome(str) {
+// let actual = str.match(/[\w]/g).map(el => el.toLowerCase()).join("");
+// // console.log(actual);
+// return actual === actual.split("").reverse().join("");
+
+// }
+
+// console.log(isRealPalindrome('madam'));               // true
+// console.log(isRealPalindrome('Madam'));               // true (case does not matter)
+// console.log(isRealPalindrome("Madam, I'm Adam"));     // true (only alphanumerics matter)
+// console.log(isRealPalindrome('356653'));              // true
+// console.log(isRealPalindrome('356a653'));             // true
+// console.log(isRealPalindrome('123ab321'));            // false
+
+// function isPalindromicNumber(num) {
+//   return String(num) === String(num).split("").reverse().join("");
+// }
+
+
+// console.log(isPalindromicNumber(34543));        // true
+// console.log(isPalindromicNumber(123210));       // false
+// console.log(isPalindromicNumber(22));           // true
+// console.log(isPalindromicNumber(5));            // true
+
+// function runningTotal(arr) {
+// let final = [];
+// let sum = 0;
+// for (let index = 0; index < arr.length ; index++) {
+//   final.push(sum += arr[index]);
+// }
+// return final;
+// }
+
+// console.log(runningTotal([2, 5, 13]));             // [2, 7, 20]
+// console.log(runningTotal([14, 11, 7, 15, 20]));    // [14, 25, 32, 47, 67]
+// console.log(runningTotal([3]));                    // [3]
+// console.log(runningTotal([]));                     // []
+
+// function wordSizes(str) {
+//   if (str === "") return {};
+//   let newStr = str.match(/[a-z ]/ig).join("");
+//   console.log(newStr)
+//   let cache = {};
+//   newStr.split(" ").forEach( el => {
+//     if (cache[el.length]) {
+//       cache[el.length]++
+//     } else {
+//       cache[el.length] = 1
+//     }
+//   })
+//   return cache;
+// }
+
+// console.log(wordSizes('Four score and seven.'));                       // { "3": 1, "4": 1, "5": 1, "6": 1 }
+// console.log(wordSizes('Hey diddle diddle, the cat and the fiddle!'));  // { "3": 5, "6": 1, "7": 2 }
+// console.log(wordSizes("What's up doc?"));                              // { "2": 1, "4": 1, "6": 1 }
+// console.log(wordSizes(''));                                            // {}
+
+// function swap(str) {
+//   return str.split(" ").map(el => {
+//     return swaplastAndFirst(el);
+//   }).join(" ")
+
+// }
+
+// function swaplastAndFirst(word) {
+//   let arr = word.split('');
+//   let firstEl = arr.shift();
+//   let lastEl = arr.pop();
+//   arr.push(firstEl);
+//   arr.unshift(lastEl)
+//   // console.log(arr.join(""))
+//   return arr.join("")
+// }
+
+// console.log(swap('Oh what a wonderful day it is'));  // "hO thaw a londerfuw yad ti si"
+// console.log(swap('Abcde'));                          // "ebcdA"
+// console.log(swap('a'));                              // "a"
+
+// function union(arr1,arr2) {
+//   let final = [...arr1,...arr2];
+//   let answer = []
+//  for (let index = 0; index < final.length; index++) {
+//   if (!answer.includes(final[index])) {
+//     answer.push(final[index]);
+//   }
+//  }
+//  return answer
+// }
+
+// console.log(union([1, 3, 5], [3, 6, 9]));    // [1, 3, 5, 6, 9]
+
+// function halvsies(arr) {
+// let final = [];
+// if (arr.length % 2 === 0) {
+// final.push(arr.slice(0, arr.length / 2), arr.slice(arr.length/2))
+// } else {
+//   final.push(arr.slice(0, (arr.length / 2)+ 1 ), arr.slice((arr.length / 2)+ 1))
+// }
+// return final;
+// }
+
+// console.log(halvsies([1, 2, 3, 4]));       // [[1, 2], [3, 4]]
+// console.log(halvsies([1, 5, 2, 4, 3]));    // [[1, 5, 2], [4, 3]]
+// console.log(halvsies([5]));                // [[5], []]
+// console.log(halvsies([]));                 // [[], []]
+
+// function findDup(arr) {
+//   let dup = [];
+//   let answer = 0;
+//   arr.forEach(el => {
+//     if (!dup.includes(el)) {
+//       dup.push(el);
+//     } else {
+//       answer = el;
+//     }
+//   })
+//   return answer;
+// }
+
+// console.log(findDup([1, 5, 3, 1]));                                // 1
+// console.log(findDup([18,  9, 36, 96, 31, 19, 54, 75, 42, 15,
+//          38, 25, 97, 92, 46, 69, 91, 59, 53, 27,
+//          14, 61, 90, 81,  8, 63, 95, 99, 30, 65,
+//          78, 76, 48, 16, 93, 77, 52, 49, 37, 29,
+//          89, 10, 84,  1, 47, 68, 12, 33, 86, 60,
+//          41, 44, 83, 35, 94, 73, 98,  3, 64, 82,
+//          55, 79, 80, 21, 39, 72, 13, 50,  6, 70,
+//          85, 87, 51, 17, 66, 20, 28, 26,  2, 22,
+//          40, 23, 71, 62, 73, 32, 43, 24,  4, 56,
+//           7, 34, 57, 74, 45, 11, 88, 67,  5, 58]));    // 73
+
+// function interleave(arr1,arr2) {
+// let final = [];
+// for (let index = 0; index < arr1.length; index++) {
+//   final.push(arr1[index], arr2[index]);
+// }
+// return final;
+// }
+
+// console.log(interleave([1, 2, 3], ['a', 'b', 'c']));    // [1, "a", 2, "b", 3, "c"]
+
+
+// function multiplicativeAverage(arr) {
+//   return String((arr.reduce((accum,el) => {
+//    return  accum * el;
+//   }, 1)/ arr.length).toFixed(3))
+// }
+
+// console.log(multiplicativeAverage([3, 5]));                   // "7.500"
+// console.log(multiplicativeAverage([2, 5, 7, 11, 13, 17]));    // "28361.667"
+
+// function multiplyList(arr1,arr2) {
+//   return arr1.map((el,index) => {
+//     return el * arr2[index]
+//   })
+// }
+
+// console.log(multiplyList([3, 5, 7], [9, 10, 11]));    // [27, 50, 77]
+
+// function digitList(num) {
+//   return String(num).split("").map(el => +el);
+// }
+
+// console.log(digitList(12345));       // [1, 2, 3, 4, 5]
+// console.log(digitList(7));           // [7]
+// console.log(digitList(375290));      // [3, 7, 5, 2, 9, 0]
+// console.log(digitList(444));         // [4, 4, 4]
+
+// function average(arr) {
+// return Math.floor(arr.reduce((accum,el) => accum + el,0) / arr.length);
+// }
+
+// console.log(average([1, 5, 87, 45, 8, 8]));       // 25
+// console.log(average([9, 47, 23, 95, 16, 52]));    // 40
+
+// function repeater(str) {
+//   return str.split("").map(el => el + el).join("");
+// }
+
+// console.log(repeater('Hello'));        // "HHeelllloo"
+// console.log(repeater('Good job!'));    // "GGoooodd  jjoobb!!"
+// console.log(repeater(''));             // ""
+
+// function doubleConsonants(str) {
+//   return str.split("").map(el => {
+//     if (el.match(/[-aeiou0-9\s!]/i)) {
+//       return el;
+//     } else {
+//       return el + el;
+//     }
+//   }).join("")
+// }
+
+// console.log(doubleConsonants('String'));          // "SSttrrinngg"
+// console.log(doubleConsonants('Hello-World!'));    // "HHellllo-WWorrlldd!"
+// console.log(doubleConsonants('July 4th'));        // "JJullyy 4tthh"
+// console.log(doubleConsonants(''));                // ""
+
+// function reverseNumber(num) {
+//   return +String(num).split("").reverse().join("")
+// }
+
+// console.log(reverseNumber(12345));    // 54321
+// console.log(reverseNumber(12213));    // 31221
+// console.log(reverseNumber(456));      // 654
+// console.log(reverseNumber(12000));    // 21 -- Note that leading zeros in the result get dropped!
+// console.log(reverseNumber(1));        // 1
+
+// function sequence(num) {
+//   let final = [];
+//   for (let index = 1; index <= num; index++) {
+//     final.push(index);
+//   }
+//   return final;
+// }
+
+// console.log(sequence(5));    // [1, 2, 3, 4, 5]
+// console.log(sequence(3));    // [1, 2, 3]
+// console.log(sequence(1));    // [1]
+
+// function swapName(str) {
+//   return str.split(" ").reverse().join(", ");
+// }
+
+// console.log(swapName('Joe Roberts'));    // "Roberts, Joe"
+
+// function sequence(num1,num2) {
+// let final = [];
+// let el = 0
+// while (num1 > 0) {
+// final.push(el += num2);
+// num1--
+// }
+// return final;
+// }
+
+// console.log(sequence(5, 1));          // [1, 2, 3, 4, 5]
+// console.log(sequence(4, -7));         // [-7, -14, -21, -28]
+// console.log(sequence(3, 0));          // [0, 0, 0]
+// console.log(sequence(0, 1000000));    // []
+
+// function reverseSentence(str) {
+//   return str.split(" ").reverse().join(" ");
+// }
+
+
+// console.log(reverseSentence(''));                       // ""
+// console.log(reverseSentence('Hello World'));            // "World Hello"
+// console.log(reverseSentence('Reverse these words'));    // "words these Reverse"
+
+
+// function reverseWords(str) {
+//   return str.split(" ").map(word => {
+//     if (word.length >= 5) {
+//       return word.split("").reverse().join("")
+//     } else {
+//       return word
+//     }
+//   }).join (" ");
+// }
+
+// console.log(reverseWords('Professional'));             // "lanoisseforP"
+// console.log(reverseWords('Walk around the block'));    // "Walk dnuora the kcolb"
+// console.log(reverseWords('Launch School'));            // "hcnuaL loohcS"
+
+
+// function isBalanced(str) {
+// let parens = str.match(/[()]/g);
+// // console.log(parens);
+// return parens.length % 2 === 0 && parens[0] === "(" && parens[parens.length - 1] === ")" ? true : false
+
+// }
+
+// console.log(isBalanced("What (is) this?") === true);
+// console.log(isBalanced("What is) this?") === false);
+// console.log(isBalanced("What (is this?") === false);
+// console.log(isBalanced("((What) (is this))?") === true);
+// console.log(isBalanced("((What)) (is this))?") === false);
+// // console.log(isBalanced("Hey!") === true);
+// console.log(isBalanced(")Hey!(") === false);
+// console.log(isBalanced("What ((is))) up(") === false);
+
+// function sum(num) {
+//   return String(num).split("").reduce((accum,el) => accum + +el, 0);
+// }
+
+// console.log(sum(23));           // 5
+// console.log(sum(496));          // 19
+// console.log(sum(123456789));    // 45
+
+// function alphabeticNumberSort(arr) {
+
+// }
+
+// alphabeticNumberSort(
+//   [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]);
+// // [8, 18, 11, 15, 5, 4, 14, 9, 19, 1, 7, 17, 6, 16, 10, 13, 3, 12, 2, 0]
+
+// function multiplyAllPairs(arr1,arr2) {
+//   let final = [];
+//   for (let index = 0; index < arr1.length ; index++) {
+//     for (let j = 0; j <arr2.length; j++) {
+//       final.push(arr1[index] * arr2[j])
+//     }
+//   }
+//   return final.sort((a,b) => a - b);
+// }
+// console.log(multiplyAllPairs([2, 4], [4, 3, 1, 2]));    // [2, 4, 4, 6, 8, 8, 12, 16]
+
+// function leadingSubstrings(str) {
+//   let arr = [];
+//   for (let index = 0; index < str.length; index++) {
+//     arr.push(str.slice(0, index + 1));
+//   }
+//   return arr;
+// }
+
+// console.log(leadingSubstrings('abc'));      // ["a", "ab", "abc"]
+// console.log(leadingSubstrings('a'));        // ["a"]
+// console.log(leadingSubstrings('xyzzy'));    // ["x", "xy", "xyz", "xyzz", "xyzzy"]
+
+// function palindromes(str) {
+// let arr= [];
+// let palindromes = [];
+//   for (let start = 0; start < str.length; start++) {
+//     for (let chars = 1; chars <= str.length - start; chars++) {
+//       arr.push(str.slice(start, start + chars))
+//     }
+//   }
+
+//   return arr;
+//   // arr.forEach(el => {
+//   //   if (el.split("").reverse().join("") === el) {
+//   //     palindromes.push(el)
+//   //   }
+//   // })
+//   // return palindromes;
+// }
+
+// console.log(palindromes('abcd'));       // []
+// console.log(palindromes('madam'));      // [ "madam", "ada" ]
+
+// console.log(palindromes('hello-madam-did-madam-goodbye'));
+// // returns
+// // [ "ll", "-madam-", "-madam-did-madam-", "madam", "madam-did-madam", "ada",
+// //   "adam-did-mada", "dam-did-mad", "am-did-ma", "m-did-m", "-did-", "did",
+// //   "-madam-", "madam", "ada", "oo" ]
+
+// console.log(palindromes('knitting cassettes'));
+// // returns
+// // [ "nittin", "itti", "tt", "ss", "settes", "ette", "tt" ]
+
+// // // returns
+// // [ "a", "ab", "abc", "abcd", "abcde",
+// //   "b", "bc", "bcd", "bcde",
+// //   "c", "cd", "cde",
+// //   "d", "de",
+// //   "e" ]
+
+
+function palindromes(arr) {
+  let final = [];
+  for (let index = 1; index <= arr.length; index++) {
+    final.push(arr.slice(0,index));
+  }
+  return final.map(arr => {
+    return arr.reduce((accum,el) => {
+      return accum + +el
+    },0)
+  }).reduce((accum,el) => accum + el)
 
 }
-
-console.log(isRealPalindrome('madam'));               // true
-console.log(isRealPalindrome('Madam'));               // true (case does not matter)
-console.log(isRealPalindrome("Madam, I'm Adam"));     // true (only alphanumerics matter)
-console.log(isRealPalindrome('356653'));              // true
-console.log(isRealPalindrome('356a653'));             // true
-console.log(isRealPalindrome('123ab321'));            // false
+console.log(palindromes([3, 5, 2]));        // (3) + (3 + 5) + (3 + 5 + 2) --> 21
+console.log(palindromes([1, 5, 7, 3]));     // (1) + (1 + 5) + (1 + 5 + 7) + (1 + 5 + 7 + 3) --> 36
+console.log(palindromes([4]));              // 4
+console.log(palindromes([1, 2, 3, 4, 5]));  // 35
