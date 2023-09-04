@@ -3257,19 +3257,33 @@ Algo:
 // //   "e" ]
 
 
-function palindromes(arr) {
-  let final = [];
-  for (let index = 1; index <= arr.length; index++) {
-    final.push(arr.slice(0,index));
-  }
-  return final.map(arr => {
-    return arr.reduce((accum,el) => {
-      return accum + +el
-    },0)
-  }).reduce((accum,el) => accum + el)
+// function palindromes(arr) {
+//   let final = [];
+//   for (let index = 1; index <= arr.length; index++) {
+//     final.push(arr.slice(0,index));
+//   }
+//   return final.map(arr => {
+//     return arr.reduce((accum,el) => {
+//       return accum + +el
+//     },0)
+//   }).reduce((accum,el) => accum + el)
 
+// }
+// console.log(palindromes([3, 5, 2]));        // (3) + (3 + 5) + (3 + 5 + 2) --> 21
+// console.log(palindromes([1, 5, 7, 3]));     // (1) + (1 + 5) + (1 + 5 + 7) + (1 + 5 + 7 + 3) --> 36
+// console.log(palindromes([4]));              // 4
+// console.log(palindromes([1, 2, 3, 4, 5]));  // 35
+
+function buyFruit(arr) {
+  let final = [];
+  arr.forEach((sub,index) => {
+    while (sub[1] > 0) {
+      final.push(sub[0]);
+      sub[1]--
+    }
+  })
+  return final;
 }
-console.log(palindromes([3, 5, 2]));        // (3) + (3 + 5) + (3 + 5 + 2) --> 21
-console.log(palindromes([1, 5, 7, 3]));     // (1) + (1 + 5) + (1 + 5 + 7) + (1 + 5 + 7 + 3) --> 36
-console.log(palindromes([4]));              // 4
-console.log(palindromes([1, 2, 3, 4, 5]));  // 35
+
+console.log(buyFruit([['apple', 3], ['orange', 1], ['banana', 2]]));
+// returns ["apple", "apple", "apple", "orange", "banana", "banana"]
