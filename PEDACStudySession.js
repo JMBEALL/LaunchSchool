@@ -1,3 +1,5 @@
+const readline = require('readline-sync');
+
 // Starting shortly...
 // Please press "Start Call" on the bottom left when ready!
 
@@ -339,29 +341,327 @@ Single digit numbers will NOT be considered numerical palindromes.
 // //   { id: 101, movement: "out", quantity: 18 }, ]
 
 
-function isItemAvailable(id, arr) {
-  let sum = 0;
-arr.filter(obj => obj.id === id).forEach(obj => {
-    if(obj.movement === "in") {
-      sum += obj.quantity
-    } else if (obj.movement === "out") {
-      sum -= obj.quantity
-    }
-  })
-  return sum >= 0;
+// function isItemAvailable(id, arr) {
+//   let sum = 0;
+// arr.filter(obj => obj.id === id).forEach(obj => {
+//     if(obj.movement === "in") {
+//       sum += obj.quantity
+//     } else if (obj.movement === "out") {
+//       sum -= obj.quantity
+//     }
+//   })
+//   return sum >= 0;
+// }
+
+// let transactions = [ { id: 101, movement: 'in',  quantity:  5 },
+//                      { id: 105, movement: 'in',  quantity: 10 },
+//                      { id: 102, movement: 'out', quantity: 17 },
+//                      { id: 101, movement: 'in',  quantity: 12 },
+//                      { id: 103, movement: 'out', quantity: 20 },
+//                      { id: 102, movement: 'out', quantity: 15 },
+//                      { id: 105, movement: 'in',  quantity: 25 },
+//                      { id: 101, movement: 'out', quantity: 18 },
+//                      { id: 102, movement: 'in',  quantity: 22 },
+//                      { id: 103, movement: 'out', quantity: 15 }, ];
+
+// console.log(isItemAvailable(101, transactions));     // false
+// console.log(isItemAvailable(103, transactions));     // false
+// console.log(isItemAvailable(105, transactions));     // true
+// function isUppercase(str) {
+// return str === str.toUpperCase();
+// }
+
+// console.log(isUppercase('t'));               // false
+// console.log(isUppercase('T'));               // true
+// console.log(isUppercase('Four Score'));      // false
+// console.log(isUppercase('FOUR SCORE'));      // true
+// console.log(isUppercase('4SCORE!'));         // true
+// console.log(isUppercase(''));                // true
+// function removeVowels(arr) {
+// return arr.map(word => {
+//   return word.replace(/[aeiou]/ig, "");
+// });
+// }
+
+// console.log(removeVowels(['abcdefghijklmnopqrstuvwxyz']));         // ["bcdfghjklmnpqrstvwxyz"]
+// console.log(removeVowels(['green', 'YELLOW', 'black', 'white']));  // ["grn", "YLLW", "blck", "wht"]
+// console.log(removeVowels(['ABC', 'AEIOU', 'XYZ']));                // ["BC", "", "XYZ"]
+
+// function letterCaseCount(str) {
+// let obj = {'lowerase' : 0, 'uppercase' : 0, 'neither' : 0};
+// str.split("").forEach(el => {
+//   if ((/[a-z]/).test(el)) {
+//     obj.lowerase++
+//   } else if (/[A-Z]/.test(el)) {
+//     obj.uppercase++
+//   } else {
+//     obj.neither++
+//   }
+// })
+// return obj;
+// }
+
+// console.log(letterCaseCount('abCdef 123'));  // { lowercase: 5, uppercase: 1, neither: 4 }
+// console.log(letterCaseCount('AbCd +Ef'));    // { lowercase: 3, uppercase: 3, neither: 2 }
+// console.log(letterCaseCount('123'));         // { lowercase: 0, uppercase: 0, neither: 3 }
+// console.log(letterCaseCount(''));            // { lowercase: 0, uppercase: 0, neither: 0 }
+
+// function wordCap(str) {
+//   return str.split(" ").map(word => {
+//     return word[0].toUpperCase() + word.slice(1).toLowerCase();
+//   }).join(" ");
+// }
+
+// console.log(wordCap('four score and seven'));       // "Four Score And Seven"
+// console.log(wordCap('the javaScript language'));    // "The Javascript Language"
+// console.log(wordCap('this is a "quoted" word'));    // 'This Is A "quoted" Word'
+
+
+// function swapCase(str) {
+//   return str.split("").map(el => {
+//     if (/[a-z]/.test(el)) {
+//       return el.toUpperCase();
+//     } else if (/[A-Z]/.test(el)) {
+//       return el.toLowerCase();
+//     } else {
+//       return el;
+//     }
+//   }).join("");
+// }
+// console.log(swapCase('CamelCase'));              // "cAMELcASE"
+// console.log(swapCase('Tonight on XYZ-TV'));      // "tONIGHT ON xyz-tv"
+
+// function staggeredCase(str) {
+//   let count = 1
+//   return str.split("").map((el,index) => {
+//     if(/[a-zA-Z]/.test(el)) {
+//       count++
+//       if (count % 2 === 0) {
+//         return el.toUpperCase();
+        
+//       } else {
+//         return el.toLowerCase();
+//       }
+//     }
+//     else {
+//       return el;
+//     }
+//   }).join("");
+// }
+
+// console.log(staggeredCase('I Love Launch School!'));        // "I LoVe lAuNcH ScHoOl!"
+// console.log(staggeredCase('ALL_CAPS'));                     // "AlL_CaPs"
+// console.log(staggeredCase('ignore 77 the 4444 numbers'));   // "IgNoRe 77 ThE 4444 nUmBeRs"
+
+// function wordLengths(str) {
+//   if (str === "" || str === undefined) return [];
+
+//   return str.split(" ").map(word => {
+//     return `${word} ${word.length}`;
+//   });
+// }
+
+// console.log(wordLengths('cow sheep chicken'));
+// // ["cow 3", "sheep 5", "chicken 7"]
+
+// console.log(wordLengths('baseball hot dogs and apple pie'));
+// // ["baseball 8", "hot 3", "dogs 4", "and 3", "apple 5", "pie 3"]
+
+// console.log(wordLengths("It ain't easy, is it?"));
+// // ["It 2", "ain't 5", "easy, 5", "is 2", "it? 3"]
+
+// console.log(wordLengths('Supercalifragilisticexpialidocious'));
+// // ["Supercalifragilisticexpialidocious 34"]
+
+// console.log(wordLengths(''));      // []
+// console.log(wordLengths());        // []
+
+// function searchWord(word, par) {
+//   let regex = new RegExp(`${word}`, "ig");
+//   return par.match(regex).length;
+// }
+
+// const text = 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?';
+
+// // console.log(searchWord('sed', text));      // 3
+// function searchWord(word,par) {
+// let regex = new RegExp(word, "ig");
+// return par.split(" ").map(el => {
+//   if (el.toLowerCase() === word.toLowerCase()) {
+//     return `**${el.toUpperCase()}**`;
+//   } else {
+//     return el;
+//   }
+// }).join(" ")
+// }
+
+// const text = 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Sed quis autem vel est, iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur blasedbla?';
+
+// console.log(searchWord('sed', text));
+// // returns
+// // "**SED** ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, **SED** quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, **SED** quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? **SED** quis autem vel est, iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur blasedbla?"
+
+// function rotateArray(arr) {
+//   if (!Array.isArray(arr)) return undefined;
+//   if (arr.length === 0) return [];
+//   let copy = arr.slice();
+//   console.log(arr)
+//   console.log(copy);
+//   return [...copy.slice(1), copy[0]];
+//   // return copy.slice(1).concat(copy[0]);
+// }
+
+// console.log(rotateArray([7, 3, 5, 2, 9, 1]));       // [3, 5, 2, 9, 1, 7]
+// console.log(rotateArray(['a', 'b', 'c']));          // ["b", "c", "a"]
+// console.log(rotateArray(['a']));                    // ["a"]
+// console.log(rotateArray([1, 'a', 3, 'c']));         // ["a", 3, "c", 1]
+// console.log(rotateArray([{ a: 2 }, [1, 2], 3]));    // [[1, 2], 3, { a: 2 }]
+// console.log(rotateArray([]));                       // []
+
+// // return `undefined` if the argument is not an array
+// console.log(rotateArray());                         // undefined
+// console.log(rotateArray(1));                        // undefined
+
+
+// // the input array is not mutated
+// let array = [1, 2, 3, 4];
+// rotateArray(array);                    // [2, 3, 4, 1]
+// array;                                 // [1, 2, 3, 4]
+
+
+// function rotateRightmostDigits(num, count) {
+// let str = String(num);
+// console.log({num});
+// console.log({count})
+// let left = str.slice(0, str.length - count);
+// console.log({left})
+// let right = str.slice(str.length - count);
+// console.log({right})
+//  return +(left + right.slice(1) + right[0])
+// }
+
+// console.log(rotateRightmostDigits(735291, 1));      // 735291
+// console.log(rotateRightmostDigits(735291, 2));      // 735219
+// console.log(rotateRightmostDigits(735291, 3));      // 735912
+// console.log(rotateRightmostDigits(735291, 4));      // 732915
+// console.log(rotateRightmostDigits(735291, 5));      // 752913
+// console.log(rotateRightmostDigits(735291, 6));      // 352917
+
+
+
+
+
+
+// Given an array of numbers, for each number, find out how
+// many numbers in the array are smaller than it. When
+// counting numbers, only count unique values. That is, if a
+// given number occurs multiple times in the array, it
+// should only be counted once.
+// function smallerNumbersThanCurrent(arr) {
+//   let unique = uniqueNums(arr);
+
+//   return arr.map(el => {
+//     return unique.filter(el2 => el2 < el).length;
+//   })
+// }
+// function uniqueNums(arr) {
+//   let final = [];
+//   arr.forEach(el => {
+//     if (!final.includes(el)) {
+//       final.push(el)
+//     }
+//   })
+//   return final;
+// }
+// // Examples:
+
+// console.log(smallerNumbersThanCurrent([8, 1, 2, 2, 3])); // [3, 0, 1, 1, 2]
+// console.log(smallerNumbersThanCurrent(
+//   [1, 4, 6, 8, 13, 2, 4, 5, 4])); // [0, 2, 4, 5, 6, 1, 2, 3, 2]
+// console.log(smallerNumbersThanCurrent([7, 7, 7, 7])); // [0,0,0,0]
+// console.log(smallerNumbersThanCurrent([6, 5, 4, 8])); // [2, 1, 0, 3]
+// console.log(smallerNumbersThanCurrent([1])); // [0]
+
+// function minimumSum(arr) {
+//   if (arr.length < 5) return null;
+//   let arrs = [];
+//   let sum = Infinity;
+//   for (let start = 0; start < arr.length; start++) {
+//     for (let chars = 5; chars <= arr.length - start; chars++) {
+//       arrs.push(arr.slice(start , chars + start));
+//     }
+//   }
+//   let unique = arrs.filter(sub => sub.length === 5);
+//  unique.forEach(subArr => {
+//   if (reducer(subArr) < sum) {
+//     sum = reducer(subArr);
+//   }
+//  })
+//  return sum;
+// }
+// function reducer(arr) {
+//   return arr.reduce((accum,el) => accum + el ,0)
+// }
+
+
+// function minimumSum(arr) {
+//   if (arr.length < 5) {
+//     return null;
+//   }
+
+//   let minSum = Infinity;
+
+//   for (let i = 0; i <= arr.length - 5; i++) {
+//     const sum = arr.slice(i, i + 5).reduce((acc, num) => acc + num, 0);
+
+//     if (sum < minSum) {
+//       minSum = sum;
+//     }
+//   }
+
+//   return minSum;
+// }
+// Write a function that takes one argument, an array of
+// integers. The function should return minimum sum of 5
+// consecutive numbers in the array. If the array contains
+// less than 5 elements, the function should return null.
+
+// Examples:
+
+// console.log(minimumSum([1, 2, 3, 4]) === null);
+// console.log(minimumSum([1, 2, 3, 4, 5, -5]) === 9);
+// console.log(minimumSum([1, 2, 3, 4, 5, 6]) === 15);
+// console.log(minimumSum([55, 2, 6, 5, 1, 2, 9, 3, 5, 100]) === 16);
+// console.log(minimumSum([-1, -5, -3, 0, -1, 2, -4]) === -10);
+
+// The tests above should each log "true".
+
+// function removeE(str) {
+//   let arr = str.split(" ");
+//   let left = [];
+//   let right = [];
+// arr.forEach((word,index) => {
+//   if (word === "letter") {
+//     left = arr.slice(0, index);
+//     right = arr.slice(index)
+//     return;
+//   }
+// })
+// console.log({left})
+// console.log({right})
+// let finalRight = right.map(el =>el.replaceAll("e", "")).join(" ")
+// return left.join(" ") + " " + finalRight + ".";
+// }
+
+// console.log(removeE("Remove occurances of the letter e after the word in this sentence"));
+
+let startNum = +readline.question("What nuber would you like to start looping at?\n");
+let endNum = +readline.question("What number would you like to end your loop at?\n");
+
+function loopFun(num1,num2) {
+  for(let index = num1; index <=num2; index++) {
+    console.log(index);
+  }
 }
 
-let transactions = [ { id: 101, movement: 'in',  quantity:  5 },
-                     { id: 105, movement: 'in',  quantity: 10 },
-                     { id: 102, movement: 'out', quantity: 17 },
-                     { id: 101, movement: 'in',  quantity: 12 },
-                     { id: 103, movement: 'out', quantity: 20 },
-                     { id: 102, movement: 'out', quantity: 15 },
-                     { id: 105, movement: 'in',  quantity: 25 },
-                     { id: 101, movement: 'out', quantity: 18 },
-                     { id: 102, movement: 'in',  quantity: 22 },
-                     { id: 103, movement: 'out', quantity: 15 }, ];
-
-console.log(isItemAvailable(101, transactions));     // false
-console.log(isItemAvailable(103, transactions));     // false
-console.log(isItemAvailable(105, transactions));     // true
+loopFun(startNum,endNum);
