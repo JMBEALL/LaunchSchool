@@ -655,13 +655,56 @@ Single digit numbers will NOT be considered numerical palindromes.
 
 // console.log(removeE("Remove occurances of the letter e after the word in this sentence"));
 
-let startNum = +readline.question("What nuber would you like to start looping at?\n");
-let endNum = +readline.question("What number would you like to end your loop at?\n");
+// let startNum = +readline.question("What nuber would you like to start looping at?\n");
+// let endNum = +readline.question("What number would you like to end your loop at?\n");
 
-function loopFun(num1,num2) {
-  for(let index = num1; index <=num2; index++) {
-    console.log(index);
-  }
+// function loopFun(num1,num2) {
+//   for(let index = num1; index <=num2; index++) {
+//     console.log(index);
+//   }
+// }
+
+// loopFun(startNum,endNum);
+
+// function countOccurences(str) {
+//   let obj = {};
+//   str.split("").forEach(el => {
+//     if (obj[el]) {
+//       obj[el]++;
+//     } else {
+//       obj[el] = 1;
+//     }
+//   })
+//   return obj;
+// }
+
+// console.log(countOccurences('abbab'))// => {a:2, b: 3})
+
+
+// function countEle(arr,str) {
+// let regex = new RegExp(str)
+//   return arr.filter(el => regex.test(el)).length;
+// }
+
+// console.log(countEle(['name', 'year', 'age', 'name'], 'name')); // => 2
+// console.log(countEle([1,2,3,4,5,1,2,3,4], 2)); //=> 2
+
+function sorting(arr) {
+ return arr.sort((a,b) => {
+  return b.reduce((accum,el) => accum + el) - a.reduce((accum,el) => accum + el);
+ })
 }
 
-loopFun(startNum,endNum);
+console.log(sorting([[1,2,3], [0,1], [2,1]])); //=> [[0,1], [2,1], [1,2,3]]
+
+
+
+
+
+
+
+
+
+
+
+
