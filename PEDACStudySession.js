@@ -690,15 +690,19 @@ Single digit numbers will NOT be considered numerical palindromes.
 // console.log(countEle([1,2,3,4,5,1,2,3,4], 2)); //=> 2
 
 
-function allSubstr(str) {
-  let final = [];
-  for (let start = 0; start < str.length; start++) {
-    for (let chars = 1; chars <= str.length - start; chars++) {
-      final.push(str.slice(start, start + chars));
+function isAnagram(str1,str2) {
+  if (str1.length !== str2.length) return false;
+  let obj = {};
+  str1.split("").forEach(char => {
+    obj[char] ? obj[char]++ : obj[char] = 1;
+  })
+  str2.split("").forEach(char => {
+    if(obj[char]) {
+      obj[char]--
     }
-  }
-  return final.filter(el => el.length === 3);
+  })
+  return Object.values(obj).every(num => num === 0);
 }
 
-console.log(allSubstr('abcd'));//=> ['ab', 'abc', 'abcd', 'bc', 'bcd', 'cd'];
-
+console.log(isAnagram('aba', 'aab')); // true
+console.log(isAnagram('aba', 'aa')); //false
