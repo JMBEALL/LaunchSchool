@@ -689,22 +689,16 @@ Single digit numbers will NOT be considered numerical palindromes.
 // console.log(countEle(['name', 'year', 'age', 'name'], 'name')); // => 2
 // console.log(countEle([1,2,3,4,5,1,2,3,4], 2)); //=> 2
 
-function sorting(arr) {
- return arr.sort((a,b) => {
-  return b.reduce((accum,el) => accum + el) - a.reduce((accum,el) => accum + el);
- })
+
+function allSubstr(str) {
+  let final = [];
+  for (let start = 0; start < str.length; start++) {
+    for (let chars = 1; chars <= str.length - start; chars++) {
+      final.push(str.slice(start, start + chars));
+    }
+  }
+  return final.filter(el => el.length === 3);
 }
 
-console.log(sorting([[1,2,3], [0,1], [2,1]])); //=> [[0,1], [2,1], [1,2,3]]
-
-
-
-
-
-
-
-
-
-
-
+console.log(allSubstr('abcd'));//=> ['ab', 'abc', 'abcd', 'bc', 'bcd', 'cd'];
 
