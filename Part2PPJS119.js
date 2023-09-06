@@ -3892,18 +3892,126 @@ function minimumSum(arr) {
 // console.log(sumOfSums([4]));              // 4
 // console.log(sumOfSums([1, 2, 3, 4, 5]));  // 35
 
-function buyFruit(arr) {
-let newArr = [];
+// function buyFruit(arr) {
+// let newArr = [];
 
-arr.forEach(subArr => {
-  let count = subArr[1]
-  while(count > 0) {
-    newArr.push(subArr[0]);
-    count--;
+// arr.forEach(subArr => {
+//   let count = subArr[1]
+//   while(count > 0) {
+//     newArr.push(subArr[0]);
+//     count--;
+//   }
+// })
+// return newArr;
+// }
+
+// console.log(buyFruit([['apple', 3], ['orange', 1], ['banana', 2]]));
+// // returns ["apple", "apple", "apple", "orange", "banana", "banana"]
+
+// function rotateArray(arr) {
+//   if (!Array.isArray(arr) || arr.length === 0) return undefined;
+//   let newArr = arr.slice();
+//   let firstEl = newArr.shift();
+//   console.log({arr})
+//   newArr.push(firstEl);
+//   return newArr;
+// }
+
+// console.log(rotateArray([7, 3, 5, 2, 9, 1]));       // [3, 5, 2, 9, 1, 7]
+// console.log(rotateArray(['a', 'b', 'c']));          // ["b", "c", "a"]
+// console.log(rotateArray(['a']));                    // ["a"]
+// console.log(rotateArray([1, 'a', 3, 'c']));         // ["a", 3, "c", 1]
+// console.log(rotateArray([{ a: 2 }, [1, 2], 3]));    // [[1, 2], 3, { a: 2 }]
+// console.log(rotateArray([]));                       // []
+
+// // return `undefined` if the argument is not an array
+// console.log(rotateArray());                         // undefined
+// console.log(rotateArray(1));                        // undefined
+
+
+// // the input array is not mutated
+// let array = [1, 2, 3, 4];
+// rotateArray(array);                    // [2, 3, 4, 1]
+// array;                                 // [1, 2, 3, 4]
+
+// function rotateRightmostDigits(num, count) {
+//   let str = String(num);
+//   let left = str.slice(0, str.length - count);
+//   let right = str.slice(str.length - count)
+// return +(left + right.slice(1) + right[0]);
+// }
+
+// console.log(rotateRightmostDigits(735291, 1));      // 735291
+// console.log(rotateRightmostDigits(735291, 2));      // 735219
+// console.log(rotateRightmostDigits(735291, 3));      // 735912
+// console.log(rotateRightmostDigits(735291, 4));      // 732915
+// console.log(rotateRightmostDigits(735291, 5));      // 752913
+// console.log(rotateRightmostDigits(735291, 6));      // 352917
+
+// function maxRotation(num) {
+//   let str = String(num)
+//   let newStr = ""
+// for (let index = 1; index < str.length; index++) {
+//   console.log(str.slice(0,index) + str.slice(index) + str[0])
+// }
+
+// }
+
+// console.log(maxRotation(735291));          // 321579
+// console.log(maxRotation(3));               // 3
+// console.log(maxRotation(35));              // 53
+// console.log(maxRotation(105));             // 15 -- the leading zero gets dropped
+// console.log(maxRotation(8703529146));      // 7321609845
+
+// Given the string of alphabetic characters limited to a-z, do as in the sample cases.
+
+// Each character in the string argument should appear in the returned string.
+// The original character should be repeated as many times as its original position in the string argument. (index 0 being position 1, index 1 being position 2...)
+// The repeated sequences of a character should be separated by a hyphen in the returned string.
+// In the repeated sequences of a character included in the returned string, the first instance of the character should be upper-case.  Subsequent instances of the character should be lowercase.
+// function accum(str) {
+//   let str2 = "";
+
+//   for (let index = 0; index < str.length; index++) {
+//     str2 += str[index].repeat(index + 1) + "-"
+//   }
+//   let str3 = str2.slice(0, str2.length - 1);
+
+//   let mapper = str3.split('-');
+//   return mapper.map(el => el[0].toUpperCase() + el.slice(1).toLowerCase()).join("-");
+
+
+// }
+// // Test Cases
+// console.log(accum("abcd"));   // "A-Bb-Ccc-Dddd"
+// console.log(accum("RqaEzty")); // "R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy"
+// console.log(accum("cwAt"));   // "C-Ww-Aaa-Tttt"
+
+function longestPalindrome(str) {
+  if(str.length === 0) return 0;
+  if (str.length === 1) return 1;
+  let subs = [];
+  let palindrome = []
+  for (let start = 0; start < str.length; start++) {
+    for ( let chars = 1; chars <= str.length - start; chars++) {
+      subs.push(str.slice(start, start + chars))
+    }
   }
-})
-return newArr;
+  subs.forEach(el => {
+    if (isPalindrome(el)) {
+      palindrome.push(el);
+    }
+  })
+  return Math.max(...palindrome.map(el => el.length));
 }
 
-console.log(buyFruit([['apple', 3], ['orange', 1], ['banana', 2]]));
-// returns ["apple", "apple", "apple", "orange", "banana", "banana"]
+function isPalindrome(str) {
+  return str === str.split("").reverse().join("");
+}
+
+console.log(longestPalindrome("a") == 1);
+console.log(longestPalindrome("aa") === 2);
+console.log(longestPalindrome("baa") === 2);
+console.log(longestPalindrome("aab") === 2);
+console.log(longestPalindrome("baabcd") === 4);
+console.log(longestPalindrome("baablkj12345432133d") === 9);
