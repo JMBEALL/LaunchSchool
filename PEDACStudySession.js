@@ -699,18 +699,50 @@ console.log(segregate('11AB')); //{lettersUpper: 'AB', lettersLower: '', numbers
 
 
 
-function digitalRoot(n) {
-  let sum = String(n).split("").reduce((accum,el) => accum + +el, 0);
+// function digitalRoot(n) {
+//   let sum = String(n).split("").reduce((accum,el) => accum + +el, 0);
 
-  while (String(sum).length > 1) {
-    sum = String(sum).split("").reduce((accum,el) => accum + +el, 0);
-  }
-    return sum;
-  }
-  console.log(digitalRoot(16))
-  console.log(digitalRoot(456))
-
-
+//   while (String(sum).length > 1) {
+//     sum = String(sum).split("").reduce((accum,el) => accum + +el, 0);
+//   }
+//     return sum;
+//   }
+//   console.log(digitalRoot(16))
+//   console.log(digitalRoot(456))
 
 
+// function wordPattern(word) {
+//   let cache = {};
 
+//   let finalStr = ""
+//   for (let index = 0; index < word.length; index++) {
+//     if (cache[word[index].toLowerCase()]) {
+//       console.log('great');
+//     } else {
+//       cache[word[index].toLowerCase()] = index;
+//     }
+//   }
+//   word.split("").forEach(el => {
+//     for (let key in cache) {
+//     if (el.toLowerCase() === key.toLowerCase()) {
+//       finalStr += `${cache[key.toLowerCase()]}.`
+//     }
+//   }
+//   })
+//   console.log(cache);
+//   return finalStr;
+// }
+
+
+// console.log(wordPattern("hello"))
+
+
+function spacey(arr) {
+return arr.map((el,index) => {
+  return arr.slice(0, index + 1).join("");
+})
+}
+
+
+console.log(spacey(['kevin', 'has','no','space']))//[ 'kevin', 'kevinhas', 'kevinhasno', 'kevinhasnospace']);
+console.log(spacey(['this','cheese','has','no','holes']))// ['this','thischeese','thischeesehas','thischeesehasno','thischeesehasnoholes']);
