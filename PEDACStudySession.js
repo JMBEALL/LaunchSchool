@@ -689,20 +689,28 @@ Single digit numbers will NOT be considered numerical palindromes.
 // console.log(countEle(['name', 'year', 'age', 'name'], 'name')); // => 2
 // console.log(countEle([1,2,3,4,5,1,2,3,4], 2)); //=> 2
 
+function segregate(str, char) {
 
-function isAnagram(str1,str2) {
-  if (str1.length !== str2.length) return false;
-  let obj = {};
-  str1.split("").forEach(char => {
-    obj[char] ? obj[char]++ : obj[char] = 1;
-  })
-  str2.split("").forEach(char => {
-    if(obj[char]) {
-      obj[char]--
-    }
-  })
-  return Object.values(obj).every(num => num === 0);
 }
 
-console.log(isAnagram('aba', 'aab')); // true
-console.log(isAnagram('aba', 'aa')); //false
+console.log(segregate('aad559 $%,')); //{lettersUpper: '', lettersLower: 'aad', numbers: '559', other characters: '$%,' }
+console.log(segregate('11AB')); //{lettersUpper: 'AB', lettersLower: '', numbers: '', other characters: '' }
+
+
+
+
+function digitalRoot(n) {
+  let sum = String(n).split("").reduce((accum,el) => accum + +el, 0);
+
+  while (String(sum).length > 1) {
+    sum = String(sum).split("").reduce((accum,el) => accum + +el, 0);
+  }
+    return sum;
+  }
+  console.log(digitalRoot(16))
+  console.log(digitalRoot(456))
+
+
+
+
+
