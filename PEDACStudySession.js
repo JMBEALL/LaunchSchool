@@ -737,12 +737,80 @@ console.log(segregate('11AB')); //{lettersUpper: 'AB', lettersLower: '', numbers
 // console.log(wordPattern("hello"))
 
 
-function spacey(arr) {
-return arr.map((el,index) => {
-  return arr.slice(0, index + 1).join("");
-})
+// function spacey(arr) {
+// return arr.map((el,index) => {
+//   return arr.slice(0, index + 1).join("");
+// })
+// }
+
+
+// console.log(spacey(['kevin', 'has','no','space']))//[ 'kevin', 'kevinhas', 'kevinhasno', 'kevinhasnospace']);
+// console.log(spacey(['this','cheese','has','no','holes']))// ['this','thischeese','thischeesehas','thischeesehasno','thischeesehasnoholes']);
+
+// function shiftedDiff(first,second){
+//   let count = 0
+//   let shifted = first.split("");
+//   for (let index = 0; index < first.length; index++) {
+//     let lastEl = shifted.pop();
+//     shifted = shifted.unshift(lastEl) + shifted;
+//     console.log(shifted)
+//     count++;
+
+//     // if (shifted === second) return count;
+//   }
+// }
+
+// console.log(shiftedDiff("coffee", "eecoff")); //2
+// // ecoffe => eecoff => feecof => ffeeco =>
+// console.log(shiftedDiff("eecoff", "coffee"));
+
+// function reverseMessage(str) {
+//   return str.split(" ").reverse().map(word => {
+//     return word.split("").reverse().join("");
+//   }).map(ele => {
+//     return ele[0].toUpperCase() + ele.slice(1).toLowerCase()
+//   }).join(" ")
+//   }
+
+//   console.log(reverseMessage("This is an example of a Reversed Message!"))
+
+// function LongestWord(sen) {
+//   return sen.split(" ").map(word => word.match(/[a-zA-Z]/g).join("")).sort((a,b) => b.length - a.length)[0];
+// }
+
+// console.log(LongestWord('fun&!! time Jordan!'));
+
+// function FindIntersection(strArr) { 
+//   let str=""
+// let el1 = strArr[0].split(", ").map(el => +el)
+// console.log({el1});
+// let el2 = strArr[1].split(", ").map(el => +el)
+// console.log({el2});
+// el2.forEach(el => {
+//   if (el1.includes(el)) {
+//     str+=el + ",";
+//   }
+// })
+// return str.slice(0, str.length - 1);
+// }
+   
+// // keep this function call here 
+// console.log(FindIntersection(["1, 3, 4, 7, 13", "1, 2, 4, 13, 15"]
+// ));
+// //1,4,13;
+
+function findMissingLetter(array) {
+  let arr = array.map(char => char.charCodeAt());
+  let final = [];
+
+  arr.forEach((el,index) => {
+   if (el + 1 !== arr[index + 1]) {
+     final.push(String.fromCharCode(el + 1));
+     
+   }
+  })
+return final[0]
 }
 
-
-console.log(spacey(['kevin', 'has','no','space']))//[ 'kevin', 'kevinhas', 'kevinhasno', 'kevinhasnospace']);
-console.log(spacey(['this','cheese','has','no','holes']))// ['this','thischeese','thischeesehas','thischeesehasno','thischeesehasnoholes']);
+// console.log(findMissingLetter(['a','b','c','d','f'])) //e
+console.log(findMissingLetter(['O','Q','R','S'])) //P
