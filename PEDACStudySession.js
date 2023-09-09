@@ -938,25 +938,52 @@ console.log(segregate('11AB')); //{lettersUpper: 'AB', lettersLower: '', numbers
 // console.log(accum("RqaEzty")); // "R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy"
 // console.log(accum("cwAt"));   // "C-Ww-Aaa-Tttt"
 
-function longestPalindrome(str) {
-  if (str.length === 0) return 0;
+// function longestPalindrome(str) {
+//   if (str.length === 0) return 0;
+//   let subs = [];
+//   for (let start = 0; start < str.length; start++) {
+//     for (let chars = 1; chars <= str.length - start; chars++) {
+//       subs.push(str.slice(start, start + chars));
+//     }
+//   }
+//   return Math.max(...subs.filter(el => isPalindrome(el)).map(string => string.length));
+
+
+// }
+// function isPalindrome(str) {
+//   return str === str.split("").reverse().join("");
+// }
+
+// console.log(longestPalindrome("a") == 1);
+// console.log(longestPalindrome("aa") === 2);
+// console.log(longestPalindrome("baa") === 2);
+// console.log(longestPalindrome("aab") === 2);
+// console.log(longestPalindrome("baabcd") === 4);
+// console.log(longestPalindrome("baablkj12345432133d") === 9);
+
+function longestConsec(arr, k) {
+  if (arr.length === 0 || k > arr.length || k <= 0) return "";
   let subs = [];
-  for (let start = 0; start < str.length; start++) {
-    for (let chars = 1; chars <= str.length - start; chars++) {
-      subs.push(str.slice(start, start + chars));
-    }
+  for (let start = 0; start < arr.length; start++) {
+   subs.push(arr.slice(start, start + k ).join(""));
   }
-  return Math.max(...subs.filter(el => isPalindrome(el)).map(string => string.length));
-
-
+  let length = subs[0].length;
+subs.forEach(el => {
+  if (el.length > length) {
+    length = el.length;
+    return el;
+  }
+})
+return subs.filter(el => el.length === length)[0]
+// return subs.sort((a,b) => b.length - a.length)[0]
 }
-function isPalindrome(str) {
-  return str === str.split("").reverse().join("");
-}
 
-console.log(longestPalindrome("a") == 1);
-console.log(longestPalindrome("aa") === 2);
-console.log(longestPalindrome("baa") === 2);
-console.log(longestPalindrome("aab") === 2);
-console.log(longestPalindrome("baabcd") === 4);
-console.log(longestPalindrome("baablkj12345432133d") === 9);
+console.log(longestConsec(["zone", "abigail", "theta", "form", "libe", "zas"], 2) === "abigailtheta"); // true
+console.log(longestConsec(["ejjjjmmtthh", "zxxuueeg", "aanlljrrrxx", "dqqqaaabbb", "oocccffuucccjjjkkkjyyyeehh"], 1) === "oocccffuucccjjjkkkjyyyeehh"); // true
+console.log(longestConsec([], 3) === ""); // true
+console.log(longestConsec(["itvayloxrp","wkppqsztdkmvcuwvereiupccauycnjutlv","vweqilsfytihvrzlaodfixoyxvyuyvgpck"], 2) === "wkppqsztdkmvcuwvereiupccauycnjutlvvweqilsfytihvrzlaodfixoyxvyuyvgpck"); // true
+console.log(longestConsec(["wlwsasphmxx","owiaxujylentrklctozmymu","wpgozvxxiu"], 2) === "wlwsasphmxxowiaxujylentrklctozmymu"); // true
+console.log(longestConsec(["zone", "abigail", "theta", "form", "libe", "zas"], -2) === ""); // true
+console.log(longestConsec(["it","wkppv","ixoyx", "3452", "zzzzzzzzzzzz"], 3) === "ixoyx3452zzzzzzzzzzzz"); // true
+console.log(longestConsec(["it","wkppv","ixoyx", "3452", "zzzzzzzzzzzz"], 15) === ""); // true
+console.log(longestConsec(["it","wkppv","ixoyx", "3452", "zzzzzzzzzzzz"], 0) === ""); // true
