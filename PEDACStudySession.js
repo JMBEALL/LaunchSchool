@@ -799,18 +799,141 @@ console.log(segregate('11AB')); //{lettersUpper: 'AB', lettersLower: '', numbers
 // ));
 // //1,4,13;
 
-function findMissingLetter(array) {
-  let arr = array.map(char => char.charCodeAt());
-  let final = [];
+// function findMissingLetter(array) {
+//   let arr = array.map(char => char.charCodeAt());
+//   let final = [];
 
-  arr.forEach((el,index) => {
-   if (el + 1 !== arr[index + 1]) {
-     final.push(String.fromCharCode(el + 1));
+//   arr.forEach((el,index) => {
+//    if (el + 1 !== arr[index + 1]) {
+//      final.push(String.fromCharCode(el + 1));
      
-   }
-  })
-return final[0]
-}
+//    }
+//   })
+// return final[0]
+// }
 
 // console.log(findMissingLetter(['a','b','c','d','f'])) //e
-console.log(findMissingLetter(['O','Q','R','S'])) //P
+// console.log(findMissingLetter(['O','Q','R','S'])) //P
+
+
+
+
+
+// function arrange(s) {
+//   let final = [];
+//   let count = 0;
+//   while (s.length > 0) {
+//     let first = s.shift();
+//     let last = s.pop();
+//     if (count % 2 === 0) {
+//       if (first !== undefined) {
+//         final.push(first)
+//       }
+//       if (last !== undefined) {
+//         final.push(last)
+//       }
+//       count++;
+//     } else {
+//       if (last !== undefined) {
+//         final.push(last)
+//       }
+//       if (first !== undefined) {
+//         final.push(first)
+//       }
+//       count++
+//     }
+  
+//     // console.log({s})
+//     // console.log({first})
+//     // console.log({last})
+//     // console.log({final})
+//   }
+//   return final;
+// }
+
+// function arrange(s) {
+//   let copy = s.slice()
+//   let final = [];
+//   let first = 0;
+//   let last = copy.length - 1;
+//   let count = 0;
+//   while (first !== last) {
+// //     let first = copy.shift();
+// //     let last = copy.pop();
+//     if (count % 2 === 0) {
+//       if (copy[first] !== undefined) {
+//         final.push(copy[first])
+//       }
+//       if (copy[last] !== undefined) {
+//         final.push(copy[last])
+//       }
+//       count++;
+//     } else {
+//       if (copy[last] !== undefined) {
+//         final.push(copy[last])
+//       }
+//       if (copy[first] !== undefined) {
+//         final.push(copy[first])
+//       }
+//       count++
+//     }
+//     last--;
+//     first++
+//   }
+//   return final;
+// }
+
+// console.log(arrange([4, 3, 2]))//[4,2,3]
+// console.log(arrange([2, 4, 3, 4]))//[2,4,3,4]
+// console.log(arrange([9, 7, -2, 8, 5, -3, 6, 5, 1]))//[9,1,5,7,-2,6,-3,8,5]
+
+
+// function longestCollatz (inputArray) {
+//   let countArr = [];
+//   inputArray.forEach(el => {
+//   let count = 0;
+//     while (el !== 1) {
+//       console.log({el});
+//       if (el % 2 === 0) {
+//         el = el / 2;
+//         console.log({el});
+//       } else {
+//         el = 3 * el + 1;
+//         console.log({el});
+//       }
+//       count++
+//       // console.log({count});
+
+//     }
+//     countArr.push(count);
+//   })
+//   let max = Math.max(...countArr);
+//   console.log({max})
+//   let index = countArr.findIndex(el => el === max);
+//   return inputArray[index]
+//   }
+
+  // console.log(longestCollatz([1, 5, 27, 4]))//27
+  // console.log(longestCollatz([64, 64, 27, 64]))//27
+  // console.log((longestCollatz([75, 226, 113, 340])))//75
+  // function mutation(arr) {
+  //   let bool = true;
+  //   let firstEl = arr[0].split("");
+  //   let secondEl = arr[1].split("")
+  //   for (let index = 0; index < secondEl; index++ ) {
+  //     if (!firstEl.includes(secondEl[index])) {
+  //       bool = false;
+  //     }
+  //   }
+  //   return bool
+  // }
+  
+  // console.log(mutation(["hello", "hey"]));
+
+  function accum(str) {
+    return str.split("").map((el , index) => el.toUpperCase()+ el.repeat(index).toLowerCase()).join("-")
+  }
+
+console.log(accum("abcd"));   // "A-Bb-Ccc-Dddd"
+console.log(accum("RqaEzty")); // "R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy"
+console.log(accum("cwAt"));   // "C-Ww-Aaa-Tttt"
