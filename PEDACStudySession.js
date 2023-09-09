@@ -930,10 +930,33 @@ console.log(segregate('11AB')); //{lettersUpper: 'AB', lettersLower: '', numbers
   
   // console.log(mutation(["hello", "hey"]));
 
-  function accum(str) {
-    return str.split("").map((el , index) => el.toUpperCase()+ el.repeat(index).toLowerCase()).join("-")
-  }
+//   function accum(str) {
+//     return str.split("").map((el , index) => el.toUpperCase()+ el.repeat(index).toLowerCase()).join("-")
+//   }
 
-console.log(accum("abcd"));   // "A-Bb-Ccc-Dddd"
-console.log(accum("RqaEzty")); // "R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy"
-console.log(accum("cwAt"));   // "C-Ww-Aaa-Tttt"
+// console.log(accum("abcd"));   // "A-Bb-Ccc-Dddd"
+// console.log(accum("RqaEzty")); // "R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy"
+// console.log(accum("cwAt"));   // "C-Ww-Aaa-Tttt"
+
+function longestPalindrome(str) {
+  if (str.length === 0) return 0;
+  let subs = [];
+  for (let start = 0; start < str.length; start++) {
+    for (let chars = 1; chars <= str.length - start; chars++) {
+      subs.push(str.slice(start, start + chars));
+    }
+  }
+  return Math.max(...subs.filter(el => isPalindrome(el)).map(string => string.length));
+
+
+}
+function isPalindrome(str) {
+  return str === str.split("").reverse().join("");
+}
+
+console.log(longestPalindrome("a") == 1);
+console.log(longestPalindrome("aa") === 2);
+console.log(longestPalindrome("baa") === 2);
+console.log(longestPalindrome("aab") === 2);
+console.log(longestPalindrome("baabcd") === 4);
+console.log(longestPalindrome("baablkj12345432133d") === 9);
