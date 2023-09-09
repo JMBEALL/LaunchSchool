@@ -961,29 +961,48 @@ console.log(segregate('11AB')); //{lettersUpper: 'AB', lettersLower: '', numbers
 // console.log(longestPalindrome("baabcd") === 4);
 // console.log(longestPalindrome("baablkj12345432133d") === 9);
 
-function longestConsec(arr, k) {
-  if (arr.length === 0 || k > arr.length || k <= 0) return "";
-  let subs = [];
-  for (let start = 0; start < arr.length; start++) {
-   subs.push(arr.slice(start, start + k ).join(""));
-  }
-  let length = subs[0].length;
-subs.forEach(el => {
-  if (el.length > length) {
-    length = el.length;
-    return el;
-  }
-})
-return subs.filter(el => el.length === length)[0]
-// return subs.sort((a,b) => b.length - a.length)[0]
-}
+// function longestConsec(arr, k) {
+//   if (arr.length === 0 || k > arr.length || k <= 0) return "";
+//   let subs = [];
+//   for (let start = 0; start < arr.length; start++) {
+//    subs.push(arr.slice(start, start + k ).join(""));
+//   }
+//   let length = subs[0].length;
+// subs.forEach(el => {
+//   if (el.length > length) {
+//     length = el.length;
+//     return el;
+//   }
+// })
+// return subs.filter(el => el.length === length)[0]
+// // return subs.sort((a,b) => b.length - a.length)[0]
+// }
 
-console.log(longestConsec(["zone", "abigail", "theta", "form", "libe", "zas"], 2) === "abigailtheta"); // true
-console.log(longestConsec(["ejjjjmmtthh", "zxxuueeg", "aanlljrrrxx", "dqqqaaabbb", "oocccffuucccjjjkkkjyyyeehh"], 1) === "oocccffuucccjjjkkkjyyyeehh"); // true
-console.log(longestConsec([], 3) === ""); // true
-console.log(longestConsec(["itvayloxrp","wkppqsztdkmvcuwvereiupccauycnjutlv","vweqilsfytihvrzlaodfixoyxvyuyvgpck"], 2) === "wkppqsztdkmvcuwvereiupccauycnjutlvvweqilsfytihvrzlaodfixoyxvyuyvgpck"); // true
-console.log(longestConsec(["wlwsasphmxx","owiaxujylentrklctozmymu","wpgozvxxiu"], 2) === "wlwsasphmxxowiaxujylentrklctozmymu"); // true
-console.log(longestConsec(["zone", "abigail", "theta", "form", "libe", "zas"], -2) === ""); // true
-console.log(longestConsec(["it","wkppv","ixoyx", "3452", "zzzzzzzzzzzz"], 3) === "ixoyx3452zzzzzzzzzzzz"); // true
-console.log(longestConsec(["it","wkppv","ixoyx", "3452", "zzzzzzzzzzzz"], 15) === ""); // true
-console.log(longestConsec(["it","wkppv","ixoyx", "3452", "zzzzzzzzzzzz"], 0) === ""); // true
+// console.log(longestConsec(["zone", "abigail", "theta", "form", "libe", "zas"], 2) === "abigailtheta"); // true
+// console.log(longestConsec(["ejjjjmmtthh", "zxxuueeg", "aanlljrrrxx", "dqqqaaabbb", "oocccffuucccjjjkkkjyyyeehh"], 1) === "oocccffuucccjjjkkkjyyyeehh"); // true
+// console.log(longestConsec([], 3) === ""); // true
+// console.log(longestConsec(["itvayloxrp","wkppqsztdkmvcuwvereiupccauycnjutlv","vweqilsfytihvrzlaodfixoyxvyuyvgpck"], 2) === "wkppqsztdkmvcuwvereiupccauycnjutlvvweqilsfytihvrzlaodfixoyxvyuyvgpck"); // true
+// console.log(longestConsec(["wlwsasphmxx","owiaxujylentrklctozmymu","wpgozvxxiu"], 2) === "wlwsasphmxxowiaxujylentrklctozmymu"); // true
+// console.log(longestConsec(["zone", "abigail", "theta", "form", "libe", "zas"], -2) === ""); // true
+// console.log(longestConsec(["it","wkppv","ixoyx", "3452", "zzzzzzzzzzzz"], 3) === "ixoyx3452zzzzzzzzzzzz"); // true
+// console.log(longestConsec(["it","wkppv","ixoyx", "3452", "zzzzzzzzzzzz"], 15) === ""); // true
+// console.log(longestConsec(["it","wkppv","ixoyx", "3452", "zzzzzzzzzzzz"], 0) === ""); // true
+
+
+function commonPrefix(arr) {
+  let str = arr[0];
+  let final = "";
+for (let index = 0; index < str.length; index++) {
+  let char = str[index];
+  if (arr.every(el => el[index] === char)) {
+    final += char;
+  }
+}
+  return final;
+};
+
+console.log(commonPrefix(["flower", "flow", "flight"]) === "fl"); // true
+console.log(commonPrefix(["dog", "racecar", "car"]) === ""); // true
+console.log(commonPrefix(["interspecies", "interstellar", "interstate"]) === "inters"); // true
+console.log(commonPrefix(["throne", "dungeon"]) === ""); // true
+console.log(commonPrefix(["throne", "throne"]) === "throne"); // true
