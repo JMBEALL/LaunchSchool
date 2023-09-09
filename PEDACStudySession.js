@@ -1007,21 +1007,98 @@ console.log(segregate('11AB')); //{lettersUpper: 'AB', lettersLower: '', numbers
 // console.log(commonPrefix(["throne", "dungeon"]) === ""); // true
 // console.log(commonPrefix(["throne", "throne"]) === "throne"); // true
 
-function duplicates(arr){
-  let count = 0;
-    for (let index = 0; index <= arr.length; index++) {
-      for (let j = 0; j <= arr.length; j++) {
-        console.log(`arrIndex = ${arr[index]} arrJ = ${arr[j]}`)
-        console.log({count})
-        if (arr[index] === arr[j] && index !== j && typeof arr[index] === 'number' && typeof arr[j]=== 'number') {
-          count+=1;
-          arr[index] = "t"
-          arr[j] = "!"
-        }
-      }
-    }
-    return count;
-  }
+// function duplicates(arr){
+//   let count = 0;
+//     for (let index = 0; index <= arr.length; index++) {
+//       for (let j = 0; j <= arr.length; j++) {
+//         console.log(`arrIndex = ${arr[index]} arrJ = ${arr[j]}`)
+//         console.log({count})
+//         if (arr[index] === arr[j] && index !== j && typeof arr[index] === 'number' && typeof arr[j]=== 'number') {
+//           count+=1;
+//           arr[index] = "t"
+//           arr[j] = "!"
+//         }
+//       }
+//     }
+//     return count;
+//   }
 
-  console.log(duplicates([1, 2, 5, 6, 5, 2]));
-  console.log(duplicates([1, 2, 2, 20, 6, 20, 2, 6, 2]));
+//   console.log(duplicates([1, 2, 5, 6, 5, 2]));
+//   console.log(duplicates([1, 2, 2, 20, 6, 20, 2, 6, 2]));
+
+// function solve(s){
+//   let subs = []
+//   for (let index = 0; index < s.length; index++) {
+//     for (let chars = 1; chars <= s.length - index ; chars++) {
+//       subs.push(s.slice(index , index + chars))
+//     }
+//   }
+//   console.log({subs})
+//     let final = subs.map(el => +el)
+//     let final2 = final.filter(num => num % 2 === 1);
+//     console.log({final})
+//     console.log({final2})
+//     return final2.length
+//   };
+
+//   // console.log(solve("1341")) // 7
+//   // console.log(solve("13472315"))//28
+//   // console.log(solve("1341"))//7
+//   console.log(solve("1347231"))//20
+
+// function f(s) {
+//   if (sameChar(s)) {
+//     return [s[0], s.length]
+//   }
+//   let sub;
+//   let num = 0;
+//     for (let index = 0; index < s.length; index ++) {
+//       if (s.slice(index + 1).includes(s.slice(0,index + 1))) {
+//         sub =  s.slice(0,index + 1);
+//         num = index
+//       }
+//     }
+//     console.log({sub})
+//     if (sub === undefined) {
+//       sub = s;
+//     }
+//     let regex = new RegExp(sub, "ig")
+//     let final = s.slice(num + 1).match(regex) || [];
+//     return [sub, final.length];
+//   }
+
+//   function sameChar(str) {
+//     return str.split("").filter(el => el === str[0]).length === str.length;
+//   }
+
+//   console.log(f("ababab"))
+//   console.log(f("abcde"));
+//   console.log(f('aaaaa'));
+
+// function isPangram(string){
+//   let cache = {}
+//   string.split("").forEach(el => {
+//     if (el.match(/[a-zA-Z]/g)) {
+//       cache[el.toLowerCase()] ? cache[el.toLowerCase()]++ : cache[el.toLowerCase()] = 1
+//     }
+//   })
+//  return (Object.keys(cache).length === 26)&&(Object.values(cache).every(el => el >= 1))
+//   }
+
+//   console.log(isPangram("The quick brown fox jumps over the lazy dog."))
+
+function scramble(str1, str2) {
+  let cache = {};
+  str1.split("").forEach(el => {
+    cache[el] ? cache[el]++ : cache[el] = 1
+  })
+  console.log({cache});
+  str2.split('').forEach(el => {
+    cache[el] ? cache[el]-- : cache[el] = "!";
+  })
+return Object.values(cache).every(num => (num >= 0) && num !== "!")
+  }
+  
+  // console.log(scramble('rkqodlw','world'))
+  // console.log(scramble('cedewaraaossoqqyt', 'codewars'))
+  // console.log(scramble('katas',             'steak'      ))
