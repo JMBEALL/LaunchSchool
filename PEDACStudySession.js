@@ -989,20 +989,39 @@ console.log(segregate('11AB')); //{lettersUpper: 'AB', lettersLower: '', numbers
 // console.log(longestConsec(["it","wkppv","ixoyx", "3452", "zzzzzzzzzzzz"], 0) === ""); // true
 
 
-function commonPrefix(arr) {
-  let str = arr[0];
-  let final = "";
-for (let index = 0; index < str.length; index++) {
-  let char = str[index];
-  if (arr.every(el => el[index] === char)) {
-    final += char;
-  }
-}
-  return final;
-};
+// function commonPrefix(arr) {
+//   let str = arr[0];
+//   let final = "";
+// for (let index = 0; index < str.length; index++) {
+//   let char = str[index];
+//   if (arr.every(el => el[index] === char)) {
+//     final += char;
+//   }
+// }
+//   return final;
+// };
 
-console.log(commonPrefix(["flower", "flow", "flight"]) === "fl"); // true
-console.log(commonPrefix(["dog", "racecar", "car"]) === ""); // true
-console.log(commonPrefix(["interspecies", "interstellar", "interstate"]) === "inters"); // true
-console.log(commonPrefix(["throne", "dungeon"]) === ""); // true
-console.log(commonPrefix(["throne", "throne"]) === "throne"); // true
+// console.log(commonPrefix(["flower", "flow", "flight"]) === "fl"); // true
+// console.log(commonPrefix(["dog", "racecar", "car"]) === ""); // true
+// console.log(commonPrefix(["interspecies", "interstellar", "interstate"]) === "inters"); // true
+// console.log(commonPrefix(["throne", "dungeon"]) === ""); // true
+// console.log(commonPrefix(["throne", "throne"]) === "throne"); // true
+
+function duplicates(arr){
+  let count = 0;
+    for (let index = 0; index <= arr.length; index++) {
+      for (let j = 0; j <= arr.length; j++) {
+        console.log(`arrIndex = ${arr[index]} arrJ = ${arr[j]}`)
+        console.log({count})
+        if (arr[index] === arr[j] && index !== j && typeof arr[index] === 'number' && typeof arr[j]=== 'number') {
+          count+=1;
+          arr[index] = "t"
+          arr[j] = "!"
+        }
+      }
+    }
+    return count;
+  }
+
+  console.log(duplicates([1, 2, 5, 6, 5, 2]));
+  console.log(duplicates([1, 2, 2, 20, 6, 20, 2, 6, 2]));
