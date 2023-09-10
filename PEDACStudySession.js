@@ -1087,18 +1087,49 @@ console.log(segregate('11AB')); //{lettersUpper: 'AB', lettersLower: '', numbers
 
 //   console.log(isPangram("The quick brown fox jumps over the lazy dog."))
 
-function scramble(str1, str2) {
-  let cache = {};
-  str1.split("").forEach(el => {
-    cache[el] ? cache[el]++ : cache[el] = 1
-  })
-  console.log({cache});
-  str2.split('').forEach(el => {
-    cache[el] ? cache[el]-- : cache[el] = "!";
-  })
-return Object.values(cache).every(num => (num >= 0) && num !== "!")
-  }
+// function scramble(str1, str2) {
+//   let cache = {};
+//   str1.split("").forEach(el => {
+//     cache[el] ? cache[el]++ : cache[el] = 1
+//   })
+//   console.log({cache});
+//   str2.split('').forEach(el => {
+//     cache[el] ? cache[el]-- : cache[el] = "!";
+//   })
+// return Object.values(cache).every(num => (num >= 0) && num !== "!")
+//   }
   
-  // console.log(scramble('rkqodlw','world'))
-  // console.log(scramble('cedewaraaossoqqyt', 'codewars'))
-  // console.log(scramble('katas',             'steak'      ))
+//   // console.log(scramble('rkqodlw','world'))
+//   // console.log(scramble('cedewaraaossoqqyt', 'codewars'))
+//   // console.log(scramble('katas',             'steak'      ))
+
+// function greatestProduct(input) {
+//   let subs = [];
+//     for (let start = 0; start < input.length; start++) {
+//       for (let chars = 5; chars <= input.length - start; chars++){
+//         subs.push(input.slice(start, start + chars))
+//       }
+//     }
+//     let filtered = subs.filter(el => el.length === 5);
+//     let mapped = filtered.map(str => str.split("").reduce((accum,el) => accum * +el, 1))
+//     return Math.max(...mapped);
+//   }
+
+//   console.log(greatestProduct("123834539327238239583"));
+
+
+function duplicateCount(text) {
+let cache = {};
+text.split("").forEach(el => {
+  if (el.match(/[a-z0-9]/ig)) {
+    cache[el.toLowerCase()] ? cache[el.toLowerCase()]++ : cache[el.toLowerCase()] = 1;
+  }
+})
+// console.log({cache})
+return Object.values(cache).filter(num => num > 1).length
+}
+
+console.log(duplicateCount(""))//0
+console.log(duplicateCount("abcde"))//0
+console.log(duplicateCount("aabbcde"))//2
+console.log(duplicateCount("aabBcde"))//2
