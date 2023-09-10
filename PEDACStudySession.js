@@ -1118,18 +1118,42 @@ console.log(segregate('11AB')); //{lettersUpper: 'AB', lettersLower: '', numbers
 //   console.log(greatestProduct("123834539327238239583"));
 
 
-function duplicateCount(text) {
-let cache = {};
-text.split("").forEach(el => {
-  if (el.match(/[a-z0-9]/ig)) {
-    cache[el.toLowerCase()] ? cache[el.toLowerCase()]++ : cache[el.toLowerCase()] = 1;
+// function duplicateCount(text) {
+// let cache = {};
+// text.split("").forEach(el => {
+//   if (el.match(/[a-z0-9]/ig)) {
+//     cache[el.toLowerCase()] ? cache[el.toLowerCase()]++ : cache[el.toLowerCase()] = 1;
+//   }
+// })
+// // console.log({cache})
+// return Object.values(cache).filter(num => num > 1).length
+// }
+
+// console.log(duplicateCount(""))//0
+// console.log(duplicateCount("abcde"))//0
+// console.log(duplicateCount("aabbcde"))//2
+// console.log(duplicateCount("aabBcde"))//2
+
+function findEvenIndex(arr) {
+for (let index = 0; index < arr.length; index++) {
+  let left = arr.slice(0 , index)
+  let leftTotal = left.reduce((accum,el) => accum + el,0);
+  let right =  arr.slice( index + 1);
+  let rightTotal = right.reduce((accum,el) => accum + el,0);
+  if (leftTotal === rightTotal) {
+    return index;
   }
-})
-// console.log({cache})
-return Object.values(cache).filter(num => num > 1).length
+  // console.log({arr})
+  // console.log({left})
+  // console.log({leftTotal})
+  // console.log({right})
+  // console.log({rightTotal})
+  // console.log({index})
+}
+return -1;
 }
 
-console.log(duplicateCount(""))//0
-console.log(duplicateCount("abcde"))//0
-console.log(duplicateCount("aabbcde"))//2
-console.log(duplicateCount("aabBcde"))//2
+// console.log(findEvenIndex([1,2,3,4,3,2,1]))//3;
+// console.log(findEvenIndex([1,100,50,-51,1,1]))//1;
+// console.log(findEvenIndex([1,2,3,4,5,6]))//-1;
+// console.log(findEvenIndex([20,10,30,10,10,15,35]))//3;
