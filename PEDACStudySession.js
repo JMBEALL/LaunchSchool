@@ -1134,26 +1134,79 @@ console.log(segregate('11AB')); //{lettersUpper: 'AB', lettersLower: '', numbers
 // console.log(duplicateCount("aabbcde"))//2
 // console.log(duplicateCount("aabBcde"))//2
 
-function findEvenIndex(arr) {
-for (let index = 0; index < arr.length; index++) {
-  let left = arr.slice(0 , index)
-  let leftTotal = left.reduce((accum,el) => accum + el,0);
-  let right =  arr.slice( index + 1);
-  let rightTotal = right.reduce((accum,el) => accum + el,0);
-  if (leftTotal === rightTotal) {
-    return index;
-  }
-  // console.log({arr})
-  // console.log({left})
-  // console.log({leftTotal})
-  // console.log({right})
-  // console.log({rightTotal})
-  // console.log({index})
-}
-return -1;
-}
+// function findEvenIndex(arr) {
+// for (let index = 0; index < arr.length; index++) {
+//   let left = arr.slice(0 , index)
+//   let leftTotal = left.reduce((accum,el) => accum + el,0);
+//   let right =  arr.slice( index + 1);
+//   let rightTotal = right.reduce((accum,el) => accum + el,0);
+//   if (leftTotal === rightTotal) {
+//     return index;
+//   }
+//   // console.log({arr})
+//   // console.log({left})
+//   // console.log({leftTotal})
+//   // console.log({right})
+//   // console.log({rightTotal})
+//   // console.log({index})
+// }
+// return -1;
+// }
 
 // console.log(findEvenIndex([1,2,3,4,3,2,1]))//3;
 // console.log(findEvenIndex([1,100,50,-51,1,1]))//1;
 // console.log(findEvenIndex([1,2,3,4,5,6]))//-1;
 // console.log(findEvenIndex([20,10,30,10,10,15,35]))//3;
+
+
+// function findOdd(arr) {
+// let cache = {};
+// arr.forEach(el => {
+//   cache[el] ? cache[el]++ : cache[el] = 1;
+// });
+// for (let key in cache) {
+//   if (+cache[key] % 2 === 1) {
+//     return +key;
+//   }
+// }
+// }
+
+// function nameInStr(str, name){
+//   // let arr = [];
+//   let cache = {};
+//   for (let index = 0; index < name.length; index++) {
+//     for (let j = 0; j < str.length; j++ ) {
+//       if (name[index] === str[j])
+//       // if (name[index] === str[j] && arr.length <= name.length) {
+//       //   arr.push(j)
+//       // }
+//     }
+//   }
+//   // let sorted = String([...arr].sort((a,b) => a - b).join(""))
+//   // console.log({sorted})
+//   // console.log({arr})
+//   // return arr.length === name.length
+// }
+
+
+function sortArray(array) {
+let odds = [];
+
+array.forEach(el => {
+  if (el % 2 === 1 || el % 2 === -1) {
+    odds.push(el);
+  }
+})
+odds.sort((a,b) => a - b);
+// console.log({odds})
+for (let index = 0; index < array.length; index++) {
+  if (array[index] % 2 === 1 || array[index] % 2 === -1) {
+    array[index] = odds.shift();
+  }
+}
+return array;
+}
+
+console.log(sortArray([5, 3, 2, 8, 1, 4]))//, [1, 3, 2, 8, 5, 4])
+console.log(sortArray([5, 3, 1, 8, 0]))//, [1, 3, 5, 8, 0])
+console.log()
