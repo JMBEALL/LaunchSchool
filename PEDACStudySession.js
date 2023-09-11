@@ -1367,19 +1367,19 @@ C:
 // console.log(closestNumbers([19, 25, 32, 4, 27, 16])); // [25, 27]
 // console.log(closestNumbers([12, 7, 17]));             // [12, 7]
 
-function leastCommonChar(str) {
-let cache = {};
-let lowercase = str.toLowerCase().split("");
-lowercase.forEach(el => {
-  cache[el] ? cache[el]++ : cache[el] = 1;
-})
-let min = Math.min(...Object.values(cache))
-for (let key in cache) {
-  if (cache[key] === min) {
-    return key;
-  }
-}
-}
+// function leastCommonChar(str) {
+// let cache = {};
+// let lowercase = str.toLowerCase().split("");
+// lowercase.forEach(el => {
+//   cache[el] ? cache[el]++ : cache[el] = 1;
+// })
+// let min = Math.min(...Object.values(cache))
+// for (let key in cache) {
+//   if (cache[key] === min) {
+//     return key;
+//   }
+// }
+// }
 
 // Write a function that takes a string as an argument and
 // returns the character that occurs least often in the
@@ -1391,11 +1391,56 @@ for (let key in cache) {
 
 // Examples:
 
-console.log(leastCommonChar("Hello World") === "h");
-console.log(leastCommonChar("Peter Piper picked a peck of pickled peppers") ===
-                            "t");
-console.log(leastCommonChar("Mississippi") === "m");
-console.log(leastCommonChar("Happy birthday!") === ' ');
-console.log(leastCommonChar("aaaaaAAAA") === 'a');
+// console.log(leastCommonChar("Hello World") === "h");
+// console.log(leastCommonChar("Peter Piper picked a peck of pickled peppers") ===
+//                             "t");
+// console.log(leastCommonChar("Mississippi") === "m");
+// console.log(leastCommonChar("Happy birthday!") === ' ');
+// console.log(leastCommonChar("aaaaaAAAA") === 'a');
 
 // The tests above should each log "true".
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function nextBiggerNum(num) {
+let nums = [];
+let numStr = String(num);
+if (numStr.length === 2) {
+  return +numStr.split("").reverse().join("")
+}
+for (let index = numStr.length; index > 0; index--) {
+let left = numStr.slice(0, index)
+let right = numStr.slice(index).split("").reverse().join("")
+nums.push(+(left + right));
+}
+nums.sort((a,b) => a - b);
+let final;
+nums.forEach((el,index) => {
+  if (el === num && nums[index + 1] !== num) {
+    final = nums[index + 1];
+  }
+})
+return final ? final : -1
+}
+
+console.log(nextBiggerNum(9) === -1)
+console.log(nextBiggerNum(12) === 21)
+console.log(nextBiggerNum(513) === 531)
+console.log(nextBiggerNum(2017) === 2071)
+console.log(nextBiggerNum(111) === -1)
+console.log(nextBiggerNum(531) === -1)
+console.log(nextBiggerNum(123456789) === 123456798);
