@@ -1189,24 +1189,65 @@ console.log(segregate('11AB')); //{lettersUpper: 'AB', lettersLower: '', numbers
 // }
 
 
-function sortArray(array) {
-let odds = [];
+// function sortArray(array) {
+// let odds = [];
 
-array.forEach(el => {
-  if (el % 2 === 1 || el % 2 === -1) {
-    odds.push(el);
-  }
-})
-odds.sort((a,b) => a - b);
-// console.log({odds})
-for (let index = 0; index < array.length; index++) {
-  if (array[index] % 2 === 1 || array[index] % 2 === -1) {
-    array[index] = odds.shift();
-  }
-}
-return array;
+// array.forEach(el => {
+//   if (el % 2 === 1 || el % 2 === -1) {
+//     odds.push(el);
+//   }
+// })
+// odds.sort((a,b) => a - b);
+// // console.log({odds})
+// for (let index = 0; index < array.length; index++) {
+//   if (array[index] % 2 === 1 || array[index] % 2 === -1) {
+//     array[index] = odds.shift();
+//   }
+// }
+// return array;
+// }
+
+// console.log(sortArray([5, 3, 2, 8, 1, 4]))//, [1, 3, 2, 8, 5, 4])
+// console.log(sortArray([5, 3, 1, 8, 0]))//, [1, 3, 5, 8, 0])
+// console.log()
+
+
+/*
+P: input: array of numbers        output: array of numbers
+E: given
+D: Array
+Algo:
+- get an array of unique values first to compare your arrray against and keep count of numbers less than current element you are comparing with.
+
+*/
+
+// Given an array of numbers, for each number, find out how
+// many numbers in the array are smaller than it. When
+// counting numbers, only count unique values. That is, if a
+// given number occurs multiple times in the array, it
+// should only be counted once.
+
+// Examples:
+
+
+function smallerNumbersThanCurrent(arr) {
+  let unique = [];
+  arr.forEach(el => {
+    if (!unique.includes(el)) {
+      unique.push(el);
+    }
+  })
+  return arr.map(el => {
+    return unique.filter(el2 => {
+      return el2 < el
+    }).length
+  })
 }
 
-console.log(sortArray([5, 3, 2, 8, 1, 4]))//, [1, 3, 2, 8, 5, 4])
-console.log(sortArray([5, 3, 1, 8, 0]))//, [1, 3, 5, 8, 0])
-console.log()
+console.log(smallerNumbersThanCurrent([8, 1, 2, 2, 3])); // [3, 0, 1, 1, 2]
+console.log(smallerNumbersThanCurrent(
+  [1, 4, 6, 8, 13, 2, 4, 5, 4])); // [0, 2, 4, 5, 6, 1, 2, 3, 2]
+console.log(smallerNumbersThanCurrent([7, 7, 7, 7])); // [0,0,0,0]
+console.log(smallerNumbersThanCurrent([6, 5, 4, 8])); // [2, 1, 0, 3]
+console.log(smallerNumbersThanCurrent([1])); // [0]
+
