@@ -1416,31 +1416,98 @@ C:
 
 
 
-function nextBiggerNum(num) {
-let nums = [];
-let numStr = String(num);
-if (numStr.length === 2) {
-  return +numStr.split("").reverse().join("")
-}
-for (let index = numStr.length; index > 0; index--) {
-let left = numStr.slice(0, index)
-let right = numStr.slice(index).split("").reverse().join("")
-nums.push(+(left + right));
-}
-nums.sort((a,b) => a - b);
-let final;
-nums.forEach((el,index) => {
-  if (el === num && nums[index + 1] !== num) {
-    final = nums[index + 1];
-  }
-})
-return final ? final : -1
+// function nextBiggerNum(num) {
+// let nums = [];
+// let numStr = String(num);
+// if (numStr.length === 2) {
+//   return +numStr.split("").reverse().join("")
+// }
+// for (let index = numStr.length; index > 0; index--) {
+// let left = numStr.slice(0, index)
+// let right = numStr.slice(index).split("").reverse().join("")
+// nums.push(+(left + right));
+// }
+// nums.sort((a,b) => a - b);
+// let final;
+// nums.forEach((el,index) => {
+//   if (el === num && nums[index + 1] !== num) {
+//     final = nums[index + 1];
+//   }
+// })
+// return final ? final : -1
+// }
+
+// console.log(nextBiggerNum(9) === -1)
+// console.log(nextBiggerNum(12) === 21)
+// console.log(nextBiggerNum(513) === 531)
+// console.log(nextBiggerNum(2017) === 2071)
+// console.log(nextBiggerNum(111) === -1)
+// console.log(nextBiggerNum(531) === -1)
+// console.log(nextBiggerNum(123456789) === 123456798);
+
+
+// function scramble(str1, word) {
+// let cache = {};
+// str1.split("").forEach(char => {
+//   cache[char] ? cache[char]++ : cache[char] = 1;
+// }) 
+// word.split("").forEach(el => {
+//   if (cache[el]) {
+//     cache[el]--
+//   } else {
+//     return false;
+//   }
+
+// })
+// return Object.values(cache).every(key => key >= 0) ? true : false
+// }
+
+// console.log(scramble("javaass", "jjss") === false);
+// console.log(scramble("rkqodlw", "world") === true);
+// console.log(scramble("cedewaraaossoqqyt", "codewars") === true);
+// console.log(scramble("katas", "steak") === false);
+// console.log(scramble("scriptjava", "javascript") === true);
+// console.log(scramble("scriptingjava", "javascript") === true);
+
+// function commonChars(arr) {
+// let finalComChars = [];
+// let arr = arr[0].split("");
+// arr.forEach(el => {
+  
+// })
+// }
+
+
+// console.log(commonChars(['a', 'b']));
+// console.log(commonChars(['ab', 'bc']));
+// console.log(commonChars(['bella', 'label', 'roller']));
+// console.log(commonChars(['cool', 'lock', 'cook']));
+// console.log(commonChars(['hello', 'goodbye', 'booya', 'random']));
+// console.log(commonChars(['aabbaaaa', 'ccdddddd', 'eeffee', 'ggrrrrr', 'yyyzzz']));
+
+function substrings(str1, str2) {
+  let subs1 = substrings2(str1);
+  let subs2 = substrings2(str2);
+  let filtered = subs1.filter(el => subs2.includes(el));
+  return filtered.length > 0 ? true : false;
 }
 
-console.log(nextBiggerNum(9) === -1)
-console.log(nextBiggerNum(12) === 21)
-console.log(nextBiggerNum(513) === 531)
-console.log(nextBiggerNum(2017) === 2071)
-console.log(nextBiggerNum(111) === -1)
-console.log(nextBiggerNum(531) === -1)
-console.log(nextBiggerNum(123456789) === 123456798);
+function substrings2(str) {
+let subs = [];
+for (let start = 0; start < str.length; start++) {
+  for (let chars = 2; chars <= str.length - start; chars++) {
+    subs.push(str.slice(start, start + chars));
+  }
+}
+return subs.map(el => el.toLowerCase());
+}
+
+
+console.log(substrings("Something" , "Fun") === false );
+console.log(substrings("Something" , "Home") === true );
+console.log(substrings("Something" , "") === false );
+console.log(substrings("" , "Something") === false );
+console.log(substrings("BANANA" , "banana") === true);
+console.log(substrings("test" , "lllt") === false);
+console.log(substrings("1234567" , "541265") === true );
+
