@@ -1307,38 +1307,62 @@ D:
 A:
 C:
 */
-function toWeirdCase(str) {
-return str.split(" ").map((el,index) => {
-  if (index % 2 !== 0) {
-    return el.split("").map((word,index) => {
-      if ((index + 1) % 4 === 0) {
-        return word.toUpperCase();
-      } else {
-        return word;
-      }
-    }).join("");
-  } else {
-    return el;
+// function toWeirdCase(str) {
+// return str.split(" ").map((el,index) => {
+//   if (index % 2 !== 0) {
+//     return el.split("").map((word,index) => {
+//       if ((index + 1) % 4 === 0) {
+//         return word.toUpperCase();
+//       } else {
+//         return word;
+//       }
+//     }).join("");
+//   } else {
+//     return el;
+//   }
+// }).join(" ");
+// }
+
+// // Write a function named toWeirdCase that accepts a string,
+// // and returns the same sequence of characters with every
+// // 4th character in every second word converted to
+// // uppercase. Other characters should remain the same.
+
+// // Examples:
+
+// console.log(
+//   toWeirdCase('Lorem Ipsum is simply dummy text of the printing world') ===
+//               'Lorem IpsUm is simPly dummy texT of the printing worLd');
+// console.log(
+//   toWeirdCase('It is a long established fact that a reader will be distracted') ===
+//               'It is a lonG established facT that a reader wilL be disTracTed');
+// console.log(toWeirdCase('aaA bB c') === 'aaA bB c');
+// console.log(
+//   toWeirdCase('Miss Mary Poppins word is supercalifragilisticexpialidocious') ===
+//               'Miss MarY Poppins worD is supErcaLifrAgilIstiCexpIaliDociOus');
+
+// // The tests above should print "true".
+
+function closestNumbers(arr) {
+let minDif = Infinity;
+let arr2 = []
+for (let index = 0 ; index < arr.length; index++) {
+  for (let j = 0; j < arr.length; j++) {
+    if (Math.abs(arr[index] - arr[j]) < minDif && index !== j) {
+      minDif = Math.abs(arr[index] - arr[j]);
+      arr2 = [arr[index] , arr[j]]
+    }
   }
-}).join(" ");
+}
+return arr2;
 }
 
-// Write a function named toWeirdCase that accepts a string,
-// and returns the same sequence of characters with every
-// 4th character in every second word converted to
-// uppercase. Other characters should remain the same.
+// Write a function that takes an array of integers and
+// returns the two numbers that are closest together in
+// value.
 
 // Examples:
 
-console.log(
-  toWeirdCase('Lorem Ipsum is simply dummy text of the printing world') ===
-              'Lorem IpsUm is simPly dummy texT of the printing worLd');
-console.log(
-  toWeirdCase('It is a long established fact that a reader will be distracted') ===
-              'It is a lonG established facT that a reader wilL be disTracTed');
-console.log(toWeirdCase('aaA bB c') === 'aaA bB c');
-console.log(
-  toWeirdCase('Miss Mary Poppins word is supercalifragilisticexpialidocious') ===
-              'Miss MarY Poppins worD is supErcaLifrAgilIstiCexpIaliDociOus');
-
-// The tests above should print "true".
+console.log(closestNumbers([5, 25, 15, 11, 20]));     // [15, 11]
+console.log(closestNumbers([19, 25, 32, 4, 27, 16])); // [25, 27]
+console.log(closestNumbers([12, 7, 17]));             // [12, 7]
