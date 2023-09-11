@@ -1252,45 +1252,93 @@ Algo:
 // console.log(smallerNumbersThanCurrent([1])); // [0]
 
 
-function minimumSum(arr) {
-  if (arr.length < 5 ) return null
- let subs = [];
- for (let start = 0; start < arr.length; start++) {
-  for (let chars = 5; chars <= arr.length - start; chars++) {
-    subs.push(arr.slice(start , start + chars));
-  }
- }
- let filtered = subs.filter(array => array.length === 5);
-let mappedSum = filtered.map(subArr => {
-  return subArr.reduce((accum,el) => accum + el, 0)
-})
-return Math.min(...mappedSum)
-}
+// function minimumSum(arr) {
+//   if (arr.length < 5 ) return null
+//  let subs = [];
+//  for (let start = 0; start < arr.length; start++) {
+//   for (let chars = 5; chars <= arr.length - start; chars++) {
+//     subs.push(arr.slice(start , start + chars));
+//   }
+//  }
+//  let filtered = subs.filter(array => array.length === 5);
+// let mappedSum = filtered.map(subArr => {
+//   return subArr.reduce((accum,el) => accum + el, 0)
+// })
+// return Math.min(...mappedSum)
+// }
+
+// /*
+// P:
+//   input: array of numbers
+//   output: single number that is the min sum of 5 consec intergers within the array
+
+// E: given
+// D: nested array, by calling reduce and finding substrings
+// Algo:
+//   - declare an empty array to push substrings into
+//   --filter that array to find all lengths that are === 5
+//   -with our newly filtered array, reduce each array with map and find Math.min on the array.
+//   return smallest value;
+// */
+// // Write a function that takes one argument, an array of
+// // integers. The function should return minimum sum of 5
+// // consecutive numbers in the array. If the array contains
+// // less than 5 elements, the function should return null.
+
+// // Examples:
+
+// console.log(minimumSum([1, 2, 3, 4]) === null);
+// console.log(minimumSum([1, 2, 3, 4, 5, -5]) === 9);
+// console.log(minimumSum([1, 2, 3, 4, 5, 6]) === 15);
+// console.log(minimumSum([55, 2, 6, 5, 1, 2, 9, 3, 5, 100]) === 16);
+// console.log(minimumSum([-1, -5, -3, 0, -1, 2, -4]) === -10);
+
+// // The tests above should each log "true".
+
+
 
 /*
-P:
-  input: array of numbers
-  output: single number that is the min sum of 5 consec intergers within the array
+P: 
+  input:
+  output:
 
-E: given
-D: nested array, by calling reduce and finding substrings
-Algo:
-  - declare an empty array to push substrings into
-  --filter that array to find all lengths that are === 5
-  -with our newly filtered array, reduce each array with map and find Math.min on the array.
-  return smallest value;
+E:
+D:
+A:
+C:
 */
-// Write a function that takes one argument, an array of
-// integers. The function should return minimum sum of 5
-// consecutive numbers in the array. If the array contains
-// less than 5 elements, the function should return null.
+function toWeirdCase(str) {
+return str.split(" ").map((el,index) => {
+  if (index % 2 !== 0) {
+    return el.split("").map((word,index) => {
+      if ((index + 1) % 4 === 0) {
+        return word.toUpperCase();
+      } else {
+        return word;
+      }
+    }).join("");
+  } else {
+    return el;
+  }
+}).join(" ");
+}
+
+// Write a function named toWeirdCase that accepts a string,
+// and returns the same sequence of characters with every
+// 4th character in every second word converted to
+// uppercase. Other characters should remain the same.
 
 // Examples:
 
-console.log(minimumSum([1, 2, 3, 4]) === null);
-console.log(minimumSum([1, 2, 3, 4, 5, -5]) === 9);
-console.log(minimumSum([1, 2, 3, 4, 5, 6]) === 15);
-console.log(minimumSum([55, 2, 6, 5, 1, 2, 9, 3, 5, 100]) === 16);
-console.log(minimumSum([-1, -5, -3, 0, -1, 2, -4]) === -10);
+console.log(
+  toWeirdCase('Lorem Ipsum is simply dummy text of the printing world') ===
+              'Lorem IpsUm is simPly dummy texT of the printing worLd');
+console.log(
+  toWeirdCase('It is a long established fact that a reader will be distracted') ===
+              'It is a lonG established facT that a reader wilL be disTracTed');
+console.log(toWeirdCase('aaA bB c') === 'aaA bB c');
+console.log(
+  toWeirdCase('Miss Mary Poppins word is supercalifragilisticexpialidocious') ===
+              'Miss MarY Poppins worD is supErcaLifrAgilIstiCexpIaliDociOus');
 
-// The tests above should each log "true".
+// The tests above should print "true".
