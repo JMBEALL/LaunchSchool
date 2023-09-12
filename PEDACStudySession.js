@@ -1485,29 +1485,63 @@ C:
 // console.log(commonChars(['hello', 'goodbye', 'booya', 'random']));
 // console.log(commonChars(['aabbaaaa', 'ccdddddd', 'eeffee', 'ggrrrrr', 'yyyzzz']));
 
-function substrings(str1, str2) {
-  let subs1 = substrings2(str1);
-  let subs2 = substrings2(str2);
-  let filtered = subs1.filter(el => subs2.includes(el));
-  return filtered.length > 0 ? true : false;
+// function substrings(str1, str2) {
+//   let subs1 = substrings2(str1);
+//   let subs2 = substrings2(str2);
+//   let filtered = subs1.filter(el => subs2.includes(el));
+//   return filtered.length > 0 ? true : false;
+// }
+
+// function substrings2(str) {
+// let subs = [];
+// for (let start = 0; start < str.length; start++) {
+//   for (let chars = 2; chars <= str.length - start; chars++) {
+//     subs.push(str.slice(start, start + chars));
+//   }
+// }
+// return subs.map(el => el.toLowerCase());
+// }
+
+
+// console.log(substrings("Something" , "Fun") === false );
+// console.log(substrings("Something" , "Home") === true );
+// console.log(substrings("Something" , "") === false );
+// console.log(substrings("" , "Something") === false );
+// console.log(substrings("BANANA" , "banana") === true);
+// console.log(substrings("test" , "lllt") === false);
+// console.log(substrings("1234567" , "541265") === true );
+
+// function commonPrefix(arr) {
+//   let final = "";
+//   for (let index = 0; index <  arr[0].length; index++) {
+//     let char = arr[0][index];
+//     if (arr.every(word => word[index] === char)) {
+//       final += char;
+//     }
+//   }
+//   console.log({final})
+//   return final;
+// }
+
+// console.log(commonPrefix(['flower', 'flow', 'flight']) === 'fl');
+// console.log(commonPrefix(['dog' , 'racecar', "car"]) === "");
+// console.log(commonPrefix(['interspecies', 'interstellar', 'interstate']) === 'inters');
+// console.log(commonPrefix(['throne', 'dungeon']) ===  "");
+// console.log(commonPrefix(['throne' , 'throne']) ===  'throne');
+
+function findEvenIndex(arr) {
+for (let index = 0; index < arr.length; index++) {
+  let left = arr.slice(0 , index).reduce((accum,el) => accum + el, 0);
+  let right = arr.slice(index + 1).reduce((accum,el) => accum + el, 0)
+
+  if (left === right) return index;
+}
+return -1
 }
 
-function substrings2(str) {
-let subs = [];
-for (let start = 0; start < str.length; start++) {
-  for (let chars = 2; chars <= str.length - start; chars++) {
-    subs.push(str.slice(start, start + chars));
-  }
-}
-return subs.map(el => el.toLowerCase());
-}
-
-
-console.log(substrings("Something" , "Fun") === false );
-console.log(substrings("Something" , "Home") === true );
-console.log(substrings("Something" , "") === false );
-console.log(substrings("" , "Something") === false );
-console.log(substrings("BANANA" , "banana") === true);
-console.log(substrings("test" , "lllt") === false);
-console.log(substrings("1234567" , "541265") === true );
+console.log(findEvenIndex([1,2,3,4,3,2,1]) === 3);
+console.log(findEvenIndex([1,100,50,-51,1,1]) === 1);
+console.log(findEvenIndex([1,2,3,4,5,6]) === -1);
+console.log(findEvenIndex([20,10, 30,10,10,15,35]) === 3);
+console.log(findEvenIndex([-1,-2,-3,-4,-3,-2,-1]) === 3);
 
