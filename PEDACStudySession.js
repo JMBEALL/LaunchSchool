@@ -1529,19 +1529,61 @@ C:
 // console.log(commonPrefix(['throne', 'dungeon']) ===  "");
 // console.log(commonPrefix(['throne' , 'throne']) ===  'throne');
 
-function findEvenIndex(arr) {
-for (let index = 0; index < arr.length; index++) {
-  let left = arr.slice(0 , index).reduce((accum,el) => accum + el, 0);
-  let right = arr.slice(index + 1).reduce((accum,el) => accum + el, 0)
+// function findEvenIndex(arr) {
+// for (let index = 0; index < arr.length; index++) {
+//   let left = arr.slice(0 , index).reduce((accum,el) => accum + el, 0);
+//   let right = arr.slice(index + 1).reduce((accum,el) => accum + el, 0)
 
-  if (left === right) return index;
-}
-return -1
-}
+//   if (left === right) return index;
+// }
+// return -1
+// }
 
-console.log(findEvenIndex([1,2,3,4,3,2,1]) === 3);
-console.log(findEvenIndex([1,100,50,-51,1,1]) === 1);
-console.log(findEvenIndex([1,2,3,4,5,6]) === -1);
-console.log(findEvenIndex([20,10, 30,10,10,15,35]) === 3);
-console.log(findEvenIndex([-1,-2,-3,-4,-3,-2,-1]) === 3);
+// console.log(findEvenIndex([1,2,3,4,3,2,1]) === 3);
+// console.log(findEvenIndex([1,100,50,-51,1,1]) === 1);
+// console.log(findEvenIndex([1,2,3,4,5,6]) === -1);
+// console.log(findEvenIndex([20,10, 30,10,10,15,35]) === 3);
+// console.log(findEvenIndex([-1,-2,-3,-4,-3,-2,-1]) === 3);
 
+// function getCount(n) {
+// let subs = substrings(n)
+// // console.log({subs})
+// let count = 0;
+// subs.filter(el => {
+//   if (n % el === 0 && el !== 0) {
+//     count++
+//   }
+// })
+// return count - 1;
+// }
+
+// function substrings(num) {
+//   let arr = []
+//   let str = String(num);
+//   for(let start = 0; start < str.length; start++) {
+//     for (let chars = 1; chars <= str.length - start; chars++) {
+//       arr.push(str.slice(start, start + chars))
+//     }
+//   }
+//   return arr.map(el => +el)
+// }
+
+// console.log(getCount(123))//2
+// console.log(getCount(1230))//5
+// console.log(getCount(1))//0
+// console.log(getCount(1111111111))//25
+
+
+function zipWith(fn,a0,a1) {
+  let final = [];
+  let arrs = [a0, a1]
+  let shortest = arrs.sort((a,b) => a.length - b.length)[0]
+    for (let index = 0; index < shortest.length; index++) {
+      final.push(fn(a0[index], a1[index]));
+    }
+    return final;
+  }
+
+  // console.log(zipWith(plus, [0,1,2,3,4,5], [6,5,4,3,2,1]))
+  // console.log(zipWith(plus, [0,1,2,3,4  ], [6,5,4,3,2,1]))
+  console.log(zipWith( Math.pow, [10,10,10,10], [0,1,2,3] ))
