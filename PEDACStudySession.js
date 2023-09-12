@@ -1574,16 +1574,136 @@ C:
 // console.log(getCount(1111111111))//25
 
 
-function zipWith(fn,a0,a1) {
-  let final = [];
-  let arrs = [a0, a1]
-  let shortest = arrs.sort((a,b) => a.length - b.length)[0]
-    for (let index = 0; index < shortest.length; index++) {
-      final.push(fn(a0[index], a1[index]));
-    }
-    return final;
-  }
+// function zipWith(fn,a0,a1) {
+//   let final = [];
+//   let arrs = [a0, a1]
+//   let shortest = arrs.sort((a,b) => a.length - b.length)[0]
+//     for (let index = 0; index < shortest.length; index++) {
+//       final.push(fn(a0[index], a1[index]));
+//     }
+//     return final;
+//   }
 
-  // console.log(zipWith(plus, [0,1,2,3,4,5], [6,5,4,3,2,1]))
-  // console.log(zipWith(plus, [0,1,2,3,4  ], [6,5,4,3,2,1]))
-  console.log(zipWith( Math.pow, [10,10,10,10], [0,1,2,3] ))
+//   // console.log(zipWith(plus, [0,1,2,3,4,5], [6,5,4,3,2,1]))
+//   // console.log(zipWith(plus, [0,1,2,3,4  ], [6,5,4,3,2,1]))
+//   console.log(zipWith( Math.pow, [10,10,10,10], [0,1,2,3] ))
+
+// function arrange(s) {
+//   if (s.length === 1 || s.length === 2) return s;
+//   if(s.length === 0) return s;
+//   let copy = s.slice()
+// let t = [copy[0], copy[copy.length - 1]];
+// copy.shift();
+// copy.pop();
+// let length = copy.length;
+// while (length > 0) {
+//   copy.reverse();
+//   if (copy.length === 1) {
+//     t.push(...copy.slice(0))
+//   } else {
+//     t.push(copy[0], copy[copy.length - 1]);
+//   }
+//   copy = copy.slice(1, copy.length - 1);
+ 
+//   length = copy.length;
+// }
+// return t;
+// }
+
+// console.log(arrange([2, 4, 3, 4]))//2 4 3 4
+
+// console.log(arrange([4, 3, 2]))//4 2 3
+
+// console.log(arrange([9, 7, -2, 8, 5, -3, 6, 5, 1])) //9 1 5 7 -2 6 -3 8 5
+// function findSequences(n){
+// let subs = substrings(n);
+// let realSubs = [];
+// let final = []
+// for (let index = 0; index < subs.length; index++){
+//   for (let j = index; j < n; j++){
+//     realSubs.push(subs.slice(index , index + j))
+//   }
+// }
+// realSubs.forEach(arr => {
+//   let reduced = arr.reduce((accum,el) => accum + el, 0)
+//   if (reduced === n) {
+//     final.push(arr)
+//   }
+// })
+// let sorted = final.sort((a,b) => a.length - b.length)
+// return sorted ? sorted : [];
+// }
+
+// function substrings(num) {
+//   let arr = []
+// for (let index = 1; index < num; index++) {
+//   arr.push(index);
+// }
+// return arr;
+// }
+
+// console.log(findSequences(3))//1,2
+// console.log(findSequences(15)) // 7 8, 4 5 6, 1 2 3 4 5
+// // console.log(findSequences(100))
+// // console.log(findSequences(1))
+// // console.log(findSequences(20))
+
+// function estSubsets(arr) {
+//   let subs = substrings(arr);
+//   console.log({subs})
+//   }
+
+//   function substrings(array) {
+//     let subs = [];
+//     for (let start = 0; start < array.length; start++) {
+//       for (let chars = 1; chars <= array.length - start; chars++) {
+//         subs.push(array.slice(start, start + chars));
+//       }
+//     }
+//     return subs
+//   }
+
+//   console.log(estSubsets([1, 2, 3, 4]));
+
+
+function solve(s) {
+let subs = substrings(s);
+// console.log(subs)
+let letters = 'abcdefghijklmnopqrstuvwxyz';
+let updatedSubs = subs.filter(str => {
+  return str.split("").every(char => {
+    return char.match(/[^aeiou]/)
+  })
+})
+
+let sum = 0;
+
+updatedSubs.forEach(el => {
+let total = 0
+  el.split("").forEach(char => {
+    let num = letters.indexOf(char) + 1;
+    total += num;
+  })
+  if (total >= sum) {
+    sum = total
+  }
+})
+return sum;
+};
+
+function substrings(word) {
+  let array = [];
+  for (let start = 0; start <word.length; start++) {
+    for (let chars = 1; chars <= word.length - start ; chars++) {
+      array.push(word.slice(start, start + chars))
+    }
+  }
+  return array;
+}
+
+console.log(solve("zodiac")) // 26
+console.log(solve("chruschtschov"))//80
+console.log(solve("khrushchev"))//38
+console.log(solve("strength"))//57
+console.log(solve("catchphrase"))//73
+console.log(solve("twelfthstreet"))//103
