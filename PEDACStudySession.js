@@ -1955,15 +1955,68 @@ C:
 
 
 
-function solve(s) {
-return Math.max(...(s.match(/[aeiou]+/g) || []).map(el => el.length));
+// function solve(s) {
+// return Math.max(...(s.match(/[aeiou]+/g) || []).map(el => el.length));
+// }
+
+// console.log(solve("codewarriors"))//2
+// console.log(solve("suoidea"))//3
+// console.log(solve("ultrarevolutionariees"))//3
+// console.log(solve("strengthlessnesses")) //1
+// console.log(solve("cuboideonavicuare")) //2
+// console.log(solve("chrononhotonthuooaos")) //5
+// console.log(solve("iiihoovaeaaaoougjyaw"))//8
+
+
+
+// function f(s) {
+//   if (sameChar(s)) {
+//     return [s[0], s.length]
+//   }
+//   let sub;
+//   let num = 0;
+//     for (let index = 0; index < s.length; index ++) {
+//       if (s.slice(index + 1).includes(s.slice(0,index + 1))) {
+//         sub =  s.slice(0,index + 1)
+//         num = index
+//       }
+//     }
+
+//     if (sub === undefined) {
+//       sub = s;
+//     }
+//     let regex = new RegExp(sub, "ig")
+//     let final = s.slice(num + 1).match(regex) || [];
+//     return [sub, final.length];
+//   }
+
+//   function sameChar(str) {
+//     return str.split("").filter(el => el === str[0]).length === str.length;
+//   }
+
+
+function f(s) {
+
+  let final;
+for (let index = 0; index < s.length; index++) {
+  let substring = s.slice(0, index + 1);
+  if (repeat(substring,s)) {
+    final = repeat(substring,s);
+    break;
+  }
+}
+return final;
+}
+function repeat(substr, str) {
+  for (let index = 0; index <= str.length; index++) {
+    if (substr.repeat(index) === str) {
+      return [ substr , index]
+    }
+  }
 }
 
-console.log(solve("codewarriors"))//2
-console.log(solve("suoidea"))//3
-console.log(solve("ultrarevolutionariees"))//3
-console.log(solve("strengthlessnesses")) //1
-console.log(solve("cuboideonavicuare")) //2
-console.log(solve("chrononhotonthuooaos")) //5
-console.log(solve("iiihoovaeaaaoougjyaw"))//8
+// console.log(f("ababab"));
+// console.log(f("abcde"));
+console.log(f('aaaaa'))
+
 
