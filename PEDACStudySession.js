@@ -1953,18 +1953,15 @@ C:
 
 // // The tests above should each log "true".
 
-function letterCount(str) {
-let useMe = str.split("").sort();
-let cache = {}
-useMe.forEach(el => {
-  cache[el] ? cache[el]++ : cache[el] = 1;
-})
-return cache;
+
+
+function solution(fullText, searchText) {
+let regex = new RegExp(searchText, "ig") 
+let arr = fullText.match(regex) || []
+return arr.length;
+
 }
 
-// console.log(letterCount("codewars"))
-// console.log(letterCount("activity"))
-// console.log(letterCount("arithmetics"))
-// console.log(letterCount("traveller"))
-// console.log(letterCount("daydreamer"))
-
+console.log(solution('abcdeb','b'))//2
+console.log(solution('abc','b')) //1 
+console.log(solution('abbc','bb')) // 1
