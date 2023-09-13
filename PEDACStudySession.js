@@ -1666,44 +1666,305 @@ C:
 //   console.log(estSubsets([1, 2, 3, 4]));
 
 
-function solve(s) {
-let subs = substrings(s);
-// console.log(subs)
-let letters = 'abcdefghijklmnopqrstuvwxyz';
-let updatedSubs = subs.filter(str => {
-  return str.split("").every(char => {
-    return char.match(/[^aeiou]/)
-  })
+// function solve(s) {
+// let subs = substrings(s);
+// // console.log(subs)
+// let letters = 'abcdefghijklmnopqrstuvwxyz';
+// let updatedSubs = subs.filter(str => {
+//   return str.split("").every(char => {
+//     return char.match(/[^aeiou]/)
+//   })
+// })
+
+// let sum = 0;
+
+// updatedSubs.forEach(el => {
+// let total = 0
+//   el.split("").forEach(char => {
+//     let num = letters.indexOf(char) + 1;
+//     total += num;
+//   })
+//   if (total >= sum) {
+//     sum = total
+//   }
+// })
+// return sum;
+// };
+
+// function substrings(word) {
+//   let array = [];
+//   for (let start = 0; start <word.length; start++) {
+//     for (let chars = 1; chars <= word.length - start ; chars++) {
+//       array.push(word.slice(start, start + chars))
+//     }
+//   }
+//   return array;
+// }
+
+// console.log(solve("zodiac")) // 26
+// console.log(solve("chruschtschov"))//80
+// console.log(solve("khrushchev"))//38
+// console.log(solve("strength"))//57
+// console.log(solve("catchphrase"))//73
+// console.log(solve("twelfthstreet"))//103
+
+
+// function minDistance(n){
+//   let factors = []
+//   let difs = []
+//   for (let index = 0; index <= n; index++) {
+//     if (n % index === 0) {
+//       factors.push(index)
+//     }
+//   }
+// for (let index = 0; index < factors.length; index++) {
+//   for (let j = 0; j < factors.length; j++) {
+//     if (index !== j) {
+//       difs.push(Math.abs(factors[index] - factors[j]))
+//     }
+//   }
+// }
+// return Math.min(...difs)
+//   }
+
+//   console.log(minDistance(13013))
+
+// function zeros(n) {
+// let prod = 1;
+// for (let index = 1; index <= n; index++) {
+//   prod *= index
+// }
+// let finder = String(prod).split("").filter(el => el > 0)
+// console.log({prod})
+// console.log({finder})
+// let index = String(prod).lastIndexOf(finder[finder.length - 1])
+// console.log({index})
+// return String(prod).slice(index + 1).length
+// }
+
+// // console.log(zeros(6))
+// console.log(zeros(12))
+
+// Each character in the string argument should appear in the returned string.
+// The original character should be repeated as many times as its original position in the string argument. (index 0 being position 1, index 1 being position 2...)
+// The repeated sequences of a character should be separated by a hyphen in the returned string.
+// In the repeated sequences of a character included in the returned string, the first instance of the character should be upper-case.  Subsequent instances of the character should be lowercase.
+
+// 
+
+
+
+// Find the length of the longest substring in the given string that is a palindrome.
+
+// As an example, if the input was "I like racecars that go fast",
+// the substring's ("racecar") length would be 7.
+
+// If the length of the input string is 0, the return value must be 0.
+// function longestPalindrome(str) {
+//   if (str.length === 0) return 0;
+//   let subs = substrings(str);
+//   let count = subs.map(el => {
+//     if (isPalin(el)) {
+//       return el.length
+//     } else{
+//       return false;
+//     } 
+//   })
+// return Math.max(...count)
+// }
+
+// function substrings(word) {
+//   let subsArr = [];
+//   for(let start = 0; start < word.length; start++) {
+//     for (let chars = 1; chars <= word.length - start; chars++) {
+//       subsArr.push(word.slice(start, start + chars));
+//     }
+//   }
+//   return subsArr;
+// }
+
+// function isPalin(el) {
+//   return el === el.split("").reverse().join("");
+// }
+// console.log(longestPalindrome("a") == 1);
+// console.log(longestPalindrome("aa") === 2);
+// console.log(longestPalindrome("baa") === 2);
+// console.log(longestPalindrome("aab") === 2);
+// console.log(longestPalindrome("baabcd") === 4);
+// console.log(longestPalindrome("baablkj12345432133d") === 9);
+
+
+// Given an array of numbers, for each number, find out how
+// many numbers in the array are smaller than it. When
+// counting numbers, only count unique values. That is, if a
+// given number occurs multiple times in the array, it
+// should only be counted once.
+// function smallerNumbersThanCurrent(arr) {
+//   let unique = [];
+//   arr.forEach(el => {
+//     if (!unique.includes(el)) {
+//       unique.push(el);
+//     }
+//   })
+//   return arr.map(el => {
+//     return unique.filter(num => {
+//       return el > num;
+//     }).length;
+//   })
+// }
+// // Examples:
+
+// console.log(smallerNumbersThanCurrent([8, 1, 2, 2, 3])); // [3, 0, 1, 1, 2]
+// console.log(smallerNumbersThanCurrent(
+//   [1, 4, 6, 8, 13, 2, 4, 5, 4])); // [0, 2, 4, 5, 6, 1, 2, 3, 2]
+// console.log(smallerNumbersThanCurrent([7, 7, 7, 7])); // [0,0,0,0]
+// console.log(smallerNumbersThanCurrent([6, 5, 4, 8])); // [2, 1, 0, 3]
+// console.log(smallerNumbersThanCurrent([1])); // [0]
+
+// Write a function that takes one argument, an array of
+// integers. The function should return minimum sum of 5
+// consecutive numbers in the array. If the array contains
+// less than 5 elements, the function should return null.
+
+// Examples:
+
+// function minimumSum(arr) {
+//   if (arr.length < 5) return null;
+//   let subs = subArrays(arr);
+//   // console.log({subs});
+//   subs = subs.filter(arr => arr.length === 5);
+//   // console.log({subs});
+//   let final = subs.map(arr => {
+//     return arr.reduce((accum,el) => accum + el , 0);
+//   })
+//   return Math.min(...final);
+// }
+
+// function subArrays(array) {
+//   let subs = [];
+//   for (let start = 0; start < array.length; start++) {
+//     for (let chars = 5; chars <= array.length - start; chars++) {
+//       subs.push(array.slice(start, start + chars));
+//     }
+//   }
+//   return subs;
+// }
+
+// console.log(minimumSum([1, 2, 3, 4]) === null);
+// console.log(minimumSum([1, 2, 3, 4, 5, -5]) === 9);
+// console.log(minimumSum([1, 2, 3, 4, 5, 6]) === 15);
+// console.log(minimumSum([55, 2, 6, 5, 1, 2, 9, 3, 5, 100]) === 16);
+// console.log(minimumSum([-1, -5, -3, 0, -1, 2, -4]) === -10);
+
+// // The tests above should each log "true".
+
+// Write a function named toWeirdCase that accepts a string,
+// and returns the same sequence of characters with every
+// 4th character in every second word converted to
+// uppercase. Other characters should remain the same.
+
+// Examples:
+// function toWeirdCase(str) {
+// let final = str.split(" ").map((word,index) => {
+//   if (index % 2 === 1) {
+//     return word.split("").map((el,index) => {
+//       if ((index + 1) % 4 === 0) {
+//         return el.toUpperCase();
+//       } else {
+//         return el;
+//       }
+//     }).join("")
+//   } else {
+//     return word;
+//   }
+// }).join(" ");
+// return final
+// }
+
+
+
+// console.log(
+//   toWeirdCase('Lorem Ipsum is simply dummy text of the printing world') ===
+//               'Lorem IpsUm is simPly dummy texT of the printing worLd');
+// console.log(
+//   toWeirdCase('It is a long established fact that a reader will be distracted') ===
+//               'It is a lonG established facT that a reader wilL be disTracTed');
+// console.log(toWeirdCase('aaA bB c') === 'aaA bB c');
+// console.log(
+//   toWeirdCase('Miss Mary Poppins word is supercalifragilisticexpialidocious') ===
+//               'Miss MarY Poppins worD is supErcaLifrAgilIstiCexpIaliDociOus');
+
+// // The tests above should print "true".
+
+// Write a function that takes an array of integers and
+// returns the two numbers that are closest together in
+// value.
+
+// Examples:
+// function closestNumbers(arr) {
+// let close;
+// let min = Infinity;
+// for (let index = 0; index < arr.length; index++) {
+//   for (let j = 0; j < arr.length; j++) {
+//     let diff = Math.abs(arr[j] - arr[index]);
+//     if ( diff <= min && index !== j) {
+//       close = [arr[j], arr[index]]
+//       min = Math.abs(arr[j] - arr[index])
+//     }
+//   }
+// }
+// return close
+// }
+
+// console.log(closestNumbers([5, 25, 15, 11, 20]));     // [15, 11]
+// console.log(closestNumbers([19, 25, 32, 4, 27, 16])); // [25, 27]
+// console.log(closestNumbers([12, 7, 17]));             // [12, 7]
+
+// Write a function that takes a string as an argument and
+// returns the character that occurs least often in the
+// given string. If there are multiple characters with the
+// same lowest number of occurrences, then return the one
+// that appears first in the string. When counting
+// characters, consider uppercase and lowercase versions to
+// be the same.
+
+// // Examples:
+// function leastCommonChar(str) {
+// let cache = {};
+// let lowercase = str.toLowerCase();
+// lowercase.split("").forEach(el => {
+//   cache[el] ? cache[el]++ : cache[el] = 1
+// })
+// let min = Math.min(...Object.values(cache));
+// for (let key in cache) {
+//   if (cache[key] === min) {
+//     return key
+//   }
+// }
+
+// }
+
+// console.log(leastCommonChar("Hello World") === "h");
+// console.log(leastCommonChar("Peter Piper picked a peck of pickled peppers") ===
+//                             "t");
+// console.log(leastCommonChar("Mississippi") === "m");
+// console.log(leastCommonChar("Happy birthday!") === ' ');
+// console.log(leastCommonChar("aaaaaAAAA") === 'a');
+
+// // The tests above should each log "true".
+
+function letterCount(str) {
+let useMe = str.split("").sort();
+let cache = {}
+useMe.forEach(el => {
+  cache[el] ? cache[el]++ : cache[el] = 1;
 })
-
-let sum = 0;
-
-updatedSubs.forEach(el => {
-let total = 0
-  el.split("").forEach(char => {
-    let num = letters.indexOf(char) + 1;
-    total += num;
-  })
-  if (total >= sum) {
-    sum = total
-  }
-})
-return sum;
-};
-
-function substrings(word) {
-  let array = [];
-  for (let start = 0; start <word.length; start++) {
-    for (let chars = 1; chars <= word.length - start ; chars++) {
-      array.push(word.slice(start, start + chars))
-    }
-  }
-  return array;
+return cache;
 }
 
-console.log(solve("zodiac")) // 26
-console.log(solve("chruschtschov"))//80
-console.log(solve("khrushchev"))//38
-console.log(solve("strength"))//57
-console.log(solve("catchphrase"))//73
-console.log(solve("twelfthstreet"))//103
+// console.log(letterCount("codewars"))
+// console.log(letterCount("activity"))
+// console.log(letterCount("arithmetics"))
+// console.log(letterCount("traveller"))
+// console.log(letterCount("daydreamer"))
+
