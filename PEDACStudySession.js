@@ -1995,28 +1995,95 @@ C:
 //   }
 
 
-function f(s) {
+// function f(s) {
 
-  let final;
-for (let index = 0; index < s.length; index++) {
-  let substring = s.slice(0, index + 1);
-  if (repeat(substring,s)) {
-    final = repeat(substring,s);
-    break;
-  }
-}
-return final;
-}
-function repeat(substr, str) {
-  for (let index = 0; index <= str.length; index++) {
-    if (substr.repeat(index) === str) {
-      return [ substr , index]
+//   let final;
+// for (let index = 0; index < s.length; index++) {
+//   let substring = s.slice(0, index + 1);
+//   if (repeat(substring,s)) {
+//     final = repeat(substring,s);
+//     break;
+//   }
+// }
+// return final;
+// }
+// function repeat(substr, str) {
+//   for (let index = 0; index <= str.length; index++) {
+//     if (substr.repeat(index) === str) {
+//       return [ substr , index]
+//     }
+//   }
+// }
+
+// // console.log(f("ababab"));
+// // console.log(f("abcde"));
+// console.log(f('aaaaa'))
+
+// function greatestProduct(input) {
+//   let subs = substrings(input)
+//   let prod = 0;
+//     subs = subs.filter(str => str.length === 5);
+//     for (let sub of subs) {
+//       let reducer = sub.split("").reduce((accum,el) => accum * +el, 1);
+//       if (reducer > prod) {
+//         prod = reducer;
+//       }
+//     }
+//     return prod
+//   }
+  
+//   function substrings(str) {
+//     let arr = []
+//     for (let start = 0; start < str.length; start++) {
+//       for (let chars = 5; chars <= str.length - start; chars++) {
+//         arr.push(str.slice(start, start + chars))
+//       }
+//     }
+//   }
+
+// function typist(s){
+//   let elements = s.split("")
+//   let count = 0;
+//   // if (elements[0] === elements[0].toUpperCase()) count++
+//   elements.forEach((char,index) => {
+//     if ((/[a-z]/).test(char) && (/[a-z]/).test(elements[index + 1])) {
+//       count += 1;
+//     } else if ((/[A-Z]/).test(char) && (/[A-Z]/).test(elements[index + 1])) {
+//       count += 1;
+//     } else if (((/[A-Z]/).test(char) && (/[a-z]/).test(elements[index + 1])) || ((/[a-z]/).test(char) && (/[A-Z]/).test(elements[index + 1]))){
+//       count += 2
+//     }
+// })
+//   return count;
+// }
+
+// console.log(typist('a'))//1
+// console.log(typist('aa'))//2
+// console.log(typist('A'))//2
+// console.log(typist('AA'))//3
+// console.log(typist('aA'))//3
+// console.log(typist('Aa'))//4
+// console.log(typist("BeiJingDaXueDongMen"))//31
+// console.log(typist("AAAaaaBBBbbbABAB"))//21
+// console.log(typist("AmericanRAILWAY"))//18
+// console.log(typist("AaAaAa"))//12
+// console.log(typist("DFjfkdaB"))//11
+
+function comp(array1, array2){
+  let mapped = array1.map(el => el * el)
+  console.log({mapped})
+  let final = true;
+  let array2Sorted = array2.sort((a,b) => a - b);
+  let array1Sorted = mapped.sort((a,b) => a - b);
+  for (let index = 0; index < array1.length; index++) {
+    if (array1Sorted[index] !== array2Sorted[index]) {
+      final = false;
     }
   }
-}
-
-// console.log(f("ababab"));
-// console.log(f("abcde"));
-console.log(f('aaaaa'))
+  return final
+  }
 
 
+  let a1 = [121, 144, 19, 161, 19, 144, 19, 11];
+  let a2 = [11*11, 121*121, 144*144, 19*19, 161*161, 19*19, 144*144, 19*19];
+  console.log(comp(a1, a2))
