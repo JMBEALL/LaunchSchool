@@ -2069,21 +2069,54 @@ C:
 // console.log(typist("AaAaAa"))//12
 // console.log(typist("DFjfkdaB"))//11
 
-function comp(array1, array2){
-  let mapped = array1.map(el => el * el)
-  console.log({mapped})
-  let final = true;
-  let array2Sorted = array2.sort((a,b) => a - b);
-  let array1Sorted = mapped.sort((a,b) => a - b);
-  for (let index = 0; index < array1.length; index++) {
-    if (array1Sorted[index] !== array2Sorted[index]) {
-      final = false;
-    }
-  }
-  return final
-  }
+// function comp(array1, array2){
+//   let mapped = array1.map(el => el * el)
+//   console.log({mapped})
+//   let final = true;
+//   let array2Sorted = array2.sort((a,b) => a - b);
+//   let array1Sorted = mapped.sort((a,b) => a - b);
+//   for (let index = 0; index < array1.length; index++) {
+//     if (array1Sorted[index] !== array2Sorted[index]) {
+//       final = false;
+//     }
+//   }
+//   return final
+//   }
 
 
-  let a1 = [121, 144, 19, 161, 19, 144, 19, 11];
-  let a2 = [11*11, 121*121, 144*144, 19*19, 161*161, 19*19, 144*144, 19*19];
-  console.log(comp(a1, a2))
+//   let a1 = [121, 144, 19, 161, 19, 144, 19, 11];
+//   let a2 = [11*11, 121*121, 144*144, 19*19, 161*161, 19*19, 144*144, 19*19];
+//   console.log(comp(a1, a2))
+
+// function typist(str) {
+// let count = 0;
+// if (str[0] === str[0].toUpperCase()) count++;
+// for (let index = 0; index < str.length; index++) {
+//   if ((/[a-z]/.test(str[index])) && (/[A-Z]/.test(str[index])) || (/[A-Z]/.test(str[index])) && (/[a-z]/.test(str[index]))) {
+//     count += 2;
+//   } else {
+//     count++
+//   }
+// }
+// return count;
+// }
+
+// console.log(typist('a'))//1
+// console.log(typist('aa'))//2
+// console.log(typist('A'))//2
+// // console.log(typist('AA'))//3
+// console.log(typist('aA'))//3
+// console.log(typist('Aa'))//4
+// console.log(typist("BeiJingDaXueDongMen"))//31
+// // console.log(typist("AAAaaaBBBbbbABAB"))//21
+// // // console.log(typist("AmericanRAILWAY"))//18
+// console.log(typist("AaAaAa"))//12
+// console.log(typist("DFjfkdaB"))//11
+
+function sum(num) {
+return String(num).split("").reduce((accum,el) => accum + +el, 0);
+}
+
+console.log(sum(23));           // 5
+console.log(sum(496));          // 19
+console.log(sum(123456789));    // 45
