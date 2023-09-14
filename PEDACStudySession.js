@@ -2113,10 +2113,15 @@ C:
 // console.log(typist("AaAaAa"))//12
 // console.log(typist("DFjfkdaB"))//11
 
-function sum(num) {
-return String(num).split("").reduce((accum,el) => accum + +el, 0);
+function multiplyAllPairs(arr1,arr2) {
+  let final = [];
+  arr1.forEach(num => {
+    arr2.forEach(el => {
+      final.push(el * num);
+    })
+  })
+  return final.sort((a,b) => a - b)
 }
 
-console.log(sum(23));           // 5
-console.log(sum(496));          // 19
-console.log(sum(123456789));    // 45
+console.log(multiplyAllPairs([2, 4], [4, 3, 1, 2]));    // [2, 4, 4, 6, 8, 8, 12, 16])
+
