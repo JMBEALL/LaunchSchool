@@ -2113,15 +2113,170 @@ C:
 // console.log(typist("AaAaAa"))//12
 // console.log(typist("DFjfkdaB"))//11
 
-function multiplyAllPairs(arr1,arr2) {
-  let final = [];
-  arr1.forEach(num => {
-    arr2.forEach(el => {
-      final.push(el * num);
-    })
-  })
-  return final.sort((a,b) => a - b)
+// function multiplyAllPairs(arr1,arr2) {
+//   let final = [];
+//   arr1.forEach(num => {
+//     arr2.forEach(el => {
+//       final.push(el * num);
+//     })
+//   })
+//   return final.sort((a,b) => a - b)
+// }
+
+// console.log(multiplyAllPairs([2, 4], [4, 3, 1, 2]));    // [2, 4, 4, 6, 8, 8, 12, 16])
+
+// function leadingSubstrings(str) {
+//   let arr = [];
+//   for (let index = 0; index < str.length; index++) {
+//     arr.push(str.slice(0, index + 1))
+//   }
+//   return arr;
+// }
+
+// console.log(leadingSubstrings('abc'));      // ["a", "ab", "abc"]
+// console.log(leadingSubstrings('a'));        // ["a"]
+// console.log(leadingSubstrings('xyzzy'));    // ["x", "xy", "xyz", "xyzz", "xyzzy"]
+
+// function palindromes(str) {
+//   let subs = substrings(str);
+//   return subs.filter(word => word === word.split("").reverse().join("") && word.length > 1)
+// }
+
+// function substrings(str) {
+//   let arr = [];
+//   for (let index = 0; index < str.length; index++) {
+//     for (let chars = 1; chars <= str.length - index; chars++) {
+//       arr.push(str.slice(index, chars + index))
+//     }
+//   }
+//   return arr;
+// }
+
+
+
+// console.log(palindromes('abcd'));       // []
+// console.log(palindromes('madam'));      // [ "madam", "ada" ]
+
+// console.log(palindromes('hello-madam-did-madam-goodbye'));
+// // returns
+// // [ "ll", "-madam-", "-madam-did-madam-", "madam", "madam-did-madam", "ada",
+// //   "adam-did-mada", "dam-did-mad", "am-did-ma", "m-did-m", "-did-", "did",
+// //   "-madam-", "madam", "ada", "oo" ]
+
+// console.log(palindromes('knitting cassettes'));
+// // returns
+// // [ "nittin", "itti", "tt", "ss", "settes", "ette", "tt" ]
+
+
+// function buyFruit(arr) {
+// let final = [];
+//   arr.forEach(subArr => {
+//     for (let index = 1; index <= subArr[1]; index ++) {
+//       final.push(subArr[0]);
+//     }
+//   })
+//   return final;
+// }
+
+// console.log(buyFruit([['apple', 3], ['orange', 1], ['banana', 2]]));
+// // returns ["apple", "apple", "apple", "orange", "banana", "banana"]
+
+// function removeVowels(arr) {
+//   return arr.map(word => (word.match(/[^aeiou]/ig) || []).join(""));
+// }
+
+// console.log(removeVowels(['abcdefghijklmnopqrstuvwxyz']));         // ["bcdfghjklmnpqrstvwxyz"]
+// console.log(removeVowels(['green', 'YELLOW', 'black', 'white']));  // ["grn", "YLLW", "blck", "wht"]
+// console.log(removeVowels(['ABC', 'AEIOU', 'XYZ']));                // ["BC", "", "XYZ"]
+
+// function letterCaseCount(str) {
+// return {'lowercase' : (str.match(/[a-z]/g) || []).length,
+//          'uppercase' : (str.match(/[A-Z]/g) || []).length,
+//          'neither' : (str.match(/[^A-Z]/ig) || []).length}
+
+// }
+
+// console.log(letterCaseCount('abCdef 123'));  // { lowercase: 5, uppercase: 1, neither: 4 }
+// console.log(letterCaseCount('AbCd +Ef'));    // { lowercase: 3, uppercase: 3, neither: 2 }
+// console.log(letterCaseCount('123'));         // { lowercase: 0, uppercase: 0, neither: 3 }
+// console.log(letterCaseCount(''));            // { lowercase: 0, uppercase: 0, neither: 0 }
+
+
+// function wordCap(str) {
+//   return str.split(" ").map(word => word[0].toUpperCase() + word.slice(1).toLowerCase()).join(" ")
+// }
+// console.log(wordCap('four score and seven'));       // "Four Score And Seven"
+// console.log(wordCap('the javaScript language'));    // "The Javascript Language"
+// console.log(wordCap('this is a "quoted" word'));    // 'This Is A "quoted" Word'
+
+// function swapCase(str) {
+// return str.split("").map(el => {
+//   if ((/[a-z]/).test(el)) {
+//     return el.toUpperCase()
+//   } else if ((/[A-Z]/).test(el)) {
+//     return el.toLowerCase();
+//   } else {
+//     return el;
+//   }
+// }).join("")
+// }
+
+// console.log(swapCase('CamelCase'));              // "cAMELcASE"
+// console.log(swapCase('Tonight on XYZ-TV'));      // "tONIGHT ON xyz-tv"
+
+// function wordLengths(str) {
+// if (str === "" || str === undefined) return [];
+// return str.split(" ").map(word => `${word} ${word.length}`)
+// }
+
+// console.log(wordLengths('cow sheep chicken'));
+// // ["cow 3", "sheep 5", "chicken 7"]
+
+// console.log(wordLengths('baseball hot dogs and apple pie'));
+// // ["baseball 8", "hot 3", "dogs 4", "and 3", "apple 5", "pie 3"]
+
+// console.log(wordLengths("It ain't easy, is it?"));
+// // ["It 2", "ain't 5", "easy, 5", "is 2", "it? 3"]
+
+// console.log(wordLengths('Supercalifragilisticexpialidocious'));
+// // ["Supercalifragilisticexpialidocious 34"]
+
+// console.log(wordLengths(''));      // []
+// console.log(wordLengths());        // []
+
+// function rotateRightmostDigits(num, count) {
+// let str = String(num)
+// let left = str.slice(0, str.length - count)
+// let right = str.slice(str.length - count).split("").concat(str.slice(str.length - count)[0]);
+// right.shift();
+// // console.log({left})
+// return +(left + right.join(""))
+
+
+// }
+
+// console.log(rotateRightmostDigits(735291, 1));      // 735291
+// console.log(rotateRightmostDigits(735291, 2));      // 735219
+// console.log(rotateRightmostDigits(735291, 3));      // 735912
+// console.log(rotateRightmostDigits(735291, 4));      // 732915
+// console.log(rotateRightmostDigits(735291, 5));      // 752913
+// console.log(rotateRightmostDigits(735291, 6));      // 352917
+
+function maxRotation(num) {
+let str = String(num);
+for (let index = 0; index < str.length; index++) {
+  str;
+  let slicerL = str.slice(0, index);
+  let slicerR = str.slice(index).split("");
+  slicerR.push(slicerR[0])
+  slicerR.shift();
+str = slicerL + slicerR.join("")
+}
+return +str;
 }
 
-console.log(multiplyAllPairs([2, 4], [4, 3, 1, 2]));    // [2, 4, 4, 6, 8, 8, 12, 16])
-
+// console.log(maxRotation(735291));          // 321579
+// console.log(maxRotation(3));               // 3
+// console.log(maxRotation(35));              // 53
+// console.log(maxRotation(105));             // 15 -- the leading zero gets dropped
+// console.log(maxRotation(8703529146));      // 7321609845
