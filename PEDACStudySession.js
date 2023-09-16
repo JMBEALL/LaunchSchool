@@ -2388,15 +2388,30 @@ C:
 // // console.log(onlyOnce(997));
 
 
-function initials(n){
+// function initials(n){
 
-  return n.split(" ").map((word, index, arr) => {
-  if (word === arr[arr.length - 1]) {
-    return word[0].toUpperCase() + word.slice(1).toLowerCase();
-  } else {
-    return word[0].toUpperCase()
+//   return n.split(" ").map((word, index, arr) => {
+//   if (word === arr[arr.length - 1]) {
+//     return word[0].toUpperCase() + word.slice(1).toLowerCase();
+//   } else {
+//     return word[0].toUpperCase()
+//   }
+//   }).join(".")
+//   }
+
+//   console.log(initials("Barack hussain obama"))
+
+function charConcat(str){
+  let arr = str.split("")
+  let final = ""
+  if (str.length % 2 === 1) {
+      arr.splice(Math.floor(str.length / 2),1).join("");
   }
-  }).join(".")
+  for (let index = 1; index < (arr.length / 2) + 1; index++) {
+    final += `${arr[index - 1]}${arr[arr.length - index]}${index}`
+  }
+  return final
   }
 
-  console.log(initials("Barack hussain obama"))
+  console.log(charConcat("abc!def"));
+  console.log(charConcat('abcdef'));
