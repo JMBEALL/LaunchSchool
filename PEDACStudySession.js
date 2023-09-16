@@ -2417,22 +2417,34 @@ C:
 //   console.log(charConcat("abc!def"));
 //   console.log(charConcat('abcdef'));
 
-function commonPrefix(arr) {
-  let final = ""
-  let word = arr.sort((a,b) => b.length - a.length).shift();
-  // console.log({word})
-  // console.log({arr})
-  word.split("").forEach((char, index) => {
-    let el = word[index];
-    if (arr.every(el2 => el2[index] === el)) {
-      final += char;
-    }
-  })
+function longestConsec(arr, num) {
+let subs = (substrings(arr, num) || []).filter(arr => arr.length === num)
+let max = 0;
+let final = []
+subs.forEach(sub => {
+  let reducer = sub.reduce((accum,el) => accum + el.length , 0);
+  if (reducer > max) {
+    max = reducer;
+    final = sub
+  }
+})
+return final.join("");
+}
+
+function substrings(arr, num) {
+  let final = []
+  for (let start = 0; start < arr.length; start++ ) {
+    final.push(arr.slice(start, start + num))
+  }
   return final;
 }
 
-console.log(commonPrefix(["flower", "flow", "flight"]) === "fl"); // true
-console.log(commonPrefix(["dog", "racecar", "car"]) === ""); // true
-console.log(commonPrefix(["interspecies", "interstellar", "interstate"]) === "inters"); // true
-console.log(commonPrefix(["throne", "dungeon"]) === ""); // true
-console.log(commonPrefix(["throne", "throne"]) === "throne"); // true
+console.log(longestConsec(["zone", "abigail", "theta", "form", "libe", "zas"], 2) === "abigailtheta"); // true
+console.log(longestConsec(["ejjjjmmtthh", "zxxuueeg", "aanlljrrrxx", "dqqqaaabbb", "oocccffuucccjjjkkkjyyyeehh"], 1) === "oocccffuucccjjjkkkjyyyeehh"); // true
+console.log(longestConsec([], 3) === ""); // true
+console.log(longestConsec(["itvayloxrp","wkppqsztdkmvcuwvereiupccauycnjutlv","vweqilsfytihvrzlaodfixoyxvyuyvgpck"], 2) === "wkppqsztdkmvcuwvereiupccauycnjutlvvweqilsfytihvrzlaodfixoyxvyuyvgpck"); // true
+console.log(longestConsec(["wlwsasphmxx","owiaxujylentrklctozmymu","wpgozvxxiu"], 2) === "wlwsasphmxxowiaxujylentrklctozmymu"); // true
+console.log(longestConsec(["zone", "abigail", "theta", "form", "libe", "zas"], -2) === ""); // true
+console.log(longestConsec(["it","wkppv","ixoyx", "3452", "zzzzzzzzzzzz"], 3) === "ixoyx3452zzzzzzzzzzzz"); // true
+console.log(longestConsec(["it","wkppv","ixoyx", "3452", "zzzzzzzzzzzz"], 15) === ""); // true
+console.log(longestConsec(["it","wkppv","ixoyx", "3452", "zzzzzzzzzzzz"], 0) === ""); // true
