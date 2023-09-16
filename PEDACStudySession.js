@@ -1,3 +1,4 @@
+const e = require('cors');
 const readline = require('readline-sync');
 
 // Starting shortly...
@@ -2401,17 +2402,37 @@ C:
 
 //   console.log(initials("Barack hussain obama"))
 
-function charConcat(str){
-  let arr = str.split("")
-  let final = ""
-  if (str.length % 2 === 1) {
-      arr.splice(Math.floor(str.length / 2),1).join("");
-  }
-  for (let index = 1; index < (arr.length / 2) + 1; index++) {
-    final += `${arr[index - 1]}${arr[arr.length - index]}${index}`
-  }
-  return final
-  }
+// function charConcat(str){
+//   let arr = str.split("")
+//   let final = ""
+//   if (str.length % 2 === 1) {
+//       arr.splice(Math.floor(str.length / 2),1).join("");
+//   }
+//   for (let index = 1; index < (arr.length / 2) + 1; index++) {
+//     final += `${arr[index - 1]}${arr[arr.length - index]}${index}`
+//   }
+//   return final
+//   }
 
-  console.log(charConcat("abc!def"));
-  console.log(charConcat('abcdef'));
+//   console.log(charConcat("abc!def"));
+//   console.log(charConcat('abcdef'));
+
+function commonPrefix(arr) {
+  let final = ""
+  let word = arr.sort((a,b) => b.length - a.length).shift();
+  // console.log({word})
+  // console.log({arr})
+  word.split("").forEach((char, index) => {
+    let el = word[index];
+    if (arr.every(el2 => el2[index] === el)) {
+      final += char;
+    }
+  })
+  return final;
+}
+
+console.log(commonPrefix(["flower", "flow", "flight"]) === "fl"); // true
+console.log(commonPrefix(["dog", "racecar", "car"]) === ""); // true
+console.log(commonPrefix(["interspecies", "interstellar", "interstate"]) === "inters"); // true
+console.log(commonPrefix(["throne", "dungeon"]) === ""); // true
+console.log(commonPrefix(["throne", "throne"]) === "throne"); // true
