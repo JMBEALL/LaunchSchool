@@ -2417,34 +2417,63 @@ C:
 //   console.log(charConcat("abc!def"));
 //   console.log(charConcat('abcdef'));
 
-function longestConsec(arr, num) {
-let subs = (substrings(arr, num) || []).filter(arr => arr.length === num)
-let max = 0;
-let final = []
-subs.forEach(sub => {
-  let reducer = sub.reduce((accum,el) => accum + el.length , 0);
-  if (reducer > max) {
-    max = reducer;
-    final = sub
-  }
+// function longestConsec(arr, num) {
+// let subs = (substrings(arr, num) || []).filter(arr => arr.length === num)
+// let max = 0;
+// let final = []
+// subs.forEach(sub => {
+//   let reducer = sub.reduce((accum,el) => accum + el.length , 0);
+//   if (reducer > max) {
+//     max = reducer;
+//     final = sub
+//   }
+// })
+// return final.join("");
+// }
+
+// function substrings(arr, num) {
+//   let final = []
+//   for (let start = 0; start < arr.length; start++ ) {
+//     final.push(arr.slice(start, start + num))
+//   }
+//   return final;
+// }
+
+// console.log(longestConsec(["zone", "abigail", "theta", "form", "libe", "zas"], 2) === "abigailtheta"); // true
+// console.log(longestConsec(["ejjjjmmtthh", "zxxuueeg", "aanlljrrrxx", "dqqqaaabbb", "oocccffuucccjjjkkkjyyyeehh"], 1) === "oocccffuucccjjjkkkjyyyeehh"); // true
+// console.log(longestConsec([], 3) === ""); // true
+// console.log(longestConsec(["itvayloxrp","wkppqsztdkmvcuwvereiupccauycnjutlv","vweqilsfytihvrzlaodfixoyxvyuyvgpck"], 2) === "wkppqsztdkmvcuwvereiupccauycnjutlvvweqilsfytihvrzlaodfixoyxvyuyvgpck"); // true
+// console.log(longestConsec(["wlwsasphmxx","owiaxujylentrklctozmymu","wpgozvxxiu"], 2) === "wlwsasphmxxowiaxujylentrklctozmymu"); // true
+// console.log(longestConsec(["zone", "abigail", "theta", "form", "libe", "zas"], -2) === ""); // true
+// console.log(longestConsec(["it","wkppv","ixoyx", "3452", "zzzzzzzzzzzz"], 3) === "ixoyx3452zzzzzzzzzzzz"); // true
+// console.log(longestConsec(["it","wkppv","ixoyx", "3452", "zzzzzzzzzzzz"], 15) === ""); // true
+// console.log(longestConsec(["it","wkppv","ixoyx", "3452", "zzzzzzzzzzzz"], 0) === ""); // true
+
+// Given an array of numbers, for each number, find out how
+// many numbers in the array are smaller than it. When
+// counting numbers, only count unique values. That is, if a
+// given number occurs multiple times in the array, it
+// should only be counted once.
+
+// Examples:
+
+function smallerNumbersThanCurrent(arr) {
+  let unique = [];
+  arr.forEach(el => {
+    if (!unique.includes(el)) {
+      unique.push(el);
+    }
+  })
+return arr.map(el => {
+  return unique.filter(el2=> {
+    return el > el2;
+  }).length;
 })
-return final.join("");
 }
 
-function substrings(arr, num) {
-  let final = []
-  for (let start = 0; start < arr.length; start++ ) {
-    final.push(arr.slice(start, start + num))
-  }
-  return final;
-}
-
-console.log(longestConsec(["zone", "abigail", "theta", "form", "libe", "zas"], 2) === "abigailtheta"); // true
-console.log(longestConsec(["ejjjjmmtthh", "zxxuueeg", "aanlljrrrxx", "dqqqaaabbb", "oocccffuucccjjjkkkjyyyeehh"], 1) === "oocccffuucccjjjkkkjyyyeehh"); // true
-console.log(longestConsec([], 3) === ""); // true
-console.log(longestConsec(["itvayloxrp","wkppqsztdkmvcuwvereiupccauycnjutlv","vweqilsfytihvrzlaodfixoyxvyuyvgpck"], 2) === "wkppqsztdkmvcuwvereiupccauycnjutlvvweqilsfytihvrzlaodfixoyxvyuyvgpck"); // true
-console.log(longestConsec(["wlwsasphmxx","owiaxujylentrklctozmymu","wpgozvxxiu"], 2) === "wlwsasphmxxowiaxujylentrklctozmymu"); // true
-console.log(longestConsec(["zone", "abigail", "theta", "form", "libe", "zas"], -2) === ""); // true
-console.log(longestConsec(["it","wkppv","ixoyx", "3452", "zzzzzzzzzzzz"], 3) === "ixoyx3452zzzzzzzzzzzz"); // true
-console.log(longestConsec(["it","wkppv","ixoyx", "3452", "zzzzzzzzzzzz"], 15) === ""); // true
-console.log(longestConsec(["it","wkppv","ixoyx", "3452", "zzzzzzzzzzzz"], 0) === ""); // true
+console.log(smallerNumbersThanCurrent([8, 1, 2, 2, 3])); // [3, 0, 1, 1, 2]
+console.log(smallerNumbersThanCurrent(
+  [1, 4, 6, 8, 13, 2, 4, 5, 4])); // [0, 2, 4, 5, 6, 1, 2, 3, 2]
+console.log(smallerNumbersThanCurrent([7, 7, 7, 7])); // [0,0,0,0]
+console.log(smallerNumbersThanCurrent([6, 5, 4, 8])); // [2, 1, 0, 3]
+console.log(smallerNumbersThanCurrent([1])); // [0]
