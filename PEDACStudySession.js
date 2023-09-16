@@ -2262,21 +2262,141 @@ C:
 // console.log(rotateRightmostDigits(735291, 5));      // 752913
 // console.log(rotateRightmostDigits(735291, 6));      // 352917
 
-function maxRotation(num) {
-let str = String(num);
-for (let index = 0; index < str.length; index++) {
-  str;
-  let slicerL = str.slice(0, index);
-  let slicerR = str.slice(index).split("");
-  slicerR.push(slicerR[0])
-  slicerR.shift();
-str = slicerL + slicerR.join("")
-}
-return +str;
-}
+// function maxRotation(num) {
+// let str = String(num);
+// for (let index = 0; index < str.length; index++) {
+//   str;
+//   let slicerL = str.slice(0, index);
+//   let slicerR = str.slice(index).split("");
+//   slicerR.push(slicerR[0])
+//   slicerR.shift();
+// str = slicerL + slicerR.join("")
+// }
+// return +str;
+// }
 
-// console.log(maxRotation(735291));          // 321579
-// console.log(maxRotation(3));               // 3
-// console.log(maxRotation(35));              // 53
-// console.log(maxRotation(105));             // 15 -- the leading zero gets dropped
-// console.log(maxRotation(8703529146));      // 7321609845
+// // console.log(maxRotation(735291));          // 321579
+// // console.log(maxRotation(3));               // 3
+// // console.log(maxRotation(35));              // 53
+// // console.log(maxRotation(105));             // 15 -- the leading zero gets dropped
+// // console.log(maxRotation(8703529146));      // 7321609845
+
+
+// function wordToDigit(str) {
+//   let digits = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+// let arr = str.split(" ");
+// return arr.map(word => {
+//   let el = word.match(/[a-z]/g).join("");
+//   if (digits.includes(el)) {
+//     return digits.indexOf(el);
+//   } else {
+//     return word
+//   }
+// }).join(" ");
+// }
+
+
+// function findFibonacciIndexByLength(num) {
+//   let nums = [1,1];
+//   let length = +String(num).slice(0, String(num).length)
+//   // console.log(length)
+//   for (let index = 2; index <= 10000n; index++) {
+//     nums.push(nums[index - 1] + nums[index - 2])
+//   }
+// let filtered = nums.map((el,index) => {
+//   if ( String(el).length === length) {
+//   return index 
+//   } else {
+//   return ""
+//   }
+// }).filter(el => el)
+// return (filtered[0] + 1) + 'n'
+// }
+
+// console.log(findFibonacciIndexByLength(2n) === 7n);    // 1 1 2 3 5 8 13
+// console.log(findFibonacciIndexByLength(3n))// === 12n;   // 1 1 2 3 5 8 13 21 34 55 89 144
+// console.log(findFibonacciIndexByLength(10n))//) === 45n;
+// console.log(findFibonacciIndexByLength(16n))// === 74n;
+// console.log(findFibonacciIndexByLength(100n))// === 476n;
+// findFibonacciIndexByLength(1000n) === 4782n;
+// findFibonacciIndexByLength(10000n) === 47847n;
+
+// // The last example may take a minute or so to run.
+
+// function fibonacci(num) {
+//   if (num === 1 || num === 2) return 1;
+//   return fibonacci(num - 1) + fibonacci(num - 2)
+// }
+
+// console.log(fibonacci(1));       // 1
+// console.log(fibonacci(2));       // 1
+// console.log(fibonacci(3));       // 2
+// console.log(fibonacci(4));       // 3
+// console.log(fibonacci(5));       // 5
+// console.log(fibonacci(12));      // 144
+// console.log(fibonacci(20));      // 6765
+
+// function sumSquareDifference(num) {
+// let arr = []
+// for (let index = 1; index <= num; index++) {
+//   arr.push(index);
+// }
+// return arr.reduce((accum,el) => accum + el, 0)**2 - arr.reduce((accum,el) => accum + el ** 2, 0)
+// }
+
+// // console.log(sumSquareDifference(3));      // 22 --> (1 + 2 + 3)**2 - (1**2 + 2**2 + 3**2)
+// // console.log(sumSquareDifference(10));     // 2640
+// // console.log(sumSquareDifference(1));      // 0
+// // console.log(sumSquareDifference(100));    // 25164150
+
+// function featured(num) {
+// let final = 0;
+// for (let index = num; index <= Infinity; index++) {
+//   if (index % 2 === 1 && index % 7 === 0 && onlyOnce(index) && index !== num) {
+//     final = index;
+//     break;
+//   }
+// }
+// return final;
+// }
+
+// function onlyOnce(num) {
+//   let str = String(num).split("");
+//   let final = true;
+//   let arr = [];
+//   str.forEach((el, index) => {
+//   str.forEach((els,index2) => {
+//     if (el === els && index !== index2 ) {
+//       final =  false
+//     }
+//   })
+//   })
+//   return final;
+// }
+
+// console.log(featured(12));           // 21
+// console.log(featured(20));           // 21
+// console.log(featured(21));           // 35
+// console.log(featured(997));          // 1029
+// console.log(featured(1029));         // 1043
+// console.log(featured(999999));       // 1023547
+// console.log(featured(999999987));    // 1023456987
+// console.log(featured(9876543186));   // 9876543201
+// console.log(featured(9876543200));   // 9876543201
+// // console.log(featured(9876543201));   // "There is no possible number that fulfills those requirements."
+
+// // console.log(onlyOnce(997));
+
+
+function initials(n){
+
+  return n.split(" ").map((word, index, arr) => {
+  if (word === arr[arr.length - 1]) {
+    return word[0].toUpperCase() + word.slice(1).toLowerCase();
+  } else {
+    return word[0].toUpperCase()
+  }
+  }).join(".")
+  }
+
+  console.log(initials("Barack hussain obama"))
