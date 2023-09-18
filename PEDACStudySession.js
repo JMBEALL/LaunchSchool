@@ -2539,19 +2539,53 @@ C:
 // console.log(closestNumbers([19, 25, 32, 4, 27, 16])); // [25, 27]
 // console.log(closestNumbers([12, 7, 17]));             // [12, 7]?**
 
-function createCar(make, fuelLevel, engineOn) {
-return {
-  make,
- fuelLevel,
-  engineOn
+// function createCar(make, fuelLevel, engineOn) {
+// return {
+//   make,
+//  fuelLevel,
+//   engineOn
+// }
+// }
+
+// let raceCar1 = createCar('BMW', 0.5, false);
+// console.log(raceCar1)
+
+// let raceCar2 = createCar('Ferrari', 0.7, true);
+// console.log(raceCar2)
+
+// let raceCar3 = createCar("Jaguar", 0.4, false);
+// console.log(raceCar3);
+
+function createBook(title, author , read = false) {
+  return {
+    title,
+    author,
+    read,
+
+    readBook() {
+      this.read = true;
+    },
+
+    getDescription() {
+      let final = `${this.title} was written by ${this.author}. `;
+      if (this.read === false) {
+        final += "I haven't read it!"
+      } else {
+        final += "I have read it."
+      }
+      console.log(final);
+    }
+  }
 }
-}
 
-let raceCar1 = createCar('BMW', 0.5, false);
-console.log(raceCar1)
+let book1 = createBook('Mythos', 'Stephen Fry');
+console.log(book1);
+console.log(book1.getDescription());
 
-let raceCar2 = createCar('Ferrari', 0.7, true);
-console.log(raceCar2)
+let book2 = createBook("Me Talk Pretty One Day", "David Sedaris");
+console.log(book2)
+console.log(book2.getDescription());
 
-let raceCar3 = createCar("Jaguar", 0.4, false);
-console.log(raceCar3);
+let book3 = createBook("Aunts aren't Gentleman", "PG Wodehouse");
+console.log(book3);
+console.log(book3.getDescription());
