@@ -2457,23 +2457,101 @@ C:
 
 // Examples:
 
-function smallerNumbersThanCurrent(arr) {
-  let unique = [];
-  arr.forEach(el => {
-    if (!unique.includes(el)) {
-      unique.push(el);
-    }
-  })
-return arr.map(el => {
-  return unique.filter(el2=> {
-    return el > el2;
-  }).length;
-})
+// function smallerNumbersThanCurrent(arr) {
+//   let unique = [];
+//   arr.forEach(el => {
+//     if (!unique.includes(el)) {
+//       unique.push(el);
+//     }
+//   })
+// return arr.map(el => {
+//   return unique.filter(el2=> {
+//     return el > el2;
+//   }).length;
+// })
+// }
+
+// console.log(smallerNumbersThanCurrent([8, 1, 2, 2, 3])); // [3, 0, 1, 1, 2]
+// console.log(smallerNumbersThanCurrent(
+//   [1, 4, 6, 8, 13, 2, 4, 5, 4])); // [0, 2, 4, 5, 6, 1, 2, 3, 2]
+// console.log(smallerNumbersThanCurrent([7, 7, 7, 7])); // [0,0,0,0]
+// console.log(smallerNumbersThanCurrent([6, 5, 4, 8])); // [2, 1, 0, 3]
+// console.log(smallerNumbersThanCurrent([1])); // [0]
+
+// Write a function that takes one argument, an array of
+// integers. The function should return minimum sum of 5
+// consecutive numbers in the array. If the array contains
+// less than 5 elements, the function should return null.
+
+// Examples:
+
+
+// function minimumSum(arr) {
+// if (arr.length < 5) return null;
+// let subs = substrings(arr).filter(sub => sub.length === 5)
+// return Math.min(...subs.map(arr2 => {
+//   return arr2.reduce((accum, el) => accum + el)
+// }))
+
+// }
+
+// function substrings(arr) {
+//   let final = [];
+//   for (let start = 0; start < arr.length; start++) {
+//     for (let chars = 5; chars <= arr.length - start; chars++) {
+//       final.push(arr.slice(start , start + chars));
+//     }
+//   }
+//   return final
+// }
+
+
+// console.log(minimumSum([1, 2, 3, 4]) === null);
+// console.log(minimumSum([1, 2, 3, 4, 5, -5]) === 9);
+// console.log(minimumSum([1, 2, 3, 4, 5, 6]) === 15);
+// console.log(minimumSum([55, 2, 6, 5, 1, 2, 9, 3, 5, 100]) === 16);
+// console.log(minimumSum([-1, -5, -3, 0, -1, 2, -4]) === -10);
+
+// // The tests above should each log "true".
+
+// Write a function that takes an array of integers and
+// returns the two numbers that are closest together in
+// value.
+
+// Examples:
+
+// function closestNumbers(arr) {
+//   let diff = Infinity;
+//   let finalArr = []
+//   for (let index = 0; index < arr.length; index++) {
+//     for (let j = 0; j < arr.length; j++) {
+//       let difference = Math.abs(arr[index] - arr[j]);
+//       if (difference < diff && index !== j) {
+//         diff = difference;
+//         finalArr = [arr[index], arr[j]];
+//       }
+//     }
+//   }
+//   return finalArr;
+// }
+
+// console.log(closestNumbers([5, 25, 15, 11, 20]));     // [15, 11]
+// console.log(closestNumbers([19, 25, 32, 4, 27, 16])); // [25, 27]
+// console.log(closestNumbers([12, 7, 17]));             // [12, 7]?**
+
+function createCar(make, fuelLevel, engineOn) {
+return {
+  make,
+ fuelLevel,
+  engineOn
+}
 }
 
-console.log(smallerNumbersThanCurrent([8, 1, 2, 2, 3])); // [3, 0, 1, 1, 2]
-console.log(smallerNumbersThanCurrent(
-  [1, 4, 6, 8, 13, 2, 4, 5, 4])); // [0, 2, 4, 5, 6, 1, 2, 3, 2]
-console.log(smallerNumbersThanCurrent([7, 7, 7, 7])); // [0,0,0,0]
-console.log(smallerNumbersThanCurrent([6, 5, 4, 8])); // [2, 1, 0, 3]
-console.log(smallerNumbersThanCurrent([1])); // [0]
+let raceCar1 = createCar('BMW', 0.5, false);
+console.log(raceCar1)
+
+let raceCar2 = createCar('Ferrari', 0.7, true);
+console.log(raceCar2)
+
+let raceCar3 = createCar("Jaguar", 0.4, false);
+console.log(raceCar3);
