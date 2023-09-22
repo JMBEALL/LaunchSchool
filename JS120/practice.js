@@ -1,76 +1,83 @@
-// function createCar(make, fuelLevel, engineOn) {
-//   return {make, fuelLevel, engineOn}
-// }
-
-// let raceCar1 = createCar('BMW', 0.5, false);
-// console.log(raceCar1);
-// // raceCar1.drive();
-
-// let raceCar2 = createCar('Ferrari', 0.7, true);
-// console.log(raceCar2)
-// // raceCar2.drive();
-
-// let book1 = {
-//   "Title" : "Mythos",
-//   "Author": "Stephen Fry" ,
-
-//   getDescription() {
-//     console.log(`${this.Title} was written by ${this.Author}`);
-//   }
-// }
-
-// let book2 = {
-//   "Title" : "Me Talk Pretty One Day",
-//   "Author": "David Sedaris" ,
-
-//   getDescription() {
-//     console.log(`${this.Title} was written by ${this.Author}`);
-//   }
-// }
-
-// let book3 = {
-//   "Title" : "Aunts aren't Gentlemen" ,
-//   "Author": "PG Wodehouse",
-
-//   getDescription() {
-//     console.log(`${this.Title} was written by ${this.Author}`);
-//   }
-// }
-
-// console.log(book1);
-// console.log(book1.getDescription());
-
-// console.log(book2);
-// console.log(book2.getDescription());
-
-// console.log(book3);
-// console.log(book3.getDescription());
+const readline = require('readline-sync');
 
 
-function createBook(title, author, read = false) {
+
+function createPlayer(playerType) {
   return {
-    title,
-    author,
-    read,
-
-    getDescription() {
-      console.log(`${this.title} was written by ${this.author} and I ${this.read ? "have" : "haven't"} read it.`);
+    playerType,
+    move : null,
+    isHuman() {
+      return this.playerType === 'human';
     },
-
-    readBook() {
-      this.read = true;
+    prompt(msg) {
+      console.log(`=> ${msg}`);
+    },
+    choose() {
+      if (this.isHuman()) {
+        this.prompt(`Please choose one: rock, paper, or scissors...`);
+        let choice = readline.question().toLowerCase();
+        while (!['rock', 'paper', 'scissors'].includes(choice)) {
+          this.prompt("Please enter a valid entry...");
+          choice = readline.question();
+        }
+        this.move = choice.toLowerCase();
+      } else {
+        const choices = ['rock', 'paper', 'scissors'];
+        let randomNum = Math.floor(Math.random() * choices.length);
+        this.move = choices[randomNum];
+      }
     }
-  }
+  };
 }
 
-let book1 = createBook("Mythos", "Stephen Fry");
-console.log(book1);
-console.log(book1.getDescription());
 
-let book2 = createBook("Me Talk Pretty One Day", "David Sedaris");
-console.log(book2);
-console.log(book2.getDescription());
+const RPSGame = {
+  human: createPlayer('human'),
+  computer: createPlayer('computer'),
 
-let book3 = createBook("Aunts aren't Gentlemen", "PG Wodehouse");
-console.log(book3);
-console.log(book3.getDescription());
+  displayWelcomeMessage() {
+    console.log(`Welcome to Rock, Paper, Scissors on Jordan's MacBook Pro. Best of luck!`);
+  },
+
+  displayGoodbyeMessage() {
+    console.log(`Thanks for playing Rock, Paper, Scissors. See you next time!`);
+  },
+  displayWinner() {
+      let humanMove = this.human.move;
+      let computerMove = this.computer.move;
+    
+      console.log(`You chose: ${humanMove}.`);
+      console.log(`The computer chose: ${computerMove}.`);
+    
+      if ((humanMove === 'rock' && computerMove === 'scissors') ||
+          (humanMove === 'paper' && computerMove === 'rock') ||
+          (humanMove === 'scissors' && computerMove === 'paper')) {
+        console.log('You win!');
+      } else if ((humanMove === 'rock' && computerMove === 'paper') ||
+                 (humanMove === 'paper' && computerMove === 'scissors') ||
+                 (humanMove === 'scissors' && computerMove === 'rock')) {
+        console.log('Computer wins!');
+      } else {
+        console.log("It's a tie");
+      }
+  },
+  playAgain() {
+    console.log('Would you like to play again? (y/n)');
+    let answer = readline.question();
+      return answer === 'y';
+
+  },
+  play() {
+    this.displayWelcomeMessage();
+    while (true) {
+      this.human.choose();
+      this.computer.choose();
+      this.displayWinner();
+      if (!this.playAgain()) break;
+    }
+    this.displayGoodbyeMessage();
+  },
+};
+
+RPSGame.play();
+
