@@ -3,9 +3,7 @@ function createHuman() {
   return {
     move : null,
     previousMoves : [],
-    // isHuman() {
-    //   return this.playerType === 'human';
-    // },
+    score : 0,
     prompt(msg) {
       console.log(`=> ${msg}`);
     },
@@ -18,7 +16,6 @@ function createHuman() {
       }
       this.move = choice.toLowerCase();
       this.previousMoves.push(choice);
-      // console.log(this.previousMoves);
     }
   };
 }
@@ -27,9 +24,7 @@ function createComputer() {
   return {
     move : null,
     previousMoves : [],
-    // isHuman() {
-    //   return this.playerType === 'human';
-    // },
+    score : 0,
     prompt(msg) {
       console.log(`=> ${msg}`);
     },
@@ -39,7 +34,6 @@ function createComputer() {
       let choice = choices[randomNumber];
       this.move = choice;
       this.previousMoves.push(choice);
-      // console.log(this.previousMoves);
     }
   };
 }
@@ -67,19 +61,33 @@ const RPSGame = {
           (humanMove === 'paper' && computerMove === 'rock') ||
           (humanMove === 'scissors' && computerMove === 'paper')) {
       console.log('You win!');
-    } else if ((humanMove === 'rock' && computerMove === 'paper') ||
-                 (humanMove === 'paper' && computerMove === 'scissors') ||
-                 (humanMove === 'scissors' && computerMove === 'rock')) {
+      this.human.score++;
+    } else if ((humanMove === 'rock' && computerMove === 'paper') || (humanMove === 'paper' && computerMove === 'scissors') || (humanMove === 'scissors' && computerMove === 'rock')) {
       console.log('Computer wins!');
+      this.computer.score++;
     } else {
       console.log("It's a tie");
     }
+    console.log(`Your score: ${this.human.score}`)
+    console.log(`computer score: ${this.computer.score}`)
   },
   playAgain() {
     console.log('Would you like to play again? (y/n)');
     let answer = readline.question();
     return answer === 'y';
-
+  },
+  checkScore() {
+    if (this.computer.score >= 3) {
+      console.log('Computer wins!');
+      this.computer.score = 0;
+      this.human.score = 0;
+      return;
+    } else if (this.human.score >= 3) {
+      console.log('You win!');
+      this.human.score = 0;
+      this.computer.score = 0;
+      return;
+    }
   },
   play() {
     this.displayWelcomeMessage();
@@ -87,6 +95,7 @@ const RPSGame = {
       this.human.choose();
       this.computer.choose();
       this.displayWinner();
+      this.checkScore();
       if (!this.playAgain()) break;
     }
     this.displayGoodbyeMessage();
