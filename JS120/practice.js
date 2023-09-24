@@ -101,6 +101,85 @@ const RPSGame = {
     this.displayGoodbyeMessage();
   },
 };
+// console.log('playAgain' in RPSGame);
+// RPSGame.play();
 
-RPSGame.play();
+// let a = {
+//   foo : 1,
+//   bar : 2
+// };
 
+// let b = Object.create(null);
+// // console.log(Object.getPrototypeOf(b));
+// Object.setPrototypeOf(b, a);
+// // console.log(Object.getPrototypeOf(b));
+// console.log(b.foo);
+// b.foo = 100;
+// console.log(b);
+// console.log(b.foo);
+// console.log(b.bar);
+// a.bar = 10;
+// console.log(b.bar);
+
+
+// let a = {
+//   foo: 1,
+// };
+
+// let b = {
+//   foo: 2,
+// };
+
+// Object.setPrototypeOf(b, a);
+
+// let c = Object.create(b);
+// function repeatThreeTimes(func) {
+//   func();
+//   func();
+//   func();
+// }
+
+// let john = {
+//   firstName: 'John',
+//   lastName: 'Doe',
+//   greetings: function() {
+//     repeatThreeTimes(func => {
+//       console.log('hello, ' + this.firstName + ' ' + this.lastName);
+//     });
+//   },
+// };
+
+// john.greetings();
+
+// // => hello, undefined undefined
+// // => hello, undefined undefined
+// // => hello, undefined undefined
+
+
+// let turk = {
+//   firstName: 'Christopher',
+//   lastName: 'Turk',
+//   occupation: 'Surgeon',
+//   getDescription() {
+//       return this.firstName + ' ' + this.lastName + ' is a ' + this.occupation + '.'
+//   }
+// };
+
+// function logReturnVal(func,context) {
+//   let returnVal = func.bind(context);
+//   console.log(returnVal());
+// }
+
+// logReturnVal(turk.getDescription, turk);
+
+const TESgames = {
+  titles: ['Arena', 'Daggerfall', 'Morrowind', 'Oblivion', 'Skyrim'],
+  seriesTitle: 'The Elder Scrolls',
+  listGames: function() {
+    this.titles.forEach(title => {
+      console.log(this.seriesTitle + ': ' + title);
+    });
+  }
+};
+
+TESgames.listGames();
