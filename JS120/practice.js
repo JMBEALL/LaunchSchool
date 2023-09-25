@@ -200,75 +200,161 @@ const RPSGame = {
 
 // console.log(foo.a)
 
-function createInvoice(obj = {}) {
+// function createInvoice(obj = {}) {
+//   return {
+//     phone : (obj.phone ? obj.phone : 3000),
+//     internet : (obj.internet ? obj.internet : 5500 ),
+//     total() {
+//       return this.phone + this.internet;
+//     }
+//   }
+// }
+
+
+// function invoiceTotal(invoices) {
+//   let total = 0;
+
+//   for (let index = 0; index < invoices.length; index += 1) {
+//     total += invoices[index].total();
+//   }
+
+//   return total;
+// }
+
+// let invoices = [];
+// invoices.push(createInvoice());
+// invoices.push(createInvoice({ internet: 6500 }));
+// invoices.push(createInvoice({ phone: 2000 }));
+// invoices.push(createInvoice({
+//   phone: 1000,
+//   internet: 4500,
+// }));
+
+// console.log(invoiceTotal(invoices)); // 31000
+
+// function createPayment(services = {}) {
+// return {
+//   phone : services.phone ? services.phone : 0,
+//   internet : services.internet ? services.internet : 0,
+//   amount: services.amount ? services.amount : 0,
+
+//   total() {
+//     if (services.amount) {
+//       return this.amount;
+//     } else {
+//       return this.phone + this.internet;
+//     }
+//   }
+// }
+// }
+
+// function paymentTotal(payments) {
+//   return payments.reduce((sum, payment)  => sum + payment.total(), 0);
+// }
+
+// let payments = [];
+// payments.push(createPayment());
+// payments.push(createPayment({
+//   internet: 6500,
+// }));
+
+// payments.push(createPayment({
+//   phone: 2000,
+// }));
+
+// payments.push(createPayment({
+//   phone: 1000,
+//   internet: 4500,
+// }));
+
+// payments.push(createPayment({
+//   amount: 10000,
+// }));
+
+// console.log(paymentTotal(payments));      // => 24000
+
+
+
+// function prompt(msg) {
+//   console.log(`=> ${msg}`);
+// }
+
+// let drill = {
+//   id: 1,
+//   name: 'Cordless Drill',
+//   stock: 15,
+//   price: 45,
+
+//   describeProduct () {
+//     for (let key in this) {
+//       if (typeof this[key] !== 'function') {
+//         this.prompt(`${key}: ${this[key]}`);
+//       }
+//     }
+//     },
+//     prompt(msg) {
+//       console.log(`=> ${msg}`);
+//     }
+// };
+// console.log(drill.describeProduct());
+
+
+// let RECTANGLE = {
+//   area: function() {
+//     return this.width * this.height;
+//   },
+//   perimeter: function() {
+//     return 2 * (this.width + this.height);
+//   },
+// };
+
+// function Rectangle(width, height) {
+//   this.width = width;
+//   this.height = height;
+//   this.area = RECTANGLE.area.call(this);
+//   this.perimeter = RECTANGLE.perimeter.call(this);
+// }
+
+// let rect1 = new Rectangle(2, 3);
+
+// console.log(rect1.area);
+// console.log(rect1.perimeter);
+
+function Ninja() {
+  this.swung = false;
+}
+// Ninja.prototype.swing = function() {
+//   this.swung = true;
+//   return this;
+// }
+// // Add a swing method to the Ninja prototype which
+// // modifies `swung` and returns the calling object
+
+// let ninjaA = new Ninja();
+// let ninjaB = new Ninja();
+
+// console.log(ninjaA.swing().swung);      // logs `true`
+// console.log(ninjaB.swing().swung);      // logs `true`
+
+function createPet(animal, name) {
   return {
-    phone : (obj.phone ? obj.phone : 3000),
-    internet : (obj.internet ? obj.internet : 5500 ),
-    total() {
-      return this.phone + this.internet;
+    animal,
+    name,
+    sleep() {
+      console.log(`I am sleeping!`);
+    },
+    wake() {
+      console.log(`I am awake!`);
     }
   }
 }
 
+let pudding = createPet("Cat", "Pudding");
+console.log(`I am a ${pudding.animal}. My name is ${pudding.name}.`);
+pudding.sleep(); // I am sleeping
+pudding.wake();  // I am awake
 
-function invoiceTotal(invoices) {
-  let total = 0;
-
-  for (let index = 0; index < invoices.length; index += 1) {
-    total += invoices[index].total();
-  }
-
-  return total;
-}
-
-let invoices = [];
-invoices.push(createInvoice());
-invoices.push(createInvoice({ internet: 6500 }));
-invoices.push(createInvoice({ phone: 2000 }));
-invoices.push(createInvoice({
-  phone: 1000,
-  internet: 4500,
-}));
-
-console.log(invoiceTotal(invoices)); // 31000
-
-function createPayment(services = {}) {
-return {
-  phone : services.phone ? services.phone : 0,
-  internet : services.internet ? services.internet : 0,
-  amount: services.amount ? services.amount : 0,
-
-  total() {
-    if (services.amount) {
-      return this.amount;
-    } else {
-      return this.phone + this.internet;
-    }
-  }
-}
-}
-
-function paymentTotal(payments) {
-  return payments.reduce((sum, payment)  => sum + payment.total(), 0);
-}
-
-let payments = [];
-payments.push(createPayment());
-payments.push(createPayment({
-  internet: 6500,
-}));
-
-payments.push(createPayment({
-  phone: 2000,
-}));
-
-payments.push(createPayment({
-  phone: 1000,
-  internet: 4500,
-}));
-
-payments.push(createPayment({
-  amount: 10000,
-}));
-
-console.log(paymentTotal(payments));      // => 24000
+let neptune = createPet("Fish", "Neptune");
+console.log(`I am a ${neptune.animal}. My name is ${neptune.name}.`);
+neptune.sleep(); // I am sleeping
+neptune.wake();  // I am awake
