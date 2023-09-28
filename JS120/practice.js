@@ -336,25 +336,73 @@ function Ninja() {
 // console.log(ninjaA.swing().swung);      // logs `true`
 // console.log(ninjaB.swing().swung);      // logs `true`
 
-function createPet(animal, name) {
-  return {
-    animal,
-    name,
-    sleep() {
-      console.log(`I am sleeping!`);
-    },
-    wake() {
-      console.log(`I am awake!`);
-    }
-  }
+// function createPet(animal, name) {
+//   return {
+//     animal,
+//     name,
+//     sleep() {
+//       console.log(`I am sleeping!`);
+//     },
+//     wake() {
+//       console.log(`I am awake!`);
+//     }
+//   }
+// }
+
+// let pudding = createPet("Cat", "Pudding");
+// console.log(`I am a ${pudding.animal}. My name is ${pudding.name}.`);
+// pudding.sleep(); // I am sleeping
+// pudding.wake();  // I am awake
+
+// let neptune = createPet("Fish", "Neptune");
+// console.log(`I am a ${neptune.animal}. My name is ${neptune.name}.`);
+// neptune.sleep(); // I am sleeping
+// neptune.wake();  // I am awake
+
+
+// let book1 = {
+//   title : 'Mythos' ,
+//   author : 'Stephen Fry' ,
+//   getDescription() {
+//     return `${this.title} was written by ${this.author}.`
+//   }
+// }
+
+// let book2 = {
+//   title : 'Me Talk Pretty One Day' ,
+//   author : 'David Sedaris' ,
+//   getDescription() {
+//     return `${this.title} was written by ${this.author}.`
+//   }
+// }
+
+// let book3 = {
+//   title : "Aunts aren't Gentleman" ,
+//   author : "PG Wodehouse" ,
+//   getDescription() {
+//     return `${this.title} was written by ${this.author}.`
+//   }
+// }
+
+function repeatThreeTimes(func) {
+  func();
+  func();
+  func();
 }
 
-let pudding = createPet("Cat", "Pudding");
-console.log(`I am a ${pudding.animal}. My name is ${pudding.name}.`);
-pudding.sleep(); // I am sleeping
-pudding.wake();  // I am awake
+let john = {
+  firstName: 'John',
+  lastName: 'Doe',
+  greetings: function() {
+    let final = () => {
+      console.log('hello, ' + this.firstName + ' ' + this.lastName);
+    };
+    repeatThreeTimes(final);
+  },
+};
 
-let neptune = createPet("Fish", "Neptune");
-console.log(`I am a ${neptune.animal}. My name is ${neptune.name}.`);
-neptune.sleep(); // I am sleeping
-neptune.wake();  // I am awake
+john.greetings();
+
+// => hello, undefined undefined
+// => hello, undefined undefined
+// => hello, undefined undefined
