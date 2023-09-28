@@ -384,24 +384,27 @@ function Ninja() {
 //   }
 // }
 
-function repeatThreeTimes(func) {
-  func();
-  func();
-  func();
-}
 
-let john = {
-  firstName: 'John',
-  lastName: 'Doe',
-  greetings: function() {
-    let final = () => {
-      console.log('hello, ' + this.firstName + ' ' + this.lastName);
-    };
-    repeatThreeTimes(final);
-  },
+
+let turk = {
+  firstName: 'Christopher',
+  lastName: 'Turk',
+  occupation: 'Surgeon',
+  getDescription() {
+      return (this.firstName + ' ' + this.lastName + ' is a '
+                                  + this.occupation + '.');
+  }
 };
 
-john.greetings();
+function logReturnVal(func,obj) {
+  let returnVal = func.bind(obj)();
+  console.log(returnVal);
+}
+
+logReturnVal(turk.getDescription, turk);
+
+// let final = turk.getDescription.bind(turk);
+// console.log(final());
 
 // => hello, undefined undefined
 // => hello, undefined undefined
