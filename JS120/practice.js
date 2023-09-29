@@ -385,27 +385,26 @@ function Ninja() {
 // }
 
 
-
-let turk = {
-  firstName: 'Christopher',
-  lastName: 'Turk',
-  occupation: 'Surgeon',
-  getDescription() {
-      return (this.firstName + ' ' + this.lastName + ' is a '
-                                  + this.occupation + '.');
-  }
+let smallCar = {
+  fuel: 7.9,
+  mpg: 37,
+  range() {
+    return this.fuel * this.mpg;
+  },
 };
 
-function logReturnVal(func,obj) {
-  let returnVal = func.bind(obj)();
-  console.log(returnVal);
+
+function makeVehicle(fuel,mpg) {
+  return {
+    fuel,
+    mpg,
+    range() {
+      return this.fuel * this.mpg;
+    }
+  }
 }
 
-logReturnVal(turk.getDescription, turk);
+let truck = makeVehicle(14.4,23);
+console.log(truck);
+console.log(truck.range());
 
-// let final = turk.getDescription.bind(turk);
-// console.log(final());
-
-// => hello, undefined undefined
-// => hello, undefined undefined
-// => hello, undefined undefined
