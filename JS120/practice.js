@@ -384,27 +384,28 @@ function Ninja() {
 //   }
 // }
 
-
-let smallCar = {
-  fuel: 7.9,
-  mpg: 37,
-  range() {
-    return this.fuel * this.mpg;
-  },
+let scissors = {
+  Id : 0,
+  name : "Scissors",
+  stock : 8,
+  price : 10
 };
 
+let drill = { 
+  Id : 1,
+  name : "Corldess Drill",
+  stock : 15,
+  price : 45
+};
 
-function makeVehicle(fuel,mpg) {
-  return {
-    fuel,
-    mpg,
-    range() {
-      return this.fuel * this.mpg;
-    }
-  }
+function newPrice (obj, num) {
+  if (num < 0) return 'Please enter a non negative number.';
+  obj.price = num;
 }
 
-let truck = makeVehicle(14.4,23);
-console.log(truck);
-console.log(truck.range());
+newPrice(scissors,100);
+console.log(scissors);
+console.log(newPrice(scissors, -100));
+newPrice(scissors, 1000)
+console.log(scissors);
 
