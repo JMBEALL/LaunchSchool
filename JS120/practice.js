@@ -384,53 +384,16 @@ function Ninja() {
 //   }
 // }
 
-let scissors = {
-  Id : 0,
-  name : "Scissors",
-  stock : 8,
-  price : 10,
-  setPrice(num) {
-    if (num < 0) return "Please enter a non-negative number";
-    this.price = num;
-  },
-  getDescription() {
-    console.log(` => Name: ${this.name}`);
-    console.log(` => ID: ${this.Id}`);
-    console.log(` => Price: ${this.price}`);
-    console.log(` => Stock: ${this.stock}`);
-  }
-};
-
-let drill = { 
-  Id : 1,
-  name : "Corldess Drill",
-  stock : 15,
-  price : 45
-};
-
-
-scissors.getDescription();
-console.log(scissors.setPrice(-6));
-scissors.setPrice(5000)
-console.log(scissors.price);
-
-
-
-function createProduct(id, name, stock, price) {
-  return {
-    id,
-    name,
-    stock,
-    price,
-    setPrice(num) {
-      if (num < 0) return "Please enter a non-negative number";
-      this.price = num;
-    },
-    getDescription() {
-      console.log(` => Name: ${this.name}`);
-      console.log(` => ID: ${this.Id}`);
-      console.log(` => Price: ${this.price}`);
-      console.log(` => Stock: ${this.stock}`);
-    }
-  }
+function Ninja() {
+  this.swung = true;
 }
+
+let ninja = new Ninja();
+
+Ninja.prototype.swingSword = 
+  function() {
+    return this.swung;
+  },
+
+
+console.log(ninja.swingSword());
