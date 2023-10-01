@@ -424,25 +424,70 @@ function Ninja() {
 // neptune.sleep(); // I am sleeping
 // neptune.wake();  // I am awake
 
-class Pet {
-  constructor(name, age) {
-    this.name = name;
-    this.age = age;
+function createStudent (name, year) {
+  return {
+    name,
+    year,
+    courses : [],
+    info() {
+      console.log(`${this.name} is a ${this.year} year student.`);
+    },
+    addCourse(obj) {
+      this.courses.push(obj);
+    },
+    listCourses() {
+      return this.courses;
+    },
+    addNote(code, note) {
+      this.courses.forEach(subArr => {
+        if (subArr.code === code) {
+          if(subArr.hasOwnProperty('note')) {
+            subArr.note += `; ${note}`;
+          } else {
+            subArr.note = note;
+          }
+        }
+      },this)
+    },
+    updateNote(code, msg) {
+      this.courses.forEach(subArr => {
+        if (subArr.code === code) {
+          subArr.note = msg;
+        }
+      },this)
+    },
+    viewNotes() {
+      this.courses.forEach(subArr => {
+        if (subArr.hasOwnProperty('note')) {
+          console.log(`${subArr.name}: ${subArr.note}`);
+        }
+      },this);
+    }
   }
 }
 
-class Cat extends Pet {
-  constructor(name,age, description) {
-    super(name,age);
-    this.description = description;
-  }
-  info() {
-    return `My cat ${this.name} is ${this.age} years old and has ${this.description} fur.`;
-  }
-}
+let foo = createStudent('Foo', '1st');
+foo.info();
+// "Foo is a 1st year student"
+console.log(foo.listCourses());
+// [];
 
-let pudding = new Cat('Pudding', 7, 'black and white');
-let butterscotch = new Cat('Butterscotch', 10, 'tan and white');
+foo.addCourse({ name: 'Math', code: 101 });
+foo.addCourse({ name: 'Advanced Math', code: 102 });
+console.log(foo.listCourses());
+// [{ name: 'Math', code: 101 }, { name: 'Advanced Math', code: 102 }]
+foo.addNote(101, 'Fun course');
+foo.addNote(101, 'Remember to study for algebra');
+foo.viewNotes();
+// // "Math: Fun course; Remember to study for algebra"
+foo.addNote(102, 'Difficult subject');
+foo.viewNotes();
+// // "Math: Fun course; Remember to study for algebra"
+// // "Advance Math: Difficult subject"
 
-console.log(pudding.info());
-console.log(butterscotch.info());
+
+
+foo.updateNote(101, 'Fun course');
+foo.viewNotes();
+// // "Math: Fun course"
+// // "Advanced Math: Difficult subject"
