@@ -424,34 +424,25 @@ function Ninja() {
 // neptune.sleep(); // I am sleeping
 // neptune.wake();  // I am awake
 
-class Rectangle {
-  constructor(width, length) {
-    this.width = width;
-    this.length = length;
-  }
-
-  getWidth() {
-    return this.width;
-  }
-  getLength() {
-    return this.length;
-  }
-  getArea() {
-    return this.width * this.length;
+class Pet {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
   }
 }
 
-let rect = new Rectangle(4, 5);
-
-console.log(rect.getWidth()); // 4
-console.log(rect.getLength()); // 5
-console.log(rect.getArea()); // 20
-
-class Square extends Rectangle {
-  constructor(size) {
-    super(size,size);
+class Cat extends Pet {
+  constructor(name,age, description) {
+    super(name,age);
+    this.description = description;
+  }
+  info() {
+    return `My cat ${this.name} is ${this.age} years old and has ${this.description} fur.`;
   }
 }
 
-let square = new Square(5);
-console.log(`area of square = ${square.getArea()}`); // area of square = 25
+let pudding = new Cat('Pudding', 7, 'black and white');
+let butterscotch = new Cat('Butterscotch', 10, 'tan and white');
+
+console.log(pudding.info());
+console.log(butterscotch.info());
