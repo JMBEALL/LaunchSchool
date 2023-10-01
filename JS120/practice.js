@@ -466,28 +466,41 @@ function createStudent (name, year) {
   }
 }
 
-let foo = createStudent('Foo', '1st');
-foo.info();
-// "Foo is a 1st year student"
-console.log(foo.listCourses());
-// [];
+// let foo = createStudent('Foo', '1st');
+// foo.info();
+// // "Foo is a 1st year student"
+// console.log(foo.listCourses());
+// // [];
 
-foo.addCourse({ name: 'Math', code: 101 });
-foo.addCourse({ name: 'Advanced Math', code: 102 });
-console.log(foo.listCourses());
-// [{ name: 'Math', code: 101 }, { name: 'Advanced Math', code: 102 }]
-foo.addNote(101, 'Fun course');
-foo.addNote(101, 'Remember to study for algebra');
-foo.viewNotes();
-// // "Math: Fun course; Remember to study for algebra"
-foo.addNote(102, 'Difficult subject');
-foo.viewNotes();
-// // "Math: Fun course; Remember to study for algebra"
-// // "Advance Math: Difficult subject"
+// foo.addCourse({ name: 'Math', code: 101 });
+// foo.addCourse({ name: 'Advanced Math', code: 102 });
+// console.log(foo.listCourses());
+// // [{ name: 'Math', code: 101 }, { name: 'Advanced Math', code: 102 }]
+// foo.addNote(101, 'Fun course');
+// foo.addNote(101, 'Remember to study for algebra');
+// foo.viewNotes();
+// // // "Math: Fun course; Remember to study for algebra"
+// foo.addNote(102, 'Difficult subject');
+// foo.viewNotes();
+// // // "Math: Fun course; Remember to study for algebra"
+// // // "Advance Math: Difficult subject"
 
 
 
-foo.updateNote(101, 'Fun course');
-foo.viewNotes();
-// // "Math: Fun course"
-// // "Advanced Math: Difficult subject"
+// foo.updateNote(101, 'Fun course');
+// foo.viewNotes();
+// // // "Math: Fun course"
+// // // "Advanced Math: Difficult subject"
+
+
+class Person {
+  constructor(name = "John Doe") {
+    this.name = name;
+  }
+}
+
+let person1 = new Person();
+let person2 = new Person("Pepe");
+
+console.log(person1.name); // John Doe
+console.log(person2.name); // Pepe
