@@ -384,16 +384,65 @@ function Ninja() {
 //   }
 // }
 
-function Ninja() {
-  this.swung = true;
+// let ninjaA;
+
+// {
+//   const Ninja = function() {
+//     this.swung = false;
+//   };
+
+//   ninjaA = new Ninja();
+// }
+
+// // let ninjaB = new ninjaA.constructor();
+// let ninjaB = Object.create(ninjaA);
+// // create a `ninjaB` object here; don't change anything else
+
+// console.log(ninjaA.constructor === ninjaB.constructor) // => true
+
+// let PetPrototype = {
+//   sleep() {
+//     console.log("I am sleeping.");
+//   },
+//   wake() {
+//     console.log("I am awake!");
+//   },
+//   init(animal, name) {
+//     this.animal = animal;
+//     this.name = name;
+//     return this;
+//   }
+// }
+
+// let pudding = Object.create(PetPrototype).init("Cat", "Pudding");
+// console.log(`I am a ${pudding.animal}. My name is ${pudding.name}.`);
+// pudding.sleep(); // I am sleeping
+// pudding.wake();  // I am awake
+
+// let neptune = Object.create(PetPrototype).init("Fish", "Neptune");
+// console.log(`I am a ${neptune.animal}. My name is ${neptune.name}.`);
+// neptune.sleep(); // I am sleeping
+// neptune.wake();  // I am awake
+
+class Rectangle {
+  constructor(width, length) {
+    this.width = width;
+    this.length = length;
+  }
+
+  getWidth() {
+    return this.width;
+  }
+  getLength() {
+    return this.length;
+  }
+  getArea() {
+    return this.width * this.length;
+  }
 }
 
-let ninja = new Ninja();
+let rect = new Rectangle(4, 5);
 
-Ninja.prototype.swingSword = 
-  function() {
-    return this.swung;
-  },
-
-
-console.log(ninja.swingSword());
+console.log(rect.getWidth()); // 4
+console.log(rect.getLength()); // 5
+console.log(rect.getArea()); // 20
