@@ -596,3 +596,41 @@ function createStudent (name, year) {
 
 // console.log(invoiceTotal(invoices)); // 31000
 
+//factory function
+
+// function createCar(make,model,year) {
+//   return {
+//     make,
+//     model,
+//     year,
+//     started : false,
+//     start() {
+//       this.started = true;
+//     },
+//     stop() {
+//       this.started = false;
+//     }
+//   };
+// }
+
+// let newCar = createCar("Toyota", "Corolla", 2016);
+// console.log(newCar);
+// newCar.start();
+// console.log(newCar);
+
+//Constructor with the NEW Keyword
+
+function Circle (radius) {
+  this.radius = radius;
+}
+Circle.prototype.area = function area () {
+    return Math.PI * (this.radius ** 2);
+
+}
+
+let a = new Circle(3);
+let b = new Circle(4);
+
+console.log(a.area().toFixed(2)); // => 28.27
+console.log(b.area().toFixed(2)); // => 50.27
+console.log(a.hasOwnProperty('area')); // => false
