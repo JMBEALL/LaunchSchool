@@ -492,15 +492,134 @@ function createStudent (name, year) {
 // // // "Math: Fun course"
 // // // "Advanced Math: Difficult subject"
 
+// class Person {
+//   constructor(name) {
+//     this.name = name;
+//   }
 
-class Person {
-  constructor(name = "John Doe") {
-    this.name = name;
-  }
+//   gait() {
+//     return "strolls";
+//   }
+
+//   walk() {
+//     return `${this.name} ${this.gait()} forward.`
+//   }
+// }
+
+// class Cat extends Person {
+//   constructor(name) {
+//     super(name);
+//   }
+
+//   gait() {
+//     return "saunters";
+//   }
+// }
+
+// class Cheetah extends Person {
+//   constructor(name) {
+//     super(name);
+//   }
+
+//   gait() {
+//     return "runs";
+//   }
+// }
+
+// let mike = new Person("Mike");
+// console.log(mike.walk());
+// // "Mike strolls forward"
+
+// let kitty = new Cat("Kitty");
+// console.log(kitty.walk());
+// // "Kitty saunters forward"
+
+// let flash = new Cheetah("Flash");
+// console.log(flash.walk());
+// // "Flash runs forward"
+
+// class Car {
+//   constructor(make, model, wheels) {
+//     this.make = make;
+//     this.model = model;
+//     this.wheels = wheels;
+//   }
+
+//   getWheels() {
+//     return this.wheels;
+//   }
+
+//   info() {
+//     return `${this.make} ${this.model}`;
+//   }
+// }
+
+// class Motorcycle extends Car {
+//   constructor(make, model,wheels) {
+//     super(make, model,wheels);
+//   }
+
+// }
+
+// class Truck extends Car {
+//   constructor(make, model, wheels, payload) {
+//     super(make,model,wheels);
+//     this.payload = payload;
+//   }
+// }
+
+// let newM = new Motorcycle('make', "model", 10);
+// console.log(newM);
+// console.log(Object.getPrototypeOf(newM));
+// console.log(newM.info());
+// console.log(newM.getWheels())
+
+
+// function invoiceTotal(invoices) {
+//   let total = 0;
+
+//   for (let index = 0; index < invoices.length; index += 1) {
+//     total += invoices[index].total();
+//   }
+
+//   return total;
+// }
+
+// let invoices = [];
+// invoices.push(createInvoice());
+// invoices.push(createInvoice({ internet: 6500 }));
+// invoices.push(createInvoice({ phone: 2000 }));
+// invoices.push(createInvoice({
+//   phone: 1000,
+//   internet: 4500,
+// }));
+
+// console.log(invoiceTotal(invoices)); // 31000
+
+let scissors = {
+  id : 0,
+  name : 'Scissors',
+  stock : 8,
+  price : 10
 }
 
-let person1 = new Person();
-let person2 = new Person("Pepe");
+let drill = {
+  id : 1,
+  name : 'Corldess Drill',
+  stock : 15,
+  price : 45
+}
 
-console.log(person1.name); // John Doe
-console.log(person2.name); // Pepe
+function changePrice(obj,price) {
+  if (price < 0) {
+    throw new Error ('Please enter a non-negative price')
+  }
+  obj.price = price;
+  return obj;
+}
+
+console.log(changePrice(scissors, 100));
+console.log(scissors);
+
+console.log(changePrice(scissors, 500));
+console.log(scissors);
