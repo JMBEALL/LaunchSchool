@@ -596,30 +596,3 @@ function createStudent (name, year) {
 
 // console.log(invoiceTotal(invoices)); // 31000
 
-let scissors = {
-  id : 0,
-  name : 'Scissors',
-  stock : 8,
-  price : 10
-}
-
-let drill = {
-  id : 1,
-  name : 'Corldess Drill',
-  stock : 15,
-  price : 45
-}
-
-function changePrice(obj,price) {
-  if (price < 0) {
-    throw new Error ('Please enter a non-negative price')
-  }
-  obj.price = price;
-  return obj;
-}
-
-console.log(changePrice(scissors, 100));
-console.log(scissors);
-
-console.log(changePrice(scissors, 500));
-console.log(scissors);
