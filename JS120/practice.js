@@ -618,19 +618,31 @@ function createStudent (name, year) {
 // newCar.start();
 // console.log(newCar);
 
-//Constructor with the NEW Keyword
+function CreatePet(animal, name) {
+ 
+    this.animal = animal;
+    name.name = name;
+    // sleep() {
+    //   console.log('I am sleeping.');
+    // },
+    // wake() {
+    //   console.log("I am awake.");
+    // }
 
-function Circle (radius) {
-  this.radius = radius;
 }
-Circle.prototype.area = function area () {
-    return Math.PI * (this.radius ** 2);
-
+CreatePet.prototype.sleep = function sleep () {
+  console.log("I am sleeping");
+}
+CreatePet.prototype.wake = function wake () {
+  console.log("I am awake");
 }
 
-let a = new Circle(3);
-let b = new Circle(4);
+let pudding = new CreatePet("Cat", "Pudding");
+console.log(`I am a ${pudding.animal}. My name is ${pudding.name}.`);
+pudding.sleep(); // I am sleeping
+pudding.wake();  // I am awake
 
-console.log(a.area().toFixed(2)); // => 28.27
-console.log(b.area().toFixed(2)); // => 50.27
-console.log(a.hasOwnProperty('area')); // => false
+let neptune =  new CreatePet("Fish", "Neptune");
+console.log(`I am a ${neptune.animal}. My name is ${neptune.name}.`);
+neptune.sleep(); // I am sleeping
+neptune.wake();  // I am awake
