@@ -1,3 +1,4 @@
+const { afterEach } = require('mocha');
 const readline = require('readline-sync');
 function createHuman() {
   return {
@@ -618,31 +619,23 @@ function createStudent (name, year) {
 // newCar.start();
 // console.log(newCar);
 
-function CreatePet(animal, name) {
- 
+
+let PetPrototype = {
+  init(animal, name) {
     this.animal = animal;
-    name.name = name;
-    // sleep() {
-    //   console.log('I am sleeping.');
-    // },
-    // wake() {
-    //   console.log("I am awake.");
-    // }
-
-}
-CreatePet.prototype.sleep = function sleep () {
-  console.log("I am sleeping");
-}
-CreatePet.prototype.wake = function wake () {
-  console.log("I am awake");
+    this.name = name;
+    return this;
+  },
+  sleep() {
+    console.log("I am sleeping");
+  },
+  wake() {
+    console.log("I am awake!");
+  }
 }
 
-let pudding = new CreatePet("Cat", "Pudding");
-console.log(`I am a ${pudding.animal}. My name is ${pudding.name}.`);
-pudding.sleep(); // I am sleeping
-pudding.wake();  // I am awake
+let pudding = Object.create(PetPrototype).init("Cat", "Pudding");
+console.log(pudding);
 
-let neptune =  new CreatePet("Fish", "Neptune");
-console.log(`I am a ${neptune.animal}. My name is ${neptune.name}.`);
-neptune.sleep(); // I am sleeping
-neptune.wake();  // I am awake
+pudding.sleep();
+
