@@ -645,23 +645,42 @@ function createInvoice(services = {}) {
   }
 }
 
-function invoiceTotal(invoices) {
-  let total = 0;
-
-  for (let index = 0; index < invoices.length; index += 1) {
-    total += invoices[index].total();
+function createPayment(services = {}) {
+  return {
+    phone : services.phone ? services.phone : 0,
+    internet : services.internet ? services.internet : 0,
+    amount : services.amount ? services.amount : 0,
+    total() {
+      if (this.amount) {
+        return this.amount;
+      } else {
+        return this.phone + this.internet;
+      }
+    }
   }
-
-  return total;
 }
 
-let invoices = [];
-invoices.push(createInvoice());
-invoices.push(createInvoice({ internet: 6500 }));
-invoices.push(createInvoice({ phone: 2000 }));
-invoices.push(createInvoice({
+function paymentTotal(payments) {
+  return payments.reduce((sum, payment)  => sum + payment.total(), 0);
+}
+
+let payments = [];
+payments.push(createPayment());
+payments.push(createPayment({
+  internet: 6500,
+}));
+
+payments.push(createPayment({
+  phone: 2000,
+}));
+
+payments.push(createPayment({
   phone: 1000,
   internet: 4500,
 }));
 
-console.log(invoiceTotal(invoices)); // 31000
+payments.push(createPayment({
+  amount: 10000,
+}));
+
+console.log(paymentTotal(payments));      // => 24000
