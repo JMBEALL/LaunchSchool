@@ -622,62 +622,46 @@ function createStudent (name, year) {
 //class Declaration - not hoisted, so are set to undefined until the code tells it what to set the value as, until it gets to that code, it is living in the Temporal Dead Zone in JS.
 
 
-class Pet {
-  constructor(pet , name) {
-    this.pet = pet;
-    this.name = name;
-  }
-}
 
-class Owner {
-  constructor(name) {
-    this.name = name;
-    this.arr = [];
-    Owner.keepTrack.push(this);
-  }
-  numberOfPets() {
-    return this.arr.length;
-  }
-
-  static keepTrack = [];
-}
-
-class Shelter  {
-  adopt(name, animalName) {
-   name.arr.push(animalName);
-  }
-
-  printAdoptions() {
-    // console.log(`${} has adopted the following pets:`);
-    Owner.keepTrack.forEach(Ownobj => {
-      console.log(`${Ownobj.name} has adopted the following pets:`)
-      Ownobj.arr.forEach(obj => {
-        console.log(`a ${obj.pet} named ${obj.name}.`);
-      })
-    })
-  }
-}
-
-let butterscotch = new Pet('cat', 'Butterscotch');
-let pudding      = new Pet('cat', 'Pudding');
-let darwin       = new Pet('bearded dragon', 'Darwin');
-let kennedy      = new Pet('dog', 'Kennedy');
-let sweetie      = new Pet('parakeet', 'Sweetie Pie');
-let molly        = new Pet('dog', 'Molly');
-let chester      = new Pet('fish', 'Chester');
-
-let phanson = new Owner('P Hanson');
-let bholmes = new Owner('B Holmes');
-
-let shelter = new Shelter();
-shelter.adopt(phanson, butterscotch);
-shelter.adopt(phanson, pudding);
-shelter.adopt(phanson, darwin);
-shelter.adopt(bholmes, kennedy);
-shelter.adopt(bholmes, sweetie);
-shelter.adopt(bholmes, molly);
-shelter.adopt(bholmes, chester);
-shelter.printAdoptions();
 // console.log(`${phanson.name} has ${phanson.numberOfPets()} adopted pets.`);
 // console.log(`${bholmes.name} has ${bholmes.numberOfPets()} adopted pets.`);
 // console.log(Owner.keepTrack)
+
+// +--------------------------------------------+
+// |                                            |
+// | To boldly go where no one has gone before. |
+// |                                            |
+// +--------------------------------------------+
+//2 i can ecplicity set the exectuion context myself
+
+
+function createInvoice(services = {}) {
+  return {
+    phone : services.phone ? services.phone : 3000 ,
+    internet : services.internet ? services.internet : 5500 ,
+    total() {
+      return this.phone + this.internet;
+    }
+  }
+}
+
+function invoiceTotal(invoices) {
+  let total = 0;
+
+  for (let index = 0; index < invoices.length; index += 1) {
+    total += invoices[index].total();
+  }
+
+  return total;
+}
+
+let invoices = [];
+invoices.push(createInvoice());
+invoices.push(createInvoice({ internet: 6500 }));
+invoices.push(createInvoice({ phone: 2000 }));
+invoices.push(createInvoice({
+  phone: 1000,
+  internet: 4500,
+}));
+
+console.log(invoiceTotal(invoices)); // 31000
