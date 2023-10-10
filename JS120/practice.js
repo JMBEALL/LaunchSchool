@@ -634,53 +634,38 @@ function createStudent (name, year) {
 // +--------------------------------------------+
 //2 i can ecplicity set the exectuion context myself
 
+// function newPrice(obj, newPrice) {
+//    if (newPrice < 0) {
+//     throw new Error("Please enter a valid number.");
+//    }
+//    obj.price = newPrice;
+//    return obj;
+// }
 
-function createInvoice(services = {}) {
-  return {
-    phone : services.phone ? services.phone : 3000 ,
-    internet : services.internet ? services.internet : 5500 ,
-    total() {
-      return this.phone + this.internet;
-    }
-  }
+// function describeProduct(obj) {
+//   for (let key in obj) {
+//     if (obj.hasOwnProperty(key));
+//     console.log(` => ${key.toUpperCase()} : ${obj[key]}`);
+//   }
+// }
+let RECTANGLE = {
+  area: function() {
+    return this.width * this.height;
+  },
+  perimeter: function() {
+    return 2 * (this.width + this.height);
+  },
+};
+
+function Rectangle(width, height) {
+  this.width = width;
+  this.height = height;
+  this.area = RECTANGLE.area;
+  this.perimeter = RECTANGLE.perimeter;
 }
 
-function createPayment(services = {}) {
-  return {
-    phone : services.phone ? services.phone : 0,
-    internet : services.internet ? services.internet : 0,
-    amount : services.amount ? services.amount : 0,
-    total() {
-      if (this.amount) {
-        return this.amount;
-      } else {
-        return this.phone + this.internet;
-      }
-    }
-  }
-}
+let rect1 = new Rectangle(2, 3);
 
-function paymentTotal(payments) {
-  return payments.reduce((sum, payment)  => sum + payment.total(), 0);
-}
+console.log(rect1.area());
+console.log(rect1.perimeter());
 
-let payments = [];
-payments.push(createPayment());
-payments.push(createPayment({
-  internet: 6500,
-}));
-
-payments.push(createPayment({
-  phone: 2000,
-}));
-
-payments.push(createPayment({
-  phone: 1000,
-  internet: 4500,
-}));
-
-payments.push(createPayment({
-  amount: 10000,
-}));
-
-console.log(paymentTotal(payments));      // => 24000
