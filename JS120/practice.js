@@ -648,24 +648,28 @@ function createStudent (name, year) {
 //     console.log(` => ${key.toUpperCase()} : ${obj[key]}`);
 //   }
 // }
-let RECTANGLE = {
-  area: function() {
-    return this.width * this.height;
-  },
-  perimeter: function() {
-    return 2 * (this.width + this.height);
-  },
-};
 
-function Rectangle(width, height) {
-  this.width = width;
-  this.height = height;
-  this.area = RECTANGLE.area;
-  this.perimeter = RECTANGLE.perimeter;
+
+let PetPrototype = {
+  init(animal, name) {
+    this.animal = animal;
+    this.name = name;
+    return this;
+  },
+  sleep() {
+    console.log("I am sleeping");
+  },
+  wake() {
+    console.log("I am awake!");
+  }
 }
 
-let rect1 = new Rectangle(2, 3);
+let pudding = Object.create(PetPrototype).init("Cat", "Pudding");
+console.log(`I am a ${pudding.animal}. My name is ${pudding.name}.`);
+pudding.sleep(); // I am sleeping
+pudding.wake();  // I am awake
 
-console.log(rect1.area());
-console.log(rect1.perimeter());
-
+let neptune = Object.create(PetPrototype).init("Fish", "Neptune");
+console.log(`I am a ${neptune.animal}. My name is ${neptune.name}.`);
+neptune.sleep(); // I am sleeping
+neptune.wake();  // I am awake
