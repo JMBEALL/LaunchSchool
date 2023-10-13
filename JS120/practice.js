@@ -650,26 +650,45 @@ function createStudent (name, year) {
 // }
 
 
-let PetPrototype = {
-  init(animal, name) {
-    this.animal = animal;
-    this.name = name;
-    return this;
-  },
-  sleep() {
-    console.log("I am sleeping");
-  },
-  wake() {
-    console.log("I am awake!");
-  }
+function Person(name) {
+  this.name = name;
+  this.school = undefined;
 }
 
-let pudding = Object.create(PetPrototype).init("Cat", "Pudding");
-console.log(`I am a ${pudding.animal}. My name is ${pudding.name}.`);
-pudding.sleep(); // I am sleeping
-pudding.wake();  // I am awake
+Person.prototype.speak = function() {
+  return `Hello, my name is ${this.name}.`;
+};
 
-let neptune = Object.create(PetPrototype).init("Fish", "Neptune");
-console.log(`I am a ${neptune.animal}. My name is ${neptune.name}.`);
-neptune.sleep(); // I am sleeping
-neptune.wake();  // I am awake
+function Child(name, school) {
+  this.name = name;
+  this.school = school;
+}
+Child.prototype = Object.create(Person.prototype)
+Child.prototype.learn = function learn() {
+  console.log("I'm going to school!");
+}
+Child.prototype.constructor = Child;
+
+
+Child.prototype.learn = function() {
+  return "I'm going to school!";
+};
+
+let child = new Child("Suzy", "PS 33");
+console.log(child instanceof Child);                               // true
+console.log(child instanceof Person);                              // true
+console.log(Object.getPrototypeOf(child) === Child.prototype);     // true
+console.log(Object.getPrototypeOf(child).constructor === Child);   // true
+console.log(child.school === "PS 33");                             // true
+console.log(child.learn() === "I'm going to school!");             // true
+console.log(child.speak() === "Hello, my name is Suzy.");          // true
+console.log();
+
+let person = new Person("Pete");
+console.log(person instanceof Child === false);                    // true
+console.log(person instanceof Person);                             // true
+console.log(Object.getPrototypeOf(person) === Person.prototype);   // true
+console.log(Object.getPrototypeOf(person).constructor === Person); // true
+console.log(person.school === undefined);                          // true
+console.log(person.speak() === "Hello, my name is Pete.");         // true
+console.log(person.learn === undefined);                           // true
