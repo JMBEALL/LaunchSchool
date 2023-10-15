@@ -846,108 +846,144 @@ Second thought after thinking:
 // let game = new TTTGame();
 // game.play();
 
-class Horse {}
+// class Horse {}
 
-class Pegasus extends Horse {
-  fly() {
-    console.log("I can fly!");
+// class Pegasus extends Horse {
+//   fly() {
+//     console.log("I can fly!");
+//   }
+// }
+
+// class Unicorn extends Horse {
+//   constructor() {
+//     super();
+//     Unicorn.prototype.instances.push(this);
+//   }
+
+//   pierce() {
+//     console.log("I can pierce");
+//   }
+
+//   static instances() {
+//     console.log( Unicorn.prototype.instances.length);
+//   }
+// }
+
+// Unicorn.prototype.instances = [];
+
+// class Human {}
+
+// class Thief extends Human {
+//   steal() {
+//     console.log("I am stealing");
+//   }
+// }
+
+// class Pirate extends Thief {
+//   sail() {
+//     console.log("I can sail");
+//   }
+// }
+
+// class Wizard extends Human {
+//   cast() {
+//     console.log("I can cast spells!");
+//   }
+// }
+
+// class Centaur {
+//   slash() {
+//     console.log("I can slash!");
+//   }
+// }
+
+// let GallopMixIn = {
+//   gallop() {
+//     console.log("I can gallop");
+//   }
+// };
+
+// let SpeakMixIn = {
+//   speak() {
+//     console.log("I can speak");
+//   }
+// };
+
+// Object.assign(Centaur.prototype, GallopMixIn, SpeakMixIn);
+// Object.assign(Horse.prototype,GallopMixIn );
+// Object.assign(Human.prototype,SpeakMixIn );
+
+
+// //Testing:
+
+// let horse = new Horse();
+// horse.gallop();
+
+// let pegasus = new Pegasus();
+// pegasus.gallop();
+// pegasus.fly();
+
+// let unicorn = new Unicorn();
+// unicorn.gallop();
+// unicorn.pierce();
+// Unicorn.instances();
+// let unicorn2 = new Unicorn();
+// Unicorn.instances();
+// let unicorn3 = new Unicorn();
+// Unicorn.instances();
+
+// let human = new Human();
+// human.speak();
+
+// let thief = new Thief();
+// thief.steal();
+
+// let pirate = new Pirate();
+// pirate.steal();
+// pirate.sail();
+
+// let wizard = new Wizard();
+// wizard.cast();
+// wizard.speak();
+// // wizard.steal();
+
+// let centaur = new Centaur();
+// centaur.speak();
+// centaur.gallop();
+// centaur.slash();
+
+
+// class Rectangle {
+//   constructor(width, length) {
+//     this.width = width;
+//     this.length = length;
+//   }
+
+//   getWidth() {
+//     return this.width;
+//   }
+
+//   getLength() {
+//     return this.length;
+//   }
+
+//   getArea() {
+//     return this.width * this.length;
+//   }
+// }
+
+
+
+class Cat {
+  constructor(name) {
+    this.name = name;
+  }
+  speaks() {
+    return `${this.name} says meowwww.`;
   }
 }
 
-class Unicorn extends Horse {
-  constructor() {
-    super();
-    Unicorn.prototype.instances.push(this);
-  }
-
-  pierce() {
-    console.log("I can pierce");
-  }
-
-  static instances() {
-    console.log( Unicorn.prototype.instances.length);
-  }
-}
-
-Unicorn.prototype.instances = [];
-
-class Human {}
-
-class Thief extends Human {
-  steal() {
-    console.log("I am stealing");
-  }
-}
-
-class Pirate extends Thief {
-  sail() {
-    console.log("I can sail");
-  }
-}
-
-class Wizard extends Human {
-  cast() {
-    console.log("I can cast spells!");
-  }
-}
-
-class Centaur {
-  slash() {
-    console.log("I can slash!");
-  }
-}
-
-let GallopMixIn = {
-  gallop() {
-    console.log("I can gallop");
-  }
-};
-
-let SpeakMixIn = {
-  speak() {
-    console.log("I can speak");
-  }
-};
-
-Object.assign(Centaur.prototype, GallopMixIn, SpeakMixIn);
-Object.assign(Horse.prototype,GallopMixIn );
-Object.assign(Human.prototype,SpeakMixIn );
-
-
-//Testing:
-
-let horse = new Horse();
-horse.gallop();
-
-let pegasus = new Pegasus();
-pegasus.gallop();
-pegasus.fly();
-
-let unicorn = new Unicorn();
-unicorn.gallop();
-unicorn.pierce();
-Unicorn.instances();
-let unicorn2 = new Unicorn();
-Unicorn.instances();
-let unicorn3 = new Unicorn();
-Unicorn.instances();
-
-let human = new Human();
-human.speak();
-
-let thief = new Thief();
-thief.steal();
-
-let pirate = new Pirate();
-pirate.steal();
-pirate.sail();
-
-let wizard = new Wizard();
-wizard.cast();
-wizard.speak();
-// wizard.steal();
-
-let centaur = new Centaur();
-centaur.speak();
-centaur.gallop();
-centaur.slash();
+let fakeCat = Object.create(Cat.prototype);
+console.log(fakeCat instanceof Cat); // logs true
+console.log(fakeCat.name);           // logs undefined
+console.log(fakeCat.speaks());       // logs undefined says meowwww.
