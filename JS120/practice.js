@@ -650,45 +650,304 @@ function createStudent (name, year) {
 // }
 
 
-function Person(name) {
-  this.name = name;
-  this.school = undefined;
+// function Person(name) {
+//   this.name = name;
+//   this.school = undefined;
+// }
+
+// Person.prototype.speak = function() {
+//   return `Hello, my name is ${this.name}.`;
+// };
+
+// function Child(name, school) {
+//   this.name = name;
+//   this.school = school;
+// }
+// Child.prototype = Object.create(Person.prototype)
+// Child.prototype.learn = function learn() {
+//   console.log("I'm going to school!");
+// }
+// Child.prototype.constructor = Child;
+
+
+// Child.prototype.learn = function() {
+//   return "I'm going to school!";
+// };
+
+// let child = new Child("Suzy", "PS 33");
+// console.log(child instanceof Child);                               // true
+// console.log(child instanceof Person);                              // true
+// console.log(Object.getPrototypeOf(child) === Child.prototype);     // true
+// console.log(Object.getPrototypeOf(child).constructor === Child);   // true
+// console.log(child.school === "PS 33");                             // true
+// console.log(child.learn() === "I'm going to school!");             // true
+// console.log(child.speak() === "Hello, my name is Suzy.");          // true
+// console.log();
+
+// let person = new Person("Pete");
+// console.log(person instanceof Child === false);                    // true
+// console.log(person instanceof Person);                             // true
+// console.log(Object.getPrototypeOf(person) === Person.prototype);   // true
+// console.log(Object.getPrototypeOf(person).constructor === Person); // true
+// console.log(person.school === undefined);                          // true
+// console.log(person.speak() === "Hello, my name is Pete.");         // true
+// console.log(person.learn === undefined);                           // true
+
+
+/*
+TIC TAC TOE OOP STYLE
+
+Nouns:
+1) 2 players - human and computer
+2) board - 3 X 3 grid
+3) markers : "X" & "O"
+
+
+
+Verbs:
+1) marking a square
+2) win (3 in a row: Horizontal, Vertical, or Diag)
+
+Firs thing that came to mind when I thought of a tic-tac-toe board in JS.
+
+[
+  ["","",""],
+  ["","",""],
+  ["","",""]
+]
+
+Second thought after thinking: 
+
+{
+  a:  ["","",""],
+  b:  ["","",""],
+  c:  ["","",""],
 }
 
-Person.prototype.speak = function() {
-  return `Hello, my name is ${this.name}.`;
+
+*/
+
+// class Board {
+//   constructor() {
+//     // We need a way to model the 3x3 grid. Perhaps "squares"?
+//     // What data structure should we use? An Array? An Object? Something else?
+//     // What should the data structure store? Strings? Numbers? Square objects?
+//   }
+
+//   display() {
+
+//     console.log(`      |      |      `);
+//     console.log(` ${""}     |${""}      |${""} `);
+//     console.log(`      |      |      `);
+//     console.log(`------+------+-------`);
+//     console.log(`      |      |      `);
+//     console.log(` ${""}     |${""}      |${""} `);
+//     console.log(`      |      |      `);
+//     console.log(`------+------+-------`);
+//     console.log(`      |      |      `);
+//     console.log(` ${""}     |${""}      |${""} `);
+//     console.log(`      |      |      `);
+//   }
+// }
+
+// class Square {
+//   constructor() {
+//     // We need some way to keep track of this square's marker.
+//   }
+// }
+
+// class Row {
+//   constructor() {
+//     // We need some way to identify a row of 3 squares
+//   }
+// }
+
+// class Marker {
+//   constructor() {
+//     // A marker is something that represents a player's "piece" on the board.
+//   }
+// }
+
+// class Player {
+//   constructor() {
+//     // maybe a "marker" to keep track of this player's symbol (i.e., 'X' or 'O')
+//   }
+
+//   mark() {
+//     // We need a way to mark the board with this player's marker.
+//     // How do we access the board?
+//   }
+
+//   play() {
+//     // We need a way for each player to play the game.
+//     // Do we need access to the board?
+//   }
+// }
+
+// class Human extends Player {
+//   constructor() {
+//   }
+// }
+
+// class Computer extends Player {
+//   constructor() {
+//   }
+// }
+
+// class TTTGame {
+//   constructor() {
+//     this.board = new Board();
+//     // Need a board and two players
+//   }
+
+//   play() {
+//     this.displayWelcomeMessage();
+
+//     while (true) {
+//       this.board.display();
+
+//       this.firstPlayerMoves();
+//       if (this.gameOver()) break;
+
+//       this.secondPlayerMoves();
+//       if (this.gameOver()) break;
+//       break; // <= execute loop only once for now
+//     }
+
+//     this.displayResults();
+//     this.displayGoodbyeMessage();
+//   }
+
+//   displayWelcomeMessage() {
+//     console.log("Welcome to Tic Tac Toe!");
+//   }
+
+//   displayGoodbyeMessage() {
+//     console.log("Thanks for playing Tic Tac Toe! Goodbye!");
+//   }
+
+//   displayResults() {
+//     // show the results of this game (win, lose, tie)
+//   }
+
+//   firstPlayerMoves() {
+//     // the first player makes a move
+//   }
+
+//   secondPlayerMoves() {
+//     // the second player makes a move
+//   }
+
+//   gameOver() {
+//     return false;
+//   }
+// }
+
+// let game = new TTTGame();
+// game.play();
+
+class Horse {}
+
+class Pegasus extends Horse {
+  fly() {
+    console.log("I can fly!");
+  }
+}
+
+class Unicorn extends Horse {
+  constructor() {
+    super();
+    Unicorn.prototype.instances.push(this);
+  }
+
+  pierce() {
+    console.log("I can pierce");
+  }
+
+  static instances() {
+    console.log( Unicorn.prototype.instances.length);
+  }
+}
+
+Unicorn.prototype.instances = [];
+
+class Human {}
+
+class Thief extends Human {
+  steal() {
+    console.log("I am stealing");
+  }
+}
+
+class Pirate extends Thief {
+  sail() {
+    console.log("I can sail");
+  }
+}
+
+class Wizard extends Human {
+  cast() {
+    console.log("I can cast spells!");
+  }
+}
+
+class Centaur {
+  slash() {
+    console.log("I can slash!");
+  }
+}
+
+let GallopMixIn = {
+  gallop() {
+    console.log("I can gallop");
+  }
 };
 
-function Child(name, school) {
-  this.name = name;
-  this.school = school;
-}
-Child.prototype = Object.create(Person.prototype)
-Child.prototype.learn = function learn() {
-  console.log("I'm going to school!");
-}
-Child.prototype.constructor = Child;
-
-
-Child.prototype.learn = function() {
-  return "I'm going to school!";
+let SpeakMixIn = {
+  speak() {
+    console.log("I can speak");
+  }
 };
 
-let child = new Child("Suzy", "PS 33");
-console.log(child instanceof Child);                               // true
-console.log(child instanceof Person);                              // true
-console.log(Object.getPrototypeOf(child) === Child.prototype);     // true
-console.log(Object.getPrototypeOf(child).constructor === Child);   // true
-console.log(child.school === "PS 33");                             // true
-console.log(child.learn() === "I'm going to school!");             // true
-console.log(child.speak() === "Hello, my name is Suzy.");          // true
-console.log();
+Object.assign(Centaur.prototype, GallopMixIn, SpeakMixIn);
+Object.assign(Horse.prototype,GallopMixIn );
+Object.assign(Human.prototype,SpeakMixIn );
 
-let person = new Person("Pete");
-console.log(person instanceof Child === false);                    // true
-console.log(person instanceof Person);                             // true
-console.log(Object.getPrototypeOf(person) === Person.prototype);   // true
-console.log(Object.getPrototypeOf(person).constructor === Person); // true
-console.log(person.school === undefined);                          // true
-console.log(person.speak() === "Hello, my name is Pete.");         // true
-console.log(person.learn === undefined);                           // true
+
+//Testing:
+
+let horse = new Horse();
+horse.gallop();
+
+let pegasus = new Pegasus();
+pegasus.gallop();
+pegasus.fly();
+
+let unicorn = new Unicorn();
+unicorn.gallop();
+unicorn.pierce();
+Unicorn.instances();
+let unicorn2 = new Unicorn();
+Unicorn.instances();
+let unicorn3 = new Unicorn();
+Unicorn.instances();
+
+let human = new Human();
+human.speak();
+
+let thief = new Thief();
+thief.steal();
+
+let pirate = new Pirate();
+pirate.steal();
+pirate.sail();
+
+let wizard = new Wizard();
+wizard.cast();
+wizard.speak();
+// wizard.steal();
+
+let centaur = new Centaur();
+centaur.speak();
+centaur.gallop();
+centaur.slash();
