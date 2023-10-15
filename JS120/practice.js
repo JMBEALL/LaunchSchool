@@ -972,55 +972,33 @@ Second thought after thinking:
 //   }
 // }
 
-let walkMixIn = {
-  walk() {
-    console.log(`${this.name} ${this.gait()} forward`);
+
+class Banner {
+  constructor(message) {
+    this.message = message;
+  }
+
+  displayBanner() {
+    console.log([this.horizontalRule(), this.emptyLine(), this.messageLine(), this.emptyLine(), this.horizontalRule()].join("\n"));
+  }
+
+  horizontalRule() {
+    return `+${"-".repeat(this.message.length + 2)}+`;
+  }
+
+  emptyLine() {
+    return `|${" ".repeat(this.message.length + 2)}|`;
+  }
+
+  messageLine() {
+    return `| ${this.message} |`
   }
 }
 
 
-class Person {
-  constructor(name) {
-    this.name = name;
-  }
+let banner1 = new Banner('To boldly go where no one has gone before.');
+banner1.displayBanner();
 
-  gait() {
-    return "strolls";
-  }
-}
 
-class Cat {
-  constructor(name) {
-    this.name = name;
-  }
-
-  gait() {
-    return "saunters";
-  }
-}
-
-class Cheetah {
-  constructor(name) {
-    this.name = name;
-  }
-
-  gait() {
-    return "runs";
-  }
-}
-
-Object.assign(Person.prototype, walkMixIn);
-Object.assign(Cat.prototype, walkMixIn);
-Object.assign(Cheetah.prototype, walkMixIn);
-
-let mike = new Person("Mike");
-console.log(mike.walk());
-// "Mike strolls forward"
-
-let kitty = new Cat("Kitty");
-console.log(kitty.walk());
-// "Kitty saunters forward"
-
-let flash = new Cheetah("Flash");
-console.log(flash.walk());
-// "Flash runs forward"
+let banner2 = new Banner('');
+banner2.displayBanner();
