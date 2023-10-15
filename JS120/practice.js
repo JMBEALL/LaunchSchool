@@ -973,32 +973,59 @@ Second thought after thinking:
 // }
 
 
-class Banner {
-  constructor(message) {
-    this.message = message;
-  }
-
-  displayBanner() {
-    console.log([this.horizontalRule(), this.emptyLine(), this.messageLine(), this.emptyLine(), this.horizontalRule()].join("\n"));
-  }
-
-  horizontalRule() {
-    return `+${"-".repeat(this.message.length + 2)}+`;
-  }
-
-  emptyLine() {
-    return `|${" ".repeat(this.message.length + 2)}|`;
-  }
-
-  messageLine() {
-    return `| ${this.message} |`
+function createStudent(name, year) {
+  return {
+    name,
+    year,
+    courses : [],
+    info() {
+      console.log(`${this.name} is a ${this.year} year student!`);
+    },
+    listCourses() {
+      console.log(this.courses);
+    },
+    addCourse(obj) {
+      this.courses.push(obj)
+    },
+    addNote(codePassed, note) {
+      this.courses.forEach(course => {
+        if (course.code === codePassed) {
+          if (course.hasOwnProperty('notes')) {
+            course.notes += `${note};`;
+          } else {
+            course.notes = note + "; ";
+          }
+        }
+      })
+    },
+    viewNotes() {
+      this.courses.forEach(course => {
+        if (course.notes) {
+          console.log(`${course.name}: ${course.notes}`);
+        }
+      })
+    },
+    updateNote(codePassed, note) {
+      this.courses.forEach(course => {
+        if (codePassed === course.code) {
+          course.notes = note;
+        }
+      })
+    }
   }
 }
 
-
-let banner1 = new Banner('To boldly go where no one has gone before.');
-banner1.displayBanner();
-
-
-let banner2 = new Banner('');
-banner2.displayBanner();
+let foo = createStudent('Foo', '1st');
+foo.info();
+foo.listCourses();
+foo.addCourse({ name: 'Math', code: 101 });
+foo.addCourse({ name: 'Advanced Math', code: 102 });
+foo.listCourses();
+foo.addNote(101, 'Fun course');
+foo.addNote(101, 'Remember to study for algebra');
+foo.viewNotes();
+// "Math: Fun course; Remember to study for algebra"
+foo.addNote(102, 'Difficult subject');
+foo.viewNotes();
+foo.updateNote(101, 'Fun course');
+foo.viewNotes();
