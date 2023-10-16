@@ -1015,41 +1015,16 @@ Second thought after thinking:
 
 
 
-// foo.bar.call(boo)function logNum() {
-let person = {
-  name: "Jordan",
-  logger() {
-    let logger2 = function logger2() { // or anonymous function
-      console.log(this.name);
-    }.bind(this);
-    logger2();
+
+const TESgames = {
+  titles: ['Arena', 'Daggerfall', 'Morrowind', 'Oblivion', 'Skyrim'],
+  seriesTitle: 'The Elder Scrolls',
+  listGames: function() {
+  
+    this.titles.forEach(title =>  {
+      console.log(this.seriesTitle + ': ' + title);
+    });
   }
-}
+};
 
-person.logger();
-
-
-let person2 = {
-  name : "Jordan2",
-  logger() {
-    function logger2() {
-      console.log(this.name);
-    }
-    let final = logger2.bind(this);
-    final();
-  }
-}
-
-person2.logger();
-
-let person3 ={ 
-  name: "Jordan3",
-  logger() {
-    let logger2 = () => {
-      console.log(this.name);
-    }
-    logger2();
-  }
-}
-
-person3.logger()
+TESgames.listGames();
