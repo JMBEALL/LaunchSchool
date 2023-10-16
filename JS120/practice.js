@@ -973,59 +973,83 @@ Second thought after thinking:
 // }
 
 
-function createStudent(name, year) {
-  return {
-    name,
-    year,
-    courses : [],
-    info() {
-      console.log(`${this.name} is a ${this.year} year student!`);
-    },
-    listCourses() {
-      console.log(this.courses);
-    },
-    addCourse(obj) {
-      this.courses.push(obj)
-    },
-    addNote(codePassed, note) {
-      this.courses.forEach(course => {
-        if (course.code === codePassed) {
-          if (course.hasOwnProperty('notes')) {
-            course.notes += `${note};`;
-          } else {
-            course.notes = note + "; ";
-          }
-        }
-      })
-    },
-    viewNotes() {
-      this.courses.forEach(course => {
-        if (course.notes) {
-          console.log(`${course.name}: ${course.notes}`);
-        }
-      })
-    },
-    updateNote(codePassed, note) {
-      this.courses.forEach(course => {
-        if (codePassed === course.code) {
-          course.notes = note;
-        }
-      })
-    }
+
+
+
+
+
+// let franchise = {
+//   name: 'How to Train Your Dragon',
+//   allMovies: function() {
+//     let self = this;
+//     return [1, 2, 3].map(function(number) {
+//       return self.name + ' ' + number;
+//     });
+//   },
+// };
+
+// let franchise = {
+//   name: 'How to Train Your Dragon',
+//   allMovies: function() {
+//     let self = this;
+//     return [1, 2, 3].map(number => {
+//       return this.name + ' ' + number;
+//     });
+//   },
+// };
+
+/*
+ function
+
+*/
+
+// let foo = {
+//   bar() {
+//     console.log(this.name);
+//   }
+// }
+
+// let boo = {
+//   name : "BOOOOO BITCH!"
+// }
+
+
+
+// foo.bar.call(boo)function logNum() {
+let person = {
+  name: "Jordan",
+  logger() {
+    let logger2 = function logger2() { // or anonymous function
+      console.log(this.name);
+    }.bind(this);
+    logger2();
   }
 }
 
-let foo = createStudent('Foo', '1st');
-foo.info();
-foo.listCourses();
-foo.addCourse({ name: 'Math', code: 101 });
-foo.addCourse({ name: 'Advanced Math', code: 102 });
-foo.listCourses();
-foo.addNote(101, 'Fun course');
-foo.addNote(101, 'Remember to study for algebra');
-foo.viewNotes();
-// "Math: Fun course; Remember to study for algebra"
-foo.addNote(102, 'Difficult subject');
-foo.viewNotes();
-foo.updateNote(101, 'Fun course');
-foo.viewNotes();
+person.logger();
+
+
+let person2 = {
+  name : "Jordan2",
+  logger() {
+    function logger2() {
+      console.log(this.name);
+    }
+    let final = logger2.bind(this);
+    final();
+  }
+}
+
+person2.logger();
+
+let person3 ={ 
+  name: "Jordan3",
+  logger() {
+    let logger2 = () => {
+      console.log(this.name);
+    }
+    logger2();
+  }
+}
+
+person3.logger()
