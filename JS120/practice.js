@@ -1036,9 +1036,13 @@ Second thought after thinking:
 // bird examples using Mix-ins
 // note it does not use delegation because it is not enheriting. We use Object.assign to physically place the methods on the prototype object of what we want to have access to the MixIn methods.
 
+
+
+
+
 /*
 
-PROMPT: 
+PROMPT:
 
 You have recently watched Lion King as well as Jungle Book and have decided to take the best
 of both these worlds and develop some OOP magic. In this Lion King x Jungle Book world of ours, Lions have two characteristics:
@@ -1056,44 +1060,91 @@ A Liger is an animal whose father is a Lion and whose mother is a Tiger.
 The liger you create should inherit ALL properties and functionality from its parents, as follows:
 */
 
-let LionKingMixIn = {
-  inLionKing : true,
+// let LionKingMixIn = {
+//   inLionKing : true,
+// }
+
+// let JungleBookMixIn = {
+//   inJungleBook : true,
+// }
+
+// let LionLikeMixIn = {
+//   isFriendly : true,
+//   roar() {
+//     return ' Hakuna Matata!'
+//   }
+// }
+
+// class Lion {}
+// Object.assign(Lion.prototype, LionKingMixIn, LionLikeMixIn);
+
+// class Tiger {
+// constructor (enjoysSwimming = true) {
+//   this.enjoysSwimming = enjoysSwimming;
+// }
+
+// chase () {
+//   return "I m chasing the man-cub!";
+// }
+// }
+// Object.assign(Tiger.prototype, JungleBookMixIn);
+
+
+// class Liger extends Tiger {}
+// Object.assign(Liger.prototype, LionKingMixIn, LionLikeMixIn, JungleBookMixIn);
+
+// let liger = new Liger();
+
+// console.log(liger.roar()) // 'Hakuna Matata'
+// console.log(liger.chase()) // 'I am chasing the man-cub'
+// console.log(liger.inLionKing) // true
+// console.log(liger.isFriendly) // true
+// console.log(liger.enjoysSwimming) // true
+// console.log(liger.inJungleBook) // true
+
+
+
+
+// REFACTORING TO CREATE THIS WITH Constructor Prototypes
+
+function Lion() {}
+
+Lion.prototype.inLionKing = true;
+Lion.prototype.isFriendly = true;
+Lion.prototype.roar = function roar() {
+  console.log("Hakuna Matata!");
 }
 
-let JungleBookMixIn = {
-  inJungleBook : true,
+function Tiger() {}
+
+Tiger.prototype.enjoysSwimming = true;
+Tiger.prototype.inJungleBook = true;
+Tiger.prototype.chase = function chase() {
+  console.log(`I am chasing the man-cub!`);
 }
 
-let LionLikeMixIn = {
-  isFriendly : true,
-  roar() {
-    return ' Hakuna Matata!'
-  }
-}
-
-class Lion {}
-Object.assign(Lion.prototype, LionKingMixIn, LionLikeMixIn);
-
-class Tiger {
-constructor (enjoysSwimming = true) {
-  this.enjoysSwimming = enjoysSwimming;
-}
-
-chase () {
-  return "I m chasing the man-cub!";
-}
-}
-Object.assign(Tiger.prototype, JungleBookMixIn);
+// function Liger() {
+// Object.assign(this, Tiger.prototype, Lion.prototype)
+// }
 
 
-class Liger extends Tiger {}
-Object.assign(Liger.prototype, LionKingMixIn, LionLikeMixIn, JungleBookMixIn);
+// But, on there is duplicate code going onto each liger since I am assigning inside the Constructor. Refactored:
+
+function Liger() {}
+Liger.prototype = Object.create(Lion.prototype);
+Object.assign(Liger.prototype, Tiger.prototype);
+Liger.prototype.constructor = Liger;
 
 let liger = new Liger();
 
-console.log(liger.roar()) // 'Hakuna Matata'
-console.log(liger.chase()) // 'I am chasing the man-cub'
-console.log(liger.inLionKing) // true
-console.log(liger.isFriendly) // true
-console.log(liger.enjoysSwimming) // true
-console.log(liger.inJungleBook) // true
+console.log(liger instanceof Lion);
+console.log(liger instanceof Tiger);
+console.log(liger.constructor);
+
+// console.log(liger.roar()) // 'Hakuna Matata'
+// console.log(liger.chase()) // 'I am chasing the man-cub'
+// console.log(liger.inLionKing) // true
+// console.log(liger.isFriendly) // true
+// console.log(liger.enjoysSwimming) // true
+// console.log(liger.inJungleBook) // true
+
