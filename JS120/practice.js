@@ -1014,10 +1014,22 @@ Second thought after thinking:
 // }
 
 
-let string = "jordan";
-let callBack = (el) => el.toUpperCase();
-let final = [1,2,3].map.call(string, callBack);
-console.log(final);
+// let string = "jordan";
+// let callBack = (el) => el.toUpperCase();
+// let final = [1,2,3].map.call(string, callBack);
+// console.log(final);
 
+
+// let message1 = "hello";
+// let message2 = "Please help me.";
+// let message3 = "I am trying to change careers.";
+// let message4 = "I want to be a sfotware engineer and make good money and work remotely.";
+
+
+let message5 = "I am studying at Launch School so know that I am in good hands.";
+let callback = (el) => el === "I";
+
+let final = [].filter.call(message5, callback );
+console.log(final);
 
 
