@@ -1026,10 +1026,48 @@ Second thought after thinking:
 // let message4 = "I want to be a sfotware engineer and make good money and work remotely.";
 
 
-let message5 = "I am studying at Launch School so know that I am in good hands.";
-let callback = (el) => el === "I";
+// let message5 = "I am studying at Launch School so know that I am in good hands.";
+// let callback = (el) => el === "I";
 
-let final = [].filter.call(message5, callback );
-console.log(final);
+// let final = [].filter.call(message5, callback );
+// console.log(final);
 
 
+// bird examples using Mix-ins
+// note it does not use delegation because it is not enheriting. We use Object.assign to physically place the methods on the prototype object of what we want to have access to the MixIn methods.
+
+
+
+let swimMixIn = {
+  swim() {
+    console.log("I can swim!");
+  }
+}
+
+let flyMixIn = {
+  fly : function fly() {
+    console.log(`I can fly. This was my constructor: ${this.constructor.toString()}. But, remember classes in ES6 are still simply functions because of their constructor method. Watch this. typeof this.constructor === ${typeof this.constructor}`);
+  }
+}
+
+class Stork {}
+Object.assign(Stork.prototype, flyMixIn);
+
+class Parrot {}
+Object.assign(Parrot.prototype, flyMixIn);
+
+class Penguin {}
+Object.assign(Penguin.prototype, swimMixIn);
+
+class Ostrich {}
+Object.assign(Ostrich.prototype, swimMixIn);
+
+class Duck {}
+Object.assign(Duck.prototype, swimMixIn, flyMixIn)
+
+class Goose {}
+Object.assign(Goose.prototype, swimMixIn, flyMixIn)
+
+let goose =  new Goose();
+console.log(goose);
+goose.fly();
