@@ -1036,38 +1036,64 @@ Second thought after thinking:
 // bird examples using Mix-ins
 // note it does not use delegation because it is not enheriting. We use Object.assign to physically place the methods on the prototype object of what we want to have access to the MixIn methods.
 
+/*
 
+PROMPT: 
 
-let swimMixIn = {
-  swim() {
-    console.log("I can swim!");
+You have recently watched Lion King as well as Jungle Book and have decided to take the best
+of both these worlds and develop some OOP magic. In this Lion King x Jungle Book world of ours, Lions have two characteristics:
+1) they are friendly;
+2) they are in the Lion King
+Lions also have certain behavior, namely they roar and say 'Hakuna Matata'
+
+Tigers, likewise, have two characteristics:
+1) they enjoy swimming;
+2) they are in the Jungle Book
+Tigers also have certain behavior, namely they chase and say 'I am chasing the man-cub'
+
+Your task, should you chose to accept it, is to create a Liger (https://en.wikipedia.org/wiki/Liger).
+A Liger is an animal whose father is a Lion and whose mother is a Tiger. 
+The liger you create should inherit ALL properties and functionality from its parents, as follows:
+*/
+
+let LionKingMixIn = {
+  inLionKing : true,
+}
+
+let JungleBookMixIn = {
+  inJungleBook : true,
+}
+
+let LionLikeMixIn = {
+  isFriendly : true,
+  roar() {
+    return ' Hakuna Matata!'
   }
 }
 
-let flyMixIn = {
-  fly : function fly() {
-    console.log(`I can fly. This was my constructor: ${this.constructor.toString()}. But, remember classes in ES6 are still simply functions because of their constructor method. Watch this. typeof this.constructor === ${typeof this.constructor}`);
-  }
+class Lion {}
+Object.assign(Lion.prototype, LionKingMixIn, LionLikeMixIn);
+
+class Tiger {
+constructor (enjoysSwimming = true) {
+  this.enjoysSwimming = enjoysSwimming;
 }
 
-class Stork {}
-Object.assign(Stork.prototype, flyMixIn);
+chase () {
+  return "I m chasing the man-cub!";
+}
+}
+Object.assign(Tiger.prototype, JungleBookMixIn);
 
-class Parrot {}
-Object.assign(Parrot.prototype, flyMixIn);
 
-class Penguin {}
-Object.assign(Penguin.prototype, swimMixIn);
+class Liger extends Tiger {}
+Object.assign(Liger.prototype, LionKingMixIn, LionLikeMixIn, JungleBookMixIn);
 
-class Ostrich {}
-Object.assign(Ostrich.prototype, swimMixIn);
+let liger = new Liger();
 
-class Duck {}
-Object.assign(Duck.prototype, swimMixIn, flyMixIn)
-
-class Goose {}
-Object.assign(Goose.prototype, swimMixIn, flyMixIn)
-
-let goose =  new Goose();
-console.log(goose);
-goose.fly();
+console.log(liger.roar()) // 'Hakuna Matata'
+console.log(liger.chase()) // 'I am chasing the man-cub'
+console.log(liger.inLionKing) // true
+console.log(liger.isFriendly) // true
+console.log(liger.enjoysSwimming) // true
+console.log(liger.inJungleBook) // true
