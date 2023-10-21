@@ -1107,44 +1107,45 @@ The liger you create should inherit ALL properties and functionality from its pa
 
 // REFACTORING TO CREATE THIS WITH Constructor Prototypes
 
-function Lion() {}
+// function Lion() {}
 
-Lion.prototype.inLionKing = true;
-Lion.prototype.isFriendly = true;
-Lion.prototype.roar = function roar() {
-  console.log("Hakuna Matata!");
-}
-
-function Tiger() {}
-
-Tiger.prototype.enjoysSwimming = true;
-Tiger.prototype.inJungleBook = true;
-Tiger.prototype.chase = function chase() {
-  console.log(`I am chasing the man-cub!`);
-}
-
-// function Liger() {
-// Object.assign(this, Tiger.prototype, Lion.prototype)
+// Lion.prototype.inLionKing = true;
+// Lion.prototype.isFriendly = true;
+// Lion.prototype.roar = function roar() {
+//   console.log("Hakuna Matata!");
 // }
 
+// function Tiger() {}
 
-// But, on there is duplicate code going onto each liger since I am assigning inside the Constructor. Refactored:
+// Tiger.prototype.enjoysSwimming = true;
+// Tiger.prototype.inJungleBook = true;
+// Tiger.prototype.chase = function chase() {
+//   console.log(`I am chasing the man-cub!`);
+// }
 
-function Liger() {}
-Liger.prototype = Object.create(Lion.prototype);
-Object.assign(Liger.prototype, Tiger.prototype);
-Liger.prototype.constructor = Liger;
+// // function Liger() {
+// // Object.assign(this, Tiger.prototype, Lion.prototype)
+// // }
 
-let liger = new Liger();
 
-console.log(liger instanceof Lion);
-console.log(liger instanceof Tiger);
-console.log(liger.constructor);
+// // But, on there is duplicate code going onto each liger since I am assigning inside the Constructor. Refactored:
 
-// console.log(liger.roar()) // 'Hakuna Matata'
-// console.log(liger.chase()) // 'I am chasing the man-cub'
-// console.log(liger.inLionKing) // true
-// console.log(liger.isFriendly) // true
-// console.log(liger.enjoysSwimming) // true
-// console.log(liger.inJungleBook) // true
+// function Liger() {}
+// Liger.prototype = Object.create(Lion.prototype);
+// Object.assign(Liger.prototype, Tiger.prototype);
+// Liger.prototype.constructor = Liger;
+
+// let liger = new Liger();
+
+// console.log(liger instanceof Lion);
+// console.log(liger instanceof Tiger);
+// console.log(liger.constructor);
+
+// // console.log(liger.roar()) // 'Hakuna Matata'
+// // console.log(liger.chase()) // 'I am chasing the man-cub'
+// // console.log(liger.inLionKing) // true
+// // console.log(liger.isFriendly) // true
+// // console.log(liger.enjoysSwimming) // true
+// // console.log(liger.inJungleBook) // true
+
 
