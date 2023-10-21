@@ -1149,3 +1149,19 @@ The liger you create should inherit ALL properties and functionality from its pa
 // // console.log(liger.inJungleBook) // true
 
 
+What does this snippet log on the final line and what concept in particular does the line return new classDef(); illustrate that makes this code possible?
+
+function createObject(classDef) {
+  return new classDef();
+}
+
+class Foo {
+  sayHi() {
+    console.log('hi!');
+  }
+}
+
+let obj = createObject(Foo);
+obj.sayHi(); // logs ___ ?
+
+I know classes are first class citizens in JS - meaning: they can be passed into functions, returned from functions, or stored in a variable as a value. This is a great example of that. Although we are using a regular function that accepts an argument of a class definition, we still use the new keyword internally so get the benefits of it. Therefore, the variable it is assigned to is holding a new empty object with its internal [[Prototype]] property bound to the object referenced by the factory prototype of Foo. Although obj does not have its own method of sayHIi it does not panic. But rather, checks its prototpye where it finds it and invokes it. "Hi" is logged.
