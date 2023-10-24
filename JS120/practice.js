@@ -1,107 +1,107 @@
-const { afterEach } = require('mocha');
-const readline = require('readline-sync');
-function createHuman() {
-  return {
-    move : null,
-    previousMoves : [],
-    score : 0,
-    prompt(msg) {
-      console.log(`=> ${msg}`);
-    },
-    choose() {
-      this.prompt(`Please choose one: rock, paper, or scissors...`);
-      let choice = readline.question().toLowerCase();
-      while (!['rock', 'paper', 'scissors'].includes(choice)) {
-        this.prompt("Please enter a valid entry...");
-        choice = readline.question();
-      }
-      this.move = choice.toLowerCase();
-      this.previousMoves.push(choice);
-    }
-  };
-}
+// const { afterEach } = require('mocha');
+// const readline = require('readline-sync');
+// function createHuman() {
+//   return {
+//     move : null,
+//     previousMoves : [],
+//     score : 0,
+//     prompt(msg) {
+//       console.log(`=> ${msg}`);
+//     },
+//     choose() {
+//       this.prompt(`Please choose one: rock, paper, or scissors...`);
+//       let choice = readline.question().toLowerCase();
+//       while (!['rock', 'paper', 'scissors'].includes(choice)) {
+//         this.prompt("Please enter a valid entry...");
+//         choice = readline.question();
+//       }
+//       this.move = choice.toLowerCase();
+//       this.previousMoves.push(choice);
+//     }
+//   };
+// }
 
-function createComputer() {
-  return {
-    move : null,
-    previousMoves : [],
-    score : 0,
-    prompt(msg) {
-      console.log(`=> ${msg}`);
-    },
-    choose() {
-      let choices = ['rock', 'paper', 'scissors'];
-      let randomNumber = Math.floor(Math.random() * choices.length);
-      let choice = choices[randomNumber];
-      this.move = choice;
-      this.previousMoves.push(choice);
-    }
-  };
-}
+// function createComputer() {
+//   return {
+//     move : null,
+//     previousMoves : [],
+//     score : 0,
+//     prompt(msg) {
+//       console.log(`=> ${msg}`);
+//     },
+//     choose() {
+//       let choices = ['rock', 'paper', 'scissors'];
+//       let randomNumber = Math.floor(Math.random() * choices.length);
+//       let choice = choices[randomNumber];
+//       this.move = choice;
+//       this.previousMoves.push(choice);
+//     }
+//   };
+// }
 
 
-const RPSGame = {
-  human: createHuman(),
-  computer: createComputer(),
+// const RPSGame = {
+//   human: createHuman(),
+//   computer: createComputer(),
 
-  displayWelcomeMessage() {
-    console.log(`Welcome to Rock, Paper, Scissors on Jordan's MacBook Pro. Best of luck!`);
-  },
+//   displayWelcomeMessage() {
+//     console.log(`Welcome to Rock, Paper, Scissors on Jordan's MacBook Pro. Best of luck!`);
+//   },
 
-  displayGoodbyeMessage() {
-    console.log(`Thanks for playing Rock, Paper, Scissors. See you next time!`);
-  },
-  displayWinner() {
-    let humanMove = this.human.move;
-    let computerMove = this.computer.move;
-    let humanMoves = this.human.previousMoves ;
-    let computerMoves = this.computer.previousMoves ;
-    console.log(`You chose: ${humanMove}. Your previous moves are ${humanMoves.join(", ")}.`);
-    console.log(`The computer chose: ${computerMove}. The computer has chosen ${computerMoves.join(", ")}.`);
-    if ((humanMove === 'rock' && computerMove === 'scissors') ||
-          (humanMove === 'paper' && computerMove === 'rock') ||
-          (humanMove === 'scissors' && computerMove === 'paper')) {
-      console.log('You win!');
-      this.human.score++;
-    } else if ((humanMove === 'rock' && computerMove === 'paper') || (humanMove === 'paper' && computerMove === 'scissors') || (humanMove === 'scissors' && computerMove === 'rock')) {
-      console.log('Computer wins!');
-      this.computer.score++;
-    } else {
-      console.log("It's a tie");
-    }
-    console.log(`Your score: ${this.human.score}`)
-    console.log(`computer score: ${this.computer.score}`)
-  },
-  playAgain() {
-    console.log('Would you like to play again? (y/n)');
-    let answer = readline.question();
-    return answer === 'y';
-  },
-  checkScore() {
-    if (this.computer.score >= 3) {
-      console.log('Computer wins!');
-      this.computer.score = 0;
-      this.human.score = 0;
-      return;
-    } else if (this.human.score >= 3) {
-      console.log('You win!');
-      this.human.score = 0;
-      this.computer.score = 0;
-      return;
-    }
-  },
-  play() {
-    this.displayWelcomeMessage();
-    while (true) {
-      this.human.choose();
-      this.computer.choose();
-      this.displayWinner();
-      this.checkScore();
-      if (!this.playAgain()) break;
-    }
-    this.displayGoodbyeMessage();
-  },
-};
+//   displayGoodbyeMessage() {
+//     console.log(`Thanks for playing Rock, Paper, Scissors. See you next time!`);
+//   },
+//   displayWinner() {
+//     let humanMove = this.human.move;
+//     let computerMove = this.computer.move;
+//     let humanMoves = this.human.previousMoves ;
+//     let computerMoves = this.computer.previousMoves ;
+//     console.log(`You chose: ${humanMove}. Your previous moves are ${humanMoves.join(", ")}.`);
+//     console.log(`The computer chose: ${computerMove}. The computer has chosen ${computerMoves.join(", ")}.`);
+//     if ((humanMove === 'rock' && computerMove === 'scissors') ||
+//           (humanMove === 'paper' && computerMove === 'rock') ||
+//           (humanMove === 'scissors' && computerMove === 'paper')) {
+//       console.log('You win!');
+//       this.human.score++;
+//     } else if ((humanMove === 'rock' && computerMove === 'paper') || (humanMove === 'paper' && computerMove === 'scissors') || (humanMove === 'scissors' && computerMove === 'rock')) {
+//       console.log('Computer wins!');
+//       this.computer.score++;
+//     } else {
+//       console.log("It's a tie");
+//     }
+//     console.log(`Your score: ${this.human.score}`)
+//     console.log(`computer score: ${this.computer.score}`)
+//   },
+//   playAgain() {
+//     console.log('Would you like to play again? (y/n)');
+//     let answer = readline.question();
+//     return answer === 'y';
+//   },
+//   checkScore() {
+//     if (this.computer.score >= 3) {
+//       console.log('Computer wins!');
+//       this.computer.score = 0;
+//       this.human.score = 0;
+//       return;
+//     } else if (this.human.score >= 3) {
+//       console.log('You win!');
+//       this.human.score = 0;
+//       this.computer.score = 0;
+//       return;
+//     }
+//   },
+//   play() {
+//     this.displayWelcomeMessage();
+//     while (true) {
+//       this.human.choose();
+//       this.computer.choose();
+//       this.displayWinner();
+//       this.checkScore();
+//       if (!this.playAgain()) break;
+//     }
+//     this.displayGoodbyeMessage();
+//   },
+// };
 // console.log('playAgain' in RPSGame);
 // RPSGame.play();
 
@@ -321,9 +321,9 @@ const RPSGame = {
 // console.log(rect1.area);
 // console.log(rect1.perimeter);
 
-function Ninja() {
-  this.swung = false;
-}
+// function Ninja() {
+//   this.swung = false;
+// }
 // Ninja.prototype.swing = function() {
 //   this.swung = true;
 //   return this;
@@ -1149,19 +1149,219 @@ The liger you create should inherit ALL properties and functionality from its pa
 // // console.log(liger.inJungleBook) // true
 
 
-What does this snippet log on the final line and what concept in particular does the line return new classDef(); illustrate that makes this code possible?
+// What does this snippet log on the final line and what concept in particular does the line return new classDef(); illustrate that makes this code possible?
 
-function createObject(classDef) {
-  return new classDef();
-}
+// function createObject(classDef) {
+//   return new classDef();
+// }
 
-class Foo {
-  sayHi() {
-    console.log('hi!');
+// class Foo {
+//   sayHi() {
+//     console.log('hi!');
+//   }
+// }
+
+// let obj = createObject(Foo);
+// obj.sayHi(); // logs ___ ?
+
+// I know classes are first class citizens in JS - meaning: they can be passed into functions, returned from functions, or stored in a variable as a value. This is a great example of that. Although we are using a regular function that accepts an argument of a class definition, we still use the new keyword internally so get the benefits of it. Therefore, the variable it is assigned to is holding a new empty object with its internal [[Prototype]] property bound to the object referenced by the factory prototype of Foo. Although obj does not have its own method of sayHIi it does not panic. But rather, checks its prototpye where it finds it and invokes it. "Hi" is logged.
+
+
+// I want to make a teacher with name, age, subject, 
+//school
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Factory Function creating objects
+
+function teacher(name, age, subject, school) {
+  return {
+    name,
+    age,
+    subject,
+    school,
+    introduce() {
+      return `Hello! I am teacher ${this.name} and am ${this.age} years old. I teach ${this.subject} at ${this.school}. Nice to meet you!`;
+    }
   }
 }
 
-let obj = createObject(Foo);
-obj.sayHi(); // logs ___ ?
+// creating an instance of teacher AKA instantiating
 
-I know classes are first class citizens in JS - meaning: they can be passed into functions, returned from functions, or stored in a variable as a value. This is a great example of that. Although we are using a regular function that accepts an argument of a class definition, we still use the new keyword internally so get the benefits of it. Therefore, the variable it is assigned to is holding a new empty object with its internal [[Prototype]] property bound to the object referenced by the factory prototype of Foo. Although obj does not have its own method of sayHIi it does not panic. But rather, checks its prototpye where it finds it and invokes it. "Hi" is logged.
+// let teacher1 = teacher('Jordan', 29, "Dance", "BMCHS");
+// console.log(teacher1);
+// console.log(teacher1.introduce());
+
+// the bad thing about factory functions is that each instance gets a copy of the introduce method, which is tough on resources. Also, you are not able to explicitly deteremine what function created the instance, because the prototype object points to Object.prototype and nothing special, since it is simply an object literal being returned.
+
+// console.log(teacher1.prototype === Object.prototype);
+// console.log(Object.getPrototypeOf(teacher1)); // returns null.
+// console.log(teacher1.constructor.name);
+
+// Constructors with external prototype objects
+
+function Teacher(name, age, subject, school) {
+  Object.assign(this, teacherPrototype );
+  this.name = name; 
+  this.age = age;
+  this.subject = subject;
+  this.school = school;
+}
+
+let teacherPrototype = {
+  introduce() {
+    return `Hello! I am teacher ${this.name} and am ${this.age} years old. I teach ${this.subject} at ${this.school}. Nice to meet you!`;
+  }
+}
+
+//with a Constructor, we use this to set the properties.
+// This first example will have an external object acting as its prototype so we can build our way into the internal [[Protototype]] property.
+// Therefore, we have to use Object.assign(externalObject) within the Constructor so that each instance gets the coprrect access/prototype reference set.
+
+// let teacher2 = new Teacher("Jordan", 29, "Dance", "BMCHS");
+// console.log(teacher2)
+
+// console.log(teacher2 instanceof Teacher);
+// console.log(teacher2.constructor === Teacher);
+// console.log(teacher2.hasOwnProperty("introduce"));
+// console.log(typeof teacher2);
+// console.log(typeof teacher2.constructor);
+// console.log(teacher2.constructor)
+
+function Teacher (name, age, subject, school) {
+  this.name = name;
+  this.age = age;
+  this.subject = subject;
+  this.school = school;
+}
+
+Teacher.prototype.introduce = function introduce() {
+  return `Hello! I am teacher ${this.name} and am ${this.age} years old. I teach ${this.subject} at ${this.school}. Nice to meet you!`;
+}
+
+let teacher3 = new Teacher("Jordan", 29, "Dance", "BMCHS");
+
+// console.log(teacher3);
+// console.log(teacher3 instanceof Teacher);
+// console.log(teacher3.constructor === Teacher);
+// console.log(teacher3.constructor.name === "Teacher");
+// console.log(Object.getPrototypeOf(teacher3) === Teacher.prototype);
+
+
+//pseudo-classical inheritance
+//where one Constructor prototype inherits from another
+
+let fileMixIn = {
+filing() {
+  return ` I am filing for ${this.school}. Only Admins and aides can file.`;
+}
+
+
+}
+function School(name, school) {
+  this.name = name;
+  this.school = school;
+}
+//instance method
+School.prototype.cheer = function cheer() {
+  return `I have so much school pride for ${this.school}. GOOOOOOO TEAM!`;
+}
+
+let school = new School("Jordan", "BMCHS");
+// console.log(school)
+// console.log(school.cheer());
+
+//creating my first of two-sub types
+
+function Admin(name, school, age, position) {
+  School.call(this, name, school);
+  this.age = age;
+  this.position = position
+}
+
+Admin.prototype = Object.create(School.prototype);
+Admin.prototype.meeting = function meeting() {
+  return `Sorry, I cant, I have a meeting.`;
+}
+Admin.prototype.constructor = Admin;
+Admin.type = function type() {
+  return `I am an Administrator.`
+}
+Object.assign(Admin.prototype, fileMixIn);
+
+let admin = new Admin("Jordan", "BMCHS", 29, "Principal");
+// console.log(admin);
+// console.log(admin.cheer());
+// console.log(admin.meeting());
+// console.log(Admin.type());
+
+// console.log(admin instanceof Admin);
+// console.log(Object.getPrototypeOf(admin) === Admin.prototype)
+// console.log(admin.filing());
+
+function Teacher(name, school, age, position) {
+  School.call(this, name,school);
+  this.age = age;
+  this.position = position;
+}
+
+Teacher.prototype = Object.create(School.prototype);
+Teacher.prototype.teach = function teach() {
+  return `I teach!`;
+}
+Teacher.prototype.constructor = Teacher;
+Teacher.type = function type() {
+  return `I am a Teacher.`;
+}
+let teacher5 = new Teacher("Jordan", "BMCHS", 29, "Dance Teacher");
+
+// console.log(teacher5);
+// console.log(teacher5.teach());
+// console.log(teacher5 instanceof Teacher);
+// console.log(teacher5.constructor === Teacher);
+// console.log(Object.getPrototypeOf(teacher5))
+// console.log(teacher5.cheer());
+// console.log(Teacher.type());
+
+function Aide(name, school, age, position) {
+  Teacher.call(this, name, school);
+  this.age = age;
+  this.position = position;
+}
+
+Aide.prototype = Object.create(Teacher.prototype);
+Aide.hello = function hello() {
+  return `I am a teachers aide. `
+};
+Aide.prototype.constructor = Aide;
+Object.assign(Aide.prototype, fileMixIn);
+
+let aide = new Aide("Jordan", "BMCHS", 29, "Aide");
+
+// console.log(aide);
+// console.log(aide.teach());
+// console.log(aide.cheer())
+// // console.log(aide.meeting())
+// console.log(aide.filing());
+console.log(aide instanceof Teacher)
+console.log(aide instanceof School)
+console.log(aide instanceof Admin)
