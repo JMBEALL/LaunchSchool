@@ -1365,3 +1365,72 @@ let aide = new Aide("Jordan", "BMCHS", 29, "Aide");
 console.log(aide instanceof Teacher)
 console.log(aide instanceof School)
 console.log(aide instanceof Admin)
+
+
+
+
+
+
+
+//ES6 CLASSES
+
+let fileMixIn = {
+  filing() {
+    return  `Only Aides and Admin can file.`
+  }
+}
+
+class School {
+  constructor(name,school) {
+    this.name = name;
+    this.school = school;
+  }
+
+  cheer() {
+    return `I have so much school pride for ${this.school}. GOOOOO TEAMMMMMM!`
+  }
+}
+
+class Admin extends School {
+  constructor(name,school, age, position) {
+    super(name,school);
+    this.age = age;
+    this.position = position;
+  }
+
+  static type() {
+    return `I am an Admin.`;
+  }
+}
+Object.assign(Admin.prototype, fileMixIn);
+
+let admin = new Admin("Jordan", "BMCHS", 29, "Principle");
+
+// console.log(admin);
+// console.log(admin.filing());
+// console.log(admin.cheer());
+
+class Teacher extends School {
+  constructor (name, school, age, position) {
+    super(name,school);
+    this.age = age;
+    this.position = position;
+  }
+
+  teach() {
+    return `I teach!`;
+  }
+}
+
+class Aide extends Teacher {
+  constructor(name, school, age, position) {
+    super(name,school, age, position);
+  }
+}
+Object.assign(Aide.prototype, fileMixIn);
+
+let aide = new Aide("Jordan", "BMCHS", 29, "AIDE");
+console.log(aide)
+console.log(aide.teach());
+console.log(aide.cheer());
+console.log(aide.filing());
