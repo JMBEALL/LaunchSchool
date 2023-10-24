@@ -1434,3 +1434,20 @@ console.log(aide)
 console.log(aide.teach());
 console.log(aide.cheer());
 console.log(aide.filing());
+
+function logAge(num) {
+  switch (num) {
+    case 28 :
+      return () => console.log(`I am 28 years old.`);
+    case 29 :
+      return () => console.log("I am 29 years old");
+      break;
+    case 30 :
+      return () => console.log("I am 30 years old.");
+  }
+}
+
+let jordan = logAge(29);
+console.log(jordan);
+jordan();
+jordan();
