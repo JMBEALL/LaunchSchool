@@ -21,6 +21,8 @@
 //   };
 // }
 
+const { suiteTeardown } = require("mocha");
+
 // function createComputer() {
 //   return {
 //     move : null,
@@ -1193,261 +1195,283 @@ The liger you create should inherit ALL properties and functionality from its pa
 
 // Factory Function creating objects
 
-function teacher(name, age, subject, school) {
-  return {
-    name,
-    age,
-    subject,
-    school,
-    introduce() {
-      return `Hello! I am teacher ${this.name} and am ${this.age} years old. I teach ${this.subject} at ${this.school}. Nice to meet you!`;
-    }
-  }
-}
+// function teacher(name, age, subject, school) {
+//   return {
+//     name,
+//     age,
+//     subject,
+//     school,
+//     introduce() {
+//       return `Hello! I am teacher ${this.name} and am ${this.age} years old. I teach ${this.subject} at ${this.school}. Nice to meet you!`;
+//     }
+//   }
+// }
 
-// creating an instance of teacher AKA instantiating
+// // creating an instance of teacher AKA instantiating
 
-// let teacher1 = teacher('Jordan', 29, "Dance", "BMCHS");
-// console.log(teacher1);
-// console.log(teacher1.introduce());
+// // let teacher1 = teacher('Jordan', 29, "Dance", "BMCHS");
+// // console.log(teacher1);
+// // console.log(teacher1.introduce());
 
-// the bad thing about factory functions is that each instance gets a copy of the introduce method, which is tough on resources. Also, you are not able to explicitly deteremine what function created the instance, because the prototype object points to Object.prototype and nothing special, since it is simply an object literal being returned.
+// // the bad thing about factory functions is that each instance gets a copy of the introduce method, which is tough on resources. Also, you are not able to explicitly deteremine what function created the instance, because the prototype object points to Object.prototype and nothing special, since it is simply an object literal being returned.
 
-// console.log(teacher1.prototype === Object.prototype);
-// console.log(Object.getPrototypeOf(teacher1)); // returns null.
-// console.log(teacher1.constructor.name);
+// // console.log(teacher1.prototype === Object.prototype);
+// // console.log(Object.getPrototypeOf(teacher1)); // returns null.
+// // console.log(teacher1.constructor.name);
 
-// Constructors with external prototype objects
+// // Constructors with external prototype objects
 
-function Teacher(name, age, subject, school) {
-  Object.assign(this, teacherPrototype );
-  this.name = name; 
-  this.age = age;
-  this.subject = subject;
-  this.school = school;
-}
+// function Teacher(name, age, subject, school) {
+//   Object.assign(this, teacherPrototype );
+//   this.name = name; 
+//   this.age = age;
+//   this.subject = subject;
+//   this.school = school;
+// }
 
-let teacherPrototype = {
-  introduce() {
-    return `Hello! I am teacher ${this.name} and am ${this.age} years old. I teach ${this.subject} at ${this.school}. Nice to meet you!`;
-  }
-}
+// let teacherPrototype = {
+//   introduce() {
+//     return `Hello! I am teacher ${this.name} and am ${this.age} years old. I teach ${this.subject} at ${this.school}. Nice to meet you!`;
+//   }
+// }
 
-//with a Constructor, we use this to set the properties.
-// This first example will have an external object acting as its prototype so we can build our way into the internal [[Protototype]] property.
-// Therefore, we have to use Object.assign(externalObject) within the Constructor so that each instance gets the coprrect access/prototype reference set.
+// //with a Constructor, we use this to set the properties.
+// // This first example will have an external object acting as its prototype so we can build our way into the internal [[Protototype]] property.
+// // Therefore, we have to use Object.assign(externalObject) within the Constructor so that each instance gets the coprrect access/prototype reference set.
 
-// let teacher2 = new Teacher("Jordan", 29, "Dance", "BMCHS");
-// console.log(teacher2)
+// // let teacher2 = new Teacher("Jordan", 29, "Dance", "BMCHS");
+// // console.log(teacher2)
 
-// console.log(teacher2 instanceof Teacher);
-// console.log(teacher2.constructor === Teacher);
-// console.log(teacher2.hasOwnProperty("introduce"));
-// console.log(typeof teacher2);
-// console.log(typeof teacher2.constructor);
-// console.log(teacher2.constructor)
+// // console.log(teacher2 instanceof Teacher);
+// // console.log(teacher2.constructor === Teacher);
+// // console.log(teacher2.hasOwnProperty("introduce"));
+// // console.log(typeof teacher2);
+// // console.log(typeof teacher2.constructor);
+// // console.log(teacher2.constructor)
 
-function Teacher (name, age, subject, school) {
-  this.name = name;
-  this.age = age;
-  this.subject = subject;
-  this.school = school;
-}
+// function Teacher (name, age, subject, school) {
+//   this.name = name;
+//   this.age = age;
+//   this.subject = subject;
+//   this.school = school;
+// }
 
-Teacher.prototype.introduce = function introduce() {
-  return `Hello! I am teacher ${this.name} and am ${this.age} years old. I teach ${this.subject} at ${this.school}. Nice to meet you!`;
-}
+// Teacher.prototype.introduce = function introduce() {
+//   return `Hello! I am teacher ${this.name} and am ${this.age} years old. I teach ${this.subject} at ${this.school}. Nice to meet you!`;
+// }
 
-let teacher3 = new Teacher("Jordan", 29, "Dance", "BMCHS");
+// let teacher3 = new Teacher("Jordan", 29, "Dance", "BMCHS");
 
-// console.log(teacher3);
-// console.log(teacher3 instanceof Teacher);
-// console.log(teacher3.constructor === Teacher);
-// console.log(teacher3.constructor.name === "Teacher");
-// console.log(Object.getPrototypeOf(teacher3) === Teacher.prototype);
-
-
-//pseudo-classical inheritance
-//where one Constructor prototype inherits from another
-
-let fileMixIn = {
-filing() {
-  return ` I am filing for ${this.school}. Only Admins and aides can file.`;
-}
+// // console.log(teacher3);
+// // console.log(teacher3 instanceof Teacher);
+// // console.log(teacher3.constructor === Teacher);
+// // console.log(teacher3.constructor.name === "Teacher");
+// // console.log(Object.getPrototypeOf(teacher3) === Teacher.prototype);
 
 
-}
-function School(name, school) {
-  this.name = name;
-  this.school = school;
-}
-//instance method
-School.prototype.cheer = function cheer() {
-  return `I have so much school pride for ${this.school}. GOOOOOOO TEAM!`;
-}
+// //pseudo-classical inheritance
+// //where one Constructor prototype inherits from another
 
-let school = new School("Jordan", "BMCHS");
-// console.log(school)
-// console.log(school.cheer());
+// let fileMixIn = {
+// filing() {
+//   return ` I am filing for ${this.school}. Only Admins and aides can file.`;
+// }
 
-//creating my first of two-sub types
 
-function Admin(name, school, age, position) {
-  School.call(this, name, school);
-  this.age = age;
-  this.position = position
-}
+// }
+// function School(name, school) {
+//   this.name = name;
+//   this.school = school;
+// }
+// //instance method
+// School.prototype.cheer = function cheer() {
+//   return `I have so much school pride for ${this.school}. GOOOOOOO TEAM!`;
+// }
 
-Admin.prototype = Object.create(School.prototype);
-Admin.prototype.meeting = function meeting() {
-  return `Sorry, I cant, I have a meeting.`;
-}
-Admin.prototype.constructor = Admin;
-Admin.type = function type() {
-  return `I am an Administrator.`
-}
-Object.assign(Admin.prototype, fileMixIn);
+// let school = new School("Jordan", "BMCHS");
+// // console.log(school)
+// // console.log(school.cheer());
 
-let admin = new Admin("Jordan", "BMCHS", 29, "Principal");
-// console.log(admin);
-// console.log(admin.cheer());
-// console.log(admin.meeting());
-// console.log(Admin.type());
+// //creating my first of two-sub types
 
-// console.log(admin instanceof Admin);
-// console.log(Object.getPrototypeOf(admin) === Admin.prototype)
-// console.log(admin.filing());
+// function Admin(name, school, age, position) {
+//   School.call(this, name, school);
+//   this.age = age;
+//   this.position = position
+// }
 
-function Teacher(name, school, age, position) {
-  School.call(this, name,school);
-  this.age = age;
-  this.position = position;
-}
+// Admin.prototype = Object.create(School.prototype);
+// Admin.prototype.meeting = function meeting() {
+//   return `Sorry, I cant, I have a meeting.`;
+// }
+// Admin.prototype.constructor = Admin;
+// Admin.type = function type() {
+//   return `I am an Administrator.`
+// }
+// Object.assign(Admin.prototype, fileMixIn);
 
-Teacher.prototype = Object.create(School.prototype);
-Teacher.prototype.teach = function teach() {
-  return `I teach!`;
-}
-Teacher.prototype.constructor = Teacher;
-Teacher.type = function type() {
-  return `I am a Teacher.`;
-}
-let teacher5 = new Teacher("Jordan", "BMCHS", 29, "Dance Teacher");
+// let admin = new Admin("Jordan", "BMCHS", 29, "Principal");
+// // console.log(admin);
+// // console.log(admin.cheer());
+// // console.log(admin.meeting());
+// // console.log(Admin.type());
 
-// console.log(teacher5);
-// console.log(teacher5.teach());
-// console.log(teacher5 instanceof Teacher);
-// console.log(teacher5.constructor === Teacher);
-// console.log(Object.getPrototypeOf(teacher5))
-// console.log(teacher5.cheer());
-// console.log(Teacher.type());
+// // console.log(admin instanceof Admin);
+// // console.log(Object.getPrototypeOf(admin) === Admin.prototype)
+// // console.log(admin.filing());
 
-function Aide(name, school, age, position) {
-  Teacher.call(this, name, school);
-  this.age = age;
-  this.position = position;
-}
+// function Teacher(name, school, age, position) {
+//   School.call(this, name,school);
+//   this.age = age;
+//   this.position = position;
+// }
 
-Aide.prototype = Object.create(Teacher.prototype);
-Aide.hello = function hello() {
-  return `I am a teachers aide. `
-};
-Aide.prototype.constructor = Aide;
-Object.assign(Aide.prototype, fileMixIn);
+// Teacher.prototype = Object.create(School.prototype);
+// Teacher.prototype.teach = function teach() {
+//   return `I teach!`;
+// }
+// Teacher.prototype.constructor = Teacher;
+// Teacher.type = function type() {
+//   return `I am a Teacher.`;
+// }
+// let teacher5 = new Teacher("Jordan", "BMCHS", 29, "Dance Teacher");
 
-let aide = new Aide("Jordan", "BMCHS", 29, "Aide");
+// // console.log(teacher5);
+// // console.log(teacher5.teach());
+// // console.log(teacher5 instanceof Teacher);
+// // console.log(teacher5.constructor === Teacher);
+// // console.log(Object.getPrototypeOf(teacher5))
+// // console.log(teacher5.cheer());
+// // console.log(Teacher.type());
 
-// console.log(aide);
+// function Aide(name, school, age, position) {
+//   Teacher.call(this, name, school);
+//   this.age = age;
+//   this.position = position;
+// }
+
+// Aide.prototype = Object.create(Teacher.prototype);
+// Aide.hello = function hello() {
+//   return `I am a teachers aide. `
+// };
+// Aide.prototype.constructor = Aide;
+// Object.assign(Aide.prototype, fileMixIn);
+
+// let aide = new Aide("Jordan", "BMCHS", 29, "Aide");
+
+// // console.log(aide);
+// // console.log(aide.teach());
+// // console.log(aide.cheer())
+// // // console.log(aide.meeting())
+// // console.log(aide.filing());
+// console.log(aide instanceof Teacher)
+// console.log(aide instanceof School)
+// console.log(aide instanceof Admin)
+
+
+
+
+
+
+
+// //ES6 CLASSES
+
+// let fileMixIn = {
+//   filing() {
+//     return  `Only Aides and Admin can file.`
+//   }
+// }
+
+// class School {
+//   constructor(name,school) {
+//     this.name = name;
+//     this.school = school;
+//   }
+
+//   cheer() {
+//     return `I have so much school pride for ${this.school}. GOOOOO TEAMMMMMM!`
+//   }
+// }
+
+// class Admin extends School {
+//   constructor(name,school, age, position) {
+//     super(name,school);
+//     this.age = age;
+//     this.position = position;
+//   }
+
+//   static type() {
+//     return `I am an Admin.`;
+//   }
+// }
+// Object.assign(Admin.prototype, fileMixIn);
+
+// let admin = new Admin("Jordan", "BMCHS", 29, "Principle");
+
+// // console.log(admin);
+// // console.log(admin.filing());
+// // console.log(admin.cheer());
+
+// class Teacher extends School {
+//   constructor (name, school, age, position) {
+//     super(name,school);
+//     this.age = age;
+//     this.position = position;
+//   }
+
+//   teach() {
+//     return `I teach!`;
+//   }
+// }
+
+// class Aide extends Teacher {
+//   constructor(name, school, age, position) {
+//     super(name,school, age, position);
+//   }
+// }
+// Object.assign(Aide.prototype, fileMixIn);
+
+// let aide = new Aide("Jordan", "BMCHS", 29, "AIDE");
+// console.log(aide)
 // console.log(aide.teach());
-// console.log(aide.cheer())
-// // console.log(aide.meeting())
+// console.log(aide.cheer());
 // console.log(aide.filing());
-console.log(aide instanceof Teacher)
-console.log(aide instanceof School)
-console.log(aide instanceof Admin)
 
+// function logAge(num) {
+//   switch (num) {
+//     case 28 :
+//       return () => console.log(`I am 28 years old.`);
+//     case 29 :
+//       return () => console.log("I am 29 years old");
+//       break;
+//     case 30 :
+//       return () => console.log("I am 30 years old.");
+//   }
+// }
 
+// let jordan = logAge(29);
+// console.log(jordan);
+// jordan();
+// jordan();
 
-
-
-
-
-//ES6 CLASSES
-
-let fileMixIn = {
-  filing() {
-    return  `Only Aides and Admin can file.`
+let jordan = {
+  name : "Jordan",
+  age : 29,
+  hello() {
+    console.log(`${this.name} says hello and wants you to know they are ${this.age} years old!`);
   }
 }
 
-class School {
-  constructor(name,school) {
-    this.name = name;
-    this.school = school;
-  }
+// jordan.hello();
 
-  cheer() {
-    return `I have so much school pride for ${this.school}. GOOOOO TEAMMMMMM!`
-  }
-}
+let method = jordan.hello;
 
-class Admin extends School {
-  constructor(name,school, age, position) {
-    super(name,school);
-    this.age = age;
-    this.position = position;
-  }
+// method() // because now this is pointing to the global obeject
 
-  static type() {
-    return `I am an Admin.`;
-  }
-}
-Object.assign(Admin.prototype, fileMixIn);
+// however, lets add those properties to the global object with different values and see if they will be used.
 
-let admin = new Admin("Jordan", "BMCHS", 29, "Principle");
 
-// console.log(admin);
-// console.log(admin.filing());
-// console.log(admin.cheer());
+global.name = "Taylor";
+global.age = 33;
 
-class Teacher extends School {
-  constructor (name, school, age, position) {
-    super(name,school);
-    this.age = age;
-    this.position = position;
-  }
-
-  teach() {
-    return `I teach!`;
-  }
-}
-
-class Aide extends Teacher {
-  constructor(name, school, age, position) {
-    super(name,school, age, position);
-  }
-}
-Object.assign(Aide.prototype, fileMixIn);
-
-let aide = new Aide("Jordan", "BMCHS", 29, "AIDE");
-console.log(aide)
-console.log(aide.teach());
-console.log(aide.cheer());
-console.log(aide.filing());
-
-function logAge(num) {
-  switch (num) {
-    case 28 :
-      return () => console.log(`I am 28 years old.`);
-    case 29 :
-      return () => console.log("I am 29 years old");
-      break;
-    case 30 :
-      return () => console.log("I am 30 years old.");
-  }
-}
-
-let jordan = logAge(29);
-console.log(jordan);
-jordan();
-jordan();
+method();
