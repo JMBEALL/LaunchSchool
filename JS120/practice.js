@@ -22,6 +22,7 @@
 // }
 
 const { suiteTeardown } = require("mocha");
+const { sanitizeFilter } = require("mongoose");
 
 // function createComputer() {
 //   return {
@@ -1454,24 +1455,132 @@ The liger you create should inherit ALL properties and functionality from its pa
 // jordan();
 // jordan();
 
-let jordan = {
-  name : "Jordan",
-  age : 29,
-  hello() {
-    console.log(`${this.name} says hello and wants you to know they are ${this.age} years old!`);
-  }
-}
+//losing context with nested functions inside a method
+//using a variable in the outer scope to preserve context
+
+
+// let jordan = {
+//   name: "Jordan",
+//   age : 29,
+//   hello() {
+//     function innerHello() {
+//       console.log(`${this.name} says hello and wants you to know they are ${this.age} years old.`);
+//     }
+//     innerHello.call(this);
+//   }
+// }
+
+// jordan.hello()
+
+//using BIND
+
+// let jordan = {
+//   name: "Jordan",
+//   age: 29,
+//   hello() {
+//     let innerHello = function() {
+//       console.log(`${this.name} says hello and wants you to know they are ${this.age} years old.`);
+//     }.bind(this);
+//     innerHello();
+//   }
+// }
 
 // jordan.hello();
 
-let method = jordan.hello;
 
-// method() // because now this is pointing to the global obeject
+//OR bind after the fact
 
-// however, lets add those properties to the global object with different values and see if they will be used.
+// let taylor = {
+//   name: "Taylor",
+//   age: 33,
+//   hello() {
+//     function innerHello() {
+//       console.log(`${this.name} says hello and wants you to know that they are ${this.age} years old.`);
+//     }
+//     let binded = innerHello.bind(this);
+//     binded();
+//     binded();
+//     binded();
+//   }
+// }
+
+// taylor.hello();
+
+// let jordan = {
+//   name: "Jordan",
+//   age: 29,
+//   hello() {
+//     let innerHello = () => {
+//       console.log(`${this.name} says hello and wants you to know that they are ${this.age} years old.`);
+//     };
+//     innerHello();
+//   }
+// }
+
+// jordan.hello();
 
 
-global.name = "Taylor";
-global.age = 33;
 
-method();
+
+
+// 1. PM through inheritance
+
+// 2. PM duck-typing
+
+
+// related objects responding to the same method call with different behavior
+
+class Pokemon {
+  specialAbility () {
+    console.log('doing special ability'); 
+  }
+};
+
+class FirePokemon extends Pokemon {
+  specialAbility () {
+    console.log('SOMETHING FIRE RELATED'); // overriding is still inheritance
+  }
+};
+
+class WaterPokemon extends Pokemon {
+  specialAbility () {
+    console.log('SOMETHING WATER RELATED'); // 
+  }
+};
+
+class lamePokemon extends Pokemon {}
+
+let pokemons = [new Pokemon(), new FirePokemon(), new WaterPokemon(), new lamePokemon()];
+pokemons.forEach(pokemon => pokemon.specialAbility());
+
+
+// Duck-typing
+
+// UN-related objects responding to the same method call
+
+class Person {
+  soundAlarm () {
+    console.log('Thief, lookout!')
+  }
+}
+
+class Watch {
+  soundAlarm () {
+    console.log('Beep!')
+  }
+}
+
+class Dog {
+  soundAlarm () {
+    return 'woof!'
+  }
+}
+
+class Door {
+  soundAlarm () {
+    return 'siren!'
+  }
+}
+
+let thingsThatCanSoundAlarm = [new Person(), new Watch(), new Dog(), new Door()];
+thingsThatCanSoundAlarm.forEach(thing => thing.soundAlarm());
