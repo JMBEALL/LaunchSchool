@@ -1615,31 +1615,51 @@ instance methods - these are defined on the function prototype (Constructor prot
 // console.log(rec1.area());
 // console.log(rec1.toString());
 
-let arr = [1,2,3,4];
-function forEach(arr, callback, context) {
-  for (let index = 0; index < arr.length; index++) {
-    // console.log(callback(arr[index]));
-    callback.call(context, arr[index]);
-  }
-}
-
-// function squared(num) {
-//   return num ** 2;
+// let arr = [1,2,3,4];
+// function forEach(arr, callback, context) {
+//   for (let index = 0; index < arr.length; index++) {
+//     // console.log(callback(arr[index]));
+//     callback.call(context, arr[index]);
+//   }
 // }
-// // function isOdd(num) {
-// //   return num % 2 === 1
-// // };
 
-class Foo {
-  constructor(prefix) {
-    this.prefix = prefix;
-  }
+// // function squared(num) {
+// //   return num ** 2;
+// // }
+// // // function isOdd(num) {
+// // //   return num % 2 === 1
+// // // };
 
-  showItem(item) {
-    console.log(this.prefix, item);
+// class Foo {
+//   constructor(prefix) {
+//     this.prefix = prefix;
+//   }
+
+//   showItem(item) {
+//     console.log(this.prefix, item);
+//   }
+// }
+
+// let foo = new Foo("Item: ");
+
+// forEach(arr, foo.showItem, foo);
+
+
+function filter(arr, callback) {
+  let filteredArr = [];
+  for(let index = 0; index < arr.length; index++) {
+    if (callback(arr[index])) {
+      filteredArr.push(arr[index]);
+    }
   }
+  return filteredArr;
 }
 
-let foo = new Foo("Item: ");
+let numbers = [1, 2, 3, 4, 5];
+console.log(filter(numbers, number => number > 3)); // => [ 4, 5 ]
+console.log(filter(numbers, number => number < 0)); // => []
+console.log(filter(numbers, () => true));           // => [ 1, 2, 3, 4, 5 ]
 
-forEach(arr, foo.showItem, foo);
+let values = [1, "abc", null, true, undefined, "xyz"];
+console.log(filter(values, value => typeof value === "string"));
+// => [ 'abc', 'xyz' ]
