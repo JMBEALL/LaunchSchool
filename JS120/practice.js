@@ -1647,7 +1647,7 @@ instance methods - these are defined on the function prototype (Constructor prot
 
 function filter(arr, callback) {
   let filteredArr = [];
-  for(let index = 0; index < arr.length; index++) {
+  for (let index = 0; index < arr.length; index++) {
     if (callback(arr[index])) {
       filteredArr.push(arr[index]);
     }
@@ -1655,11 +1655,30 @@ function filter(arr, callback) {
   return filteredArr;
 }
 
+// let numbers = [1, 2, 3, 4, 5];
+// console.log(filter(numbers, number => number > 3)); // => [ 4, 5 ]
+// console.log(filter(numbers, number => number < 0)); // => []
+// console.log(filter(numbers, () => true));           // => [ 1, 2, 3, 4, 5 ]
+
+// let values = [1, "abc", null, true, undefined, "xyz"];
+// console.log(filter(values, value => typeof value === "string"));
+// // => [ 'abc', 'xyz' ]
+
+
+function map(arr, callback) {
+  let mappedArr = [];
+  for (let index = 0; index < arr.length; index++) {
+    mappedArr.push(callback(arr[index]));
+  }
+  return mappedArr;
+}
+
 let numbers = [1, 2, 3, 4, 5];
-console.log(filter(numbers, number => number > 3)); // => [ 4, 5 ]
-console.log(filter(numbers, number => number < 0)); // => []
-console.log(filter(numbers, () => true));           // => [ 1, 2, 3, 4, 5 ]
+console.log(map(numbers, number => number * 3));  // => [ 3, 6, 9, 12, 15 ]
+console.log(map(numbers, number => number + 1));  // => [ 2, 3, 4, 5, 6 ]
+console.log(map(numbers, () => false));
+// => [ false, false, false, false, false ]
 
 let values = [1, "abc", null, true, undefined, "xyz"];
-console.log(filter(values, value => typeof value === "string"));
-// => [ 'abc', 'xyz' ]
+console.log(map(values, value => String(value)));
+// => [ '1', 'abc', 'null', 'true', 'undefined', 'xyz' ]
