@@ -1530,57 +1530,116 @@ The liger you create should inherit ALL properties and functionality from its pa
 
 // related objects responding to the same method call with different behavior
 
-class Pokemon {
-  specialAbility () {
-    console.log('doing special ability'); 
-  }
-};
+// class Pokemon {
+//   specialAbility () {
+//     console.log('doing special ability'); 
+//   }
+// };
 
-class FirePokemon extends Pokemon {
-  specialAbility () {
-    console.log('SOMETHING FIRE RELATED'); // overriding is still inheritance
-  }
-};
+// class FirePokemon extends Pokemon {
+//   specialAbility () {
+//     console.log('SOMETHING FIRE RELATED'); // overriding is still inheritance
+//   }
+// };
 
-class WaterPokemon extends Pokemon {
-  specialAbility () {
-    console.log('SOMETHING WATER RELATED'); // 
-  }
-};
+// class WaterPokemon extends Pokemon {
+//   specialAbility () {
+//     console.log('SOMETHING WATER RELATED'); // 
+//   }
+// };
 
-class lamePokemon extends Pokemon {}
+// class lamePokemon extends Pokemon {}
 
-let pokemons = [new Pokemon(), new FirePokemon(), new WaterPokemon(), new lamePokemon()];
-pokemons.forEach(pokemon => pokemon.specialAbility());
+// let pokemons = [new Pokemon(), new FirePokemon(), new WaterPokemon(), new lamePokemon()];
+// pokemons.forEach(pokemon => pokemon.specialAbility());
 
 
-// Duck-typing
+// // Duck-typing
 
-// UN-related objects responding to the same method call
+// // UN-related objects responding to the same method call
 
-class Person {
-  soundAlarm () {
-    console.log('Thief, lookout!')
+// class Person {
+//   soundAlarm () {
+//     console.log('Thief, lookout!')
+//   }
+// }
+
+// class Watch {
+//   soundAlarm () {
+//     console.log('Beep!')
+//   }
+// }
+
+// class Dog {
+//   soundAlarm () {
+//     return 'woof!'
+//   }
+// }
+
+// class Door {
+//   soundAlarm () {
+//     return 'siren!'
+//   }
+// }
+
+// let thingsThatCanSoundAlarm = [new Person(), new Watch(), new Dog(), new Door()];
+// thingsThatCanSoundAlarm.forEach(thing => thing.soundAlarm());
+
+
+//Constructors with an external prototype object epxlicitly created
+
+/*
+instance properties are properties that are specific to each individual instance created by the Constructor. So, name - arttributes like that which should be passed in as arguments to set explciitly.
+
+instance methods - these are defined on the function prototype (Constructor prototype) and accessible for all instances of the Constructor to access using delegation/inheritance.
+*/
+
+// function Rectangle(length, width) {
+//   this.length = length;
+//   this.width = width;
+// }
+
+// Rectangle.prototype.area = function area() {
+//   return this.length * this.width;
+// }
+
+// Rectangle.prototype.toString = function toString() {
+//   return `Rectangle length is calculated by multiplying the lenght by the width, so here the length is: ${this.length} and the width: ${this.width} to give as an area of ${this.length * this.width}`;
+// }
+
+// let rec1 = new Rectangle(10,5);
+// console.log(rec1);
+// console.log(rec1 instanceof Rectangle);
+// console.log(Object.getPrototypeOf(rec1) === Rectangle.prototype);
+// console.log(rec1.constructor.name);
+// console.log(rec1.area());
+// console.log(rec1.toString());
+
+let arr = [1,2,3,4];
+function forEach(arr, callback, context) {
+  for (let index = 0; index < arr.length; index++) {
+    // console.log(callback(arr[index]));
+    callback.call(context, arr[index]);
   }
 }
 
-class Watch {
-  soundAlarm () {
-    console.log('Beep!')
+// function squared(num) {
+//   return num ** 2;
+// }
+// // function isOdd(num) {
+// //   return num % 2 === 1
+// // };
+
+class Foo {
+  constructor(prefix) {
+    this.prefix = prefix;
+  }
+
+  showItem(item) {
+    console.log(this.prefix, item);
   }
 }
 
-class Dog {
-  soundAlarm () {
-    return 'woof!'
-  }
-}
+let foo = new Foo("Item: ");
 
-class Door {
-  soundAlarm () {
-    return 'siren!'
-  }
-}
-
-let thingsThatCanSoundAlarm = [new Person(), new Watch(), new Dog(), new Door()];
-thingsThatCanSoundAlarm.forEach(thing => thing.soundAlarm());
+forEach(arr, foo.showItem, foo);
