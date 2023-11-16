@@ -1,4 +1,4 @@
-'use strict';
+// 'use strict';
 // let arr = [1,2,3,4];
 // function forEach(arr, callback, context) {
 //   for (let index = 0; index < arr.length; index++) {
@@ -227,11 +227,25 @@ return {
 
 //function declaration
 
-foo();
-
-
-function foo() {
-  console.log('Hello from a hoisted function declaration that can be invoked before it is initialized.');
+function newStack() {
+  let stack = [];
+  return {
+    push(val) {
+      stack.push(val);
+    },
+    pop() {
+      stack.pop()
+    },
+    printStack() {
+      stack.forEach(el => console.log(el));
+    }
+  }
 }
 
-
+let test = newStack();
+console.log(test);
+test.push("jordan");
+test.push('taylor');
+test.printStack();
+test.pop();
+test.printStack();
