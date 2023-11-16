@@ -227,25 +227,28 @@ return {
 
 //function declaration
 
-function newStack() {
-  let stack = [];
-  return {
-    push(val) {
-      stack.push(val);
-    },
-    pop() {
-      stack.pop()
-    },
-    printStack() {
-      stack.forEach(el => console.log(el));
-    }
+
+
+let foo = {
+  name: 'test',
+  bar: function(greeting) {
+    console.log(greeting + ' ' + this.name);
+  },
+};
+
+let baz = {
+  qux: delegate(foo, 'bar', 'hello'),
+};
+
+baz.qux();   // logs 'hello test';
+
+foo.bar = function() { console.log('changed'); };
+
+baz.qux();          // logs 'changed'
+
+function delegate(obj, method, ...args) {
+  return function() {
+    let func = obj[method]
+    return func.apply(obj, args);
   }
 }
-
-let test = newStack();
-console.log(test);
-test.push("jordan");
-test.push('taylor');
-test.printStack();
-test.pop();
-test.printStack();
